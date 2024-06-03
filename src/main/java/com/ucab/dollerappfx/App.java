@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.scene.image.Image;
+
 
 import java.io.IOException;
 
@@ -17,7 +19,9 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"), 640, 480);
+        scene = new Scene(loadFXML("LogIn"), 1280, 800);
+        stage.setTitle("Dollder App");
+        stage.getIcons().add(new Image("/Assets/logo_Dollder.png"));
         stage.setScene(scene);
         stage.show();
     }
