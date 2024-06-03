@@ -32,7 +32,7 @@
                   </LinearGradient>
                </fill>
             </Rectangle>
-            <Pane fx:id="btMedicS" layoutX="20.0" layoutY="138.0" onMouseEntered="#btMedicS" prefHeight="60.0" prefWidth="60.0">
+            <Pane fx:id="btMedicS" layoutX="20.0" layoutY="138.0" prefHeight="60.0" prefWidth="60.0">
                <children>
                   <Circle fill="#2e3a46" layoutX="30.0" layoutY="30.0" opacity="0.83" radius="30.0" strokeType="INSIDE" strokeWidth="0.0" visible="false" />
                   <ImageView fitHeight="53.0" fitWidth="47.0" layoutX="6.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">

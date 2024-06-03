@@ -12,14 +12,14 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1176.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="com.ucab.dollerappfx.MenuClientesController">
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1176.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ucab.dollerappfx.MenuClientesController">
    <children>
-      <Label layoutX="29.0" layoutY="14.0" text="&lt;Clientes&gt;">
+      <Label layoutX="20.0" layoutY="12.0" text="&lt;Clientes&gt;">
          <font>
             <Font size="36.0" />
          </font>
       </Label>
+      <Separator layoutY="67.0" prefHeight="0.0" prefWidth="1176.0" />
       <StackPane layoutY="65.0" prefHeight="735.0" prefWidth="1176.0">
          <children>
             <Pane prefHeight="200.0" prefWidth="200.0">
@@ -35,7 +35,6 @@
                       <TableColumn prefWidth="75.0" text="C2" />
                     </columns>
                   </TableView>
-                  <Separator layoutX="19.0" layoutY="4.0" prefHeight="0.0" prefWidth="325.0" />
                   <Button layoutX="1107.0" layoutY="14.0" mnemonicParsing="false" text="Crear">
                      <font>
                         <Font size="14.0" />
@@ -50,7 +49,6 @@
                         <Font size="30.0" />
                      </font>
                   </Label>
-                  <Separator layoutX="16.0" layoutY="3.0" prefHeight="3.0" prefWidth="292.0" />
                   <Separator layoutX="666.0" layoutY="15.0" orientation="VERTICAL" prefHeight="713.0" prefWidth="10.0" />
                   <TableView layoutX="680.0" layoutY="104.0" prefHeight="608.0" prefWidth="463.0">
                     <columns>

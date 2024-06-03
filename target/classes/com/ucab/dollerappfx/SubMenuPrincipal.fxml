@@ -39,7 +39,7 @@
           <TableColumn prefWidth="75.0" text="C2" />
         </columns>
       </TableView>
-      <Button layoutX="108.0" layoutY="177.0" mnemonicParsing="false" text="Medicos">
+      <Button fx:id="btMeds" layoutX="108.0" layoutY="177.0" mnemonicParsing="false" onAction="#mostrarMeds" text="Medicos">
          <font>
             <Font size="24.0" />
          </font>

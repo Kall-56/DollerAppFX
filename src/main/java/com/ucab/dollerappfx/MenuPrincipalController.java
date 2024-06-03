@@ -28,7 +28,5 @@ public class MenuPrincipalController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
-    }    
-    
+    }
 }
