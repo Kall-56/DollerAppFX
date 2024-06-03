@@ -9,17 +9,15 @@ public abstract class Cliente {
     protected char tipoIdentidad; // Si es Natural o Juridico
     protected int docIdentidad;
     protected String descripcion;
-    protected String acompany; // Acompañada
     protected ArrayList<Evento> eventoList;
 
-    public Cliente(String nombreCliente, String direccion, int numTLF, char tipoIdentidad, int docIdentidad, String descripcion, String acompany) {
+    public Cliente(String nombreCliente, String direccion, int numTLF, char tipoIdentidad, int docIdentidad, String descripcion) {
         this.nombreCliente = nombreCliente;
         this.direccion = direccion;
         this.numTLF = numTLF;
         this.tipoIdentidad = tipoIdentidad;
         this.docIdentidad = docIdentidad;
         this.descripcion = descripcion;
-        this.acompany = acompany;
 
         eventoList = new ArrayList<>();
     }
@@ -71,14 +69,6 @@ public abstract class Cliente {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
-    }
-
-    public String getAcompany() {
-        return acompany;
-    }
-
-    public void setAcompany(String acompany) {
-        this.acompany = acompany;
     }
 
     public ArrayList<Evento> getEventoList() {

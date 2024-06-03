@@ -14,7 +14,6 @@ public class Medico extends Cliente {
                   char tipoIdentidad,
                   int docIdentidad,
                   String descripcion,
-                  String acompany,
                   String especialidad,
                   String email,
                   int frecuencia,
@@ -22,7 +21,7 @@ public class Medico extends Cliente {
                   String horario,
                   String formato) {
 
-        super(nombreCliente, direccion, numTLF, tipoIdentidad, docIdentidad, descripcion, acompany);
+        super(nombreCliente, direccion, numTLF, tipoIdentidad, docIdentidad, descripcion);
         this.especialidad = especialidad;
         this.email = email;
         this.frecuencia = frecuencia;

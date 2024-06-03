@@ -13,14 +13,13 @@ public class Farmacia extends Cliente {
                     char tipoIdentidad,
                     int docIdentidad,
                     String descripcion,
-                    String acompany,
                     String personaContacto,
                     String email,
                     int frecuencia,
                     String cadena,
                     String drogueria) {
 
-        super(nombreCliente, direccion, numTLF, tipoIdentidad, docIdentidad, descripcion, acompany);
+        super(nombreCliente, direccion, numTLF, tipoIdentidad, docIdentidad, descripcion);
         this.personaContacto = personaContacto;
         this.email = email;
         this.frecuencia = frecuencia;

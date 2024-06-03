@@ -10,8 +10,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 
-
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: white;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="com.ucab.dollerappfx.MenuPrincipalController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ucab.dollerappfx.MenuPrincipalController">
    <children>
       <Pane prefHeight="800.0" prefWidth="99.0">
          <children>
@@ -33,7 +32,7 @@
                   </LinearGradient>
                </fill>
             </Rectangle>
-            <Pane fx:id="btMedicS" layoutX="20.0" layoutY="138.0" prefHeight="60.0" prefWidth="60.0">
+            <Pane fx:id="btMedicS" layoutX="20.0" layoutY="138.0" onMouseEntered="#btMedicS" prefHeight="60.0" prefWidth="60.0">
                <children>
                   <Circle fill="#2e3a46" layoutX="30.0" layoutY="30.0" opacity="0.83" radius="30.0" strokeType="INSIDE" strokeWidth="0.0" visible="false" />
                   <ImageView fitHeight="53.0" fitWidth="47.0" layoutX="6.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
@@ -48,5 +47,6 @@
             <Pane layoutX="27.0" layoutY="725.0" prefHeight="46.0" prefWidth="46.0" />
          </children>
       </Pane>
+      <Pane fx:id="pnContenido" layoutX="104.0" prefHeight="800.0" prefWidth="1176.0" />
    </children>
 </AnchorPane>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="800.0" prefWidth="1176.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="com.ucab.dollerappfx.MenuClientesController">
+   <children>
+      <Label layoutX="29.0" layoutY="14.0" text="&lt;Clientes&gt;">
+         <font>
+            <Font size="36.0" />
+         </font>
+      </Label>
+      <StackPane layoutY="65.0" prefHeight="735.0" prefWidth="1176.0">
+         <children>
+            <Pane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <TextField layoutX="19.0" layoutY="14.0" prefHeight="30.0" prefWidth="325.0" promptText="Buscar Clientes">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <TableView layoutX="19.0" layoutY="57.0" prefHeight="648.0" prefWidth="1139.0">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="C1" />
+                      <TableColumn prefWidth="75.0" text="C2" />
+                    </columns>
+                  </TableView>
+                  <Separator layoutX="19.0" layoutY="4.0" prefHeight="0.0" prefWidth="325.0" />
+                  <Button layoutX="1107.0" layoutY="14.0" mnemonicParsing="false" text="Crear">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
+            <Pane prefHeight="736.0" prefWidth="1176.0" visible="false">
+               <children>
+                  <Label layoutX="16.0" layoutY="9.0" text="&lt;Nombre de Cliente&gt;" textFill="#434343">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+                  <Separator layoutX="16.0" layoutY="3.0" prefHeight="3.0" prefWidth="292.0" />
+                  <Separator layoutX="666.0" layoutY="15.0" orientation="VERTICAL" prefHeight="713.0" prefWidth="10.0" />
+                  <TableView layoutX="680.0" layoutY="104.0" prefHeight="608.0" prefWidth="463.0">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="C1" />
+                      <TableColumn prefWidth="75.0" text="C2" />
+                    </columns>
+                  </TableView>
+                  <Label layoutX="686.0" layoutY="9.0" text="Eventos" textFill="#434343">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+                  <TextField layoutX="686.0" layoutY="61.0" promptText="Buscar Evento">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <Button layoutX="1059.0" layoutY="64.0" mnemonicParsing="false" text="Crear Evento" />
+                  <Label layoutX="29.0" layoutY="104.0" text="Direccion">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="29.0" layoutY="178.0" text="Doc. Identidad">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="29.0" layoutY="253.0" text="Num. Telefonico">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="16.0" layoutY="477.0" text="Observaciones">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <TextArea layoutX="16.0" layoutY="512.0" prefHeight="200.0" prefWidth="643.0" />
+               </children>
+            </Pane>
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>

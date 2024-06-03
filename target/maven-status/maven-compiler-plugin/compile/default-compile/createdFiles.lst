@@ -1,6 +1,8 @@
+com\ucab\dollerappfx\SubMenuPrincipalController.class
 com\ucab\dollerappfx\LogInController.class
 Classes\Farmacia.class
 Classes\Medico.class
+com\ucab\dollerappfx\MenuClientesController.class
 Classes\ATM.class
 Classes\Institucion.class
 Classes\Administrador.class

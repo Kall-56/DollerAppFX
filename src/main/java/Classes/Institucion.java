@@ -10,11 +10,10 @@ public class Institucion extends Cliente {
                        char tipoIdentidad,
                        int docIdentidad,
                        String descripcion,
-                       String acompany,
                        String personaContacto,
                        String edfFacultad) {
 
-        super(nombreCliente, direccion, numTLF, tipoIdentidad, docIdentidad, descripcion, acompany);
+        super(nombreCliente, direccion, numTLF, tipoIdentidad, docIdentidad, descripcion);
         this.personaContacto = personaContacto;
         this.edfFacultad = edfFacultad;
     }
