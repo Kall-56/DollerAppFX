@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -106,7 +107,15 @@ public class LogInController {
 
     @FXML
     void btLogInClicked(MouseEvent event) throws IOException {
-        App.setRoot("MenuPrincipal");
+        if (fldUserName.getText().equals("atm") && fldUserPassword.getText().equals("1234")) {
+            App.setRoot("MenuPrincipal");
+        }
+        else {
+            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+            alerta.setTitle("Datos inválidos");
+            alerta.setHeaderText("Usuario y/o contraseña incorrectos");
+            alerta.showAndWait();
+        }
     }
 
     @FXML

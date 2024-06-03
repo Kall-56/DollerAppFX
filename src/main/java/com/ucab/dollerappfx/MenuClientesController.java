@@ -1,22 +1,8 @@
 package com.ucab.dollerappfx;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-import javafx.fxml.Initializable;
+public class MenuClientesController {
 
-/**
- * FXML Controller class
- *
- * @author ILEANA
- */
-public class MenuClientesController implements Initializable {
-
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize() {
         // TODO
-    }    
-    
+    }
 }
