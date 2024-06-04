@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import Classes.ATM;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -56,6 +57,8 @@ public class LogInController {
     @FXML
     private Pane pnUserLogIn;
 
+    private ATM usuario;
+
     @FXML
     void btBackClicked(MouseEvent event) {
         pnUserLogIn.toFront();
@@ -107,7 +110,7 @@ public class LogInController {
 
     @FXML
     void btLogInClicked(MouseEvent event) throws IOException {
-        if (fldUserName.getText().equals("atm") && fldUserPassword.getText().equals("1234")) {
+        if (fldUserName.getText().equals(usuario.getNomUsuario()) && fldUserPassword.getText().equals(usuario.getClave())) {
             App.setRoot("MenuPrincipal");
         }
         else {
@@ -143,7 +146,7 @@ public class LogInController {
 
     }
     
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+    public void initialize() {
+        usuario = new ATM();
     }
 }

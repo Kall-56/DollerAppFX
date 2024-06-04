@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ucab.dollerappfx.MenuPrincipalController">
    <children>
@@ -47,6 +54,57 @@
             <Pane layoutX="27.0" layoutY="725.0" prefHeight="46.0" prefWidth="46.0" />
          </children>
       </Pane>
-      <Pane fx:id="pnContenido" layoutX="104.0" prefHeight="800.0" prefWidth="1176.0" />
+      <StackPane fx:id="pnContenido" layoutX="106.0" prefHeight="800.0" prefWidth="1176.0">
+         <children>
+            <Pane fx:id="pnSubMenuPrincipal" prefHeight="800.0" prefWidth="1176.0">
+               <children>
+                  <Label layoutX="30.0" layoutY="23.0" text="Clientes">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+                  <Separator layoutX="15.0" layoutY="395.0" prefHeight="11.0" prefWidth="750.0" />
+                  <Separator layoutX="772.0" layoutY="13.0" orientation="VERTICAL" prefHeight="776.0" prefWidth="6.0" />
+                  <Label layoutX="787.0" layoutY="23.0" text="Eventos">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="30.0" layoutY="407.0" text="Clientes Recientes">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+                  <TableView fx:id="tbClientesRecientes" layoutX="30.0" layoutY="463.0" prefHeight="313.0" prefWidth="720.0">
+                     <columns>
+                        <TableColumn prefWidth="75.0" text="C1" />
+                        <TableColumn prefWidth="75.0" text="C2" />
+                     </columns>
+                  </TableView>
+                  <TableView fx:id="tbEventosMenu" layoutX="787.0" layoutY="82.0" prefHeight="694.0" prefWidth="364.0">
+                     <columns>
+                        <TableColumn prefWidth="75.0" text="C1" />
+                        <TableColumn prefWidth="75.0" text="C2" />
+                     </columns>
+                  </TableView>
+                  <Button fx:id="btMeds" layoutX="119.0" layoutY="217.0" mnemonicParsing="false" onAction="#mostrarMeds" text="Medicos">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="532.0" layoutY="217.0" mnemonicParsing="false" text="Instituciones">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="322.0" layoutY="217.0" mnemonicParsing="false" text="Farmacias">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
+         </children>
+      </StackPane>
    </children>
 </AnchorPane>

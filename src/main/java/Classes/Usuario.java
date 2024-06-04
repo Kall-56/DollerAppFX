@@ -6,6 +6,13 @@ public abstract class Usuario {
     protected String territorio;
     protected String email;
 
+    public Usuario() {
+        nomUsuario = "usuarioPrueba";
+        clave = "1234";
+        territorio = "Caracas";
+        email = "usuarioprueba@gmail.com";
+    }
+
     public Usuario(String nomUsuario, String clave, String territorio, String email) {
         this.nomUsuario = nomUsuario;
         this.clave = clave;

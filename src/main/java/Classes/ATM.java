@@ -9,6 +9,16 @@ public class ATM extends Usuario {
     private ArrayList<Evento> eventoList;
     private Administrador gerente; // Creo que al final no hara falta este atributo
 
+    public ATM() {
+        super();
+        this.gerente = new Administrador();
+
+        institucionList = new ArrayList<>();
+        farmaciaList    = new ArrayList<>();
+        medicoList      = new ArrayList<>();
+        eventoList      = new ArrayList<>();
+    }
+
     public ATM(String nomUsuario, String clave, String territorio, String email, Administrador gerente) {
         super(nomUsuario, clave, territorio, email);
         this.gerente = gerente;

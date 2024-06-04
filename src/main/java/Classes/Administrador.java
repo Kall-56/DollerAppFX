@@ -5,6 +5,11 @@ import java.util.ArrayList;
 public class Administrador extends Usuario {
     private ArrayList<ATM> atmList;
 
+    public Administrador() {
+        super();
+        atmList = new ArrayList<>();
+    }
+
     public Administrador(String nomUsuario, String clave, String territorio, String email) {
         super(nomUsuario, clave, territorio, email);
         atmList = new ArrayList<>();
