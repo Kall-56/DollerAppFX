@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
@@ -19,9 +20,9 @@
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ucab.dollerappfx.MenuPrincipalController">
    <children>
-      <Pane prefHeight="800.0" prefWidth="99.0">
+      <Pane prefHeight="800.0" prefWidth="114.0">
          <children>
-            <Rectangle arcHeight="100.0" arcWidth="100.0" height="809.0" layoutX="-55.0" layoutY="-8.0" opacity="0.99" stroke="#5757571f" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="1.5" width="161.0">
+            <Rectangle arcHeight="35.0" arcWidth="35.0" height="780.0" layoutX="7.0" layoutY="10.0" opacity="0.99" stroke="#5757571f" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="1.5" width="100.0">
                <fill>
                   <LinearGradient endX="0.4786729857819905" endY="0.6872037914691943" startX="0.44549763033175355" startY="0.24644549763033177">
                      <stops>
@@ -39,71 +40,87 @@
                   </LinearGradient>
                </fill>
             </Rectangle>
-            <Pane fx:id="btMedicS" layoutX="20.0" layoutY="138.0" prefHeight="60.0" prefWidth="60.0">
+            <Pane fx:id="btLogo" layoutX="20.0" layoutY="27.0" onMouseClicked="#btLogoClicked" prefHeight="44.0" prefWidth="71.0">
                <children>
-                  <Circle fill="#2e3a46" layoutX="30.0" layoutY="30.0" opacity="0.83" radius="30.0" strokeType="INSIDE" strokeWidth="0.0" visible="false" />
-                  <ImageView fitHeight="53.0" fitWidth="47.0" layoutX="6.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="44.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../Assets/user-md.png" />
+                        <Image url="@../../../Assets/logo_Dollder.png" />
                      </image>
                   </ImageView>
                </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Pane>
-            <Circle fill="#475b6f" layoutX="50.0" layoutY="245.0" opacity="0.17" radius="23.0" strokeType="INSIDE" strokeWidth="0.0" />
-            <Circle fill="#475b6f" layoutX="50.0" layoutY="320.0" opacity="0.17" radius="23.0" strokeType="INSIDE" strokeWidth="0.0" />
-            <Pane layoutX="27.0" layoutY="725.0" prefHeight="46.0" prefWidth="46.0" />
+            <Pane fx:id="btMedicS" layoutX="27.0" layoutY="151.0" onMouseEntered="#btMedicSEntered" onMouseExited="#btMedicSExited" onMousePressed="#btMedicPressed" prefHeight="60.0" prefWidth="60.0">
+               <children>
+                  <Circle fx:id="bgCircleMedicS" fill="#2e3a46" layoutX="30.0" layoutY="30.0" opacity="0.83" radius="30.0" strokeType="INSIDE" strokeWidth="0.0" visible="false" />
+                  <ImageView fitHeight="53.0" fitWidth="47.0" layoutX="6.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Pane>
+            <Pane fx:id="btLogOut" layoutX="34.0" layoutY="732.0" prefHeight="46.0" prefWidth="46.0">
+               <children>
+                  <ImageView fitHeight="53.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Pane>
          </children>
       </Pane>
-      <StackPane fx:id="pnContenido" layoutX="106.0" prefHeight="800.0" prefWidth="1176.0">
+      <StackPane fx:id="pnContenido" layoutX="254.0" prefHeight="800.0" prefWidth="1020.0">
          <children>
-            <Pane fx:id="pnSubMenuPrincipal" prefHeight="800.0" prefWidth="1176.0">
+            <AnchorPane fx:id="pnSubMenuPrincipal" prefHeight="800.0" prefWidth="1048.0">
                <children>
-                  <Label layoutX="30.0" layoutY="23.0" text="Clientes">
+                  <Label layoutX="14.0" layoutY="14.0" text="Clientes">
                      <font>
                         <Font size="30.0" />
                      </font>
                   </Label>
-                  <Separator layoutX="15.0" layoutY="395.0" prefHeight="11.0" prefWidth="750.0" />
-                  <Separator layoutX="772.0" layoutY="13.0" orientation="VERTICAL" prefHeight="776.0" prefWidth="6.0" />
-                  <Label layoutX="787.0" layoutY="23.0" text="Eventos">
+                  <Button fx:id="btMedic" layoutX="104.0" layoutY="133.0" mnemonicParsing="false" onMousePressed="#btMedicPressed" text="Medicos">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="303.0" layoutY="133.0" mnemonicParsing="false" text="Instituciones">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="520.0" layoutY="133.0" mnemonicParsing="false" text="Farmacias">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Button>
+                  <Separator layoutX="11.0" layoutY="406.0" prefHeight="11.0" prefWidth="750.0" />
+                  <Separator layoutX="775.0" layoutY="12.0" orientation="VERTICAL" prefHeight="776.0" prefWidth="6.0" />
+                  <Label layoutX="22.0" layoutY="422.0" text="Clientes Recientes">
                      <font>
                         <Font size="30.0" />
                      </font>
                   </Label>
-                  <Label layoutX="30.0" layoutY="407.0" text="Clientes Recientes">
-                     <font>
-                        <Font size="30.0" />
-                     </font>
-                  </Label>
-                  <TableView fx:id="tbClientesRecientes" layoutX="30.0" layoutY="463.0" prefHeight="313.0" prefWidth="720.0">
+                  <TableView fx:id="tbClientesRecientes" layoutX="22.0" layoutY="467.0" prefHeight="313.0" prefWidth="720.0">
                      <columns>
                         <TableColumn prefWidth="75.0" text="C1" />
                         <TableColumn prefWidth="75.0" text="C2" />
                      </columns>
                   </TableView>
-                  <TableView fx:id="tbEventosMenu" layoutX="787.0" layoutY="82.0" prefHeight="694.0" prefWidth="364.0">
+                  <Label layoutX="798.0" layoutY="14.0" text="Eventos">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+                  <TableView fx:id="tbEventosMenu" layoutX="792.0" layoutY="65.0" prefHeight="694.0" prefWidth="203.0">
                      <columns>
                         <TableColumn prefWidth="75.0" text="C1" />
                         <TableColumn prefWidth="75.0" text="C2" />
                      </columns>
                   </TableView>
-                  <Button fx:id="btMeds" layoutX="119.0" layoutY="217.0" mnemonicParsing="false" onAction="#mostrarMeds" text="Medicos">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="532.0" layoutY="217.0" mnemonicParsing="false" text="Instituciones">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="322.0" layoutY="217.0" mnemonicParsing="false" text="Farmacias">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Button>
                </children>
-            </Pane>
+            </AnchorPane>
+            <AnchorPane fx:id="pnSubMenuClientes" prefHeight="200.0" prefWidth="200.0" visible="false" />
          </children>
       </StackPane>
    </children>

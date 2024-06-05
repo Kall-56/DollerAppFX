@@ -110,15 +110,15 @@ public class LogInController {
 
     @FXML
     void btLogInClicked(MouseEvent event) throws IOException {
-        if (fldUserName.getText().equals(usuario.getNomUsuario()) && fldUserPassword.getText().equals(usuario.getClave())) {
+//        if (fldUserName.getText().equals(usuario.getNomUsuario()) && fldUserPassword.getText().equals(usuario.getClave())) {
             App.setRoot("MenuPrincipal");
-        }
-        else {
-            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-            alerta.setTitle("Datos inválidos");
-            alerta.setHeaderText("Usuario y/o contraseña incorrectos");
-            alerta.showAndWait();
-        }
+//        }
+//        else {
+//            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+//            alerta.setTitle("Datos inválidos");
+//            alerta.setHeaderText("Usuario y/o contraseña incorrectos");
+//            alerta.showAndWait();
+//        }
     }
 
     @FXML
@@ -133,12 +133,12 @@ public class LogInController {
 
     @FXML
     void fldForgotEntered(MouseEvent event) {
-
+        fldPasswordForgot.setTextFill(App.aguamarina);
     }
 
     @FXML
     void fldForgotExited(MouseEvent event) {
-
+        fldPasswordForgot.setTextFill(App.naranja);
     }
 
     @FXML
