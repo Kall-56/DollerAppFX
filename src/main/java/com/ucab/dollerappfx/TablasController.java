@@ -1,5 +1,6 @@
 package com.ucab.dollerappfx;
 
+import Classes.Cliente;
 import Classes.Farmacia;
 import Classes.Institucion;
 import Classes.Medico;
@@ -9,7 +10,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class TablasController {
-    
+
     public static <T> void establecerTipoTabla(TableView<T> tabla, Class<T> clase, ObservableList<T> lista) {
         tabla.setItems(lista);
         tabla.getColumns().clear();

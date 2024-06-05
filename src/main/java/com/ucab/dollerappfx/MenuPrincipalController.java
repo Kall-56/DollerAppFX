@@ -106,9 +106,23 @@ public class MenuPrincipalController {
             e.printStackTrace();
         }
 
-        // Hay que cargar o crear las listas
-        listMedicos = FXCollections.observableArrayList();
-        listInstituciones = FXCollections.observableArrayList();
-        listFarmacias = FXCollections.observableArrayList();
+        // Hay que cargar o crear las listas (Aqui estoy usando unos de prueba)
+        listMedicos = FXCollections.observableArrayList(
+                new Medico("Ale", "Por ahi", 424, 'V', 30282309, "No se", "Huesos", "a@gmail.com", 0, "Lunes-Viernes", "9-5", "No se")
+        );
+        listInstituciones = FXCollections.observableArrayList(
+                new Institucion("Manu", "Por alla", 412, 'V', 31423309, "No se", "Alguien", "Ciencias"),
+                new Institucion("Pepe", "Por aca", 426, 'V', 10544904, "No se", "Otro alguien", "Humanidades")
+        );
+        listFarmacias = FXCollections.observableArrayList(
+                new Farmacia("Alex", "Por aqui", 414, 'J', 11225210, "No se", "Un extraño", "b@gmail.com", 1, "Perpetua", "Acetaminofen")
+        );
+
+        // Creacion de la tabla MultiClase
+        ObservableList<Cliente> clientes = FXCollections.observableArrayList();
+        clientes.addAll(listMedicos);
+        clientes.addAll(listInstituciones);
+        clientes.addAll(listFarmacias);
+        TablasController.establecerTipoTabla(tbClientesRecientes, Cliente.class, clientes);
     }
 }
