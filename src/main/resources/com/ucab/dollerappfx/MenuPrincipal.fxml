@@ -84,7 +84,7 @@
                         <Font size="24.0" />
                      </font>
                   </Button>
-                  <Button layoutX="303.0" layoutY="133.0" mnemonicParsing="false" text="Instituciones">
+                  <Button fx:id="btInst" layoutX="303.0" layoutY="133.0" mnemonicParsing="false" onMousePressed="#btInstPressed" text="Instituciones">
                      <font>
                         <Font size="24.0" />
                      </font>

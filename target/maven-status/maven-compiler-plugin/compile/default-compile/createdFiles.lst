@@ -9,5 +9,6 @@ module-info.class
 Classes\Usuario.class
 Classes\Cliente.class
 Classes\Evento.class
+com\ucab\dollerappfx\TablasController.class
 com\ucab\dollerappfx\App.class
 com\ucab\dollerappfx\MenuPrincipalController.class
