@@ -1,6 +1,5 @@
 package com.ucab.dollerappfx;
 
-import Classes.Cliente;
 import Classes.Farmacia;
 import Classes.Institucion;
 import Classes.Medico;

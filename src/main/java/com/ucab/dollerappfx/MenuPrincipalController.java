@@ -65,8 +65,8 @@ public class MenuPrincipalController {
     
     @FXML
     void btMedicPressed(MouseEvent event) {
-        pnSubMenuClientes.setVisible(true);
-        pnSubMenuPrincipal.setVisible(false);
+        cambio(true, false);
+        controllerClientes.cambio(false, true);
         bgCircleMedicS.setVisible(true);
 
         controllerClientes.establecerClase(Medico.class, listMedicos);
@@ -87,10 +87,15 @@ public class MenuPrincipalController {
 
     @FXML
     void btInstPressed(MouseEvent event) {
-        pnSubMenuClientes.setVisible(true);
-        pnSubMenuPrincipal.setVisible(false);
+        cambio(true, false);
+        controllerClientes.cambio(false, true);
 
         controllerClientes.establecerClase(Institucion.class, listInstituciones);
+    }
+
+    public void cambio(boolean a, boolean b) {
+        pnSubMenuClientes.setVisible(a);
+        pnSubMenuPrincipal.setVisible(b);
     }
 
     @FXML
