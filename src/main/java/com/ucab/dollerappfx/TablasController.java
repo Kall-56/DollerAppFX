@@ -11,7 +11,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 public class TablasController {
 
     public static <T> void establecerTipoTabla(TableView<T> tabla, Class<T> clase, ObservableList<T> lista) {
-        tabla.setItems(lista);
         tabla.getColumns().clear();
 
         TableColumn<T, String> nombreCol = new TableColumn<>("Nombre");
@@ -83,13 +82,14 @@ public class TablasController {
 
             TableColumn<T, String> drogueriaCol = new TableColumn<>("Droguería");
             drogueriaCol.setCellValueFactory(new PropertyValueFactory<>("drogueria"));
-
-            tabla.getColumns().add(emailCol);
+            
             tabla.getColumns().add(personaCol);
+            tabla.getColumns().add(emailCol);
             tabla.getColumns().add(frecuenciaCol);
             tabla.getColumns().add(cadenaCol);
             tabla.getColumns().add(drogueriaCol);
         }
+        tabla.setItems(lista);
         tabla.refresh();
     }
 }

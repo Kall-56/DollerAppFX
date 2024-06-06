@@ -3,11 +3,14 @@ package com.ucab.dollerappfx;
 import java.io.IOException;
 
 import Classes.*;
+import java.util.Optional;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
@@ -30,9 +33,12 @@ public class MenuPrincipalController {
 
     @FXML
     private Pane btFarmaS;
+    
+    @FXML
+    private Pane btFarma;
 
     @FXML
-    private Button btInst;
+    private Pane btInst;
 
     @FXML
     private Pane btInstS;
@@ -44,7 +50,7 @@ public class MenuPrincipalController {
     private Pane btLogo;
 
     @FXML
-    private Button btMedic;
+    private Pane btMedic;
 
     @FXML
     private Pane btMedicS;
@@ -91,13 +97,15 @@ public class MenuPrincipalController {
         visibilityChange(true, false);
         controllerClientes.cambio(false, true);
         bgCircleMedicS.setOpacity(maxOpacity);
+        bgCircleFarmaS.setOpacity(lowOpacity);
+        bgCircleInstS.setOpacity(lowOpacity);
 
         controllerClientes.establecerClase(Medico.class, listMedicos);
     }
 
     @FXML
     void btMedicSExited(MouseEvent event) {
-        if (!pnSubMenuClientes.isVisible() && !"Médicos".equals(controllerClientes.getClientesLabel())){
+        if (!pnSubMenuClientes.isVisible() || !"Médicos".equals(controllerClientes.getClientesLabel())){
             bgCircleMedicS.setOpacity(lowOpacity);
         }
     }
@@ -112,6 +120,8 @@ public class MenuPrincipalController {
         visibilityChange(true, false);
         controllerClientes.cambio(false, true);
         bgCircleFarmaS.setOpacity(maxOpacity);
+        bgCircleInstS.setOpacity(lowOpacity);
+        bgCircleMedicS.setOpacity(lowOpacity);
 
         controllerClientes.establecerClase(Farmacia.class, listFarmacias);
     }
@@ -123,7 +133,7 @@ public class MenuPrincipalController {
 
     @FXML
     void btFarmaSExited(MouseEvent event) {
-        if (!pnSubMenuClientes.isVisible() && !"Farmacias".equals(controllerClientes.getClientesLabel())){
+        if (!pnSubMenuClientes.isVisible() || !"Farmacias".equals(controllerClientes.getClientesLabel())){
             bgCircleFarmaS.setOpacity(lowOpacity);
         }
     }
@@ -133,6 +143,8 @@ public class MenuPrincipalController {
         visibilityChange(true, false);
         controllerClientes.cambio(false, true);
         bgCircleInstS.setOpacity(maxOpacity);
+        bgCircleFarmaS.setOpacity(lowOpacity);
+        bgCircleMedicS.setOpacity(lowOpacity);
 
         controllerClientes.establecerClase(Institucion.class, listInstituciones);
     }
@@ -144,9 +156,26 @@ public class MenuPrincipalController {
 
     @FXML
     void btInstSExited(MouseEvent event) {
-        if (!pnSubMenuClientes.isVisible() && !"Instituciones".equals(controllerClientes.getClientesLabel())){
+        if (!pnSubMenuClientes.isVisible() || !"Instituciones".equals(controllerClientes.getClientesLabel())){
             bgCircleInstS.setOpacity(lowOpacity);
         }
+    }
+    
+    @FXML
+    void btLogOutClicked(MouseEvent event) throws IOException {
+        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+        alerta.setTitle("Seguro que quiere cerrar sesion?");
+        ButtonType confirmButton = ButtonType.OK;
+        ButtonType cancelButton = ButtonType.CANCEL;
+
+        alerta.getButtonTypes().setAll(confirmButton, cancelButton);
+
+        Optional<ButtonType> result = alerta.showAndWait();
+
+        if (result.isPresent() && result.get() == confirmButton) {
+            App.setRoot("LogIn");
+        }
+        
     }
     
     public void visibilityChange(boolean a, boolean b) {
