@@ -11,9 +11,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.paint.LinearGradient?>
-<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
@@ -22,29 +19,33 @@
    <children>
       <Pane fx:id="pnSideBar" prefHeight="800.0" prefWidth="114.0">
          <children>
-            <Rectangle arcHeight="35.0" arcWidth="35.0" height="780.0" layoutX="7.0" layoutY="10.0" opacity="0.99" stroke="#5757571f" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="1.5" width="100.0">
-               <fill>
-                  <LinearGradient endX="0.4786729857819905" endY="0.6872037914691943" startX="0.44549763033175355" startY="0.24644549763033177">
-                     <stops>
-                        <Stop>
-                           <color>
-                              <Color red="0.2655999958515167" green="0.288266658782959" blue="0.3199999928474426" />
-                           </color>
-                        </Stop>
-                        <Stop offset="1.0">
-                           <color>
-                              <Color red="0.3248050808906555" green="0.37050437927246094" blue="0.40789473056793213" />
-                           </color>
-                        </Stop>
-                     </stops>
-                  </LinearGradient>
-               </fill>
-            </Rectangle>
+            <Rectangle arcHeight="35.0" arcWidth="35.0" fill="#30281e" height="780.0" layoutX="7.0" layoutY="10.0" opacity="0.9" stroke="#5757571f" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="1.5" width="100.0" />
             <Pane fx:id="btLogo" layoutX="20.0" layoutY="27.0" onMouseClicked="#btLogoClicked" prefHeight="44.0" prefWidth="71.0">
                <children>
-                  <ImageView fitHeight="44.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="44.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Pane>
+            <Pane fx:id="btMedicS" layoutX="25.0" layoutY="122.0" onMouseEntered="#btMedicSEntered" onMouseExited="#btMedicSExited" onMousePressed="#btMedicPressed" prefHeight="60.0" prefWidth="60.0">
+               <children>
+                  <Circle fx:id="bgCircleMedicS" fill="#30281e" layoutX="30.0" layoutY="30.0" opacity="0.35" radius="30.0" strokeType="INSIDE" strokeWidth="0.0" />
+                  <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="12.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../Assets/logo_Dollder.png" />
+                        <Image url="@../../../Assets/iconMd.png" />
+                     </image></ImageView>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Pane>
+            <Pane fx:id="btFarmaS" layoutX="25.0" layoutY="205.0" onMouseEntered="#btFarmaSEntered" onMouseExited="#btFarmaSExited" onMousePressed="#btFarmaPressed" prefHeight="60.0" prefWidth="60.0">
+               <children>
+                  <Circle fx:id="bgCircleFarmaS" fill="#30281e" layoutX="30.0" layoutY="30.0" opacity="0.35" radius="30.0" strokeType="INSIDE" strokeWidth="0.0" />
+                  <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="13.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Assets/iconFarma.png" />
                      </image>
                   </ImageView>
                </children>
@@ -52,22 +53,24 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Pane>
-            <Pane fx:id="btMedicS" layoutX="27.0" layoutY="151.0" onMouseEntered="#btMedicSEntered" onMouseExited="#btMedicSExited" onMousePressed="#btMedicPressed" prefHeight="60.0" prefWidth="60.0">
+            <Pane fx:id="btInstS" layoutX="25.0" layoutY="288.0" onMouseEntered="#btInstSEntered" onMouseExited="#btInstSExited" onMousePressed="#btInstPressed" prefHeight="60.0" prefWidth="60.0">
                <children>
-                  <Circle fx:id="bgCircleMedicS" fill="#2e3a46" layoutX="30.0" layoutY="30.0" opacity="0.83" radius="30.0" strokeType="INSIDE" strokeWidth="0.0" visible="false" />
-                  <ImageView fitHeight="53.0" fitWidth="47.0" layoutX="6.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" />
+                  <Circle fx:id="bgCircleInstS" fill="#30281e" layoutX="30.0" layoutY="30.0" opacity="0.35" radius="30.0" strokeType="INSIDE" strokeWidth="0.0" />
+                  <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="13.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Assets/iconInst.png" />
+                     </image>
+                  </ImageView>
                </children>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Pane>
-            <Pane fx:id="btLogOut" layoutX="34.0" layoutY="732.0" prefHeight="46.0" prefWidth="46.0">
-               <children>
-                  <ImageView fitHeight="53.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true" />
-               </children>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor></Pane>
+            <ImageView fx:id="btLogOut" fitHeight="28.0" fitWidth="28.0" layoutX="41.0" layoutY="739.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Assets/iconLogOut.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
       <StackPane fx:id="pnContenido" layoutX="114.0" prefHeight="800.0" prefWidth="1166.0">

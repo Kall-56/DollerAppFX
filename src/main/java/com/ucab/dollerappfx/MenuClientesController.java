@@ -24,6 +24,10 @@ public class MenuClientesController {
     @FXML
     private Pane infoCliente;
 
+    public String getClientesLabel() {
+        return clientesLabel.getText();
+    }
+
     @FXML
     private TableView<? extends Cliente> tablaClientes;
 

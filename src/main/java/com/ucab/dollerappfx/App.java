@@ -19,6 +19,7 @@ public class App extends Application {
     private static Scene scene;
     static Color naranja = Color.web("#FF7B52");    //jaja FF7
     static Color aguamarina = Color.web("#68C3B9");
+    
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("LogIn"), 1280, 800);

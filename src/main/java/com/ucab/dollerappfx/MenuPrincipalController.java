@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.TableView;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -19,28 +20,46 @@ import javafx.scene.shape.Circle;
 public class MenuPrincipalController {
 
     @FXML
-    private Pane btLogo;
-    
+    private Circle bgCircleFarmaS;
+
     @FXML
-    private Pane btLogOut;
-    
+    private Circle bgCircleInstS;
+
+    @FXML
+    private Circle bgCircleMedicS;
+
+    @FXML
+    private Pane btFarmaS;
+
+    @FXML
+    private Button btInst;
+
+    @FXML
+    private Pane btInstS;
+
+    @FXML
+    private ImageView btLogOut;
+
+    @FXML
+    private Pane btLogo;
+
     @FXML
     private Button btMedic;
 
     @FXML
     private Pane btMedicS;
-    
-    @FXML
-    private Circle bgCircleMedicS;
 
     @FXML
     private StackPane pnContenido;
 
     @FXML
-    private Pane pnSubMenuPrincipal;
-    
+    private Pane pnSideBar;
+
     @FXML
     private AnchorPane pnSubMenuClientes;
+
+    @FXML
+    private AnchorPane pnSubMenuPrincipal;
 
     @FXML
     private TableView<Cliente> tbClientesRecientes;
@@ -55,45 +74,82 @@ public class MenuPrincipalController {
     private ObservableList<Institucion> listInstituciones;
 
     private ObservableList<Farmacia> listFarmacias;
+    
+    private double lowOpacity = 0.35;
+    private double maxOpacity = 1;
 
     @FXML
     void btLogoClicked(MouseEvent event) {
-        pnSubMenuPrincipal.setVisible(true);
-        pnSubMenuClientes.setVisible(false);
-        bgCircleMedicS.setVisible(false);
+        visibilityChange(false,true);
+        bgCircleMedicS.setOpacity(lowOpacity);
+        bgCircleInstS.setOpacity(lowOpacity);
+        bgCircleFarmaS.setOpacity(lowOpacity);
     }
     
     @FXML
     void btMedicPressed(MouseEvent event) {
-        cambio(true, false);
+        visibilityChange(true, false);
         controllerClientes.cambio(false, true);
-        bgCircleMedicS.setVisible(true);
+        bgCircleMedicS.setOpacity(maxOpacity);
 
         controllerClientes.establecerClase(Medico.class, listMedicos);
     }
 
     @FXML
     void btMedicSExited(MouseEvent event) {
-        // Hay que cambiar la lógica, porque las 3 clases usan pnSubMenuClientes
-        if (!pnSubMenuClientes.isVisible()){
-            bgCircleMedicS.setVisible(false);
+        if (!pnSubMenuClientes.isVisible() && !"Médicos".equals(controllerClientes.getClientesLabel())){
+            bgCircleMedicS.setOpacity(lowOpacity);
         }
     }
 
     @FXML
     void btMedicSEntered(MouseEvent event) {
-        bgCircleMedicS.setVisible(true);
+        bgCircleMedicS.setOpacity(maxOpacity);
+    }
+    
+    @FXML
+    void btFarmaPressed(MouseEvent event) {
+        visibilityChange(true, false);
+        controllerClientes.cambio(false, true);
+        bgCircleFarmaS.setOpacity(maxOpacity);
+
+        controllerClientes.establecerClase(Farmacia.class, listFarmacias);
     }
 
     @FXML
+    void btFarmaSEntered(MouseEvent event) {
+        bgCircleFarmaS.setOpacity(maxOpacity);
+    }
+
+    @FXML
+    void btFarmaSExited(MouseEvent event) {
+        if (!pnSubMenuClientes.isVisible() && !"Farmacias".equals(controllerClientes.getClientesLabel())){
+            bgCircleFarmaS.setOpacity(lowOpacity);
+        }
+    }
+    
+    @FXML
     void btInstPressed(MouseEvent event) {
-        cambio(true, false);
+        visibilityChange(true, false);
         controllerClientes.cambio(false, true);
+        bgCircleInstS.setOpacity(maxOpacity);
 
         controllerClientes.establecerClase(Institucion.class, listInstituciones);
     }
 
-    public void cambio(boolean a, boolean b) {
+    @FXML
+    void btInstSEntered(MouseEvent event) {
+        bgCircleInstS.setOpacity(maxOpacity);
+    }
+
+    @FXML
+    void btInstSExited(MouseEvent event) {
+        if (!pnSubMenuClientes.isVisible() && !"Instituciones".equals(controllerClientes.getClientesLabel())){
+            bgCircleInstS.setOpacity(lowOpacity);
+        }
+    }
+    
+    public void visibilityChange(boolean a, boolean b) {
         pnSubMenuClientes.setVisible(a);
         pnSubMenuPrincipal.setVisible(b);
     }
