@@ -1,5 +1,7 @@
 package Classes;
 
+import java.util.ArrayList;
+
 public class Farmacia extends Cliente {
     private String personaContacto;
     private String email;
@@ -20,6 +22,27 @@ public class Farmacia extends Cliente {
                     String drogueria) {
 
         super(nombreCliente, direccion, numTLF, tipoIdentidad, docIdentidad, descripcion);
+        this.personaContacto = personaContacto;
+        this.email = email;
+        this.frecuencia = frecuencia;
+        this.cadena = cadena;
+        this.drogueria = drogueria;
+    }
+
+    public Farmacia(String nombreCliente,
+                    String direccion,
+                    int numTLF,
+                    char tipoIdentidad,
+                    int docIdentidad,
+                    String descripcion,
+                    String personaContacto,
+                    String email,
+                    int frecuencia,
+                    String cadena,
+                    String drogueria,
+                    ArrayList<Evento> eventos) {
+
+        super(nombreCliente, direccion, numTLF, tipoIdentidad, docIdentidad, descripcion, eventos);
         this.personaContacto = personaContacto;
         this.email = email;
         this.frecuencia = frecuencia;

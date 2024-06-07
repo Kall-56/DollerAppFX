@@ -3,16 +3,17 @@ package com.ucab.dollerappfx;
 import java.io.IOException;
 
 import Classes.*;
+
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Optional;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -80,6 +81,8 @@ public class MenuPrincipalController {
     private ObservableList<Institucion> listInstituciones;
 
     private ObservableList<Farmacia> listFarmacias;
+
+    private ObservableList<Evento> listEventos;
     
     private final double lowOpacity = 0.35;
     private final double maxOpacity = 1;
@@ -92,6 +95,7 @@ public class MenuPrincipalController {
         bgCircleFarmaS.setOpacity(lowOpacity);
 
         tbClientesRecientes.refresh();
+        tbEventosMenu.refresh();
     }
     
     @FXML
@@ -201,10 +205,39 @@ public class MenuPrincipalController {
             e.printStackTrace();
         }
 
+        // La Tabla de Eventos
+        tbEventosMenu.getColumns().clear();
+
+        TableColumn<Evento, String> nombreCol = new TableColumn<>("Nombre");
+        nombreCol.setCellValueFactory(new PropertyValueFactory<>("cliente"));
+
+        TableColumn<Evento, String> fechaCol = new TableColumn<>("Fecha");
+        fechaCol.setCellValueFactory(new PropertyValueFactory<>("fecha"));
+
+        TableColumn<Evento, String> semanaCol = new TableColumn<>("Semana");
+        semanaCol.setCellValueFactory(new PropertyValueFactory<>("semana"));
+
+        TableColumn<Evento, String> descripCol = new TableColumn<>("Descripción");
+        descripCol.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
+
+        tbEventosMenu.getColumns().add(nombreCol);
+        tbEventosMenu.getColumns().add(fechaCol);
+        tbEventosMenu.getColumns().add(semanaCol);
+        tbEventosMenu.getColumns().add(descripCol);
+
+
         // Hay que cargar o crear las listas (Aqui estoy usando unos de prueba)
+        ArrayList<Evento> l1 = new ArrayList<>();
+        l1.add(new Evento("Sandro", new Date(), 2, "Supongamos que"));
+        l1.add(new Evento("Sandro", new Date(), 4, "Pasarán cosas"));
+
+        ArrayList<Evento> l2 = new ArrayList<>();
+        l2.add(new Evento("Alex", new Date(), 1, "Evento intergaláctico"));
+        l2.add(new Evento("Alex", new Date(), 3, "Se aprecian cositas"));
+
         listMedicos = FXCollections.observableArrayList(
                 new Medico("Ale", "Por ahi", 424, 'V', 30282309, "No se", "Huesos", "a@gmail.com", 0, "Lunes-Viernes", "9-5", "No se"),
-                new Medico("Sandro", "UCAB", 424158, 'V', 30282304, "No se", "Músculos", "sandro@gmail.com", 2, "Miércoles-Sábado", "8-6", "No se")
+                new Medico("Sandro", "UCAB", 424158, 'V', 30282304, "No se", "Músculos", "sandro@gmail.com", 2, "Miércoles-Sábado", "8-6", "No se", l1)
         );
         listInstituciones = FXCollections.observableArrayList(
                 new Institucion("Manu", "Por alla", 412, 'V', 31423309, "No se", "Alguien", "Ciencias"),
@@ -212,10 +245,30 @@ public class MenuPrincipalController {
                 new Institucion("Pedro", "Un lugar", 412, 'V', 9742912, "No se", "Juanito", "Ingeniería")
         );
         listFarmacias = FXCollections.observableArrayList(
-                new Farmacia("Alex", "Por aqui", 414, 'J', 11225210, "No se", "Un extraño", "b@gmail.com", 1, "Perpetua", "Acetaminofen"),
+                new Farmacia("Alex", "Por aqui", 414, 'J', 11225210, "No se", "Un extraño", "b@gmail.com", 1, "Perpetua", "Acetaminofen", l2),
                 new Farmacia("Monsalve", "SJT", 424, 'V', 32848109, "No se", "Pepito", "diablo@gmail.com", 0, "30 años", "Migren")
 
         );
+
+        listEventos = FXCollections.observableArrayList();
+        listEventos.addAll(l1);
+        listEventos.addAll(l2);
+        tbEventosMenu.setItems(listEventos);
+        tbEventosMenu.refresh();
+
+        for (Evento evento: listEventos) {
+            LogInController.usuario.registrarEvento(evento);
+        }
+        for (Medico med: listMedicos) {
+            LogInController.usuario.registrarCliente(med);
+        }
+        for (Institucion inst: listInstituciones) {
+            LogInController.usuario.registrarCliente(inst);
+        }
+        for (Farmacia farma: listFarmacias) {
+            LogInController.usuario.registrarCliente(farma);
+        }
+
 
         // Creacion de la tabla MultiClase
         ObservableList<Cliente> clientes = FXCollections.observableArrayList();

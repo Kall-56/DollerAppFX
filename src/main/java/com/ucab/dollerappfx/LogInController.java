@@ -2,9 +2,11 @@ package com.ucab.dollerappfx;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import Classes.ATM;
+import Classes.Administrador;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -57,7 +59,9 @@ public class LogInController {
     @FXML
     private Pane pnUserLogIn;
 
-    private ATM usuario;
+    private ArrayList<ATM> listaAtm;
+
+    public static ATM usuario; // Al cargar el ATM, la aplicacion puede usarla siempre hasta que se cambie a otro
 
     @FXML
     void btBackClicked(MouseEvent event) {
@@ -95,7 +99,12 @@ public class LogInController {
 
     @FXML
     void btCreateNewClicked(MouseEvent event) {
-
+        // Sin validaciones
+        listaAtm.add(new ATM(fldUserNameCrt.getText(),
+                fldUserZoneCrt.getText(),
+                fldUserEmailCrt.getText(),
+                fldUserPasswordCrt.getText(),
+                new Administrador()));
     }
 
     @FXML
@@ -148,5 +157,7 @@ public class LogInController {
     
     public void initialize() {
         usuario = new ATM();
+        listaAtm = new ArrayList<>();
+        listaAtm.add(usuario);
     }
 }

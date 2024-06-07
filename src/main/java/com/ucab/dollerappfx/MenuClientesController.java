@@ -1,16 +1,12 @@
 package com.ucab.dollerappfx;
 
-import Classes.Cliente;
-import Classes.Farmacia;
-import Classes.Institucion;
-import Classes.Medico;
+import Classes.*;
+import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -31,6 +27,10 @@ public class MenuClientesController {
 
     @FXML
     private TableView<Cliente> tablaClientes;
+
+    @FXML
+    private TableView<Evento> tbEventos;
+
 
     @FXML
     private Pane vistaCliente;
@@ -74,6 +74,8 @@ public class MenuClientesController {
         } else if (cliente instanceof Farmacia) {
 
         }
+        tbEventos.setItems(FXCollections.observableArrayList(cliente.getEventoList()));
+        tbEventos.refresh();
     }
 
     public void cambio(boolean a, boolean b) {
@@ -82,6 +84,7 @@ public class MenuClientesController {
     }
 
     public <T> void establecerClase(Class<T> clase, ObservableList<T> lista) {
+        tfBuscarCliente.setText("");
         TablasController.establecerTipoTabla((TableView<T>) tablaClientes, clase, lista);
         if (clase == Medico.class) {
             clientesLabel.setText("Médicos");
@@ -141,6 +144,24 @@ public class MenuClientesController {
     }
 
     public void initialize() {
-        // NO SE
+        // La Tabla de Eventos
+        tbEventos.getColumns().clear();
+
+        TableColumn<Evento, String> nombreCol = new TableColumn<>("Nombre");
+        nombreCol.setCellValueFactory(new PropertyValueFactory<>("cliente"));
+
+        TableColumn<Evento, String> fechaCol = new TableColumn<>("Fecha");
+        fechaCol.setCellValueFactory(new PropertyValueFactory<>("fecha"));
+
+        TableColumn<Evento, String> semanaCol = new TableColumn<>("Semana");
+        semanaCol.setCellValueFactory(new PropertyValueFactory<>("semana"));
+
+        TableColumn<Evento, String> descripCol = new TableColumn<>("Descripción");
+        descripCol.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
+
+        tbEventos.getColumns().add(nombreCol);
+        tbEventos.getColumns().add(fechaCol);
+        tbEventos.getColumns().add(semanaCol);
+        tbEventos.getColumns().add(descripCol);
     }
 }

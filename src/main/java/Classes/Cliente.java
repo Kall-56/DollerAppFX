@@ -11,7 +11,13 @@ public abstract class Cliente {
     protected String descripcion;
     protected ArrayList<Evento> eventoList;
 
-    public Cliente(String nombreCliente, String direccion, int numTLF, char tipoIdentidad, int docIdentidad, String descripcion) {
+    public Cliente(String nombreCliente,
+                   String direccion,
+                   int numTLF,
+                   char tipoIdentidad,
+                   int docIdentidad,
+                   String descripcion) {
+
         this.nombreCliente = nombreCliente;
         this.direccion = direccion;
         this.numTLF = numTLF;
@@ -20,6 +26,25 @@ public abstract class Cliente {
         this.descripcion = descripcion;
 
         eventoList = new ArrayList<>();
+    }
+
+    public Cliente(String nombreCliente,
+                   String direccion,
+                   int numTLF,
+                   char tipoIdentidad,
+                   int docIdentidad,
+                   String descripcion,
+                   ArrayList<Evento> eventos) {
+
+        this.nombreCliente = nombreCliente;
+        this.direccion = direccion;
+        this.numTLF = numTLF;
+        this.tipoIdentidad = tipoIdentidad;
+        this.docIdentidad = docIdentidad;
+        this.descripcion = descripcion;
+
+        this.eventoList = new ArrayList<>();
+        this.eventoList.addAll(eventos);
     }
 
     // Getters y Setters -----------------------------------------------------------------------------------------------
