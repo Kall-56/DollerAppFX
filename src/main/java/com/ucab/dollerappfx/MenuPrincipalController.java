@@ -90,6 +90,8 @@ public class MenuPrincipalController {
         bgCircleMedicS.setOpacity(lowOpacity);
         bgCircleInstS.setOpacity(lowOpacity);
         bgCircleFarmaS.setOpacity(lowOpacity);
+
+        tbClientesRecientes.refresh();
     }
     
     @FXML
