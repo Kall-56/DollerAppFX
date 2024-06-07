@@ -23,9 +23,9 @@
       </Label>
       <StackPane layoutY="51.0" prefHeight="749.0" prefWidth="1166.0">
          <children>
-            <Pane fx:id="vistaCliente" prefHeight="800.0" prefWidth="1166.0" visible="false">
+            <Pane fx:id="vistaCliente" prefHeight="800.0" prefWidth="1166.0">
                <children>
-                  <TextField layoutX="19.0" layoutY="14.0" prefHeight="30.0" prefWidth="325.0" promptText="Buscar Clientes">
+                  <TextField fx:id="tfBuscarCliente" layoutX="19.0" layoutY="14.0" prefHeight="30.0" prefWidth="325.0" promptText="Buscar Clientes">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -43,7 +43,7 @@
                   </Button>
                </children>
             </Pane>
-            <Pane fx:id="infoCliente" prefHeight="348.0" prefWidth="1138.0">
+            <Pane fx:id="infoCliente" prefHeight="348.0" prefWidth="1138.0" visible="false">
                <children>
                   <Rectangle fill="#30281e" height="75.0" opacity="0.9" smooth="false" strokeType="INSIDE" strokeWidth="0.0" width="1166.0" />
                   <Rectangle fill="#574e45" height="675.0" layoutY="75.0" opacity="0.29" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />

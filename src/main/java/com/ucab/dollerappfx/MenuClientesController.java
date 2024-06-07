@@ -4,6 +4,8 @@ import Classes.Cliente;
 import Classes.Farmacia;
 import Classes.Institucion;
 import Classes.Medico;
+import javafx.collections.transformation.FilteredList;
+import javafx.scene.control.TextField;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -24,12 +26,11 @@ public class MenuClientesController {
     @FXML
     private Pane infoCliente;
 
-    public String getClientesLabel() {
-        return clientesLabel.getText();
-    }
+    @FXML
+    private TextField tfBuscarCliente;
 
     @FXML
-    private TableView<? extends Cliente> tablaClientes;
+    private TableView<Cliente> tablaClientes;
 
     @FXML
     private Pane vistaCliente;
@@ -45,7 +46,11 @@ public class MenuClientesController {
         }
     }
 
-    public <T extends Cliente> void verInfoCliente(T cliente) {
+    public String getClientesLabel() {
+        return clientesLabel.getText();
+    }
+
+    public void verInfoCliente(Cliente cliente) {
         if (cliente != null) {
             cambio(true, false);
             establecerCliente(cliente);
@@ -58,7 +63,7 @@ public class MenuClientesController {
         }
     }
 
-    public <T extends Cliente> void establecerCliente(T cliente) {
+    public void establecerCliente(Cliente cliente) {
         nomCliente.setText(cliente.getNombreCliente());
         // Los otros atributos comunes
 
@@ -77,7 +82,7 @@ public class MenuClientesController {
     }
 
     public <T> void establecerClase(Class<T> clase, ObservableList<T> lista) {
-        TablasController.establecerTipoTabla((TableView<T>) tablaClientes, clase, lista); // Es una advertencia porque la tabla no tiene una clase definida al momento de inicializar
+        TablasController.establecerTipoTabla((TableView<T>) tablaClientes, clase, lista);
         if (clase == Medico.class) {
             clientesLabel.setText("Médicos");
         }
@@ -89,7 +94,53 @@ public class MenuClientesController {
         }
     }
 
+    public void filtroTabla(ObservableList<Cliente> lista) {
+        FilteredList<Cliente> listaFiltro = new FilteredList<>(lista, p -> true);
+
+        tfBuscarCliente.textProperty().addListener((observable, viejo, nuevo) -> {
+            listaFiltro.setPredicate(cliente -> {
+                if (viejo == null || nuevo.isEmpty()) {
+                    return true;
+                }
+
+                String filtroMinuscula = nuevo.toLowerCase();
+
+                if (cliente.getNombreCliente().toLowerCase().contains(filtroMinuscula)) {
+                    return true;
+                } else if (String.valueOf(cliente.getNumTLF()).contains(filtroMinuscula)) {
+                    return true;
+                } else if (cliente.getDireccion().toLowerCase().contains(filtroMinuscula)) {
+                    return true;
+                } else if (String.valueOf(cliente.getDocIdentidad()).contains(filtroMinuscula)) {
+                    return true;
+                }
+
+                if (cliente instanceof Medico) {
+                    return ((Medico) cliente).getEspecialidad().toLowerCase().contains(filtroMinuscula);
+                }
+                else if (cliente instanceof Farmacia) {
+                    if (((Farmacia) cliente).getPersonaContacto().toLowerCase().contains(filtroMinuscula)) {
+                        return true;
+                    } else if (((Farmacia) cliente).getCadena().toLowerCase().contains(filtroMinuscula)) {
+                        return true;
+                    } else if (((Farmacia) cliente).getDrogueria().toLowerCase().contains(filtroMinuscula)) {
+                        return true;
+                    }
+                }
+                else if (cliente instanceof Institucion) {
+                    if (((Institucion) cliente).getPersonaContacto().toLowerCase().contains(filtroMinuscula)) {
+                        return true;
+                    } else if (((Institucion) cliente).getEdfFacultad().toLowerCase().contains(filtroMinuscula)) {
+                        return true;
+                    }
+                }
+                return false;
+            });
+        });
+        tablaClientes.setItems(listaFiltro);
+    }
+
     public void initialize() {
-        // Si
+        // NO SE
     }
 }

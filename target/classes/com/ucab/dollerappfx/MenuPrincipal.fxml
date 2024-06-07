@@ -140,7 +140,7 @@
                   <Pane layoutX="755.0" layoutY="40.0" prefHeight="746.0" prefWidth="1.0" style="-fx-background-color: #4d4d4d;" />
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="pnSubMenuClientes" prefHeight="200.0" prefWidth="200.0" visible="false" />
+            <AnchorPane fx:id="pnSubMenuClientes" prefHeight="800.0" prefWidth="1166.0" visible="false" />
          </children>
       </StackPane>
    </children>

@@ -26,4 +26,46 @@ public class Farmacia extends Cliente {
         this.cadena = cadena;
         this.drogueria = drogueria;
     }
+
+    // Getters y Setters -----------------------------------------------------------------------------------------------
+    public String getPersonaContacto() {
+        return personaContacto;
+    }
+
+    public void setPersonaContacto(String personaContacto) {
+        this.personaContacto = personaContacto;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getFrecuencia() {
+        return frecuencia;
+    }
+
+    public void setFrecuencia(int frecuencia) {
+        this.frecuencia = frecuencia;
+    }
+
+    public String getCadena() {
+        return cadena;
+    }
+
+    public void setCadena(String cadena) {
+        this.cadena = cadena;
+    }
+
+    public String getDrogueria() {
+        return drogueria;
+    }
+
+    public void setDrogueria(String drogueria) {
+        this.drogueria = drogueria;
+    }
+    // -----------------------------------------------------------------------------------------------------------------
 }

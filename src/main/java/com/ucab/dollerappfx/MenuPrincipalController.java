@@ -81,8 +81,8 @@ public class MenuPrincipalController {
 
     private ObservableList<Farmacia> listFarmacias;
     
-    private double lowOpacity = 0.35;
-    private double maxOpacity = 1;
+    private final double lowOpacity = 0.35;
+    private final double maxOpacity = 1;
 
     @FXML
     void btLogoClicked(MouseEvent event) {
@@ -101,6 +101,7 @@ public class MenuPrincipalController {
         bgCircleInstS.setOpacity(lowOpacity);
 
         controllerClientes.establecerClase(Medico.class, listMedicos);
+        controllerClientes.filtroTabla(FXCollections.observableArrayList(listMedicos));
     }
 
     @FXML
@@ -124,6 +125,7 @@ public class MenuPrincipalController {
         bgCircleMedicS.setOpacity(lowOpacity);
 
         controllerClientes.establecerClase(Farmacia.class, listFarmacias);
+        controllerClientes.filtroTabla(FXCollections.observableArrayList(listFarmacias));
     }
 
     @FXML
@@ -147,6 +149,7 @@ public class MenuPrincipalController {
         bgCircleMedicS.setOpacity(lowOpacity);
 
         controllerClientes.establecerClase(Institucion.class, listInstituciones);
+        controllerClientes.filtroTabla(FXCollections.observableArrayList(listInstituciones));
     }
 
     @FXML
@@ -198,14 +201,18 @@ public class MenuPrincipalController {
 
         // Hay que cargar o crear las listas (Aqui estoy usando unos de prueba)
         listMedicos = FXCollections.observableArrayList(
-                new Medico("Ale", "Por ahi", 424, 'V', 30282309, "No se", "Huesos", "a@gmail.com", 0, "Lunes-Viernes", "9-5", "No se")
+                new Medico("Ale", "Por ahi", 424, 'V', 30282309, "No se", "Huesos", "a@gmail.com", 0, "Lunes-Viernes", "9-5", "No se"),
+                new Medico("Sandro", "UCAB", 424158, 'V', 30282304, "No se", "Músculos", "sandro@gmail.com", 2, "Miércoles-Sábado", "8-6", "No se")
         );
         listInstituciones = FXCollections.observableArrayList(
                 new Institucion("Manu", "Por alla", 412, 'V', 31423309, "No se", "Alguien", "Ciencias"),
-                new Institucion("Pepe", "Por aca", 426, 'V', 10544904, "No se", "Otro alguien", "Humanidades")
+                new Institucion("Pepe", "Por aca", 426, 'V', 10544904, "No se", "Otro alguien", "Humanidades"),
+                new Institucion("Pedro", "Un lugar", 412, 'V', 9742912, "No se", "Juanito", "Ingeniería")
         );
         listFarmacias = FXCollections.observableArrayList(
-                new Farmacia("Alex", "Por aqui", 414, 'J', 11225210, "No se", "Un extraño", "b@gmail.com", 1, "Perpetua", "Acetaminofen")
+                new Farmacia("Alex", "Por aqui", 414, 'J', 11225210, "No se", "Un extraño", "b@gmail.com", 1, "Perpetua", "Acetaminofen"),
+                new Farmacia("Monsalve", "SJT", 424, 'V', 32848109, "No se", "Pepito", "diablo@gmail.com", 0, "30 años", "Migren")
+
         );
 
         // Creacion de la tabla MultiClase
