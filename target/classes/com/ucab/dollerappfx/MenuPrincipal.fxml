@@ -85,20 +85,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Pane>
-<<<<<<< Updated upstream
-            <ImageView fx:id="btLogOut" fitHeight="28.0" fitWidth="28.0" layoutX="41.0" layoutY="739.0" onMouseClicked="#btLogOutClicked" pickOnBounds="true" preserveRatio="true">
-=======
-            <Pane fx:id="btEventS" layoutX="27.0" layoutY="370.0" onMouseEntered="#btEventSEntered" onMouseExited="#btEventSExited" onMousePressed="#btEventPressed" prefHeight="60.0" prefWidth="60.0">
-               <children>
-                  <Circle fx:id="bgCircleEventS" fill="#30281e" layoutX="30.0" layoutY="30.0" opacity="0.35" radius="30.0" strokeType="INSIDE" strokeWidth="0.0" />
-                  <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="13.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" />
-               </children>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Pane>
             <ImageView fx:id="btLogOut" fitHeight="28.0" fitWidth="28.0" layoutX="47.0" layoutY="739.0" onMouseClicked="#btLogOutClicked" pickOnBounds="true" preserveRatio="true">
->>>>>>> Stashed changes
                <image>
                   <Image url="@../../../Assets/iconLogOut.png" />
                </image>
