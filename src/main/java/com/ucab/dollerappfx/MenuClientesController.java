@@ -24,15 +24,51 @@ public class MenuClientesController {
     @FXML
     private Pane infoCliente;
 
-    public String getClientesLabel() {
-        return clientesLabel.getText();
-    }
+    @FXML
+    private Label lbCedula;
+
+    @FXML
+    private Label lbDiasVisitMd;
+
+    @FXML
+    private Label lbDirect;
+
+    @FXML
+    private Label lbEmailMdFm;
+
+    @FXML
+    private Label lbEspecsMd;
+
+    @FXML
+    private Label lbFrecueMdFm;
+
+    @FXML
+    private Label lbHorarioMd;
+
+    @FXML
+    private Label lbNumero;
+    
+    @FXML
+    private Label lbPersonContacFmInst;
+            
+    @FXML
+    private Label lbCadenaFm;
+            
+    @FXML
+    private Label lbDrogeriaFm;
+    
+    @FXML
+    private Label lbFacultadInst;
 
     @FXML
     private TableView<? extends Cliente> tablaClientes;
 
     @FXML
     private Pane vistaCliente;
+    
+    public String getClientesLabel() {
+        return clientesLabel.getText();
+    }
 
     @FXML
     void manejarClicks(MouseEvent event) {
@@ -60,14 +96,69 @@ public class MenuClientesController {
 
     public <T extends Cliente> void establecerCliente(T cliente) {
         nomCliente.setText(cliente.getNombreCliente());
-        // Los otros atributos comunes
+        lbCedula.setText(cliente.getTipoIdentidad()+" "+cliente.getDocIdentidad());
+        lbNumero.setText(""+cliente.getNumTLF());
+        lbDirect.setText(cliente.getDireccion());
 
         if (cliente instanceof Medico) { // Ahora los atributos específicos
-
+            lbEmailMdFm.setText(((Medico) cliente).getEmail());
+            lbEmailMdFm.setVisible(true);
+            
+            lbDiasVisitMd.setText(((Medico) cliente).getDiasVisita());
+            lbDiasVisitMd.setVisible(true);
+            
+            lbEspecsMd.setText(((Medico) cliente).getEspecialidad());
+            lbEspecsMd.setVisible(true);
+            
+            lbFrecueMdFm.setText(""+((Medico) cliente).getFrecuencia());
+            lbFrecueMdFm.setVisible(true);
+            
+            lbHorarioMd.setText(((Medico) cliente).getHorario());
+            lbHorarioMd.setVisible(true);
+            
+            
+            lbCadenaFm.setVisible(false);
+            lbDrogeriaFm.setVisible(false);
+            lbPersonContacFmInst.setVisible(false);
+            lbFacultadInst.setVisible(false);
+            
         } else if (cliente instanceof Institucion) {
-
+            lbPersonContacFmInst.setText(((Institucion) cliente).getPersonaContacto());
+            lbPersonContacFmInst.setVisible(true);
+            
+            lbFacultadInst.setText(((Institucion) cliente).getEdfFacultad());
+            lbFacultadInst.setVisible(true);
+            
+            
+            lbEmailMdFm.setVisible(false);
+            lbDiasVisitMd.setVisible(false);
+            lbEspecsMd.setVisible(false);
+            lbFrecueMdFm.setVisible(false);
+            lbHorarioMd.setVisible(false);
+            lbCadenaFm.setVisible(false);
+            lbDrogeriaFm.setVisible(false);
+            
         } else if (cliente instanceof Farmacia) {
-
+            //lbEmailMdFm.setText();
+            lbEmailMdFm.setVisible(true);
+            
+            //lbFrecueMdFm.setText(); faltan getters
+            lbFrecueMdFm.setVisible(false);
+            
+            //lbPersonContacFmInst.setText();
+            lbPersonContacFmInst.setVisible(true);
+            
+            //lbCadenaFm.setText();
+            lbCadenaFm.setVisible(true);
+            
+            //lbDrogeriaFm.setText();
+            lbDrogeriaFm.setVisible(true);
+            
+            
+            lbEspecsMd.setVisible(false);
+            lbDiasVisitMd.setVisible(false);
+            lbHorarioMd.setVisible(false);
+            lbFacultadInst.setVisible(false);
         }
     }
 

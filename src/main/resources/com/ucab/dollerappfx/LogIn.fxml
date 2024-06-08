@@ -18,16 +18,16 @@
    <children>
       <Rectangle height="800.0" opacity="0.65" strokeType="INSIDE" strokeWidth="0.0" width="1280.0">
          <fill>
-            <LinearGradient endX="0.7962085308056872" endY="0.6066350710900473" startX="0.7298578199052134" startY="0.39810426540284366">
+            <LinearGradient endX="0.7298578199052133" endY="1.0" startX="0.7298578199052134" startY="0.5639810426540284">
                <stops>
                   <Stop>
                      <color>
-                        <Color red="1.0" green="0.6967592835426331" blue="0.39351850748062134" />
+                        <Color red="0.9882352948188782" green="0.6235294342041016" blue="0.4000000059604645" />
                      </color>
                   </Stop>
                   <Stop offset="1.0">
                      <color>
-                        <Color red="1.0" green="0.7743827104568481" blue="0.6018518805503845" />
+                        <Color red="0.9803921580314636" green="0.7647058963775635" blue="0.4588235318660736" />
                      </color>
                   </Stop>
                </stops>
@@ -36,9 +36,8 @@
       </Rectangle>
       <StackPane layoutX="140.0" layoutY="50.0" prefHeight="700.0" prefWidth="1000.0">
          <children>
-            <Pane fx:id="pnUserLogIn" prefHeight="700.0" prefWidth="1000.0">
+            <Pane fx:id="pnUserLogIn" opacity="0.9" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: white;">
                <children>
-                  <Rectangle fill="WHITE" height="700.0" opacity="0.94" stroke="#8080801c" strokeLineJoin="BEVEL" strokeType="OUTSIDE" strokeWidth="2.0" width="1000.0" />
                   <Label layoutX="402.0" layoutY="135.0" text="Iniciar Sesión" textFill="#4d4d4d">
                      <font>
                         <Font name="Roboto Bold" size="32.0" />
