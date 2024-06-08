@@ -47,7 +47,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Pane>
-            <Pane fx:id="btMedicS" layoutX="25.0" layoutY="122.0" onMouseEntered="#btMedicSEntered" onMouseExited="#btMedicSExited" onMousePressed="#btMedicPressed" prefHeight="60.0" prefWidth="60.0">
+            <Pane fx:id="btMedicS" layoutX="31.0" layoutY="122.0" onMouseEntered="#btMedicSEntered" onMouseExited="#btMedicSExited" onMousePressed="#btMedicPressed" prefHeight="60.0" prefWidth="60.0">
                <children>
                   <Circle fx:id="bgCircleMedicS" fill="#30281e" layoutX="30.0" layoutY="30.0" opacity="0.35" radius="30.0" strokeType="INSIDE" strokeWidth="0.0" />
                   <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="12.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
@@ -59,7 +59,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Pane>
-            <Pane fx:id="btFarmaS" layoutX="25.0" layoutY="205.0" onMouseEntered="#btFarmaSEntered" onMouseExited="#btFarmaSExited" onMousePressed="#btFarmaPressed" prefHeight="60.0" prefWidth="60.0">
+            <Pane fx:id="btFarmaS" layoutX="31.0" layoutY="205.0" onMouseEntered="#btFarmaSEntered" onMouseExited="#btFarmaSExited" onMousePressed="#btFarmaPressed" prefHeight="60.0" prefWidth="60.0">
                <children>
                   <Circle fx:id="bgCircleFarmaS" fill="#30281e" layoutX="30.0" layoutY="30.0" opacity="0.35" radius="30.0" strokeType="INSIDE" strokeWidth="0.0" />
                   <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="13.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
@@ -72,7 +72,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Pane>
-            <Pane fx:id="btInstS" layoutX="25.0" layoutY="288.0" onMouseEntered="#btInstSEntered" onMouseExited="#btInstSExited" onMousePressed="#btInstPressed" prefHeight="60.0" prefWidth="60.0">
+            <Pane fx:id="btInstS" layoutX="31.0" layoutY="288.0" onMouseEntered="#btInstSEntered" onMouseExited="#btInstSExited" onMousePressed="#btInstPressed" prefHeight="60.0" prefWidth="60.0">
                <children>
                   <Circle fx:id="bgCircleInstS" fill="#30281e" layoutX="30.0" layoutY="30.0" opacity="0.35" radius="30.0" strokeType="INSIDE" strokeWidth="0.0" />
                   <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="13.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
@@ -85,7 +85,20 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Pane>
+<<<<<<< Updated upstream
             <ImageView fx:id="btLogOut" fitHeight="28.0" fitWidth="28.0" layoutX="41.0" layoutY="739.0" onMouseClicked="#btLogOutClicked" pickOnBounds="true" preserveRatio="true">
+=======
+            <Pane fx:id="btEventS" layoutX="27.0" layoutY="370.0" onMouseEntered="#btEventSEntered" onMouseExited="#btEventSExited" onMousePressed="#btEventPressed" prefHeight="60.0" prefWidth="60.0">
+               <children>
+                  <Circle fx:id="bgCircleEventS" fill="#30281e" layoutX="30.0" layoutY="30.0" opacity="0.35" radius="30.0" strokeType="INSIDE" strokeWidth="0.0" />
+                  <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="13.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Pane>
+            <ImageView fx:id="btLogOut" fitHeight="28.0" fitWidth="28.0" layoutX="47.0" layoutY="739.0" onMouseClicked="#btLogOutClicked" pickOnBounds="true" preserveRatio="true">
+>>>>>>> Stashed changes
                <image>
                   <Image url="@../../../Assets/iconLogOut.png" />
                </image>
@@ -105,7 +118,7 @@
                         <Font name="Roboto Bold" size="30.0" />
                      </font>
                   </Label>
-                  <Pane fx:id="btMedic" layoutX="23.0" layoutY="143.0" onMousePressed="#btMedicPressed" prefHeight="130.0" prefWidth="200.0">
+                  <Pane fx:id="btMedic" layoutX="23.0" layoutY="94.0" onMousePressed="#btMedicPressed" prefHeight="130.0" prefWidth="200.0">
                      <children>
                         <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#ffffff00" height="130.0" opacity="0.8" strokeType="OUTSIDE" strokeWidth="1.5" width="200.0">
                            <stroke>
@@ -130,7 +143,7 @@
                            </font></Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="btInst" layoutX="240.0" layoutY="143.0" onMousePressed="#btInstPressed" prefHeight="130.0" prefWidth="266.0">
+                  <Pane fx:id="btInst" layoutX="240.0" layoutY="94.0" onMousePressed="#btInstPressed" prefHeight="130.0" prefWidth="266.0">
                      <children>
                         <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#ffffff00" height="130.0" opacity="0.8" strokeType="OUTSIDE" strokeWidth="1.5" width="266.0">
                            <stroke>
@@ -156,7 +169,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="btFarma" layoutX="522.0" layoutY="143.0" onMousePressed="#btFarmaPressed" prefHeight="130.0" prefWidth="200.0">
+                  <Pane fx:id="btFarma" layoutX="522.0" layoutY="94.0" onMousePressed="#btFarmaPressed" prefHeight="130.0" prefWidth="200.0">
                      <children>
                         <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#ffffff00" height="130.0" opacity="0.8" strokeType="OUTSIDE" strokeWidth="1.5" width="200.0">
                            <stroke>
@@ -182,30 +195,30 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Label layoutX="26.0" layoutY="302.0" text="Clientes Recientes" textFill="#4d4d4d">
+                  <Label layoutX="21.0" layoutY="257.0" text="Clientes Recientes" textFill="#4d4d4d">
                      <font>
                         <Font name="Roboto Bold" size="30.0" />
                      </font>
                   </Label>
-                  <TableView fx:id="tbClientesRecientes" focusTraversable="false" layoutX="23.0" layoutY="349.0" prefHeight="420.0" prefWidth="699.0">
+                  <TableView fx:id="tbClientesRecientes" focusTraversable="false" layoutX="23.0" layoutY="333.0" prefHeight="436.0" prefWidth="699.0">
                      <columns>
                         <TableColumn prefWidth="75.0" text="C1" />
                         <TableColumn prefWidth="75.0" text="C2" />
                      </columns>
                   </TableView>
-                  <Label layoutX="762.0" layoutY="21.0" text="Eventos" textFill="#4d4d4d">
+                  <Label layoutX="753.0" layoutY="21.0" text="Eventos" textFill="#4d4d4d">
                      <font>
                         <Font name="Roboto Bold" size="30.0" />
                      </font>
                   </Label>
-                  <TableView fx:id="tbEventosMenu" focusTraversable="false" layoutX="753.0" layoutY="94.0" prefHeight="676.0" prefWidth="383.0" style="-fx-background-color: null; -fx-border-color: #68C3B9; -fx-border-radius: 5;">
+                  <TableView fx:id="tbEventosMenu" focusTraversable="false" layoutX="753.0" layoutY="94.0" prefHeight="676.0" prefWidth="383.0" style="-fx-background-color: null; -fx-border-color: #FF7B52; -fx-border-radius: 5;">
                      <columns>
                         <TableColumn prefWidth="75.0" text="C1" />
                         <TableColumn prefWidth="75.0" text="C2" />
                      </columns>
                   </TableView>
-                  <Pane layoutX="16.0" layoutY="295.0" opacity="0.5" prefHeight="1.0" prefWidth="720.0" style="-fx-background-color: #68C3B9; -fx-background-radius: 5;" />
-                  <Pane layoutX="744.0" layoutY="27.0" opacity="0.5" prefHeight="746.0" prefWidth="1.0" style="-fx-background-color: #68C3B9; -fx-background-radius: 5;" />
+                  <Pane layoutX="16.0" layoutY="246.0" opacity="0.7" prefHeight="1.0" prefWidth="714.0" style="-fx-background-color: #FF7B52; -fx-background-radius: 5;" />
+                  <Pane layoutX="736.0" layoutY="27.0" opacity="0.7" prefHeight="746.0" prefWidth="1.0" style="-fx-background-color: #FF7B52; -fx-background-radius: 5;" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="pnSubMenuClientes" prefHeight="800.0" prefWidth="1166.0" visible="false" />
