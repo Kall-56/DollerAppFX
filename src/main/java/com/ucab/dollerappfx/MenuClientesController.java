@@ -28,7 +28,7 @@ public class MenuClientesController {
     private Label lbCedula;
 
     @FXML
-    private Label lbDiasVisitMdFm;
+    private Label lbDiasVisitMd;
 
     @FXML
     private Label lbDirect;
@@ -40,7 +40,7 @@ public class MenuClientesController {
     private Label lbEspecsMd;
 
     @FXML
-    private Label lbFrecueMd;
+    private Label lbFrecueMdFm;
 
     @FXML
     private Label lbHorarioMd;
@@ -104,14 +104,14 @@ public class MenuClientesController {
             lbEmailMdFm.setText(((Medico) cliente).getEmail());
             lbEmailMdFm.setVisible(true);
             
-            lbDiasVisitMdFm.setText(((Medico) cliente).getDiasVisita());
-            lbDiasVisitMdFm.setVisible(true);
+            lbDiasVisitMd.setText(((Medico) cliente).getDiasVisita());
+            lbDiasVisitMd.setVisible(true);
             
             lbEspecsMd.setText(((Medico) cliente).getEspecialidad());
             lbEspecsMd.setVisible(true);
             
-            lbFrecueMd.setText(""+((Medico) cliente).getFrecuencia());
-            lbFrecueMd.setVisible(true);
+            lbFrecueMdFm.setText(""+((Medico) cliente).getFrecuencia());
+            lbFrecueMdFm.setVisible(true);
             
             lbHorarioMd.setText(((Medico) cliente).getHorario());
             lbHorarioMd.setVisible(true);
@@ -131,9 +131,9 @@ public class MenuClientesController {
             
             
             lbEmailMdFm.setVisible(false);
-            lbDiasVisitMdFm.setVisible(false);
+            lbDiasVisitMd.setVisible(false);
             lbEspecsMd.setVisible(false);
-            lbFrecueMd.setVisible(false);
+            lbFrecueMdFm.setVisible(false);
             lbHorarioMd.setVisible(false);
             lbCadenaFm.setVisible(false);
             lbDrogeriaFm.setVisible(false);
@@ -142,8 +142,8 @@ public class MenuClientesController {
             //lbEmailMdFm.setText();
             lbEmailMdFm.setVisible(true);
             
-            //lbDiasVisitMdFm.setText(); faltan getters
-            lbDiasVisitMdFm.setVisible(true);
+            //lbFrecueMdFm.setText(); faltan getters
+            lbFrecueMdFm.setVisible(false);
             
             //lbPersonContacFmInst.setText();
             lbPersonContacFmInst.setVisible(true);
@@ -156,7 +156,7 @@ public class MenuClientesController {
             
             
             lbEspecsMd.setVisible(false);
-            lbFrecueMd.setVisible(false);
+            lbDiasVisitMd.setVisible(false);
             lbHorarioMd.setVisible(false);
             lbFacultadInst.setVisible(false);
         }
