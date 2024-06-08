@@ -14,28 +14,61 @@ import javafx.scene.layout.Pane;
 public class MenuClientesController {
 
     @FXML
+    private Label cadena;
+
+    @FXML
     private Label clientesLabel;
 
     @FXML
-    private Label nomCliente;
-    
+    private Label correo;
+
+    @FXML
+    private Label diasVisita;
+
+    @FXML
+    private Label drogueria;
+
+    @FXML
+    private Label edfFacultad;
+
+    @FXML
+    private Label especialidad;
+
+    @FXML
+    private Label frecuencia;
+
+    @FXML
+    private Label horario;
+
+    @FXML
+    private Pane infoCliente;
+
+    @FXML
+    private Label lbCadenaFm;
+
+    @FXML
+    private Label lbCedula;
+
     @FXML
     private Label lbDiasVisitMd;
 
     @FXML
-    private Label lbFrecueMdFm;
-    
-     @FXML
-    private Label lbCedula;
+    private Label lbDirect;
 
     @FXML
-    private Label lbDirect;
+    private Label lbDrogeriaFm;
 
     @FXML
     private Label lbEmailMdFm;
 
     @FXML
     private Label lbEspecsMd;
+
+    @FXML
+    private Label lbFacultadInst;
+
+    @FXML
+    private Label lbFrecueMdFm;
 
     @FXML
     private Label lbHorarioMd;
@@ -47,19 +80,16 @@ public class MenuClientesController {
     private Label lbPersonContacFmInst;
 
     @FXML
-    private Label lbCadenaFm;
+    private Label nomCliente;
 
     @FXML
-    private Label lbDrogeriaFm;
-
-    @FXML
-    private Label lbFacultadInst;
-    
-    @FXML
-    private Pane infoCliente;
+    private Label persContacto;
 
     @FXML
     private TextField tfBuscarCliente;
+
+    @FXML
+    private TextArea taObservaciones;
 
     @FXML
     private TableView<Cliente> tablaClientes;
@@ -104,64 +134,90 @@ public class MenuClientesController {
         lbCedula.setText(cliente.getTipoIdentidad()+" "+cliente.getDocIdentidad());
         lbNumero.setText(""+cliente.getNumTLF());
         lbDirect.setText(cliente.getDireccion());
+        taObservaciones.setText(cliente.getDescripcion());
 
-        if (cliente instanceof Medico) { // Ahora los atributos específicos
+        if (cliente instanceof Medico) {
             lbEmailMdFm.setText(((Medico) cliente).getEmail());
             lbEmailMdFm.setVisible(true);
+            correo.setVisible(true);
 
             lbDiasVisitMd.setText(((Medico) cliente).getDiasVisita());
             lbDiasVisitMd.setVisible(true);
+            diasVisita.setVisible(true);
 
             lbEspecsMd.setText(((Medico) cliente).getEspecialidad());
             lbEspecsMd.setVisible(true);
+            especialidad.setVisible(true);
 
             lbFrecueMdFm.setText(""+((Medico) cliente).getFrecuencia());
             lbFrecueMdFm.setVisible(true);
+            frecuencia.setVisible(true);
 
             lbHorarioMd.setText(((Medico) cliente).getHorario());
             lbHorarioMd.setVisible(true);
+            horario.setVisible(true);
 
 
             lbCadenaFm.setVisible(false);
+            cadena.setVisible(false);
             lbDrogeriaFm.setVisible(false);
+            drogueria.setVisible(false);
             lbPersonContacFmInst.setVisible(false);
+            persContacto.setVisible(false);
             lbFacultadInst.setVisible(false);
+            edfFacultad.setVisible(false);
         } else if (cliente instanceof Institucion) {
             lbPersonContacFmInst.setText(((Institucion) cliente).getPersonaContacto());
             lbPersonContacFmInst.setVisible(true);
+            persContacto.setVisible(true);
 
             lbFacultadInst.setText(((Institucion) cliente).getEdfFacultad());
             lbFacultadInst.setVisible(true);
-
+            edfFacultad.setVisible(true);
 
             lbEmailMdFm.setVisible(false);
+            correo.setVisible(false);
             lbDiasVisitMd.setVisible(false);
+            diasVisita.setVisible(false);
             lbEspecsMd.setVisible(false);
+            especialidad.setVisible(false);
             lbFrecueMdFm.setVisible(false);
+            frecuencia.setVisible(false);
             lbHorarioMd.setVisible(false);
+            horario.setVisible(false);
             lbCadenaFm.setVisible(false);
+            cadena.setVisible(false);
             lbDrogeriaFm.setVisible(false);
+            drogueria.setVisible(false);
         } else if (cliente instanceof Farmacia) {
             lbEmailMdFm.setText(((Farmacia) cliente).getEmail());
             lbEmailMdFm.setVisible(true);
+            correo.setVisible(true);
 
             lbFrecueMdFm.setText(""+((Farmacia) cliente).getFrecuencia());
             lbFrecueMdFm.setVisible(true);
+            frecuencia.setVisible(true);
 
             lbPersonContacFmInst.setText(((Farmacia) cliente).getPersonaContacto());
             lbPersonContacFmInst.setVisible(true);
+            persContacto.setVisible(true);
 
             lbCadenaFm.setText(((Farmacia) cliente).getCadena());
             lbCadenaFm.setVisible(true);
+            cadena.setVisible(true);
 
             lbDrogeriaFm.setText(((Farmacia) cliente).getDrogueria());
             lbDrogeriaFm.setVisible(true);
-
+            drogueria.setVisible(true);
 
             lbEspecsMd.setVisible(false);
+            especialidad.setVisible(false);
             lbDiasVisitMd.setVisible(false);
+            diasVisita.setVisible(false);
             lbHorarioMd.setVisible(false);
+            horario.setVisible(false);
             lbFacultadInst.setVisible(false);
+            edfFacultad.setVisible(false);
         }
         tbEventos.setItems(FXCollections.observableArrayList(cliente.getEventoList()));
         tbEventos.refresh();

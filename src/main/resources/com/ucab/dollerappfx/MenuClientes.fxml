@@ -26,7 +26,7 @@
       <ImageView fitHeight="44.0" fitWidth="51.0" layoutX="31.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" />
       <StackPane layoutY="51.0" prefHeight="749.0" prefWidth="1166.0">
          <children>
-            <Pane fx:id="vistaCliente" prefHeight="800.0" prefWidth="1166.0">
+            <Pane fx:id="vistaCliente" prefHeight="800.0" prefWidth="1166.0" visible="false">
                <children>
                   <TextField fx:id="tfBuscarCliente" layoutX="19.0" layoutY="14.0" prefHeight="30.0" prefWidth="325.0" promptText="Buscar Clientes">
                      <font>
@@ -46,7 +46,7 @@
                   </Button>
                </children>
             </Pane>
-            <Pane fx:id="infoCliente" prefHeight="348.0" prefWidth="1138.0" visible="false">
+            <Pane fx:id="infoCliente" prefHeight="348.0" prefWidth="1138.0">
                <children>
                   <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#30281e" height="67.0" layoutX="17.0" layoutY="8.0" opacity="0.9" strokeType="INSIDE" strokeWidth="0.0" width="1132.0" />
                   <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#fc9f66" height="652.0" layoutX="29.0" layoutY="75.0" opacity="0.7" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
@@ -78,7 +78,7 @@
                         <Font name="Roboto" size="22.0" />
                      </font>
                   </Label>
-                  <TextArea focusTraversable="false" layoutX="241.0" layoutY="536.0" prefHeight="193.0" prefWidth="900.0" promptText="&lt;Observaciones Aqui&gt;" style="-fx-background-color: null;">
+                  <TextArea fx:id="taObservaciones" focusTraversable="false" layoutX="241.0" layoutY="536.0" prefHeight="193.0" prefWidth="900.0" promptText="&lt;Observaciones Aqui&gt;" style="-fx-background-color: null;">
                      <font>
                         <Font name="Roboto" size="14.0" />
                      </font>
@@ -89,67 +89,117 @@
                   <Pane layoutX="241.0" layoutY="536.0" prefHeight="2.0" prefWidth="900.0" style="-fx-background-color: #4d4d4d;" />
                   <Label alignment="CENTER" layoutX="29.0" layoutY="80.0" prefWidth="199.0" text="Datos" textFill="WHITE" underline="true">
                      <font>
-                        <Font name="Roboto Light" size="20.0" />
+                        <Font name="Roboto Black" size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbCedula" alignment="CENTER" contentDisplay="CENTER" layoutX="29.0" layoutY="110.0" prefHeight="24.0" prefWidth="199.0" text="Doc. Identidad" textFill="WHITE">
+                  <Label fx:id="lbCedula" contentDisplay="CENTER" layoutX="41.0" layoutY="111.0" prefHeight="24.0" prefWidth="175.0" text="Doc. Identidad" textFill="WHITE">
                      <font>
                         <Font name="Roboto Light Italic" size="19.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbNumero" alignment="CENTER" layoutX="29.0" layoutY="145.0" prefHeight="24.0" prefWidth="199.0" text="Num. Telefonico" textFill="WHITE">
+                  <Label fx:id="lbNumero" layoutX="38.0" layoutY="145.0" prefHeight="24.0" prefWidth="175.0" text="Num. Telefonico" textFill="WHITE">
                      <font>
                         <Font name="Roboto Light Italic" size="19.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbDirect" alignment="CENTER" layoutX="42.0" layoutY="409.0" minHeight="24.0" prefHeight="24.0" prefWidth="175.0" text="Direccion" textFill="WHITE" wrapText="true">
+                  <Label fx:id="lbDirect" alignment="CENTER" layoutX="42.0" layoutY="601.0" minHeight="24.0" prefHeight="24.0" prefWidth="175.0" text="Direccion" textFill="WHITE" wrapText="true">
                      <font>
                         <Font name="Roboto Light Italic" size="19.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbEmailMdFm" alignment="CENTER" layoutX="29.0" layoutY="180.0" prefWidth="199.0" text="Email&lt;md,fm&gt;" textFill="WHITE">
+                  <Label fx:id="lbEmailMdFm" layoutX="39.0" layoutY="223.0" prefHeight="24.0" prefWidth="175.0" text="&lt;email md, fm&gt;" textFill="WHITE">
                      <font>
-                        <Font name="Roboto Light Italic" size="19.0" />
+                        <Font name="Roboto Light Italic" size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbEspecsMd" alignment="CENTER" layoutX="29.0" layoutY="250.0" prefWidth="199.0" text="Especialidad&lt;md&gt;" textFill="WHITE">
+                  <Label fx:id="lbEspecsMd" layoutX="38.0" layoutY="375.0" prefHeight="19.0" prefWidth="175.0" text="&lt;especialidad md&gt;" textFill="WHITE">
                      <font>
-                        <Font name="Roboto Light Italic" size="19.0" />
+                        <Font name="Roboto Light Italic" size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbFrecueMdFm" alignment="CENTER" layoutX="29.0" layoutY="215.0" prefWidth="199.0" text="Frecuencia&lt;md,fm&gt;" textFill="WHITE">
+                  <Label fx:id="lbFrecueMdFm" layoutX="38.0" layoutY="297.0" prefHeight="24.0" prefWidth="175.0" text="&lt;frecuencia md, fm&gt;" textFill="WHITE">
                      <font>
-                        <Font name="Roboto Light Italic" size="19.0" />
+                        <Font name="Roboto Light Italic" size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbDiasVisitMd" alignment="CENTER" layoutX="29.0" layoutY="285.0" prefWidth="199.0" text="Dias de visita&lt;md&gt;" textFill="WHITE">
+                  <Label fx:id="lbDiasVisitMd" layoutX="40.0" layoutY="464.0" prefHeight="19.0" prefWidth="175.0" text="&lt;diasVisita md&gt;" textFill="WHITE" visible="false">
                      <font>
-                        <Font name="Roboto Light Italic" size="19.0" />
+                        <Font name="Roboto Light Italic" size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbHorarioMd" alignment="CENTER" layoutX="29.0" layoutY="320.0" prefWidth="199.0" text="Horario&lt;md&gt;" textFill="WHITE">
+                  <Label fx:id="lbHorarioMd" layoutX="39.0" layoutY="538.0" prefHeight="19.0" prefWidth="175.0" text="&lt;horario md&gt;" textFill="WHITE">
                      <font>
-                        <Font name="Roboto Light Italic" size="19.0" />
+                        <Font name="Roboto Light Italic" size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbPersonContacFmInst" alignment="CENTER" layoutX="29.0" layoutY="250.0" prefWidth="199.0" text="Persona contacto&lt;fm&gt;" textFill="WHITE" visible="false">
+                  <Label fx:id="lbPersonContacFmInst" layoutX="38.0" layoutY="375.0" prefHeight="19.0" prefWidth="175.0" text="&lt;perContacto fm, inst&gt;" textFill="WHITE" visible="false">
                      <font>
-                        <Font name="Roboto Light Italic" size="19.0" />
+                        <Font name="Roboto Light Italic" size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbCadenaFm" alignment="CENTER" layoutX="29.0" layoutY="285.0" prefWidth="199.0" text="Cadena&lt;fm&gt;" textFill="WHITE" visible="false">
+                  <Label fx:id="lbCadenaFm" layoutX="40.0" layoutY="464.0" prefHeight="19.0" prefWidth="175.0" text="&lt;cadena fm&gt;" textFill="WHITE">
                      <font>
-                        <Font name="Roboto Light Italic" size="19.0" />
+                        <Font name="Roboto Light Italic" size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbDrogeriaFm" alignment="CENTER" layoutX="30.0" layoutY="320.0" prefWidth="199.0" text="Drogeria&lt;fm&gt;" textFill="WHITE" visible="false">
+                  <Label fx:id="lbDrogeriaFm" layoutX="41.0" layoutY="538.0" prefHeight="19.0" prefWidth="175.0" text="&lt;drogueria fm&gt;" textFill="WHITE" visible="false">
                      <font>
-                        <Font name="Roboto Light Italic" size="19.0" />
+                        <Font name="Roboto Light Italic" size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbFacultadInst" alignment="CENTER" layoutX="29.0" layoutY="215.0" prefWidth="199.0" text="Edif. Facultad&lt;Inst&gt;" textFill="WHITE" visible="false">
+                  <Label fx:id="lbFacultadInst" layoutX="37.0" layoutY="297.0" prefHeight="24.0" prefWidth="175.0" text="&lt;facultad inst&gt;" textFill="WHITE" visible="false">
                      <font>
-                        <Font name="Roboto Light Italic" size="19.0" />
+                        <Font name="Roboto Light Italic" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="correo" layoutX="38.0" layoutY="199.0" text="Correo:" textFill="WHITE">
+                     <font>
+                        <Font name="Roboto Black" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="frecuencia" layoutX="38.0" layoutY="273.0" text="Frecuencia:" textFill="WHITE" visible="false">
+                     <font>
+                        <Font name="Roboto Black" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="edfFacultad" layoutX="38.0" layoutY="273.0" text="Edf. Facultad:" textFill="WHITE">
+                     <font>
+                        <Font name="Roboto Black" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="especialidad" layoutX="40.0" layoutY="351.0" text="Especialidad:" textFill="WHITE">
+                     <font>
+                        <Font name="Roboto Black" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="persContacto" layoutX="39.0" layoutY="351.0" text="Persona Contacto:" textFill="WHITE" visible="false">
+                     <font>
+                        <Font name="Roboto Black" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="cadena" layoutX="41.0" layoutY="440.0" text="Cadena:" textFill="WHITE">
+                     <font>
+                        <Font name="Roboto Black" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="diasVisita" layoutX="39.0" layoutY="440.0" text="Días Visita:" textFill="WHITE" visible="false">
+                     <font>
+                        <Font name="Roboto Black" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="drogueria" layoutX="41.0" layoutY="512.0" text="Droguería:" textFill="WHITE">
+                     <font>
+                        <Font name="Roboto Black" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="horario" layoutX="41.0" layoutY="512.0" text="Horario:" textFill="WHITE" visible="false">
+                     <font>
+                        <Font name="Roboto Black" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="drogueria1" layoutX="49.0" layoutY="577.0" text="Dirección:" textFill="WHITE">
+                     <font>
+                        <Font name="Roboto Black" size="20.0" />
                      </font>
                   </Label>
                </children>
