@@ -18,7 +18,43 @@ public class MenuClientesController {
 
     @FXML
     private Label nomCliente;
+    
+    @FXML
+    private Label lbDiasVisitMd;
 
+    @FXML
+    private Label lbFrecueMdFm;
+    
+     @FXML
+    private Label lbCedula;
+
+    @FXML
+    private Label lbDirect;
+
+    @FXML
+    private Label lbEmailMdFm;
+
+    @FXML
+    private Label lbEspecsMd;
+
+    @FXML
+    private Label lbHorarioMd;
+
+    @FXML
+    private Label lbNumero;
+
+    @FXML
+    private Label lbPersonContacFmInst;
+
+    @FXML
+    private Label lbCadenaFm;
+
+    @FXML
+    private Label lbDrogeriaFm;
+
+    @FXML
+    private Label lbFacultadInst;
+    
     @FXML
     private Pane infoCliente;
 
@@ -65,14 +101,67 @@ public class MenuClientesController {
 
     public void establecerCliente(Cliente cliente) {
         nomCliente.setText(cliente.getNombreCliente());
-        // Los otros atributos comunes
+        lbCedula.setText(cliente.getTipoIdentidad()+" "+cliente.getDocIdentidad());
+        lbNumero.setText(""+cliente.getNumTLF());
+        lbDirect.setText(cliente.getDireccion());
 
         if (cliente instanceof Medico) { // Ahora los atributos específicos
+            lbEmailMdFm.setText(((Medico) cliente).getEmail());
+            lbEmailMdFm.setVisible(true);
 
+            lbDiasVisitMd.setText(((Medico) cliente).getDiasVisita());
+            lbDiasVisitMd.setVisible(true);
+
+            lbEspecsMd.setText(((Medico) cliente).getEspecialidad());
+            lbEspecsMd.setVisible(true);
+
+            lbFrecueMdFm.setText(""+((Medico) cliente).getFrecuencia());
+            lbFrecueMdFm.setVisible(true);
+
+            lbHorarioMd.setText(((Medico) cliente).getHorario());
+            lbHorarioMd.setVisible(true);
+
+
+            lbCadenaFm.setVisible(false);
+            lbDrogeriaFm.setVisible(false);
+            lbPersonContacFmInst.setVisible(false);
+            lbFacultadInst.setVisible(false);
         } else if (cliente instanceof Institucion) {
+            lbPersonContacFmInst.setText(((Institucion) cliente).getPersonaContacto());
+            lbPersonContacFmInst.setVisible(true);
 
+            lbFacultadInst.setText(((Institucion) cliente).getEdfFacultad());
+            lbFacultadInst.setVisible(true);
+
+
+            lbEmailMdFm.setVisible(false);
+            lbDiasVisitMd.setVisible(false);
+            lbEspecsMd.setVisible(false);
+            lbFrecueMdFm.setVisible(false);
+            lbHorarioMd.setVisible(false);
+            lbCadenaFm.setVisible(false);
+            lbDrogeriaFm.setVisible(false);
         } else if (cliente instanceof Farmacia) {
+            lbEmailMdFm.setText(((Farmacia) cliente).getEmail());
+            lbEmailMdFm.setVisible(true);
 
+            lbFrecueMdFm.setText(""+((Farmacia) cliente).getFrecuencia());
+            lbFrecueMdFm.setVisible(true);
+
+            lbPersonContacFmInst.setText(((Farmacia) cliente).getPersonaContacto());
+            lbPersonContacFmInst.setVisible(true);
+
+            lbCadenaFm.setText(((Farmacia) cliente).getCadena());
+            lbCadenaFm.setVisible(true);
+
+            lbDrogeriaFm.setText(((Farmacia) cliente).getDrogueria());
+            lbDrogeriaFm.setVisible(true);
+
+
+            lbEspecsMd.setVisible(false);
+            lbDiasVisitMd.setVisible(false);
+            lbHorarioMd.setVisible(false);
+            lbFacultadInst.setVisible(false);
         }
         tbEventos.setItems(FXCollections.observableArrayList(cliente.getEventoList()));
         tbEventos.refresh();
