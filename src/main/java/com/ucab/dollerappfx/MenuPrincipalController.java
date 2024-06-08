@@ -30,13 +30,7 @@ public class MenuPrincipalController {
 
     @FXML
     private Circle bgCircleMedicS;
-    
-    @FXML
-    private Circle bgCircleEventS;
-    
-    @FXML
-    private Pane btEventS;
-    
+
     @FXML
     private Pane btFarmaS;
 
@@ -68,13 +62,7 @@ public class MenuPrincipalController {
     private Pane pnSideBar;
 
     @FXML
-    private AnchorPane pnSubMenuClientes;
-
-    @FXML
     private AnchorPane pnSubMenuPrincipal;
-    
-    @FXML
-    private AnchorPane pnSubMenuEventos;
 
     @FXML
     private TableView<Cliente> tbClientesRecientes;
@@ -82,17 +70,18 @@ public class MenuPrincipalController {
     @FXML
     private TableView<Evento> tbEventosMenu;
 
-    private MenuClientesController controllerClientes; // Controlador de Menu Clientes
-    
-    private EventosController controllerEventos;
+    @FXML
+    private AnchorPane pnSubMenuClientes;
 
-    private ObservableList<Medico> listMedicos;
+    private MenuClientesController controllerClientes;
 
-    private ObservableList<Institucion> listInstituciones;
+    public static ObservableList<Medico> listMedicos;
 
-    private ObservableList<Farmacia> listFarmacias;
+    public static ObservableList<Institucion> listInstituciones;
 
-    private ObservableList<Evento> listEventos;
+    public static ObservableList<Farmacia> listFarmacias;
+
+    public static ObservableList<Evento> listEventos;
 
     private final double lowOpacity = 0.35;
     private final double maxOpacity = 1;
@@ -100,11 +89,9 @@ public class MenuPrincipalController {
     @FXML
     void btLogoClicked(MouseEvent event) {
         visibilityChange(false,true);
-        pnSubMenuEventos.setVisible(false);
         bgCircleMedicS.setOpacity(lowOpacity);
         bgCircleInstS.setOpacity(lowOpacity);
         bgCircleFarmaS.setOpacity(lowOpacity);
-        bgCircleEventS.setOpacity(lowOpacity);
 
         tbClientesRecientes.refresh();
         tbEventosMenu.refresh();
@@ -113,15 +100,13 @@ public class MenuPrincipalController {
     @FXML
     void btMedicPressed(MouseEvent event) {
         visibilityChange(true, false);
-        pnSubMenuEventos.setVisible(false);
         controllerClientes.cambio(false, true);
         bgCircleMedicS.setOpacity(maxOpacity);
         bgCircleFarmaS.setOpacity(lowOpacity);
         bgCircleInstS.setOpacity(lowOpacity);
-        bgCircleEventS.setOpacity(lowOpacity);
 
         controllerClientes.establecerClase(Medico.class, listMedicos);
-        controllerClientes.filtroTabla(FXCollections.observableArrayList(listMedicos));
+        controllerClientes.filtroClientes(FXCollections.observableArrayList(listMedicos));
     }
 
     @FXML
@@ -139,15 +124,13 @@ public class MenuPrincipalController {
     @FXML
     void btFarmaPressed(MouseEvent event) {
         visibilityChange(true, false);
-        pnSubMenuEventos.setVisible(false);
         controllerClientes.cambio(false, true);
         bgCircleFarmaS.setOpacity(maxOpacity);
         bgCircleInstS.setOpacity(lowOpacity);
         bgCircleMedicS.setOpacity(lowOpacity);
-        bgCircleEventS.setOpacity(lowOpacity);
 
         controllerClientes.establecerClase(Farmacia.class, listFarmacias);
-        controllerClientes.filtroTabla(FXCollections.observableArrayList(listFarmacias));
+        controllerClientes.filtroClientes(FXCollections.observableArrayList(listFarmacias));
     }
 
     @FXML
@@ -165,15 +148,13 @@ public class MenuPrincipalController {
     @FXML
     void btInstPressed(MouseEvent event) {
         visibilityChange(true, false);
-        pnSubMenuEventos.setVisible(false);
         controllerClientes.cambio(false, true);
         bgCircleInstS.setOpacity(maxOpacity);
         bgCircleFarmaS.setOpacity(lowOpacity);
         bgCircleMedicS.setOpacity(lowOpacity);
-        bgCircleEventS.setOpacity(lowOpacity);
 
         controllerClientes.establecerClase(Institucion.class, listInstituciones);
-        controllerClientes.filtroTabla(FXCollections.observableArrayList(listInstituciones));
+        controllerClientes.filtroClientes(FXCollections.observableArrayList(listInstituciones));
     }
 
     @FXML
@@ -190,25 +171,16 @@ public class MenuPrincipalController {
     
     @FXML
     void btEventPressed(MouseEvent event) {
-        pnSubMenuEventos.setVisible(true);
         pnSubMenuClientes.setVisible(false);
         pnSubMenuPrincipal.setVisible(false);
-        bgCircleEventS.setOpacity(maxOpacity);
         bgCircleFarmaS.setOpacity(lowOpacity);
         bgCircleMedicS.setOpacity(lowOpacity);
         bgCircleInstS.setOpacity(lowOpacity);
-    }
 
-    @FXML
-    void btEventSEntered(MouseEvent event) {
-        bgCircleEventS.setOpacity(maxOpacity);
-    }
-
-    @FXML
-    void btEventSExited(MouseEvent event) {
-        if (!pnSubMenuEventos.isVisible()){
-            bgCircleEventS.setOpacity(lowOpacity);
-        }
+        ObservableList<Cliente> clientes = FXCollections.observableArrayList();
+        clientes.addAll(listMedicos);
+        clientes.addAll(listInstituciones);
+        clientes.addAll(listFarmacias);
     }
 
     @FXML
@@ -244,23 +216,14 @@ public class MenuPrincipalController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Eventos.fxml"));
-            pnSubMenuEventos = loader.load();
-            controllerEventos = loader.getController();
-
-            pnSubMenuEventos.setVisible(false);
-            pnContenido.getChildren().add(pnSubMenuEventos);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
         // La Tabla de Eventos
         tbEventosMenu.getColumns().clear();
 
-        TableColumn<Evento, String> nombreCol = new TableColumn<>("Nombre");
+        TableColumn<Evento, String> nombreCol = new TableColumn<>("Cliente");
         nombreCol.setCellValueFactory(new PropertyValueFactory<>("cliente"));
+
+        TableColumn<Evento, String> tituloCol = new TableColumn<>("Título Actividad");
+        tituloCol.setCellValueFactory(new PropertyValueFactory<>("titulo"));
 
         TableColumn<Evento, String> fechaCol = new TableColumn<>("Fecha");
         fechaCol.setCellValueFactory(new PropertyValueFactory<>("fecha"));
@@ -272,6 +235,7 @@ public class MenuPrincipalController {
         descripCol.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
 
         tbEventosMenu.getColumns().add(nombreCol);
+        tbEventosMenu.getColumns().add(tituloCol);
         tbEventosMenu.getColumns().add(fechaCol);
         tbEventosMenu.getColumns().add(semanaCol);
         tbEventosMenu.getColumns().add(descripCol);
@@ -279,25 +243,25 @@ public class MenuPrincipalController {
 
         // Hay que cargar o crear las listas (Aqui estoy usando unos de prueba)
         ArrayList<Evento> l1 = new ArrayList<>();
-        l1.add(new Evento("Sandro", "24/05/24", 2, "Supongamos que"));
-        l1.add(new Evento("Sandro", "01/10/24", 4, "Pasarán cosas"));
+        l1.add(new Evento("Visita Hospitalaria","Dubin Ludmila", "24/05/2024", 2, "Supongamos que"));
+        l1.add(new Evento("Visita Hospitalaria", "Dubin Ludmila", "01/10/2024", 4, "Pasarán cosas"));
 
         ArrayList<Evento> l2 = new ArrayList<>();
-        l2.add(new Evento("Alex", "12/04/24", 1, "Evento intergaláctico"));
-        l2.add(new Evento("Alex", "17/09/24", 3, "Se aprecian cositas"));
+        l2.add(new Evento("Actividad Promocional", "Alex", "12/04/24", 1, "Evento intergaláctico"));
+        l2.add(new Evento("Actividad Promocional", "Alex", "17/09/24", 3, "Se aprecian cositas"));
 
         listMedicos = FXCollections.observableArrayList(
-                new Medico("Ale", "Por ahi", 424, 'V', 30282309, "No se", "Huesos", "a@gmail.com", 0, "Lunes-Viernes", "9-5", "No se"),
-                new Medico("Sandro", "UCAB", 424158, 'V', 30282304, "No se", "Músculos", "sandro@gmail.com", 2, "Miércoles-Sábado", "8-6", "No se", l1)
+                new Medico("Baez Arnaldo", "Avenida Vargas Entre Las Palmas y Caerrera 32", "04143515161", 'V', 7884170, "No se", "Urólogo", "arnaldobaez@gmail.com", 1, "Lun-Mar-Mie-Jue-Vie", "8am-12pm", "Entre pacientes"),
+                new Medico("Dubin Ludmila", "Calle 20 Con Carrera 23 Lara", "18325313408", 'V', 7329907, "No se", "Ginecólogo", "ludmiladubim@gmail.com", 1, "Lun-Mar-Mie-Jue-Vie", "8am-12pm", "Entre pacientes", l1)
         );
         listInstituciones = FXCollections.observableArrayList(
-                new Institucion("Manu", "Por alla", 412, 'V', 31423309, "No se", "Alguien", "Ciencias"),
-                new Institucion("Pepe", "Por aca", 426, 'V', 10544904, "No se", "Otro alguien", "Humanidades"),
-                new Institucion("Pedro", "Un lugar", 412, 'V', 9742912, "No se", "Juanito", "Ingeniería")
+                new Institucion("Manu", "Por alla", "412", 'V', 31423309, "No se", "Alguien", "Ciencias"),
+                new Institucion("Pepe", "Por aca", "426", 'V', 10544904, "No se", "Otro alguien", "Humanidades"),
+                new Institucion("Pedro", "Un lugar", "412", 'V', 9742912, "No se", "Juanito", "Ingeniería")
         );
         listFarmacias = FXCollections.observableArrayList(
-                new Farmacia("Alex", "Por aqui", 414, 'J', 11225210, "No se", "Un extraño", "b@gmail.com", 1, "Perpetua", "Acetaminofen", l2),
-                new Farmacia("Monsalve", "SJT", 424, 'V', 32848109, "No se", "Pepito", "diablo@gmail.com", 0, "30 años", "Migren")
+                new Farmacia("Alex", "Por aqui", "414", 'J', 11225210, "No se", "Un extraño", "b@gmail.com", 1, "Perpetua", "Acetaminofen", l2),
+                new Farmacia("Monsalve", "SJT", "424", 'V', 32848109, "No se", "Pepito", "diablo@gmail.com", 0, "30 años", "Migren")
 
         );
 

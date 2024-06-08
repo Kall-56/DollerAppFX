@@ -8,7 +8,7 @@ public class Institucion extends Cliente {
 
     public Institucion(String nombreCliente,
                        String direccion,
-                       int numTLF,
+                       String numTLF,
                        char tipoIdentidad,
                        int docIdentidad,
                        String descripcion,
@@ -22,7 +22,7 @@ public class Institucion extends Cliente {
 
     public Institucion(String nombreCliente,
                        String direccion,
-                       int numTLF,
+                       String numTLF,
                        char tipoIdentidad,
                        int docIdentidad,
                        String descripcion,

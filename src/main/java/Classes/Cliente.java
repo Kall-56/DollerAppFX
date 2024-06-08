@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public abstract class Cliente {
     protected String nombreCliente;
     protected String direccion;
-    protected int numTLF;
+    protected String numTLF;
     protected char tipoIdentidad; // Si es Natural o Juridico
     protected int docIdentidad;
     protected String descripcion;
@@ -13,7 +13,7 @@ public abstract class Cliente {
 
     public Cliente(String nombreCliente,
                    String direccion,
-                   int numTLF,
+                   String numTLF,
                    char tipoIdentidad,
                    int docIdentidad,
                    String descripcion) {
@@ -30,7 +30,7 @@ public abstract class Cliente {
 
     public Cliente(String nombreCliente,
                    String direccion,
-                   int numTLF,
+                   String numTLF,
                    char tipoIdentidad,
                    int docIdentidad,
                    String descripcion,
@@ -64,11 +64,11 @@ public abstract class Cliente {
         this.direccion = direccion;
     }
 
-    public int getNumTLF() {
+    public String getNumTLF() {
         return numTLF;
     }
 
-    public void setNumTLF(int numTLF) {
+    public void setNumTLF(String numTLF) {
         this.numTLF = numTLF;
     }
 
@@ -107,5 +107,9 @@ public abstract class Cliente {
 
      public void registrarEvento(Evento event) {
         eventoList.add(event);
+    }
+
+    public void eliminarEvento(Evento evento) {
+        eventoList.remove(evento);
     }
 }

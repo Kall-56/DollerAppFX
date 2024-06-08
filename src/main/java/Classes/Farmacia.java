@@ -11,7 +11,7 @@ public class Farmacia extends Cliente {
 
     public Farmacia(String nombreCliente,
                     String direccion,
-                    int numTLF,
+                    String numTLF,
                     char tipoIdentidad,
                     int docIdentidad,
                     String descripcion,
@@ -31,7 +31,7 @@ public class Farmacia extends Cliente {
 
     public Farmacia(String nombreCliente,
                     String direccion,
-                    int numTLF,
+                    String numTLF,
                     char tipoIdentidad,
                     int docIdentidad,
                     String descripcion,

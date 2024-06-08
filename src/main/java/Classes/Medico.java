@@ -12,7 +12,7 @@ public class Medico extends Cliente {
 
     public Medico(String nombreCliente,
                   String direccion,
-                  int numTLF,
+                  String numTLF,
                   char tipoIdentidad,
                   int docIdentidad,
                   String descripcion,
@@ -34,7 +34,7 @@ public class Medico extends Cliente {
 
     public Medico(String nombreCliente,
                   String direccion,
-                  int numTLF,
+                  String numTLF,
                   char tipoIdentidad,
                   int docIdentidad,
                   String descripcion,
