@@ -1,67 +1,36 @@
 package Classes;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Evento {
-    private Institucion clienteInstitucion;
-    private Farmacia clienteFarmacia;
-    private Medico clienteMedico;
-
-    private SimpleDateFormat fecha;
+    private String cliente;
+    private String fecha;
     private int semana; // Semana del Mes
     private String descripcion;
 
-    public Evento(Institucion clienteInstitucion, SimpleDateFormat fecha, int semana, String descripcion) {
-        this.clienteInstitucion = clienteInstitucion;
-        this.fecha = fecha;
-        this.semana = semana;
-        this.descripcion = descripcion;
-    }
-
-    public Evento(Farmacia clienteFarmacia, SimpleDateFormat fecha, int semana, String descripcion) {
-        this.clienteFarmacia = clienteFarmacia;
-        this.fecha = fecha;
-        this.semana = semana;
-        this.descripcion = descripcion;
-    }
-
-    public Evento(Medico clienteMedico, SimpleDateFormat fecha, int semana, String descripcion) {
-        this.clienteMedico = clienteMedico;
+    public Evento(String cliente, String fecha, int semana, String descripcion) {
+        this.cliente = cliente;
         this.fecha = fecha;
         this.semana = semana;
         this.descripcion = descripcion;
     }
 
     // Getters y Setters -----------------------------------------------------------------------------------------------
-    public Institucion getClienteInstitucion() {
-        return clienteInstitucion;
+    public String getCliente() {
+        return cliente;
     }
 
-    public void setClienteInstitucion(Institucion clienteInstitucion) {
-        this.clienteInstitucion = clienteInstitucion;
+    public void setCliente(String cliente) {
+        this.cliente = cliente;
     }
 
-    public Farmacia getClienteFarmacia() {
-        return clienteFarmacia;
-    }
-
-    public void setClienteFarmacia(Farmacia clienteFarmacia) {
-        this.clienteFarmacia = clienteFarmacia;
-    }
-
-    public Medico getClienteMedico() {
-        return clienteMedico;
-    }
-
-    public void setClienteMedico(Medico clienteMedico) {
-        this.clienteMedico = clienteMedico;
-    }
-
-    public SimpleDateFormat getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(SimpleDateFormat fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 

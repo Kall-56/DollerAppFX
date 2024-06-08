@@ -26,9 +26,9 @@
       <ImageView fitHeight="44.0" fitWidth="51.0" layoutX="31.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" />
       <StackPane layoutY="51.0" prefHeight="749.0" prefWidth="1166.0">
          <children>
-            <Pane fx:id="vistaCliente" prefHeight="800.0" prefWidth="1166.0" visible="false">
+            <Pane fx:id="vistaCliente" prefHeight="800.0" prefWidth="1166.0">
                <children>
-                  <TextField layoutX="19.0" layoutY="14.0" prefHeight="30.0" prefWidth="325.0" promptText="Buscar Clientes">
+                  <TextField fx:id="tfBuscarCliente" layoutX="19.0" layoutY="14.0" prefHeight="30.0" prefWidth="325.0" promptText="Buscar Clientes">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -46,7 +46,7 @@
                   </Button>
                </children>
             </Pane>
-            <Pane fx:id="infoCliente" prefHeight="348.0" prefWidth="1138.0">
+            <Pane fx:id="infoCliente" prefHeight="348.0" prefWidth="1138.0" visible="false">
                <children>
                   <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#30281e" height="67.0" layoutX="17.0" layoutY="8.0" opacity="0.9" strokeType="INSIDE" strokeWidth="0.0" width="1132.0" />
                   <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#fc9f66" height="652.0" layoutX="29.0" layoutY="75.0" opacity="0.7" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
@@ -67,7 +67,7 @@
                      </font>
                   </TextField>
                   <Pane layoutX="241.0" layoutY="122.0" prefHeight="2.0" prefWidth="900.0" style="-fx-background-color: #4d4d4d;" />
-                  <TableView layoutX="241.0" layoutY="130.0" prefHeight="358.0" prefWidth="900.0" style="-fx-blend-mode: null;">
+                  <TableView fx:id="tbEventos" layoutX="241.0" layoutY="130.0" prefHeight="358.0" prefWidth="900.0" style="-fx-blend-mode: null;">
                     <columns>
                       <TableColumn prefWidth="75.0" text="C1" />
                       <TableColumn prefWidth="75.0" text="C2" />

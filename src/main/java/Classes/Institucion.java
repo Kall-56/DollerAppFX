@@ -1,5 +1,7 @@
 package Classes;
 
+import java.util.ArrayList;
+
 public class Institucion extends Cliente {
     private String personaContacto;
     private String edfFacultad;
@@ -14,6 +16,21 @@ public class Institucion extends Cliente {
                        String edfFacultad) {
 
         super(nombreCliente, direccion, numTLF, tipoIdentidad, docIdentidad, descripcion);
+        this.personaContacto = personaContacto;
+        this.edfFacultad = edfFacultad;
+    }
+
+    public Institucion(String nombreCliente,
+                       String direccion,
+                       int numTLF,
+                       char tipoIdentidad,
+                       int docIdentidad,
+                       String descripcion,
+                       String personaContacto,
+                       String edfFacultad,
+                       ArrayList<Evento> eventos) {
+
+        super(nombreCliente, direccion, numTLF, tipoIdentidad, docIdentidad, descripcion, eventos);
         this.personaContacto = personaContacto;
         this.edfFacultad = edfFacultad;
     }

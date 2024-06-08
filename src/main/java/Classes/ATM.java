@@ -67,16 +67,32 @@ public class ATM extends Usuario {
         institucionList.add(inst);
     }
 
+    public Institucion getInstitucion(int index) {
+        return institucionList.get(index);
+    }
+
     public void registrarCliente(Farmacia farm) {
         farmaciaList.add(farm);
+    }
+
+    public Farmacia getFarmacia(int index) {
+        return farmaciaList.get(index);
     }
 
     public void registrarCliente(Medico med) {
         medicoList.add(med);
     }
 
+    public Medico getMedico(int index) {
+        return medicoList.get(index);
+    }
+
     public void registrarEvento(Evento event) {
         eventoList.add(event);
+    }
+
+    public Evento getEvento(int index) {
+        return eventoList.get(index);
     }
 
 }

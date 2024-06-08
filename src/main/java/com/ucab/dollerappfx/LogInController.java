@@ -2,9 +2,11 @@ package com.ucab.dollerappfx;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import Classes.ATM;
+import Classes.Administrador;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
@@ -57,11 +59,12 @@ public class LogInController {
     @FXML
     private Pane pnUserLogIn;
 
-    private ATM usuario;
+    private ArrayList<ATM> listaAtm;
+
+    public static ATM usuario; // Al cargar el ATM, la aplicacion puede usarla siempre hasta que se cambie a otro
 
     @FXML
     void btBackClicked(MouseEvent event) {
-        pnUserLogIn.toFront();
         pnUserLogIn.setVisible(true);
         pnUserCreate.setVisible(false);
     }
@@ -78,7 +81,6 @@ public class LogInController {
 
     @FXML
     void btCreateClicked(MouseEvent event) {
-        pnUserCreate.toFront();
         pnUserCreate.setVisible(true);
         pnUserLogIn.setVisible(false);
     }
@@ -95,7 +97,32 @@ public class LogInController {
 
     @FXML
     void btCreateNewClicked(MouseEvent event) {
+        boolean nombreValido = ValidacionesController.validarCampos(fldUserNameCrt, "[a-zA-Z0-9]+");
+        boolean emailValido = ValidacionesController.validarCampos(fldUserEmailCrt, "^[A-Za-z0-9+_.-]+@(.+)$");
+        boolean territorioValido = ValidacionesController.validarCampos(fldUserZoneCrt, "[a-zA-Z ]+");
+        boolean claveValido = ValidacionesController.validarCampos(fldUserPasswordCrt, "[a-zA-Z0-9_.-]+");
 
+        boolean [] atributosValidos = {nombreValido, emailValido, territorioValido, claveValido};
+        boolean valido = true;
+        for (boolean atributo: atributosValidos) {
+            if (!atributo) {
+                valido = false;
+                break; // Tal vez haya que quitarlo
+            }
+        }
+        if (valido && (fldUserPasswordCrt.getText().equals(fldUserPasswordConfirm.getText()))) {
+            listaAtm.add(new ATM(fldUserNameCrt.getText(),
+                                 fldUserZoneCrt.getText(),
+                                 fldUserEmailCrt.getText(),
+                                 fldUserPasswordCrt.getText(),
+                                 new Administrador()));
+        } else {
+            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+            alerta.setHeaderText("");
+            alerta.setContentText("Revise que no haya ningún campo con formato erróneo");
+            alerta.setTitle("Error");
+            alerta.showAndWait();
+        }
     }
 
     @FXML
@@ -145,8 +172,10 @@ public class LogInController {
     void fldForgotPressed(MouseEvent event) {
 
     }
-    
+
     public void initialize() {
         usuario = new ATM();
+        listaAtm = new ArrayList<>();
+        listaAtm.add(usuario);
     }
 }

@@ -1,5 +1,7 @@
 package Classes;
 
+import java.util.ArrayList;
+
 public class Medico extends Cliente {
     private String especialidad;
     private String email;
@@ -22,6 +24,29 @@ public class Medico extends Cliente {
                   String formato) {
 
         super(nombreCliente, direccion, numTLF, tipoIdentidad, docIdentidad, descripcion);
+        this.especialidad = especialidad;
+        this.email = email;
+        this.frecuencia = frecuencia;
+        this.diasVisita = diasVisita;
+        this.horario = horario;
+        this.formato = formato;
+    }
+
+    public Medico(String nombreCliente,
+                  String direccion,
+                  int numTLF,
+                  char tipoIdentidad,
+                  int docIdentidad,
+                  String descripcion,
+                  String especialidad,
+                  String email,
+                  int frecuencia,
+                  String diasVisita,
+                  String horario,
+                  String formato,
+                  ArrayList<Evento> eventos) {
+
+        super(nombreCliente, direccion, numTLF, tipoIdentidad, docIdentidad, descripcion, eventos);
         this.especialidad = especialidad;
         this.email = email;
         this.frecuencia = frecuencia;
