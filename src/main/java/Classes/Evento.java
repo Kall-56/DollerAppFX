@@ -1,14 +1,16 @@
 package Classes;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Evento {
     private String cliente;
-    private Date fecha;
+    private String fecha;
     private int semana; // Semana del Mes
     private String descripcion;
 
-    public Evento(String cliente, Date fecha, int semana, String descripcion) {
+    public Evento(String cliente, String fecha, int semana, String descripcion) {
         this.cliente = cliente;
         this.fecha = fecha;
         this.semana = semana;
@@ -24,11 +26,11 @@ public class Evento {
         this.cliente = cliente;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 

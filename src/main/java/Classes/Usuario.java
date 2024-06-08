@@ -65,14 +65,4 @@ public abstract class Usuario {
     public void recuperarClave(String email) {
         // no estoy seguro como seria esto aun
     }
-
-
-    @Override
-    public String toString() {
-        return "Usuario{" +
-                "nomUsuario='" + nomUsuario + '\'' +
-                ", territorio='" + territorio + '\'' +
-                ", email='" + email + '\'' +
-                '}';
-    }
 }

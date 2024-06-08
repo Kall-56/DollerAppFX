@@ -5,7 +5,6 @@ import java.io.IOException;
 import Classes.*;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Optional;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -192,7 +191,6 @@ public class MenuPrincipalController {
         pnSubMenuPrincipal.setVisible(b);
     }
 
-    @FXML
     public void initialize() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuClientes.fxml"));
@@ -228,12 +226,12 @@ public class MenuPrincipalController {
 
         // Hay que cargar o crear las listas (Aqui estoy usando unos de prueba)
         ArrayList<Evento> l1 = new ArrayList<>();
-        l1.add(new Evento("Sandro", new Date(), 2, "Supongamos que"));
-        l1.add(new Evento("Sandro", new Date(), 4, "Pasarán cosas"));
+        l1.add(new Evento("Sandro", "24/05/24", 2, "Supongamos que"));
+        l1.add(new Evento("Sandro", "01/10/24", 4, "Pasarán cosas"));
 
         ArrayList<Evento> l2 = new ArrayList<>();
-        l2.add(new Evento("Alex", new Date(), 1, "Evento intergaláctico"));
-        l2.add(new Evento("Alex", new Date(), 3, "Se aprecian cositas"));
+        l2.add(new Evento("Alex", "12/04/24", 1, "Evento intergaláctico"));
+        l2.add(new Evento("Alex", "17/09/24", 3, "Se aprecian cositas"));
 
         listMedicos = FXCollections.observableArrayList(
                 new Medico("Ale", "Por ahi", 424, 'V', 30282309, "No se", "Huesos", "a@gmail.com", 0, "Lunes-Viernes", "9-5", "No se"),
@@ -268,7 +266,6 @@ public class MenuPrincipalController {
         for (Farmacia farma: listFarmacias) {
             LogInController.usuario.registrarCliente(farma);
         }
-
 
         // Creacion de la tabla MultiClase
         ObservableList<Cliente> clientes = FXCollections.observableArrayList();

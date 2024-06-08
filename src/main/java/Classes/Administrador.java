@@ -25,6 +25,10 @@ public class Administrador extends Usuario {
     }
     // -----------------------------------------------------------------------------------------------------------------
 
+    public void registrarATM(ATM atm) {
+        atmList.add(atm);
+    }
+
     public ATM getATM(int index) {
         return atmList.get(index);
     }
