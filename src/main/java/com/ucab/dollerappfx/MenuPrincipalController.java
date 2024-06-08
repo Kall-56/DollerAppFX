@@ -30,7 +30,13 @@ public class MenuPrincipalController {
 
     @FXML
     private Circle bgCircleMedicS;
-
+    
+    @FXML
+    private Circle bgCircleEventS;
+    
+    @FXML
+    private Pane btEventS;
+    
     @FXML
     private Pane btFarmaS;
 
@@ -66,6 +72,9 @@ public class MenuPrincipalController {
 
     @FXML
     private AnchorPane pnSubMenuPrincipal;
+    
+    @FXML
+    private AnchorPane pnSubMenuEventos;
 
     @FXML
     private TableView<Cliente> tbClientesRecientes;
@@ -74,6 +83,8 @@ public class MenuPrincipalController {
     private TableView<Evento> tbEventosMenu;
 
     private MenuClientesController controllerClientes; // Controlador de Menu Clientes
+    
+    private EventosController controllerEventos;
 
     private ObservableList<Medico> listMedicos;
 
@@ -89,9 +100,11 @@ public class MenuPrincipalController {
     @FXML
     void btLogoClicked(MouseEvent event) {
         visibilityChange(false,true);
+        pnSubMenuEventos.setVisible(false);
         bgCircleMedicS.setOpacity(lowOpacity);
         bgCircleInstS.setOpacity(lowOpacity);
         bgCircleFarmaS.setOpacity(lowOpacity);
+        bgCircleEventS.setOpacity(lowOpacity);
 
         tbClientesRecientes.refresh();
         tbEventosMenu.refresh();
@@ -100,10 +113,12 @@ public class MenuPrincipalController {
     @FXML
     void btMedicPressed(MouseEvent event) {
         visibilityChange(true, false);
+        pnSubMenuEventos.setVisible(false);
         controllerClientes.cambio(false, true);
         bgCircleMedicS.setOpacity(maxOpacity);
         bgCircleFarmaS.setOpacity(lowOpacity);
         bgCircleInstS.setOpacity(lowOpacity);
+        bgCircleEventS.setOpacity(lowOpacity);
 
         controllerClientes.establecerClase(Medico.class, listMedicos);
         controllerClientes.filtroTabla(FXCollections.observableArrayList(listMedicos));
@@ -124,10 +139,12 @@ public class MenuPrincipalController {
     @FXML
     void btFarmaPressed(MouseEvent event) {
         visibilityChange(true, false);
+        pnSubMenuEventos.setVisible(false);
         controllerClientes.cambio(false, true);
         bgCircleFarmaS.setOpacity(maxOpacity);
         bgCircleInstS.setOpacity(lowOpacity);
         bgCircleMedicS.setOpacity(lowOpacity);
+        bgCircleEventS.setOpacity(lowOpacity);
 
         controllerClientes.establecerClase(Farmacia.class, listFarmacias);
         controllerClientes.filtroTabla(FXCollections.observableArrayList(listFarmacias));
@@ -148,10 +165,12 @@ public class MenuPrincipalController {
     @FXML
     void btInstPressed(MouseEvent event) {
         visibilityChange(true, false);
+        pnSubMenuEventos.setVisible(false);
         controllerClientes.cambio(false, true);
         bgCircleInstS.setOpacity(maxOpacity);
         bgCircleFarmaS.setOpacity(lowOpacity);
         bgCircleMedicS.setOpacity(lowOpacity);
+        bgCircleEventS.setOpacity(lowOpacity);
 
         controllerClientes.establecerClase(Institucion.class, listInstituciones);
         controllerClientes.filtroTabla(FXCollections.observableArrayList(listInstituciones));
@@ -166,6 +185,29 @@ public class MenuPrincipalController {
     void btInstSExited(MouseEvent event) {
         if (!pnSubMenuClientes.isVisible() || !"Instituciones".equals(controllerClientes.getClientesLabel())){
             bgCircleInstS.setOpacity(lowOpacity);
+        }
+    }
+    
+    @FXML
+    void btEventPressed(MouseEvent event) {
+        pnSubMenuEventos.setVisible(true);
+        pnSubMenuClientes.setVisible(false);
+        pnSubMenuPrincipal.setVisible(false);
+        bgCircleEventS.setOpacity(maxOpacity);
+        bgCircleFarmaS.setOpacity(lowOpacity);
+        bgCircleMedicS.setOpacity(lowOpacity);
+        bgCircleInstS.setOpacity(lowOpacity);
+    }
+
+    @FXML
+    void btEventSEntered(MouseEvent event) {
+        bgCircleEventS.setOpacity(maxOpacity);
+    }
+
+    @FXML
+    void btEventSExited(MouseEvent event) {
+        if (!pnSubMenuEventos.isVisible()){
+            bgCircleEventS.setOpacity(lowOpacity);
         }
     }
 
@@ -199,6 +241,17 @@ public class MenuPrincipalController {
 
             pnSubMenuClientes.setVisible(false);
             pnContenido.getChildren().add(pnSubMenuClientes);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Eventos.fxml"));
+            pnSubMenuEventos = loader.load();
+            controllerEventos = loader.getController();
+
+            pnSubMenuEventos.setVisible(false);
+            pnContenido.getChildren().add(pnSubMenuEventos);
         } catch (IOException e) {
             e.printStackTrace();
         }
