@@ -14,7 +14,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: White;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ucab.dollerappfx.LogInController">
+<AnchorPane id="AnchorPane" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: White;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ucab.dollerappfx.LogInController">
    <children>
       <Rectangle height="800.0" opacity="0.65" strokeType="INSIDE" strokeWidth="0.0" width="1280.0">
          <fill>
@@ -36,7 +36,7 @@
       </Rectangle>
       <StackPane layoutX="140.0" layoutY="50.0" prefHeight="700.0" prefWidth="1000.0">
          <children>
-            <Pane fx:id="pnUserLogIn" opacity="0.9" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: white;">
+            <Pane fx:id="pnUserLogIn" focusTraversable="true" opacity="0.9" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: white;">
                <children>
                   <Label layoutX="402.0" layoutY="135.0" text="Iniciar Sesión" textFill="#4d4d4d">
                      <font>
@@ -51,10 +51,13 @@
                         <Cursor fx:constant="TEXT" />
                      </cursor>
                   </TextField>
-                  <PasswordField fx:id="fldUserPassword" layoutX="271.0" layoutY="273.0" prefHeight="25.0" prefWidth="460.0" promptText="Contraseña">
+                  <PasswordField fx:id="fldUserPassword" focusTraversable="false" layoutX="271.0" layoutY="273.0" prefHeight="25.0" prefWidth="460.0" promptText="Contraseña">
                      <font>
                         <Font name="Roboto" size="14.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
                   </PasswordField>
                   <Label fx:id="fldPasswordForgot" layoutX="279.0" layoutY="310.0" onMouseEntered="#fldForgotEntered" onMouseExited="#fldForgotExited" onMousePressed="#fldForgotPressed" text="¿Has olvidado tu contraseña?" textFill="#ff7b52">
                      <font>
@@ -64,9 +67,9 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Label>
-                  <Pane fx:id="btUserLogIn" layoutX="375.0" layoutY="357.0" onMouseClicked="#btLogInClicked" onMouseEntered="#btLogInEntered" onMouseExited="#btLogInExited" prefHeight="39.0" prefWidth="250.0" style="-fx-background-color: orange;">
+                  <Pane fx:id="btUserLogIn" layoutX="375.0" layoutY="357.0" onMouseClicked="#btLogInClicked" onMouseEntered="#btLogInEntered" onMouseExited="#btLogInExited" prefHeight="39.0" prefWidth="250.0" style="-fx-border-color: orange; -fx-border-radius: 5;">
                      <children>
-                        <Label layoutX="88.0" layoutY="8.0" text="Siguiente" textFill="WHITE">
+                        <Label fx:id="lbSiguiente" layoutX="88.0" layoutY="8.0" text="Siguiente" textFill="#ff8e37">
                            <font>
                               <Font name="Roboto" size="18.0" />
                            </font>
@@ -82,9 +85,9 @@
                         <Font name="Roboto" size="12.0" />
                      </font>
                   </Label>
-                  <Pane fx:id="btUserCreate" layoutX="401.0" layoutY="484.0" onMouseClicked="#btCreateClicked" onMouseEntered="#btCreateEntered" onMouseExited="#btCreateExited" prefHeight="39.0" prefWidth="200.0" style="-fx-background-color: #FF7B52;">
+                  <Pane fx:id="btUserCreate" layoutX="401.0" layoutY="484.0" onMouseClicked="#btCreateClicked" onMouseEntered="#btCreateEntered" onMouseExited="#btCreateExited" prefHeight="39.0" prefWidth="200.0" style="-fx-border-color: #FF7B52; -fx-border-radius: 5;">
                      <children>
-                        <Label layoutX="49.0" layoutY="8.0" text="Crear cuenta" textFill="WHITE">
+                        <Label fx:id="lbCrearCuenta" layoutX="49.0" layoutY="8.0" text="Crear cuenta" textFill="#ff7b52">
                            <font>
                               <Font name="Roboto" size="18.0" />
                            </font>
@@ -96,16 +99,16 @@
                   </Pane>
                </children>
             </Pane>
-            <Pane fx:id="pnUserCreate" prefHeight="700.0" prefWidth="1000.0" visible="false">
+            <Pane fx:id="pnUserCreate" opacity="0.9" prefHeight="700.0" prefWidth="1000.0" visible="false">
                <children>
                   <Rectangle fill="WHITE" height="700.0" opacity="0.94" stroke="#8080801c" strokeLineJoin="BEVEL" strokeType="OUTSIDE" strokeWidth="2.0" width="1000.0" />
-                  <Label layoutX="411.0" layoutY="151.0" text="Crear Cuenta" textFill="#4d4d4d">
+                  <Label layoutX="406.0" layoutY="157.0" text="Crear Cuenta" textFill="#4d4d4d">
                      <font>
                         <Font name="Roboto Bold" size="32.0" />
                      </font>
                   </Label>
-                  <Separator layoutX="257.0" layoutY="202.0" prefWidth="500.0" />
-                  <TextField fx:id="fldUserNameCrt" focusTraversable="false" layoutX="155.0" layoutY="230.0" prefHeight="23.0" prefWidth="300.0" promptText="Nombre de Usuario">
+                  <Separator layoutX="250.0" layoutY="202.0" prefWidth="500.0" />
+                  <TextField fx:id="fldUserNameCrt" focusTraversable="false" layoutX="189.0" layoutY="225.0" prefHeight="23.0" prefWidth="300.0" promptText="Nombre de Usuario">
                      <font>
                         <Font name="Roboto Light" size="14.0" />
                      </font>
@@ -113,7 +116,7 @@
                         <Cursor fx:constant="TEXT" />
                      </cursor>
                   </TextField>
-                  <TextField fx:id="fldUserZoneCrt" focusTraversable="false" layoutX="555.0" layoutY="230.0" prefHeight="23.0" prefWidth="300.0" promptText="Zona o Territorio">
+                  <TextField fx:id="fldUserZoneCrt" focusTraversable="false" layoutX="511.0" layoutY="225.0" prefHeight="23.0" prefWidth="300.0" promptText="Zona o Territorio">
                      <font>
                         <Font name="Roboto Light" size="14.0" />
                      </font>
@@ -121,7 +124,7 @@
                         <Cursor fx:constant="TEXT" />
                      </cursor>
                   </TextField>
-                  <TextField fx:id="fldUserEmailCrt" focusTraversable="false" layoutX="250.0" layoutY="310.0" prefHeight="23.0" prefWidth="500.0" promptText="Email@example.com">
+                  <TextField fx:id="fldUserEmailCrt" focusTraversable="false" layoutX="250.0" layoutY="275.0" prefHeight="23.0" prefWidth="500.0" promptText="Email@example.com">
                      <font>
                         <Font name="Roboto Light" size="14.0" />
                      </font>
@@ -129,19 +132,25 @@
                         <Cursor fx:constant="TEXT" />
                      </cursor>
                   </TextField>
-                  <PasswordField fx:id="fldUserPasswordCrt" layoutX="185.0" layoutY="390.0" prefHeight="25.0" prefWidth="300.0" promptText="Contraseña">
+                  <PasswordField fx:id="fldUserPasswordCrt" focusTraversable="false" layoutX="189.0" layoutY="325.0" prefHeight="25.0" prefWidth="300.0" promptText="Contraseña">
                      <font>
                         <Font name="Roboto" size="14.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
                   </PasswordField>
-                  <PasswordField fx:id="fldUserPasswordConfirm" layoutX="520.0" layoutY="390.0" prefHeight="25.0" prefWidth="300.0" promptText="Confirmación de contraseña">
+                  <PasswordField fx:id="fldUserPasswordConfirm" focusTraversable="false" layoutX="511.0" layoutY="325.0" prefHeight="25.0" prefWidth="300.0" promptText="Confirmación de contraseña">
                      <font>
                         <Font name="Roboto" size="14.0" />
                      </font>
+                     <cursor>
+                        <Cursor fx:constant="TEXT" />
+                     </cursor>
                   </PasswordField>
-                  <Pane fx:id="btBack" layoutX="343.0" layoutY="460.0" onMouseClicked="#btBackClicked" onMouseEntered="#btBackEntered" onMouseExited="#btBackExited" prefHeight="39.0" prefWidth="150.0" style="-fx-background-color: #D3D3D3;">
+                  <Pane fx:id="btBack" layoutX="340.0" layoutY="388.0" onMouseClicked="#btBackClicked" onMouseEntered="#btBackEntered" onMouseExited="#btBackExited" prefHeight="39.0" prefWidth="150.0" style="-fx-border-color: #6b6b6b; -fx-border-radius: 5;">
                      <children>
-                        <Label layoutX="51.0" layoutY="10.0" text="Volver" textFill="#6b6b6b">
+                        <Label fx:id="lbVolver" layoutX="51.0" layoutY="10.0" text="Volver" textFill="#6b6b6b">
                            <font>
                               <Font name="Roboto" size="17.0" />
                            </font>
@@ -151,9 +160,9 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Pane>
-                  <Pane fx:id="btUserCreateNew" layoutX="507.0" layoutY="460.0" onMouseClicked="#btCreateNewClicked" onMouseEntered="#btCreateNewEntered" onMouseExited="#btCreateNewExited" prefHeight="39.0" prefWidth="180.0" style="-fx-background-color: #FF7B52;">
+                  <Pane fx:id="btUserCreateNew" layoutX="510.0" layoutY="388.0" onMouseClicked="#btCreateNewClicked" onMouseEntered="#btCreateNewEntered" onMouseExited="#btCreateNewExited" prefHeight="39.0" prefWidth="180.0" style="-fx-border-color: #FF7B52; -fx-border-radius: 5;">
                      <children>
-                        <Label layoutX="68.0" layoutY="8.0" text="Crear" textFill="WHITE">
+                        <Label fx:id="lbCrearNew" layoutX="68.0" layoutY="8.0" text="Crear" textFill="#ff7b52">
                            <font>
                               <Font name="Roboto" size="18.0" />
                            </font>

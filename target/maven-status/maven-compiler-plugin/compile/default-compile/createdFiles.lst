@@ -1,4 +1,5 @@
 Classes\Medico.class
+com\ucab\dollerappfx\MenuAdminController.class
 com\ucab\dollerappfx\MenuClientesController.class
 Classes\ATM.class
 Classes\Administrador.class

@@ -13,21 +13,35 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 
 public class LogInController {
 
     @FXML
     private Pane btBack;
+    
+    @FXML
+    private Label lbVolver;
 
     @FXML
     private Pane btUserCreate;
+    
+    @FXML
+    private Label lbCrearCuenta;
 
     @FXML
     private Pane btUserCreateNew;
+    
+    @FXML
+    private Label lbCrearNew;
 
     @FXML
     private Pane btUserLogIn;
+    
+    @FXML
+    private Label lbSiguiente;
 
     @FXML
     private Label fldPasswordForgot;
@@ -62,7 +76,7 @@ public class LogInController {
     private ArrayList<ATM> listaAtm;
 
     public static ATM usuario; // Al cargar el ATM, la aplicacion puede usarla siempre hasta que se cambie a otro
-
+    
     @FXML
     void btBackClicked(MouseEvent event) {
         pnUserLogIn.setVisible(true);
@@ -71,12 +85,14 @@ public class LogInController {
 
     @FXML
     void btBackEntered(MouseEvent event) {
-
+        btBack.setStyle("-fx-background-color: #6b6b6b;"+"-fx-border-color: white;"+"-fx-background-radius: 7;"+"-fx-border-radius: 5;");
+        lbVolver.setTextFill(Color.WHITE);
     }
 
     @FXML
     void btBackExited(MouseEvent event) {
-
+        btBack.setStyle("-fx-background-color: white;"+"-fx-border-color: #6b6b6b;"+"-fx-background-radius: 5;"+"-fx-border-radius: 5;");
+        lbVolver.setTextFill(Color.web("#6b6b6b"));
     }
 
     @FXML
@@ -87,12 +103,14 @@ public class LogInController {
 
     @FXML
     void btCreateEntered(MouseEvent event) {
-
+        btUserCreate.setStyle("-fx-background-color: #FF7B52;"+"-fx-border-color: white;"+"-fx-background-radius: 7;"+"-fx-border-radius: 5;");
+        lbCrearCuenta.setTextFill(Color.WHITE);
     }
 
     @FXML
     void btCreateExited(MouseEvent event) {
-
+        btUserCreate.setStyle("-fx-background-color: white;"+"-fx-border-color: #FF7B52;"+"-fx-background-radius: 5;"+"-fx-border-radius: 5;");
+        lbCrearCuenta.setTextFill(Color.web("#FF7B52"));
     }
 
     @FXML
@@ -127,12 +145,14 @@ public class LogInController {
 
     @FXML
     void btCreateNewEntered(MouseEvent event) {
-
+        btUserCreateNew.setStyle("-fx-background-color: #FF7B52;"+"-fx-border-color: white;"+"-fx-background-radius: 7;"+"-fx-border-radius: 5;");
+        lbCrearNew.setTextFill(Color.WHITE);
     }
 
     @FXML
     void btCreateNewExited(MouseEvent event) {
-
+        btUserCreateNew.setStyle("-fx-background-color: white;"+"-fx-border-color: #FF7B52;"+"-fx-background-radius: 5;"+"-fx-border-radius: 5;");
+        lbCrearNew.setTextFill(Color.web("#FF7B52"));
     }
 
     @FXML
@@ -150,12 +170,14 @@ public class LogInController {
 
     @FXML
     void btLogInEntered(MouseEvent event) {
-
+        btUserLogIn.setStyle("-fx-background-color: #ff8e37;"+"-fx-border-color: white;"+"-fx-background-radius: 7;"+"-fx-border-radius: 5;");
+        lbSiguiente.setTextFill(Color.WHITE);
     }
 
     @FXML
     void btLogInExited(MouseEvent event) {
-
+        btUserLogIn.setStyle("-fx-background-color: white;"+"-fx-border-color: orange;"+"-fx-background-radius: 5;"+"-fx-border-radius: 5;");
+        lbSiguiente.setTextFill(Color.web("#ff8e37"));
     }
 
     @FXML

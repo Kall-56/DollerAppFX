@@ -38,7 +38,7 @@
       </Rectangle>
       <Pane fx:id="pnSideBar" prefHeight="800.0" prefWidth="114.0">
          <children>
-            <Rectangle arcHeight="35.0" arcWidth="35.0" fill="#30281e" height="780.0" layoutX="7.0" layoutY="10.0" opacity="0.9" stroke="#5757570b" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" width="100.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#30281e" height="780.0" layoutX="11.0" layoutY="10.0" opacity="0.9" stroke="#5757570b" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" width="100.0" />
             <Pane fx:id="btLogo" layoutX="20.0" layoutY="27.0" onMouseClicked="#btLogoClicked" prefHeight="44.0" prefWidth="71.0">
                <children>
                   <ImageView fitHeight="44.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true" />
@@ -47,7 +47,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Pane>
-            <Pane fx:id="btMedicS" layoutX="25.0" layoutY="122.0" onMouseEntered="#btMedicSEntered" onMouseExited="#btMedicSExited" onMousePressed="#btMedicPressed" prefHeight="60.0" prefWidth="60.0">
+            <Pane fx:id="btMedicS" layoutX="31.0" layoutY="122.0" onMouseEntered="#btMedicSEntered" onMouseExited="#btMedicSExited" onMousePressed="#btMedicPressed" prefHeight="60.0" prefWidth="60.0">
                <children>
                   <Circle fx:id="bgCircleMedicS" fill="#30281e" layoutX="30.0" layoutY="30.0" opacity="0.35" radius="30.0" strokeType="INSIDE" strokeWidth="0.0" />
                   <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="12.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
@@ -59,7 +59,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Pane>
-            <Pane fx:id="btFarmaS" layoutX="25.0" layoutY="205.0" onMouseEntered="#btFarmaSEntered" onMouseExited="#btFarmaSExited" onMousePressed="#btFarmaPressed" prefHeight="60.0" prefWidth="60.0">
+            <Pane fx:id="btFarmaS" layoutX="31.0" layoutY="205.0" onMouseEntered="#btFarmaSEntered" onMouseExited="#btFarmaSExited" onMousePressed="#btFarmaPressed" prefHeight="60.0" prefWidth="60.0">
                <children>
                   <Circle fx:id="bgCircleFarmaS" fill="#30281e" layoutX="30.0" layoutY="30.0" opacity="0.35" radius="30.0" strokeType="INSIDE" strokeWidth="0.0" />
                   <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="13.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
@@ -72,7 +72,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Pane>
-            <Pane fx:id="btInstS" layoutX="25.0" layoutY="288.0" onMouseEntered="#btInstSEntered" onMouseExited="#btInstSExited" onMousePressed="#btInstPressed" prefHeight="60.0" prefWidth="60.0">
+            <Pane fx:id="btInstS" layoutX="31.0" layoutY="288.0" onMouseEntered="#btInstSEntered" onMouseExited="#btInstSExited" onMousePressed="#btInstPressed" prefHeight="60.0" prefWidth="60.0">
                <children>
                   <Circle fx:id="bgCircleInstS" fill="#30281e" layoutX="30.0" layoutY="30.0" opacity="0.35" radius="30.0" strokeType="INSIDE" strokeWidth="0.0" />
                   <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="13.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
@@ -85,7 +85,20 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Pane>
+<<<<<<< Updated upstream
             <ImageView fx:id="btLogOut" fitHeight="28.0" fitWidth="28.0" layoutX="41.0" layoutY="739.0" onMouseClicked="#btLogOutClicked" pickOnBounds="true" preserveRatio="true">
+=======
+            <Pane fx:id="btEventS" layoutX="27.0" layoutY="370.0" onMouseEntered="#btEventSEntered" onMouseExited="#btEventSExited" onMousePressed="#btEventPressed" prefHeight="60.0" prefWidth="60.0">
+               <children>
+                  <Circle fx:id="bgCircleEventS" fill="#30281e" layoutX="30.0" layoutY="30.0" opacity="0.35" radius="30.0" strokeType="INSIDE" strokeWidth="0.0" />
+                  <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="13.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Pane>
+            <ImageView fx:id="btLogOut" fitHeight="28.0" fitWidth="28.0" layoutX="47.0" layoutY="739.0" onMouseClicked="#btLogOutClicked" pickOnBounds="true" preserveRatio="true">
+>>>>>>> Stashed changes
                <image>
                   <Image url="@../../../Assets/iconLogOut.png" />
                </image>
@@ -99,113 +112,113 @@
          <children>
             <AnchorPane fx:id="pnSubMenuPrincipal" prefHeight="800.0" prefWidth="1048.0">
                <children>
-                  <Rectangle arcHeight="35.0" arcWidth="35.0" fill="WHITE" height="780.0" layoutX="10.0" layoutY="10.0" opacity="0.9" stroke="#5757570d" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="1.5" width="1146.0" />
-                  <Label layoutX="39.0" layoutY="21.0" text="Clientes" textFill="#4d4d4d">
+                  <Rectangle fill="WHITE" height="780.0" layoutX="10.0" layoutY="10.0" opacity="0.93" stroke="#5757570d" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" strokeWidth="1.5" width="1146.0" />
+                  <Label layoutX="21.0" layoutY="21.0" text="Clientes" textFill="#4d4d4d">
                      <font>
                         <Font name="Roboto Bold" size="30.0" />
                      </font>
                   </Label>
-                  <Pane fx:id="btMedic" layoutX="23.0" layoutY="143.0" onMousePressed="#btMedicPressed" prefHeight="130.0" prefWidth="200.0">
+                  <Pane fx:id="btMedic" layoutX="23.0" layoutY="94.0" onMousePressed="#btMedicPressed" prefHeight="130.0" prefWidth="200.0">
                      <children>
-                        <Rectangle arcHeight="35.0" arcWidth="35.0" height="130.0" opacity="0.8" strokeType="OUTSIDE" width="200.0">
-                           <fill>
-                              <LinearGradient endX="0.7725118483412323" endY="0.8436018957345971" startX="0.7725118483412322" startY="0.5592417061611374">
+                        <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#ffffff00" height="130.0" opacity="0.8" strokeType="OUTSIDE" strokeWidth="1.5" width="200.0">
+                           <stroke>
+                              <LinearGradient endX="0.5071090047393365" endY="1.0" startX="0.5071090047393365">
                                  <stops>
                                     <Stop>
                                        <color>
-                                          <Color red="1.0" green="0.6101080179214478" blue="0.24537037312984467" />
+                                          <Color red="1.0" green="0.5568627715110779" blue="0.21568627655506134" />
                                        </color>
                                     </Stop>
                                     <Stop offset="1.0">
                                        <color>
-                                          <Color red="0.9764705896377563" green="0.8784313797950745" blue="0.7333333492279053" />
+                                          <Color red="1.0" green="1.0" blue="1.0" opacity="0.0" />
                                        </color>
                                     </Stop>
                                  </stops>
                               </LinearGradient>
-                           </fill></Rectangle>
-                        <Label layoutX="14.0" layoutY="14.0" text="Médicos" textFill="WHITE">
+                           </stroke></Rectangle>
+                        <Label layoutX="14.0" layoutY="14.0" text="Médicos" textFill="#ff8e37">
                            <font>
                               <Font name="Roboto" size="26.0" />
                            </font></Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="btInst" layoutX="240.0" layoutY="143.0" onMousePressed="#btInstPressed" prefHeight="130.0" prefWidth="266.0">
+                  <Pane fx:id="btInst" layoutX="240.0" layoutY="94.0" onMousePressed="#btInstPressed" prefHeight="130.0" prefWidth="266.0">
                      <children>
-                        <Rectangle arcHeight="35.0" arcWidth="35.0" height="130.0" opacity="0.8" strokeType="OUTSIDE" width="266.0">
-                           <fill>
-                              <LinearGradient endX="0.7725118483412323" endY="0.8862559241706162" startX="0.7725118483412322" startY="0.49763033175355453">
+                        <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#ffffff00" height="130.0" opacity="0.8" strokeType="OUTSIDE" strokeWidth="1.5" width="266.0">
+                           <stroke>
+                              <LinearGradient endX="0.5071090047393365" endY="1.0" startX="0.5071090047393365" startY="0.1279620853080569">
                                  <stops>
                                     <Stop>
                                        <color>
-                                          <Color red="1.0" green="0.5586419701576233" blue="0.39814814925193787" />
+                                          <Color red="1.0" green="0.4000000059604645" blue="0.3294117748737335" />
                                        </color>
                                     </Stop>
                                     <Stop offset="1.0">
                                        <color>
-                                          <Color red="0.9764705896377563" green="0.8588235378265381" blue="0.7568627595901489" />
+                                          <Color red="1.0" green="1.0" blue="1.0" opacity="0.0" />
                                        </color>
                                     </Stop>
                                  </stops>
                               </LinearGradient>
-                           </fill></Rectangle>
-                        <Label layoutX="14.0" layoutY="14.0" text="Instituciones" textFill="WHITE">
+                           </stroke></Rectangle>
+                        <Label layoutX="14.0" layoutY="14.0" text="Instituciones" textFill="#ff6654">
                            <font>
                               <Font name="Roboto" size="26.0" />
                            </font>
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="btFarma" layoutX="522.0" layoutY="143.0" onMousePressed="#btFarmaPressed" prefHeight="130.0" prefWidth="200.0">
+                  <Pane fx:id="btFarma" layoutX="522.0" layoutY="94.0" onMousePressed="#btFarmaPressed" prefHeight="130.0" prefWidth="200.0">
                      <children>
-                        <Rectangle arcHeight="35.0" arcWidth="35.0" height="130.0" opacity="0.8" strokeType="OUTSIDE" width="200.0">
-                           <fill>
-                              <LinearGradient endX="0.7725118483412323" endY="0.976303317535545" startX="0.7725118483412322" startY="0.5592417061611374">
+                        <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#ffffff00" height="130.0" opacity="0.8" strokeType="OUTSIDE" strokeWidth="1.5" width="200.0">
+                           <stroke>
+                              <LinearGradient endX="0.5071090047393365" endY="1.0" startX="0.5071090047393365" startY="0.1279620853080569">
                                  <stops>
                                     <Stop>
                                        <color>
-                                          <Color red="0.8156862854957581" green="0.7882353067398071" blue="0.3137255012989044" />
+                                          <Color red="1.0" green="0.686274528503418" blue="0.3294117748737335" />
                                        </color>
                                     </Stop>
                                     <Stop offset="1.0">
                                        <color>
-                                          <Color red="0.9607843160629272" green="0.9607843160629272" blue="0.8627451062202454" />
+                                          <Color red="1.0" green="1.0" blue="1.0" opacity="0.0" />
                                        </color>
                                     </Stop>
                                  </stops>
                               </LinearGradient>
-                           </fill></Rectangle>
-                        <Label layoutX="14.0" layoutY="14.0" text="Farmacias" textFill="WHITE">
+                           </stroke></Rectangle>
+                        <Label layoutX="14.0" layoutY="14.0" text="Farmacias" textFill="#ffaf54">
                            <font>
                               <Font name="Roboto" size="26.0" />
                            </font>
                         </Label>
                      </children>
                   </Pane>
-                  <Label layoutX="39.0" layoutY="302.0" text="Clientes Recientes" textFill="#4d4d4d">
+                  <Label layoutX="21.0" layoutY="257.0" text="Clientes Recientes" textFill="#4d4d4d">
                      <font>
                         <Font name="Roboto Bold" size="30.0" />
                      </font>
                   </Label>
-                  <TableView fx:id="tbClientesRecientes" focusTraversable="false" layoutX="23.0" layoutY="349.0" prefHeight="420.0" prefWidth="699.0">
+                  <TableView fx:id="tbClientesRecientes" focusTraversable="false" layoutX="23.0" layoutY="333.0" prefHeight="436.0" prefWidth="699.0">
                      <columns>
                         <TableColumn prefWidth="75.0" text="C1" />
                         <TableColumn prefWidth="75.0" text="C2" />
                      </columns>
                   </TableView>
-                  <Label layoutX="762.0" layoutY="21.0" text="Eventos" textFill="#4d4d4d">
+                  <Label layoutX="753.0" layoutY="21.0" text="Eventos" textFill="#4d4d4d">
                      <font>
                         <Font name="Roboto Bold" size="30.0" />
                      </font>
                   </Label>
-                  <TableView fx:id="tbEventosMenu" focusTraversable="false" layoutX="753.0" layoutY="94.0" prefHeight="676.0" prefWidth="383.0">
+                  <TableView fx:id="tbEventosMenu" focusTraversable="false" layoutX="753.0" layoutY="94.0" prefHeight="676.0" prefWidth="383.0" style="-fx-background-color: null; -fx-border-color: #FF7B52; -fx-border-radius: 5;">
                      <columns>
                         <TableColumn prefWidth="75.0" text="C1" />
                         <TableColumn prefWidth="75.0" text="C2" />
                      </columns>
                   </TableView>
-                  <Pane layoutX="16.0" layoutY="295.0" opacity="0.7" prefHeight="1.0" prefWidth="720.0" style="-fx-background-color: #8c4219; -fx-background-radius: 5;" />
-                  <Pane layoutX="744.0" layoutY="27.0" opacity="0.7" prefHeight="746.0" prefWidth="1.0" style="-fx-background-color: #8c4219; -fx-background-radius: 5;" />
+                  <Pane layoutX="16.0" layoutY="246.0" opacity="0.7" prefHeight="1.0" prefWidth="714.0" style="-fx-background-color: #FF7B52; -fx-background-radius: 5;" />
+                  <Pane layoutX="736.0" layoutY="27.0" opacity="0.7" prefHeight="746.0" prefWidth="1.0" style="-fx-background-color: #FF7B52; -fx-background-radius: 5;" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="pnSubMenuClientes" prefHeight="800.0" prefWidth="1166.0" visible="false" />

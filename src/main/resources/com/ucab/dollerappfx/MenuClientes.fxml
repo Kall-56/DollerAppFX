@@ -19,7 +19,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="790.0" prefWidth="1108.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ucab.dollerappfx.MenuClientesController">
    <children>
-      <Rectangle arcHeight="35.0" arcWidth="35.0" fill="WHITE" height="780.0" layoutX="10.0" layoutY="10.0" opacity="0.9" stroke="#5757570d" strokeType="INSIDE" strokeWidth="1.5" width="1146.0" />
+      <Rectangle fill="WHITE" height="780.0" layoutX="10.0" layoutY="10.0" opacity="0.9" stroke="#5757570d" strokeType="INSIDE" strokeWidth="1.5" width="1146.0" />
       <Label fx:id="clientesLabel" layoutX="98.0" layoutY="13.0" text="&lt;Clientes&gt;" textFill="#4d4d4d">
          <font>
             <Font name="Roboto" size="36.0" />
