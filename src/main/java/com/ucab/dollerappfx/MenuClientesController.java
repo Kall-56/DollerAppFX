@@ -42,6 +42,9 @@ public class MenuClientesController {
 
     @FXML
     private Pane infoCliente;
+    
+    @FXML
+    private Pane crearCliente;
 
     @FXML
     private Label lbCadenaFm;
@@ -97,9 +100,59 @@ public class MenuClientesController {
     @FXML
     private TableView<Evento> tbEventos;
 
-
     @FXML
     private Pane vistaCliente;
+    
+    @FXML
+    private Pane btCrear;
+    
+    @FXML
+    private Pane btVerCrear;
+    
+    @FXML
+    private TextField fldCadenaFm;
+
+    @FXML
+    private TextField fldCedula;
+
+    @FXML
+    private TextField fldDiasVisitMd;
+
+    @FXML
+    private TextField fldDirect;
+
+    @FXML
+    private TextField fldDrogeriaFm;
+
+    @FXML
+    private TextField fldEmailMdFm;
+
+    @FXML
+    private TextField fldEspecMd;
+
+    @FXML
+    private TextField fldFacultadInst;
+
+    @FXML
+    private TextField fldFrecueMdFm;
+
+    @FXML
+    private TextField fldHorarioMd;
+
+    @FXML
+    private TextField fldNombre;
+
+    @FXML
+    private TextField fldNumber;
+
+    @FXML
+    private TextField fldPersonContacFmInst;
+    
+     @FXML
+    private ChoiceBox<?> chTypeCedula;
+
+    @FXML
+    private ChoiceBox<?> chnumber;
 
     @FXML
     void manejarClicks(MouseEvent event) {
@@ -129,6 +182,12 @@ public class MenuClientesController {
         }
     }
 
+    @FXML
+    void btVerCrearClicked(MouseEvent event) {
+        vistaCliente.setVisible(false);
+        crearCliente.setVisible(true);
+    }
+    
     public void establecerCliente(Cliente cliente) {
         nomCliente.setText(cliente.getNombreCliente());
         lbCedula.setText(cliente.getTipoIdentidad()+" "+cliente.getDocIdentidad());
