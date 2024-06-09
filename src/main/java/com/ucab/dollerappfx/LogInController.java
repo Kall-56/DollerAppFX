@@ -2,8 +2,8 @@ package com.ucab.dollerappfx;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import Classes.ATM;
-import Classes.Administrador;
+
+import Classes.*;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -95,7 +95,7 @@ public class LogInController {
         lbSiguiente.setTextFill(Color.web("#ff8e37"));
     }
 
-    
+
     
     @FXML
     void btCreateClicked(MouseEvent event) {
@@ -113,8 +113,8 @@ public class LogInController {
         lbCrearCuenta.setTextFill(Color.web("#FF7B52"));
     }
 
-    
-    
+
+
     @FXML
     void fldForgotPressed(MouseEvent event) {
 
@@ -123,6 +123,7 @@ public class LogInController {
     void fldForgotEntered(MouseEvent event) {
         fldPasswordForgot.setTextFill(App.aguamarina);
     }
+
     @FXML
     void fldForgotExited(MouseEvent event) {
         fldPasswordForgot.setTextFill(App.naranja);
@@ -169,8 +170,6 @@ public class LogInController {
         lbCrearNew.setTextFill(Color.web("#FF7B52"));
     }
     
-    
-    
     @FXML
     void btBackClicked(MouseEvent event) {
         pnUserLogIn.setVisible(true);
@@ -192,6 +191,19 @@ public class LogInController {
         usuario = new ATM();
         listaAtm = new ArrayList<>();
         listaAtm.add(usuario);
+
+        for (Evento evento: App.listEventos) {
+            usuario.registrarEvento(evento);
+        }
+        for (Medico med: App.listMedicos) {
+            usuario.registrarCliente(med);
+        }
+        for (Institucion inst: App.listInstituciones) {
+            usuario.registrarCliente(inst);
+        }
+        for (Farmacia farma: App.listFarmacias) {
+            usuario.registrarCliente(farma);
+        }
     //------------------------------------------------------------------------//
         fldUserNameCrt.focusedProperty().addListener((observable, oldValue, newValue) ->{
             if (!newValue) {

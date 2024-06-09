@@ -7,10 +7,10 @@ import javafx.scene.control.*;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
@@ -18,13 +18,16 @@ import java.util.Optional;
 public class MenuClientesController {
 
     @FXML
-    private Button btCrear;
+    private ImageView btAtras;
+
+    @FXML
+    private Pane btCrear;
 
     @FXML
     private Pane btCrearNuevo;
 
     @FXML
-    private Button btModificar;
+    private Pane btModificar;
 
     @FXML
     private Pane btVolver;
@@ -209,6 +212,12 @@ public class MenuClientesController {
 
     private final DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
+    @FXML
+    void btAtrasClicked(MouseEvent event) {
+        infoCliente.setVisible(false);
+        vistaCliente.setVisible(true);
+
+    }
 
     @FXML
     void btVolverClientesPressed(MouseEvent event) {
@@ -221,7 +230,7 @@ public class MenuClientesController {
     @FXML
     void btCrearNuevoPressed(MouseEvent event) {
         Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-        boolean titulo = ValidacionesController.validarCampos(tfTituloEvento, "^.{1,30}$", lbCrearNuevo);
+        boolean titulo = ValidacionesController.validarCampos(tfTituloEvento, "^.{1,30}$", null);
         boolean descripcion = ValidacionesController.validarCampos(taDescripcion, "^[\\s\\S]{0,100}$");
         LocalDate date = fecha.getValue();
         if (titulo && descripcion && (date != null)) {
@@ -233,15 +242,15 @@ public class MenuClientesController {
 
             if (lbCrearNuevo.getText().equals("Crear")) {
                 clienteActual.registrarEvento(evento);
-                MenuPrincipalController.listEventos.add(evento);
+                App.listEventos.add(evento);
 
                 alerta.setContentText("EVENTO AGREGADO CON ÉXITO");
                 alerta.setTitle("Evento creado");
             } else if (lbCrearNuevo.getText().equals("Modificar")) {
                 clienteActual.eliminarEvento(eventoActual);
                 clienteActual.registrarEvento(evento);
-                MenuPrincipalController.listEventos.remove(eventoActual);
-                MenuPrincipalController.listEventos.add(evento);
+                App.listEventos.remove(eventoActual);
+                App.listEventos.add(evento);
 
                 alerta.setContentText("EVENTO MODIFICADO CON ÉXITO");
                 alerta.setTitle("Evento modificado");
@@ -327,34 +336,34 @@ public class MenuClientesController {
         if (result.isPresent() && result.get() == confirmButton) {
             String clase = clientesLabel.getText();
 
-            boolean nombreValido = ValidacionesController.validarCampos(fldNombre, "^[a-zA-Z ]{0,50}$",lbCrearNuevo);
-            boolean numValido = ValidacionesController.validarCampos(fldNumber, "^[0-9]{7}$",lbCrearNuevo);
-            boolean ciValido = ValidacionesController.validarCampos(fldCedula, "^[0-9]{6,9}$",lbCrearNuevo);
-            boolean direcValido = ValidacionesController.validarCampos(fldDirect, "^[a-zA-Z0-9#. ]{0,70}$",lbCrearNuevo);
+            boolean nombreValido = ValidacionesController.validarCampos(fldNombre, "^[a-zA-Z ]{0,50}$", null);
+            boolean numValido = ValidacionesController.validarCampos(fldNumber, "^[0-9]{7}$", null);
+            boolean ciValido = ValidacionesController.validarCampos(fldCedula, "^[0-9]{6,9}$", null);
+            boolean direcValido = ValidacionesController.validarCampos(fldDirect, "^[a-zA-Z0-9#. ]{0,70}$", null);
 
             boolean[] atributosValidos = {nombreValido, numValido, ciValido, direcValido};
 
             if (clase.equals("Médicos")) {
-                boolean espValido = ValidacionesController.validarCampos(fldEspecMd, "^[a-zA-Z ]{0,20}$",lbCrearNuevo);
-                boolean emailValido = ValidacionesController.validarCampos(fldEmailMdFm, "^[A-Za-z0-9+_.-]+@(.+)$",lbCrearNuevo);
-                boolean frecValido = ValidacionesController.validarCampos(fldFrecueMdFm, "^[0-9]{1}$",lbCrearNuevo);
-                boolean diasValido = ValidacionesController.validarCampos(fldDiasVisitMd, "^[a-zA-Z- ]{0,50}$",lbCrearNuevo);
-                boolean horarioValido = ValidacionesController.validarCampos(fldHorarioMd, "^[0-9- ]{0,10}$",lbCrearNuevo);
-                boolean formatoValido = ValidacionesController.validarCampos(fldFormatoMd, "^[a-zA-Z ]{0,20}$",lbCrearNuevo);
+                boolean espValido = ValidacionesController.validarCampos(fldEspecMd, "^[a-zA-Z ]{0,20}$", null);
+                boolean emailValido = ValidacionesController.validarCampos(fldEmailMdFm, "^[A-Za-z0-9+_.-]+@(.+)$", null);
+                boolean frecValido = ValidacionesController.validarCampos(fldFrecueMdFm, "^[0-9]{1}$", null);
+                boolean diasValido = ValidacionesController.validarCampos(fldDiasVisitMd, "^[a-zA-Z- ]{0,50}$", null);
+                boolean horarioValido = ValidacionesController.validarCampos(fldHorarioMd, "^[0-9- ]{0,10}$", null);
+                boolean formatoValido = ValidacionesController.validarCampos(fldFormatoMd, "^[a-zA-Z ]{0,20}$", null);
 
                 atributosValidos = new boolean[] {nombreValido, numValido, ciValido, direcValido, espValido, emailValido, frecValido, diasValido, horarioValido, formatoValido};
 
             } else if (clase.equals("Farmacias")) {
-                boolean perValido = ValidacionesController.validarCampos(fldPersonContacFmInst, "^[a-zA-Z ]{0,20}$",lbCrearNuevo);
-                boolean emailValido = ValidacionesController.validarCampos(fldEmailMdFm, "^[A-Za-z0-9+_.-]+@(.+)$",lbCrearNuevo);
-                boolean frecValido = ValidacionesController.validarCampos(fldFrecueMdFm, "^[0-9]{1}$",lbCrearNuevo);
-                boolean cadValido = ValidacionesController.validarCampos(fldCadenaFm, "^[a-zA-Z ]{0,20}$",lbCrearNuevo);
-                boolean drogValido = ValidacionesController.validarCampos(fldDrogeriaFm, "^[a-zA-Z ]{0,20}$",lbCrearNuevo);
+                boolean perValido = ValidacionesController.validarCampos(fldPersonContacFmInst, "^[a-zA-Z ]{0,20}$", null);
+                boolean emailValido = ValidacionesController.validarCampos(fldEmailMdFm, "^[A-Za-z0-9+_.-]+@(.+)$", null);
+                boolean frecValido = ValidacionesController.validarCampos(fldFrecueMdFm, "^[0-9]{1}$", null);
+                boolean cadValido = ValidacionesController.validarCampos(fldCadenaFm, "^[a-zA-Z ]{0,20}$", null);
+                boolean drogValido = ValidacionesController.validarCampos(fldDrogeriaFm, "^[a-zA-Z ]{0,20}$", null);
 
                 atributosValidos = new boolean[] {nombreValido, numValido, ciValido, direcValido, perValido, emailValido, frecValido, cadValido, drogValido};
             } else if (clase.equals("Instituciones")) {
-                boolean perValido = ValidacionesController.validarCampos(fldPersonContacFmInst, "^[a-zA-Z ]{0,20}$",lbCrearNuevo);
-                boolean facValido = ValidacionesController.validarCampos(fldFacultadInst, "^[a-zA-Z ]{0,30}$",lbCrearNuevo);
+                boolean perValido = ValidacionesController.validarCampos(fldPersonContacFmInst, "^[a-zA-Z ]{0,20}$", null);
+                boolean facValido = ValidacionesController.validarCampos(fldFacultadInst, "^[a-zA-Z ]{0,30}$", null);
 
                 atributosValidos = new boolean[] {nombreValido, numValido, ciValido, direcValido, perValido, facValido};
             }
@@ -381,8 +390,8 @@ public class MenuClientesController {
                                             fldDiasVisitMd.getText(),
                                             fldHorarioMd.getText(),
                                             fldFormatoMd.getText());
-                    MenuPrincipalController.listMedicos.add(med);
-                    establecerClase(Medico.class, MenuPrincipalController.listMedicos);
+                    App.listMedicos.add(med);
+                    establecerClase(Medico.class, App.listMedicos);
                     LogInController.usuario.registrarCliente(med);
 
                 } else if (clase.equals("Farmacias")) {
@@ -397,8 +406,8 @@ public class MenuClientesController {
                                                 Integer.parseInt(fldFrecueMdFm.getText()),
                                                 fldCadenaFm.getText(),
                                                 fldDrogeriaFm.getText());
-                    MenuPrincipalController.listFarmacias.add(far);
-                    establecerClase(Farmacia.class, MenuPrincipalController.listFarmacias);
+                    App.listFarmacias.add(far);
+                    establecerClase(Farmacia.class, App.listFarmacias);
                     LogInController.usuario.registrarCliente(far);
 
                 } else if (clase.equals("Instituciones")) {
@@ -410,8 +419,8 @@ public class MenuClientesController {
                                                        "",
                                                        fldPersonContacFmInst.getText(),
                                                        fldFacultadInst.getText());
-                    MenuPrincipalController.listInstituciones.add(inst);
-                    establecerClase(Institucion.class, MenuPrincipalController.listInstituciones);
+                    App.listInstituciones.add(inst);
+                    establecerClase(Institucion.class, App.listInstituciones);
                     LogInController.usuario.registrarCliente(inst);
                 }
                 alerta2.setHeaderText("");
@@ -468,7 +477,10 @@ public class MenuClientesController {
 
     public void verInfoCliente(Cliente cliente) {
         if (cliente != null) {
+            tfBuscarCliente.clear();
             visibilityChange(true, false, false);
+            verEventos.setVisible(true);
+            crearEvento.setVisible(false);
             establecerCliente(cliente);
             filtroEventos(FXCollections.observableArrayList(cliente.getEventoList()));
         } else {
@@ -741,5 +753,20 @@ public class MenuClientesController {
         ObservableList<Character> opciones2 = FXCollections.observableArrayList('V', 'J');
         chTypeCedula.setItems(opciones2);
         chTypeCedula.setValue('V');
+
+        taObservaciones.textProperty().addListener(((observable, oldValue, newValue) -> {
+            clienteActual.setDescripcion(newValue);
+        }));
+
+        btAtras.setVisible(false);
+        infoCliente.visibleProperty().addListener((observable, oldValue, newValue) -> {
+            btAtras.setVisible(newValue);
+            if (newValue) {
+                tfBuscarEvento.clear();
+                tbEventos.getSelectionModel().clearSelection();
+            } else {
+                tablaClientes.getSelectionModel().clearSelection();
+            }
+        });
     }
 }

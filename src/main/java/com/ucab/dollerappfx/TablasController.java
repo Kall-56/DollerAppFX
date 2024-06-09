@@ -25,10 +25,14 @@ public class TablasController {
         TableColumn<T, String> direccionCol = new TableColumn<>("Dirección");
         direccionCol.setCellValueFactory(new PropertyValueFactory<>("direccion"));
 
+        TableColumn<T, String> observacionCol = new TableColumn<>("Observaciones");
+        observacionCol.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
+
         tabla.getColumns().add(nombreCol);
         tabla.getColumns().add(identidadCol);
         tabla.getColumns().add(numeroCol);
         tabla.getColumns().add(direccionCol);
+        tabla.getColumns().add(observacionCol);
 
         // Establecer las columnas segun la Clase correspondiente
         if (clase == Medico.class) {

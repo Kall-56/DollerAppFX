@@ -28,10 +28,13 @@
          <image>
             <Image url="@../../../Assets/iconInstSelectB.png" />
          </image></ImageView>
-      <ImageView fitHeight="44.0" fitWidth="51.0" layoutX="1107.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="btAtras" fitHeight="44.0" fitWidth="51.0" layoutX="1107.0" layoutY="15.0" onMouseClicked="#btAtrasClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../Assets/iconBack.png" />
          </image>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
       </ImageView>
       <StackPane layoutY="55.0" prefHeight="746.0" prefWidth="1166.0">
          <children>
@@ -66,7 +69,7 @@
                <children>
                   <StackPane layoutX="234.0" layoutY="80.0" prefHeight="652.0" prefWidth="915.0">
                      <children>
-                        <Pane fx:id="verEventos" prefHeight="200.0" prefWidth="200.0" visible="false">
+                        <Pane fx:id="verEventos" prefHeight="200.0" prefWidth="200.0">
                            <children>
                               <Label layoutX="6.0" layoutY="6.0" text="Eventos" textFill="#434343">
                                  <font>
@@ -91,7 +94,7 @@
                                  </font>
                               </Label>
                               <Pane layoutX="8.0" layoutY="452.0" prefHeight="2.0" prefWidth="900.0" style="-fx-background-color: #4d4d4d;" />
-                              <TextArea fx:id="taObservaciones" focusTraversable="false" layoutX="8.0" layoutY="454.0" prefHeight="193.0" prefWidth="900.0" promptText="&lt;Observaciones Aqui&gt;" style="-fx-background-color: null;">
+                              <TextArea fx:id="taObservaciones" focusTraversable="false" layoutX="8.0" layoutY="454.0" prefHeight="193.0" prefWidth="900.0" promptText="&lt;Observaciones Aqui&gt;" style="-fx-background-color: null;" wrapText="true">
                                  <font>
                                     <Font name="Roboto" size="14.0" />
                                  </font>
@@ -107,6 +110,9 @@
                                        </font>
                                     </Label>
                                  </children>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </Pane>
                               <Pane fx:id="btModificar" layoutX="806.0" layoutY="12.0" onMousePressed="#btModificarPressed" prefHeight="23.0" prefWidth="95.0" style="-fx-border-color: #ffb154; -fx-border-radius: 3;">
                                  <children>
@@ -116,10 +122,13 @@
                                        </font>
                                     </Label>
                                  </children>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </Pane>
                            </children>
                         </Pane>
-                        <Pane fx:id="crearEvento" prefHeight="200.0" prefWidth="200.0">
+                        <Pane fx:id="crearEvento" prefHeight="200.0" prefWidth="200.0" visible="false">
                            <children>
                               <Label layoutX="361.0" layoutY="21.0" text="Crear Evento" textFill="#4d4d4d">
                                  <font>
@@ -134,7 +143,7 @@
                               </TextField>
                               <DatePicker fx:id="fecha" editable="false" layoutX="268.0" layoutY="155.0" promptText="Fecha del Evento" />
                               <ChoiceBox fx:id="cbSemana" layoutX="459.0" layoutY="155.0" prefWidth="150.0" />
-                              <TextArea fx:id="taDescripcion" layoutX="125.0" layoutY="214.0" prefHeight="200.0" prefWidth="665.0" promptText="Observaciones">
+                              <TextArea fx:id="taDescripcion" layoutX="125.0" layoutY="214.0" prefHeight="200.0" prefWidth="665.0" promptText="Observaciones" wrapText="true">
                                  <font>
                                     <Font name="Roboto Light" size="15.0" />
                                  </font>
