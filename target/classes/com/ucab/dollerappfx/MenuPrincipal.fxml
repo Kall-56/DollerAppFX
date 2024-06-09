@@ -107,7 +107,7 @@
                   </Label>
                   <Pane fx:id="btMedic" layoutX="23.0" layoutY="94.0" onMousePressed="#btMedicPressed" prefHeight="130.0" prefWidth="200.0">
                      <children>
-                        <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#ffffff00" height="130.0" opacity="0.8" strokeType="OUTSIDE" strokeWidth="1.5" width="200.0">
+                        <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#ffffff00" height="130.0" opacity="0.8" strokeType="OUTSIDE" strokeWidth="1.2" width="200.0">
                            <stroke>
                               <LinearGradient endX="0.5071090047393365" endY="1.0" startX="0.5071090047393365">
                                  <stops>
@@ -135,7 +135,7 @@
                   </Pane>
                   <Pane fx:id="btInst" layoutX="240.0" layoutY="94.0" onMousePressed="#btInstPressed" prefHeight="130.0" prefWidth="266.0">
                      <children>
-                        <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#ffffff00" height="130.0" opacity="0.8" strokeType="OUTSIDE" strokeWidth="1.5" width="266.0">
+                        <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#ffffff00" height="130.0" opacity="0.8" strokeType="OUTSIDE" strokeWidth="1.2" width="266.0">
                            <stroke>
                               <LinearGradient endX="0.5071090047393365" endY="1.0" startX="0.5071090047393365" startY="0.1279620853080569">
                                  <stops>
@@ -164,7 +164,7 @@
                   </Pane>
                   <Pane fx:id="btFarma" layoutX="522.0" layoutY="94.0" onMousePressed="#btFarmaPressed" prefHeight="130.0" prefWidth="200.0">
                      <children>
-                        <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#ffffff00" height="130.0" opacity="0.8" strokeType="OUTSIDE" strokeWidth="1.5" width="200.0">
+                        <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#ffffff00" height="130.0" opacity="0.8" strokeType="OUTSIDE" strokeWidth="1.2" width="200.0">
                            <stroke>
                               <LinearGradient endX="0.5071090047393365" endY="1.0" startX="0.5071090047393365" startY="0.1279620853080569">
                                  <stops>

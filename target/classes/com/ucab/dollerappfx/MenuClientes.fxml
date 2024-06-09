@@ -9,24 +9,30 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="790.0" prefWidth="1108.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ucab.dollerappfx.MenuClientesController">
    <children>
-      <Rectangle fill="WHITE" height="780.0" layoutX="10.0" layoutY="10.0" opacity="0.9" stroke="#5757570d" strokeType="INSIDE" strokeWidth="1.5" width="1146.0" />
-      <Label fx:id="clientesLabel" layoutX="98.0" layoutY="13.0" text="&lt;Clientes&gt;" textFill="#4d4d4d">
+      <Rectangle fill="WHITE" height="780.0" layoutX="10.0" layoutY="11.0" opacity="0.95" stroke="#5757570d" strokeType="INSIDE" strokeWidth="1.5" width="1146.0" />
+      <Label fx:id="clientesLabel" layoutX="91.0" layoutY="17.0" text="&lt;Clientes&gt;" textFill="#4d4d4d">
          <font>
             <Font name="Roboto" size="36.0" />
          </font>
       </Label>
-      <ImageView fitHeight="44.0" fitWidth="51.0" layoutX="31.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" />
-      <StackPane layoutY="51.0" prefHeight="800.0" prefWidth="1166.0">
+      <ImageView fitHeight="44.0" fitWidth="51.0" layoutX="40.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../Assets/iconInstSelectB.png" />
+         </image></ImageView>
+      <StackPane layoutY="55.0" prefHeight="746.0" prefWidth="1166.0">
          <children>
             <Pane fx:id="vistaCliente" prefHeight="800.0" prefWidth="1166.0" visible="false">
                <children>
@@ -55,7 +61,7 @@
                   </Pane>
                </children>
             </Pane>
-            <Pane fx:id="infoCliente" prefHeight="800.0" prefWidth="1166.0" visible="false">
+            <Pane fx:id="infoCliente" prefHeight="722.0" prefWidth="1166.0">
                <children>
                   <StackPane layoutX="234.0" layoutY="80.0" prefHeight="652.0" prefWidth="915.0">
                      <children>
@@ -71,19 +77,19 @@
                                     <Font name="Roboto Light Italic" size="11.5" />
                                  </font>
                               </TextField>
-                              <Pane layoutY="451.0" prefHeight="2.0" prefWidth="900.0" style="-fx-background-color: #4d4d4d;" />
+                              <Pane layoutX="8.0" layoutY="452.0" prefHeight="2.0" prefWidth="900.0" style="-fx-background-color: #4d4d4d;" />
                               <TableView fx:id="tbEventos" layoutY="49.0" prefHeight="358.0" prefWidth="900.0" style="-fx-blend-mode: null;">
                                 <columns>
                                   <TableColumn prefWidth="75.0" text="C1" />
                                   <TableColumn prefWidth="75.0" text="C2" />
                                 </columns>
                               </TableView>
-                              <Label layoutX="6.0" layoutY="417.0" text="Observaciones" textFill="#4d4d4d">
+                              <Label layoutX="5.0" layoutY="425.0" text="Observaciones" textFill="#4d4d4d">
                                  <font>
                                     <Font name="Roboto" size="22.0" />
                                  </font>
                               </Label>
-                              <TextArea fx:id="taObservaciones" focusTraversable="false" layoutX="8.0" layoutY="459.0" prefHeight="193.0" prefWidth="900.0" promptText="&lt;Observaciones Aqui&gt;" style="-fx-background-color: null;">
+                              <TextArea fx:id="taObservaciones" focusTraversable="false" layoutX="8.0" layoutY="454.0" prefHeight="193.0" prefWidth="900.0" promptText="&lt;Observaciones Aqui&gt;" style="-fx-background-color: null;">
                                  <font>
                                     <Font name="Roboto" size="14.0" />
                                  </font>
@@ -157,10 +163,25 @@
                         </Pane>
                      </children>
                   </StackPane>
-                  <Rectangle arcHeight="25.0" arcWidth="25.0" fill="#30281e" height="67.0" layoutX="17.0" layoutY="8.0" opacity="0.9" strokeType="INSIDE" strokeWidth="0.0" width="1132.0" />
-                  <Rectangle arcHeight="20.0" arcWidth="20.0" fill="#fc9f66" height="652.0" layoutX="29.0" layoutY="75.0" opacity="0.7" strokeType="INSIDE" strokeWidth="0.0" width="200.0" />
-                  <Circle fill="#bcbcbc" layoutX="58.0" layoutY="42.0" opacity="0.2" radius="26.0" strokeType="INSIDE" />
-                  <Label fx:id="nomCliente" layoutX="102.0" layoutY="23.0" text="&lt;Nombre de Cliente&gt;" textFill="WHITE">
+                  <Rectangle arcHeight="8.0" arcWidth="8.0" fill="#25201a" height="67.0" layoutX="17.0" layoutY="8.0" opacity="0.9" strokeType="INSIDE" strokeWidth="0.0" width="1132.0" />
+                  <Rectangle height="652.0" layoutX="29.0" layoutY="75.0" opacity="0.8" strokeType="INSIDE" strokeWidth="0.0" width="200.0">
+                     <fill>
+                        <LinearGradient endX="0.7819905213270142" endY="1.0" startX="0.6587677725118483">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color red="1.0" green="0.48235294222831726" blue="0.32156863808631897" />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="1.0" green="0.6427619457244873" blue="0.3799999952316284" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </fill></Rectangle>
+                  <Label fx:id="nomCliente" layoutX="37.0" layoutY="23.0" text="&lt;Nombre de Cliente&gt;" textFill="WHITE">
                      <font>
                         <Font name="Roboto" size="30.0" />
                      </font>
@@ -170,12 +191,12 @@
                         <Font name="Roboto Black" size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbCedula" contentDisplay="CENTER" layoutX="41.0" layoutY="111.0" prefHeight="24.0" prefWidth="175.0" text="Doc. Identidad" textFill="WHITE">
+                  <Label fx:id="lbCedula" alignment="CENTER" contentDisplay="CENTER" layoutX="41.0" layoutY="111.0" prefHeight="24.0" prefWidth="175.0" text="Doc. Identidad" textFill="WHITE">
                      <font>
                         <Font name="Roboto Light Italic" size="19.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbNumero" layoutX="38.0" layoutY="145.0" prefHeight="24.0" prefWidth="175.0" text="Num. Telefonico" textFill="WHITE">
+                  <Label fx:id="lbNumero" alignment="CENTER" layoutX="41.0" layoutY="143.0" prefHeight="24.0" prefWidth="175.0" text="Num. Telefonico" textFill="WHITE">
                      <font>
                         <Font name="Roboto Light Italic" size="19.0" />
                      </font>
@@ -185,17 +206,17 @@
                         <Font name="Roboto Light Italic" size="19.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbEmailMdFm" layoutX="39.0" layoutY="223.0" prefHeight="24.0" prefWidth="175.0" text="&lt;email md, fm&gt;" textFill="WHITE">
+                  <Label fx:id="lbEmailMdFm" layoutX="44.0" layoutY="200.0" prefHeight="24.0" prefWidth="175.0" text="&lt;email md, fm&gt;" textFill="WHITE">
                      <font>
                         <Font name="Roboto Light Italic" size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbEspecsMd" layoutX="38.0" layoutY="375.0" prefHeight="19.0" prefWidth="175.0" text="&lt;especialidad md&gt;" textFill="WHITE">
+                  <Label fx:id="lbEspecsMd" layoutX="37.0" layoutY="306.0" prefHeight="19.0" prefWidth="175.0" text="&lt;especialidad md&gt;" textFill="WHITE">
                      <font>
                         <Font name="Roboto Light Italic" size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbFrecueMdFm" layoutX="38.0" layoutY="297.0" prefHeight="24.0" prefWidth="175.0" text="&lt;frecuencia md, fm&gt;" textFill="WHITE">
+                  <Label fx:id="lbFrecueMdFm" layoutX="43.0" layoutY="252.0" prefHeight="24.0" prefWidth="175.0" text="&lt;frecuencia md, fm&gt;" textFill="WHITE">
                      <font>
                         <Font name="Roboto Light Italic" size="15.0" />
                      </font>
@@ -230,7 +251,7 @@
                         <Font name="Roboto Light Italic" size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="correo" layoutX="38.0" layoutY="199.0" text="Correo:" textFill="WHITE">
+                  <Label fx:id="correo" layoutX="38.0" layoutY="178.0" text="Correo:" textFill="WHITE">
                      <font>
                         <Font name="Roboto Black" size="20.0" />
                      </font>
@@ -240,12 +261,12 @@
                         <Font name="Roboto Black" size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="edfFacultad" layoutX="38.0" layoutY="273.0" text="Edf. Facultad:" textFill="WHITE">
+                  <Label fx:id="edfFacultad" layoutX="38.0" layoutY="229.0" text="Edf. Facultad:" textFill="WHITE">
                      <font>
                         <Font name="Roboto Black" size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="especialidad" layoutX="40.0" layoutY="351.0" text="Especialidad:" textFill="WHITE">
+                  <Label fx:id="especialidad" layoutX="40.0" layoutY="281.0" text="Especialidad:" textFill="WHITE">
                      <font>
                         <Font name="Roboto Black" size="20.0" />
                      </font>
@@ -282,7 +303,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="crearCliente" prefHeight="200.0" prefWidth="200.0">
+            <Pane fx:id="crearCliente" prefHeight="200.0" prefWidth="200.0" visible="false">
                <children>
                   <TextField fx:id="fldNombre" layoutX="445.0" layoutY="136.0" prefHeight="23.0" prefWidth="220.0" promptText="Nombre del Cliente">
                      <font>

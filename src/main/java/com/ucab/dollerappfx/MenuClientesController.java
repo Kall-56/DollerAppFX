@@ -327,34 +327,34 @@ public class MenuClientesController {
         if (result.isPresent() && result.get() == confirmButton) {
             String clase = clientesLabel.getText();
 
-            boolean nombreValido = ValidacionesController.validarCampos(fldNombre, "^[a-zA-Z ]{0,50}$");
-            boolean numValido = ValidacionesController.validarCampos(fldNumber, "^[0-9]{7}$");
-            boolean ciValido = ValidacionesController.validarCampos(fldCedula, "^[0-9]{6,9}$");
-            boolean direcValido = ValidacionesController.validarCampos(fldDirect, "^[a-zA-Z0-9#. ]{0,70}$");
+            boolean nombreValido = ValidacionesController.validarCampos(fldNombre, "^[a-zA-Z ]{0,50}$",lbCrearNuevo);
+            boolean numValido = ValidacionesController.validarCampos(fldNumber, "^[0-9]{7}$",lbCrearNuevo);
+            boolean ciValido = ValidacionesController.validarCampos(fldCedula, "^[0-9]{6,9}$",lbCrearNuevo);
+            boolean direcValido = ValidacionesController.validarCampos(fldDirect, "^[a-zA-Z0-9#. ]{0,70}$",lbCrearNuevo);
 
             boolean[] atributosValidos = {nombreValido, numValido, ciValido, direcValido};
 
             if (clase.equals("Médicos")) {
-                boolean espValido = ValidacionesController.validarCampos(fldEspecMd, "^[a-zA-Z ]{0,20}$");
-                boolean emailValido = ValidacionesController.validarCampos(fldEmailMdFm, "^[A-Za-z0-9+_.-]+@(.+)$");
-                boolean frecValido = ValidacionesController.validarCampos(fldFrecueMdFm, "^[0-9]{1}$");
-                boolean diasValido = ValidacionesController.validarCampos(fldDiasVisitMd, "^[a-zA-Z- ]{0,50}$");
-                boolean horarioValido = ValidacionesController.validarCampos(fldHorarioMd, "^[0-9- ]{0,10}$");
-                boolean formatoValido = ValidacionesController.validarCampos(fldFormatoMd, "^[a-zA-Z ]{0,20}$");
+                boolean espValido = ValidacionesController.validarCampos(fldEspecMd, "^[a-zA-Z ]{0,20}$",lbCrearNuevo);
+                boolean emailValido = ValidacionesController.validarCampos(fldEmailMdFm, "^[A-Za-z0-9+_.-]+@(.+)$",lbCrearNuevo);
+                boolean frecValido = ValidacionesController.validarCampos(fldFrecueMdFm, "^[0-9]{1}$",lbCrearNuevo);
+                boolean diasValido = ValidacionesController.validarCampos(fldDiasVisitMd, "^[a-zA-Z- ]{0,50}$",lbCrearNuevo);
+                boolean horarioValido = ValidacionesController.validarCampos(fldHorarioMd, "^[0-9- ]{0,10}$",lbCrearNuevo);
+                boolean formatoValido = ValidacionesController.validarCampos(fldFormatoMd, "^[a-zA-Z ]{0,20}$",lbCrearNuevo);
 
                 atributosValidos = new boolean[] {nombreValido, numValido, ciValido, direcValido, espValido, emailValido, frecValido, diasValido, horarioValido, formatoValido};
 
             } else if (clase.equals("Farmacias")) {
-                boolean perValido = ValidacionesController.validarCampos(fldPersonContacFmInst, "^[a-zA-Z ]{0,20}$");
-                boolean emailValido = ValidacionesController.validarCampos(fldEmailMdFm, "^[A-Za-z0-9+_.-]+@(.+)$");
-                boolean frecValido = ValidacionesController.validarCampos(fldFrecueMdFm, "^[0-9]{1}$");
-                boolean cadValido = ValidacionesController.validarCampos(fldCadenaFm, "^[a-zA-Z ]{0,20}$");
-                boolean drogValido = ValidacionesController.validarCampos(fldDrogeriaFm, "^[a-zA-Z ]{0,20}$");
+                boolean perValido = ValidacionesController.validarCampos(fldPersonContacFmInst, "^[a-zA-Z ]{0,20}$",lbCrearNuevo);
+                boolean emailValido = ValidacionesController.validarCampos(fldEmailMdFm, "^[A-Za-z0-9+_.-]+@(.+)$",lbCrearNuevo);
+                boolean frecValido = ValidacionesController.validarCampos(fldFrecueMdFm, "^[0-9]{1}$",lbCrearNuevo);
+                boolean cadValido = ValidacionesController.validarCampos(fldCadenaFm, "^[a-zA-Z ]{0,20}$",lbCrearNuevo);
+                boolean drogValido = ValidacionesController.validarCampos(fldDrogeriaFm, "^[a-zA-Z ]{0,20}$",lbCrearNuevo);
 
                 atributosValidos = new boolean[] {nombreValido, numValido, ciValido, direcValido, perValido, emailValido, frecValido, cadValido, drogValido};
             } else if (clase.equals("Instituciones")) {
-                boolean perValido = ValidacionesController.validarCampos(fldPersonContacFmInst, "^[a-zA-Z ]{0,20}$");
-                boolean facValido = ValidacionesController.validarCampos(fldFacultadInst, "^[a-zA-Z ]{0,30}$");
+                boolean perValido = ValidacionesController.validarCampos(fldPersonContacFmInst, "^[a-zA-Z ]{0,20}$",lbCrearNuevo);
+                boolean facValido = ValidacionesController.validarCampos(fldFacultadInst, "^[a-zA-Z ]{0,30}$",lbCrearNuevo);
 
                 atributosValidos = new boolean[] {nombreValido, numValido, ciValido, direcValido, perValido, facValido};
             }

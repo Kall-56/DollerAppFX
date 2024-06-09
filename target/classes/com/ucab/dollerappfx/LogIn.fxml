@@ -36,7 +36,7 @@
       </Rectangle>
       <StackPane layoutX="140.0" layoutY="50.0" prefHeight="700.0" prefWidth="1000.0">
          <children>
-            <Pane fx:id="pnUserLogIn" focusTraversable="true" opacity="0.9" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: white;" visible="false">
+            <Pane fx:id="pnUserLogIn" focusTraversable="true" opacity="0.9" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: white;">
                <children>
                   <Label layoutX="402.0" layoutY="135.0" text="Iniciar Sesión" textFill="#4d4d4d">
                      <font>
@@ -99,7 +99,7 @@
                   </Pane>
                </children>
             </Pane>
-            <Pane fx:id="pnUserCreate" opacity="0.9" prefHeight="700.0" prefWidth="1000.0">
+            <Pane fx:id="pnUserCreate" opacity="0.9" prefHeight="700.0" prefWidth="1000.0" visible="false">
                <children>
                   <Rectangle fill="WHITE" height="700.0" opacity="0.94" stroke="#8080801c" strokeLineJoin="BEVEL" strokeType="OUTSIDE" strokeWidth="2.0" width="1000.0" />
                   <Label layoutX="406.0" layoutY="157.0" text="Crear Cuenta" textFill="#4d4d4d">
