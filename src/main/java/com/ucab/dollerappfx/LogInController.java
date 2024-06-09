@@ -70,21 +70,27 @@ public class LogInController {
     
     @FXML
     void btLogInClicked(MouseEvent event) throws IOException {
-          if (fldUserName.getText().equals(App.admin.getNomUsuario())) {
+          if (fldUserName.getText().equals(App.admin.getNomUsuario()) && fldUserPassword.getText().equals(App.admin.getClave())) {
               App.setRoot("MenuAdmin");
           } else {
-              App.setRoot("MenuPrincipal");
+              boolean encontrado = false;
+              for (ATM atm: App.admin.getAtmList()) {
+                  if (fldUserName.getText().equals(atm.getNomUsuario()) && fldUserPassword.getText().equals(atm.getClave())) {
+                      encontrado = true;
+                      App.usuario = atm;
+                      App.setRoot("MenuPrincipal");
+                      break;
+                  }
+              }
+              if (!encontrado) {
+                  Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+                  alerta.setTitle("Datos inválidos");
+                  alerta.setHeaderText("Usuario y/o contraseña incorrectos");
+                  alerta.showAndWait();
+              }
           }
-//        if (fldUserName.getText().equals(usuario.getNomUsuario()) && fldUserPassword.getText().equals(usuario.getClave())) {
-
-//        }
-//        else {
-//            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-//            alerta.setTitle("Datos inválidos");
-//            alerta.setHeaderText("Usuario y/o contraseña incorrectos");
-//            alerta.showAndWait();
-//        }
     }
+
     @FXML
     void btLogInEntered(MouseEvent event) {
         btUserLogIn.setStyle("-fx-background-color: #ff8e37;"+"-fx-border-color: white;"+"-fx-background-radius: 7;"+"-fx-border-radius: 5;");
@@ -146,19 +152,26 @@ public class LogInController {
                 valido = false;
             }
         }
+        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+        alerta.setHeaderText("");
         if (valido && (fldUserPasswordCrt.getText().equals(fldUserPasswordConfirm.getText()))) {
             App.admin.registrarATM(new ATM(fldUserNameCrt.getText(),
                                        fldUserPasswordCrt.getText(),
                                        fldUserZoneCrt.getText(),
                                        fldUserEmailCrt.getText(),
                                        App.admin));
+
+
+            pnUserLogIn.setVisible(true);
+            pnUserCreate.setVisible(false);
+
+            alerta.setContentText("ATM creado con éxito");
+            alerta.setTitle("ATM Creado");
         } else {
-            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-            alerta.setHeaderText("");
             alerta.setContentText("Revise que no haya ningún campo con formato erróneo");
             alerta.setTitle("Error");
-            alerta.showAndWait();
         }
+        alerta.showAndWait();
     }
     @FXML
     void btCreateNewEntered(MouseEvent event) {
@@ -189,6 +202,26 @@ public class LogInController {
 //----------------------------------------------------------------------------//
 
     public void initialize() {
+        pnUserCreate.visibleProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                fldUserNameCrt.clear();
+                fldUserNameCrt.setStyle("");
+                lbUserNameError.setVisible(false);
+                fldUserZoneCrt.clear();
+                fldUserZoneCrt.setStyle("");
+                lbUserZoneError.setVisible(false);
+                fldUserPasswordCrt.clear();
+                fldUserPasswordCrt.setStyle("");
+                lbUserPasswordError.setVisible(false);
+                fldUserPasswordConfirm.clear();
+                fldUserPasswordConfirm.setStyle("");
+                lbUserPasswordConfirmError.setVisible(false);
+                fldUserEmailCrt.clear();
+                fldUserEmailCrt.setStyle("");
+                lbUserEmailError.setVisible(false);
+            }
+        });
+
         fldUserNameCrt.focusedProperty().addListener((observable, oldValue, newValue) ->{
             if (!newValue) {
                 ValidacionesController.validarCampos(fldUserNameCrt, "([a-zA-Z0-9]+).{4,25}",lbUserNameError);
