@@ -27,14 +27,17 @@ public class ValidacionesController {
         String valorReal = contrasena.getText();
         if (valor == null || valor.trim().isEmpty()) {
             campo.setStyle("-fx-border-color: red;"+"-fx-border-radius: 3;"+"-fx-focus-color: red;"+"-fx-shadow-highlight-color: red;");
+            contrasena.setStyle("-fx-border-color: red;"+"-fx-border-radius: 3;"+"-fx-focus-color: red;"+"-fx-shadow-highlight-color: red;");
             return false;
         } else if (valor == null ? valorReal != null : !valor.equals(valorReal)) {
             campo.setStyle("-fx-border-color: red;"+"-fx-border-radius: 3;"+"-fx-focus-color: red;"+"-fx-shadow-highlight-color: red;");
+            contrasena.setStyle("-fx-border-color: red;"+"-fx-border-radius: 3;"+"-fx-focus-color: red;"+"-fx-shadow-highlight-color: red;");
             lbError1.setVisible(true);
             lbError2.setVisible(true);
             return false;
         } else {
             campo.setStyle("-fx-border-color: null");
+            contrasena.setStyle("-fx-border-color: null");
             lbError1.setVisible(false);
             lbError2.setVisible(false);
             return true;

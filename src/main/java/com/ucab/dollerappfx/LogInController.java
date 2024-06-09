@@ -212,7 +212,7 @@ public class LogInController {
         for (Farmacia farma: App.listFarmacias) {
             usuario.registrarCliente(farma);
         }
-    //------------------------------------------------------------------------//
+        //------------------------------------------------------------------------//
         fldUserNameCrt.focusedProperty().addListener((observable, oldValue, newValue) ->{
             if (!newValue) {
                 ValidacionesController.validarCampos(fldUserNameCrt, "([a-zA-Z0-9]+).{4,25}",lbUserNameError);
