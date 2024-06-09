@@ -13,6 +13,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
+import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
 
 
 public class MenuAdminController {
@@ -25,6 +29,21 @@ public class MenuAdminController {
 
     @FXML
     private TableView<Evento> tbEVENTOs;
+
+    @FXML
+    public void btCerrarSecionClicked(MouseEvent event) throws IOException{
+        App.setRoot("LogIn");
+    }
+    @FXML
+    void btCerrarSecionEntered(MouseEvent event) {
+        btCerrarSecion.setStyle("-fx-background-color: #bababa;"+"-fx-border-color: #9c9c9c;"+"-fx-background-radius: 5;"+"-fx-border-radius: 2;");
+        lbCerrarSeccion.setTextFill(Color.web("#9c9c9c"));
+    }
+    @FXML
+    void btCerrarSecionExited(MouseEvent event) {
+        btCerrarSecion.setStyle("-fx-background-color: white;"+"-fx-border-color: #969696;"+"-fx-background-radius: 5;"+"-fx-border-radius: 2;");
+        lbCerrarSeccion.setTextFill(Color.web("#969696"));
+    }
     
 
     public void initialize() {
