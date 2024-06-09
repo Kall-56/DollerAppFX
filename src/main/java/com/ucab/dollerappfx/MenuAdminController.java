@@ -36,7 +36,7 @@ public class MenuAdminController {
     private Pane btCerrarSecion;
     
     @FXML
-    private Label lbCerrarSeccion
+    private Label lbCerrarSeccion;
 
     @FXML
     public void btCerrarSecionClicked(MouseEvent event) throws IOException{
