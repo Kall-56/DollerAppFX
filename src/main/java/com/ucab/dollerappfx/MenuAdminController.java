@@ -31,6 +31,13 @@ public class MenuAdminController {
     @FXML
     private TableView<Evento> tbEVENTOs;
 
+        
+    @FXML
+    private Pane btCerrarSecion;
+    
+    @FXML
+    private Label lbCerrarSeccion
+
     @FXML
     public void btCerrarSecionClicked(MouseEvent event) throws IOException{
         App.setRoot("LogIn");
