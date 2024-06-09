@@ -93,6 +93,12 @@ public class MenuPrincipalController {
         bgCircleInstS.setOpacity(lowOpacity);
         bgCircleFarmaS.setOpacity(lowOpacity);
 
+        ObservableList<Cliente> clientes = FXCollections.observableArrayList();
+        clientes.addAll(listMedicos);
+        clientes.addAll(listInstituciones);
+        clientes.addAll(listFarmacias);
+
+        tbClientesRecientes.setItems(clientes);
         tbClientesRecientes.refresh();
         tbEventosMenu.refresh();
     }
@@ -100,7 +106,7 @@ public class MenuPrincipalController {
     @FXML
     void btMedicPressed(MouseEvent event) {
         visibilityChange(true, false);
-        controllerClientes.cambio(false, true);
+        controllerClientes.visibilityChange(false, true, false);
         bgCircleMedicS.setOpacity(maxOpacity);
         bgCircleFarmaS.setOpacity(lowOpacity);
         bgCircleInstS.setOpacity(lowOpacity);
@@ -124,7 +130,7 @@ public class MenuPrincipalController {
     @FXML
     void btFarmaPressed(MouseEvent event) {
         visibilityChange(true, false);
-        controllerClientes.cambio(false, true);
+        controllerClientes.visibilityChange(false, true, false);
         bgCircleFarmaS.setOpacity(maxOpacity);
         bgCircleInstS.setOpacity(lowOpacity);
         bgCircleMedicS.setOpacity(lowOpacity);
@@ -148,7 +154,7 @@ public class MenuPrincipalController {
     @FXML
     void btInstPressed(MouseEvent event) {
         visibilityChange(true, false);
-        controllerClientes.cambio(false, true);
+        controllerClientes.visibilityChange(false, true, false);
         bgCircleInstS.setOpacity(maxOpacity);
         bgCircleFarmaS.setOpacity(lowOpacity);
         bgCircleMedicS.setOpacity(lowOpacity);

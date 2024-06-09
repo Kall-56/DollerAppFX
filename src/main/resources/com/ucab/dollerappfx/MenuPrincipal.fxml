@@ -129,6 +129,9 @@
                               <Font name="Roboto" size="26.0" />
                            </font></Label>
                      </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Pane>
                   <Pane fx:id="btInst" layoutX="240.0" layoutY="94.0" onMousePressed="#btInstPressed" prefHeight="130.0" prefWidth="266.0">
                      <children>
@@ -155,6 +158,9 @@
                            </font>
                         </Label>
                      </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Pane>
                   <Pane fx:id="btFarma" layoutX="522.0" layoutY="94.0" onMousePressed="#btFarmaPressed" prefHeight="130.0" prefWidth="200.0">
                      <children>
@@ -181,6 +187,9 @@
                            </font>
                         </Label>
                      </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Pane>
                   <Label layoutX="21.0" layoutY="257.0" text="Clientes Recientes" textFill="#4d4d4d">
                      <font>

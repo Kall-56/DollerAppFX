@@ -49,6 +49,9 @@
                            </font>
                         </Label>
                      </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Pane>
                </children>
             </Pane>
@@ -93,11 +96,17 @@
                                  <font>
                                     <Font name="Roboto" size="12.0" />
                                  </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </Button>
                               <Button fx:id="btCrear" layoutX="778.0" layoutY="11.0" mnemonicParsing="false" onMousePressed="#btCrearPressed" text="Crear">
                                  <font>
                                     <Font name="Roboto" size="12.0" />
                                  </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
                               </Button>
                            </children>
                         </Pane>
@@ -131,7 +140,7 @@
                                  </cursor>
                               </Pane>
                               <ChoiceBox fx:id="cbSemana" layoutX="640.0" layoutY="232.0" prefWidth="150.0" />
-                              <DatePicker fx:id="fecha" editable="false" layoutX="370.0" layoutY="232.0" />
+                              <DatePicker fx:id="fecha" editable="false" layoutX="370.0" layoutY="232.0" promptText="Fecha del Evento" />
                               <Pane fx:id="btVolver" layoutX="490.0" layoutY="581.0" onMousePressed="#volverPressed" prefHeight="30.0" prefWidth="150.0" style="-fx-border-color: orange;">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
@@ -273,76 +282,81 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="crearCliente" prefHeight="200.0" prefWidth="200.0" visible="false">
+            <Pane fx:id="crearCliente" prefHeight="200.0" prefWidth="200.0">
                <children>
-                  <TextField fx:id="fldNombre" layoutX="433.0" layoutY="134.0" prefHeight="23.0" prefWidth="220.0" promptText="Nombre del Cliente">
+                  <TextField fx:id="fldNombre" layoutX="445.0" layoutY="136.0" prefHeight="23.0" prefWidth="220.0" promptText="Nombre del Cliente">
                      <font>
                         <Font name="Roboto Light" size="13.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="fldNumber" layoutX="433.0" layoutY="172.0" promptText="Numero Telf">
+                  <TextField fx:id="fldNumber" layoutX="429.0" layoutY="195.0" promptText="Numero Telf">
                      <font>
                         <Font name="Roboto Light" size="13.0" />
                      </font>
                   </TextField>
-                  <ChoiceBox fx:id="chTypeCedula" layoutX="599.0" layoutY="171.0" prefHeight="25.0" prefWidth="51.0" />
-                  <TextField fx:id="fldCedula" layoutX="656.0" layoutY="172.0" promptText="Cedula">
+                  <ChoiceBox fx:id="chTypeCedula" layoutX="606.0" layoutY="194.0" prefHeight="25.0" prefWidth="51.0" />
+                  <TextField fx:id="fldCedula" layoutX="660.0" layoutY="195.0" promptText="Cedula">
                      <font>
                         <Font name="Roboto Light" size="13.0" />
                      </font>
                   </TextField>
-                  <ChoiceBox fx:id="chnumber" layoutX="355.0" layoutY="171.0" prefHeight="25.0" prefWidth="68.0" />
-                  <TextField fx:id="fldDirect" layoutX="355.0" layoutY="204.0" prefHeight="23.0" prefWidth="457.0" promptText="Direccion">
+                  <ChoiceBox fx:id="chnumber" layoutX="356.0" layoutY="194.0" prefHeight="25.0" prefWidth="68.0" />
+                  <TextField fx:id="fldDirect" layoutX="355.0" layoutY="254.0" prefHeight="23.0" prefWidth="460.0" promptText="Direccion">
                      <font>
                         <Font name="Roboto Light" size="13.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="fldEmailMdFm" layoutX="474.0" layoutY="242.0" prefHeight="23.0" prefWidth="102.0" promptText="Email" visible="false">
+                  <TextField fx:id="fldEmailMdFm" layoutX="357.0" layoutY="314.0" prefHeight="23.0" prefWidth="173.0" promptText="Email" visible="false">
                      <font>
                         <Font name="Roboto Light" size="13.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="fldEspecMd" layoutX="409.0" layoutY="291.0" prefHeight="23.0" prefWidth="102.0" promptText="Especialidad" visible="false">
+                  <TextField fx:id="fldEspecMd" layoutX="645.0" layoutY="314.0" prefHeight="23.0" prefWidth="173.0" promptText="Especialidad" visible="false">
                      <font>
                         <Font name="Roboto Light" size="13.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="fldFrecueMdFm" layoutX="589.0" layoutY="242.0" prefHeight="23.0" prefWidth="102.0" promptText="Frecuencia" visible="false">
+                  <TextField fx:id="fldFrecueMdFm" layoutX="357.0" layoutY="396.0" prefHeight="23.0" prefWidth="173.0" promptText="Frecuencia" visible="false">
                      <font>
                         <Font name="Roboto Light" size="13.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="fldDiasVisitMd" layoutX="525.0" layoutY="291.0" prefHeight="23.0" prefWidth="102.0" promptText="Dias de Visita" visible="false">
+                  <TextField fx:id="fldDiasVisitMd" layoutX="645.0" layoutY="396.0" prefHeight="23.0" prefWidth="173.0" promptText="Dias de Visita" visible="false">
                      <font>
                         <Font name="Roboto Light" size="13.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="fldHorarioMd" layoutX="640.0" layoutY="291.0" prefHeight="23.0" prefWidth="102.0" promptText="Horario" visible="false">
+                  <TextField fx:id="fldHorarioMd" layoutX="357.0" layoutY="468.0" prefHeight="23.0" prefWidth="173.0" promptText="Horario" visible="false">
                      <font>
                         <Font name="Roboto Light" size="13.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="fldPersonContacFmInst" layoutX="511.0" layoutY="321.0" prefHeight="23.0" prefWidth="145.0" promptText="Persona de contacto" visible="false">
+                  <TextField fx:id="fldPersonContacFmInst" layoutX="644.0" layoutY="314.0" prefHeight="23.0" prefWidth="173.0" promptText="Persona de contacto" visible="false">
                      <font>
                         <Font name="Roboto Light" size="13.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="fldCadenaFm" layoutX="479.0" layoutY="291.0" prefHeight="23.0" prefWidth="102.0" promptText="Cadena" visible="false">
+                  <TextField fx:id="fldCadenaFm" layoutX="644.0" layoutY="396.0" prefHeight="23.0" prefWidth="173.0" promptText="Cadena" visible="false">
                      <font>
                         <Font name="Roboto Light" size="13.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="fldDrogeriaFm" layoutX="589.0" layoutY="291.0" prefHeight="23.0" prefWidth="102.0" promptText="Drogeria" visible="false">
+                  <TextField fx:id="fldDrogeriaFm" layoutX="506.0" layoutY="468.0" prefHeight="23.0" prefWidth="158.0" promptText="Drogueria" visible="false">
                      <font>
                         <Font name="Roboto Light" size="13.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="fldFacultadInst" layoutX="479.0" layoutY="242.0" prefHeight="23.0" prefWidth="92.0" promptText="Facultad" visible="false">
+                  <TextField fx:id="fldFormatoMd" layoutX="645.0" layoutY="468.0" prefHeight="23.0" prefWidth="173.0" promptText="Formato" visible="false">
                      <font>
                         <Font name="Roboto Light" size="13.0" />
                      </font>
                   </TextField>
-                  <Pane fx:id="btCrearCliente" layoutX="511.0" layoutY="494.0" prefHeight="38.0" prefWidth="145.0" style="-fx-border-color: orange;">
+                  <TextField fx:id="fldFacultadInst" layoutX="357.0" layoutY="314.0" prefHeight="23.0" prefWidth="173.0" promptText="Facultad" visible="false">
+                     <font>
+                        <Font name="Roboto Light" size="13.0" />
+                     </font>
+                  </TextField>
+                  <Pane fx:id="btCrearCliente" layoutX="407.0" layoutY="571.0" onMouseClicked="#btCrearClienteClicked" prefHeight="38.0" prefWidth="145.0" style="-fx-border-color: orange;">
                      <children>
                         <Label layoutX="44.0" layoutY="5.0" text="Crear" textFill="#4d4d4d">
                            <font>
@@ -350,7 +364,27 @@
                            </font>
                         </Label>
                      </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
                   </Pane>
+                  <Pane fx:id="btVolverClientes" layoutX="585.0" layoutY="571.0" onMousePressed="#btVolverClientesPressed" prefHeight="38.0" prefWidth="145.0" style="-fx-border-color: orange;">
+                     <children>
+                        <Label layoutX="39.0" layoutY="5.0" text="Volver" textFill="#4d4d4d">
+                           <font>
+                              <Font name="Roboto" size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Pane>
+                  <Label layoutX="482.0" layoutY="59.0" text="Crear Cliente">
+                     <font>
+                        <Font name="Roboto Black" size="30.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
          </children>

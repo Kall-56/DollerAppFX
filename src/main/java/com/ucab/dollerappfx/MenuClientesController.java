@@ -13,6 +13,7 @@ import javafx.scene.layout.Pane;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 
 public class MenuClientesController {
 
@@ -146,6 +147,9 @@ public class MenuClientesController {
     private Pane btCrearCliente;
 
     @FXML
+    private Pane btVolverClientes;
+
+    @FXML
     private Pane btVerCrear;
 
     @FXML
@@ -185,13 +189,16 @@ public class MenuClientesController {
     private TextField fldNumber;
 
     @FXML
+    private TextField fldFormatoMd;
+
+    @FXML
     private TextField fldPersonContacFmInst;
 
      @FXML
-    private ChoiceBox<?> chTypeCedula;
+    private ChoiceBox<Character> chTypeCedula;
 
     @FXML
-    private ChoiceBox<?> chnumber;
+    private ChoiceBox<String> chnumber;
 
     @FXML
     private Label lbCrearNuevo;
@@ -201,6 +208,15 @@ public class MenuClientesController {
     private Evento eventoActual;
 
     private final DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+
+    @FXML
+    void btVolverClientesPressed(MouseEvent event) {
+        vistaCliente.setVisible(true);
+        crearCliente.setVisible(false);
+
+        reinicarCamposCliente();
+    }
 
     @FXML
     void btCrearNuevoPressed(MouseEvent event) {
@@ -231,7 +247,7 @@ public class MenuClientesController {
                 alerta.setTitle("Evento modificado");
             }
 
-            reiniciarCampos();
+            reiniciarCamposEvento();
             verEventos.setVisible(true);
             crearEvento.setVisible(false);
             tbEventos.setItems(FXCollections.observableArrayList(clienteActual.getEventoList()));
@@ -246,7 +262,7 @@ public class MenuClientesController {
         alerta.showAndWait();
     }
 
-    public void reiniciarCampos() {
+    public void reiniciarCamposEvento() {
         tfTituloEvento.clear();
         taDescripcion.clear();
         fecha.getEditor().clear();
@@ -279,6 +295,12 @@ public class MenuClientesController {
 
             verEventos.setVisible(false);
             crearEvento.setVisible(true);
+        } else {
+            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+            alerta.setTitle("Seleccione un evento");
+            alerta.setHeaderText("");
+            alerta.setContentText("No ha seleccionado ningún evento en la tabla");
+            alerta.showAndWait();
         }
     }
 
@@ -286,12 +308,148 @@ public class MenuClientesController {
     void volverPressed(MouseEvent event) {
             verEventos.setVisible(true);
             crearEvento.setVisible(false);
-            reiniciarCampos();
+            reiniciarCamposEvento();
     }
 
     @FXML
-    void crearPressed(MouseEvent event) {
+    void btCrearClienteClicked(MouseEvent event) {
+        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+        alerta.setTitle("Crear Cliente");
+        alerta.setHeaderText("ESTÁ SEGURO DE CREAR EL CLIENTE?");
+        alerta.setContentText("UNA VEZ CREADO NO SE PUEDE MODIFICAR");
+        ButtonType confirmButton = ButtonType.OK;
+        ButtonType cancelButton = ButtonType.CANCEL;
 
+        alerta.getButtonTypes().setAll(confirmButton, cancelButton);
+
+        Optional<ButtonType> result = alerta.showAndWait();
+
+        if (result.isPresent() && result.get() == confirmButton) {
+            String clase = clientesLabel.getText();
+
+            boolean nombreValido = ValidacionesController.validarCampos(fldNombre, "^[a-zA-Z ]{0,50}$");
+            boolean numValido = ValidacionesController.validarCampos(fldNumber, "^[0-9]{7}$");
+            boolean ciValido = ValidacionesController.validarCampos(fldCedula, "^[0-9]{6,9}$");
+            boolean direcValido = ValidacionesController.validarCampos(fldDirect, "^[a-zA-Z0-9#. ]{0,70}$");
+
+            boolean[] atributosValidos = {nombreValido, numValido, ciValido, direcValido};
+
+            if (clase.equals("Médicos")) {
+                boolean espValido = ValidacionesController.validarCampos(fldEspecMd, "^[a-zA-Z ]{0,20}$");
+                boolean emailValido = ValidacionesController.validarCampos(fldEmailMdFm, "^[A-Za-z0-9+_.-]+@(.+)$");
+                boolean frecValido = ValidacionesController.validarCampos(fldFrecueMdFm, "^[0-9]{1}$");
+                boolean diasValido = ValidacionesController.validarCampos(fldDiasVisitMd, "^[a-zA-Z- ]{0,50}$");
+                boolean horarioValido = ValidacionesController.validarCampos(fldHorarioMd, "^[0-9- ]{0,10}$");
+                boolean formatoValido = ValidacionesController.validarCampos(fldFormatoMd, "^[a-zA-Z ]{0,20}$");
+
+                atributosValidos = new boolean[] {nombreValido, numValido, ciValido, direcValido, espValido, emailValido, frecValido, diasValido, horarioValido, formatoValido};
+
+            } else if (clase.equals("Farmacias")) {
+                boolean perValido = ValidacionesController.validarCampos(fldPersonContacFmInst, "^[a-zA-Z ]{0,20}$");
+                boolean emailValido = ValidacionesController.validarCampos(fldEmailMdFm, "^[A-Za-z0-9+_.-]+@(.+)$");
+                boolean frecValido = ValidacionesController.validarCampos(fldFrecueMdFm, "^[0-9]{1}$");
+                boolean cadValido = ValidacionesController.validarCampos(fldCadenaFm, "^[a-zA-Z ]{0,20}$");
+                boolean drogValido = ValidacionesController.validarCampos(fldDrogeriaFm, "^[a-zA-Z ]{0,20}$");
+
+                atributosValidos = new boolean[] {nombreValido, numValido, ciValido, direcValido, perValido, emailValido, frecValido, cadValido, drogValido};
+            } else if (clase.equals("Instituciones")) {
+                boolean perValido = ValidacionesController.validarCampos(fldPersonContacFmInst, "^[a-zA-Z ]{0,20}$");
+                boolean facValido = ValidacionesController.validarCampos(fldFacultadInst, "^[a-zA-Z ]{0,30}$");
+
+                atributosValidos = new boolean[] {nombreValido, numValido, ciValido, direcValido, perValido, facValido};
+            }
+
+            boolean valido = true;
+            for (boolean atributo: atributosValidos) {
+                if (!atributo) {
+                    valido = false;
+                    break; // Tal vez haya que quitarlo
+                }
+            }
+            if (valido) {
+                Alert alerta2 = new Alert(Alert.AlertType.INFORMATION);
+                if (clase.equals("Médicos")) {
+                    Medico med = new Medico(fldNombre.getText(),
+                                            fldDirect.getText(),
+                                            chnumber.getValue() + fldNumber.getText(),
+                                            chTypeCedula.getValue(),
+                                            Integer.parseInt(fldCedula.getText()),
+                                            "",
+                                            fldEspecMd.getText(),
+                                            fldEmailMdFm.getText(),
+                                            Integer.parseInt(fldFrecueMdFm.getText()),
+                                            fldDiasVisitMd.getText(),
+                                            fldHorarioMd.getText(),
+                                            fldFormatoMd.getText());
+                    MenuPrincipalController.listMedicos.add(med);
+                    establecerClase(Medico.class, MenuPrincipalController.listMedicos);
+                    LogInController.usuario.registrarCliente(med);
+
+                } else if (clase.equals("Farmacias")) {
+                    Farmacia far = new Farmacia(fldNombre.getText(),
+                                                fldDirect.getText(),
+                                                chnumber.getValue() + fldNumber.getText(),
+                                                chTypeCedula.getValue(),
+                                                Integer.parseInt(fldCedula.getText()),
+                                                "",
+                                                fldPersonContacFmInst.getText(),
+                                                fldEmailMdFm.getText(),
+                                                Integer.parseInt(fldFrecueMdFm.getText()),
+                                                fldCadenaFm.getText(),
+                                                fldDrogeriaFm.getText());
+                    MenuPrincipalController.listFarmacias.add(far);
+                    establecerClase(Farmacia.class, MenuPrincipalController.listFarmacias);
+                    LogInController.usuario.registrarCliente(far);
+
+                } else if (clase.equals("Instituciones")) {
+                    Institucion inst = new Institucion(fldNombre.getText(),
+                                                       fldDirect.getText(),
+                                                       chnumber.getValue() + fldNumber.getText(),
+                                                       chTypeCedula.getValue(),
+                                                       Integer.parseInt(fldCedula.getText()),
+                                                       "",
+                                                       fldPersonContacFmInst.getText(),
+                                                       fldFacultadInst.getText());
+                    MenuPrincipalController.listInstituciones.add(inst);
+                    establecerClase(Institucion.class, MenuPrincipalController.listInstituciones);
+                    LogInController.usuario.registrarCliente(inst);
+                }
+                alerta2.setHeaderText("");
+                alerta2.setContentText("CLIENTE AGREGADO CON ÉXITO");
+                alerta2.setTitle("Cliente creado");
+
+                reinicarCamposCliente();
+                vistaCliente.setVisible(true);
+                crearCliente.setVisible(false);
+                tablaClientes.refresh();
+                alerta2.showAndWait();
+            } else {
+                alerta = new Alert(Alert.AlertType.INFORMATION);
+                alerta.setHeaderText("");
+                alerta.setContentText("Revise que no haya ningún campo con formato erróneo");
+                alerta.setTitle("Error");
+                alerta.showAndWait();
+            }
+        }
+    }
+    
+    public void reinicarCamposCliente() {
+        fldNombre.clear();
+        fldNumber.clear();
+        fldCedula.clear();
+        fldDirect.clear();
+        fldEspecMd.clear();
+        fldEmailMdFm.clear();
+        fldFrecueMdFm.clear();
+        fldDiasVisitMd.clear();
+        fldHorarioMd.clear();
+        fldFormatoMd.clear();
+        fldPersonContacFmInst.clear();
+        fldCadenaFm.clear();
+        fldDrogeriaFm.clear();
+        fldFacultadInst.clear();
+        chnumber.setValue("0212");
+        chTypeCedula.setValue('V');
     }
 
     @FXML
@@ -310,25 +468,26 @@ public class MenuClientesController {
 
     public void verInfoCliente(Cliente cliente) {
         if (cliente != null) {
-            cambio(true, false);
+            visibilityChange(true, false, false);
             establecerCliente(cliente);
             filtroEventos(FXCollections.observableArrayList(cliente.getEventoList()));
         } else {
             Alert alerta = new Alert(Alert.AlertType.INFORMATION);
             alerta.setTitle("Seleccione un cliente");
             alerta.setHeaderText("No ha seleccionado ningún cliente en la tabla");
-            alerta.setContentText("Haga click sobre un cliente para ver su información");
+            alerta.setContentText("Haga doble click sobre un cliente para ver su información");
             alerta.showAndWait();
         }
     }
 
-    // Método para cambiar los labels correspondientes al cliente
+
     @FXML
     void btVerCrearClicked(MouseEvent event) {
         vistaCliente.setVisible(false);
         crearCliente.setVisible(true);
     }
 
+    // Método para cambiar los labels correspondientes al cliente
     public void establecerCliente(Cliente cliente) {
         nomCliente.setText(cliente.getNombreCliente());
         lbCedula.setText(cliente.getTipoIdentidad()+" "+cliente.getDocIdentidad());
@@ -423,9 +582,10 @@ public class MenuClientesController {
         tbEventos.refresh();
     }
 
-    public void cambio(boolean a, boolean b) {
+    public void visibilityChange(boolean a, boolean b, boolean c) {
         infoCliente.setVisible(a);
         vistaCliente.setVisible(b);
+        crearCliente.setVisible(c);
     }
 
     public <T> void establecerClase(Class<T> clase, ObservableList<T> lista) {
@@ -433,12 +593,48 @@ public class MenuClientesController {
         TablasController.establecerTipoTabla((TableView<T>) tablaClientes, clase, lista);
         if (clase == Medico.class) {
             clientesLabel.setText("Médicos");
+
+            fldEspecMd.setVisible(true);
+            fldEmailMdFm.setVisible(true);
+            fldFrecueMdFm.setVisible(true);
+            fldDiasVisitMd.setVisible(true);
+            fldHorarioMd.setVisible(true);
+            fldFormatoMd.setVisible(true);
+
+            fldPersonContacFmInst.setVisible(false);
+            fldCadenaFm.setVisible(false);
+            fldDrogeriaFm.setVisible(false);
+            fldFacultadInst.setVisible(false);
         }
         else if (clase == Farmacia.class) {
             clientesLabel.setText("Farmacias");
+
+            fldPersonContacFmInst.setVisible(true);
+            fldEmailMdFm.setVisible(true);
+            fldFrecueMdFm.setVisible(true);
+            fldCadenaFm.setVisible(true);
+            fldDrogeriaFm.setVisible(true);
+
+            fldFormatoMd.setVisible(false);
+            fldEspecMd.setVisible(false);
+            fldDiasVisitMd.setVisible(false);
+            fldHorarioMd.setVisible(false);
+            fldFacultadInst.setVisible(false);
         }
         else if (clase == Institucion.class) {
             clientesLabel.setText("Instituciones");
+
+            fldPersonContacFmInst.setVisible(true);
+            fldFacultadInst.setVisible(true);
+
+            fldFormatoMd.setVisible(false);
+            fldEspecMd.setVisible(false);
+            fldEmailMdFm.setVisible(false);
+            fldFrecueMdFm.setVisible(false);
+            fldDiasVisitMd.setVisible(false);
+            fldHorarioMd.setVisible(false);
+            fldCadenaFm.setVisible(false);
+            fldDrogeriaFm.setVisible(false);
         }
     }
 
@@ -537,5 +733,13 @@ public class MenuClientesController {
         ObservableList<String> opciones = FXCollections.observableArrayList("Semana 1", "Semana 2", "Semana 3", "Semana 4", "Semana 5");
         cbSemana.setItems(opciones);
         cbSemana.setValue("Semana 1");
+
+        opciones = FXCollections.observableArrayList("0212", "0412", "0414", "0416", "0424", "0426");
+        chnumber.setItems(opciones);
+        chnumber.setValue("0212");
+
+        ObservableList<Character> opciones2 = FXCollections.observableArrayList('V', 'J');
+        chTypeCedula.setItems(opciones2);
+        chTypeCedula.setValue('V');
     }
 }
