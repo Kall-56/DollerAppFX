@@ -137,10 +137,10 @@ public class LogInController {
 //--------------------------Panel de crear usuario---------------------------------//
     @FXML
     void btCreateNewClicked(MouseEvent event) {
-        boolean nombreValido = ValidacionesController.validarCampos(fldUserNameCrt, "[a-zA-Z0-9]+",lbUserNameError);
+        boolean nombreValido = ValidacionesController.validarCampos(fldUserNameCrt, "[a-zA-Z0-9]+{1,15}",lbUserNameError);
         boolean emailValido = ValidacionesController.validarCampos(fldUserEmailCrt, "^[A-Za-z0-9+_.-]+@(.+)$",lbUserEmailError);
-        boolean territorioValido = ValidacionesController.validarCampos(fldUserZoneCrt, "[a-zA-Z ]+",lbUserZoneError);
-        boolean claveValido = ValidacionesController.validarCampos(fldUserPasswordCrt, "[a-zA-Z0-9_.-]+",lbUserPasswordError);
+        boolean territorioValido = ValidacionesController.validarCampos(fldUserZoneCrt, "[a-zA-Z ]+{1,30}",lbUserZoneError);
+        boolean claveValido = ValidacionesController.validarCampos(fldUserPasswordCrt, "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*_)(?!.* ).{8,16}$",lbUserPasswordError);
         boolean claveConfirm = ValidacionesController.validarContrasena(fldUserPasswordConfirm, fldUserPasswordCrt,lbUserPasswordError,lbUserPasswordConfirmError);
 
         boolean [] atributosValidos = {nombreValido, emailValido, territorioValido, claveValido, claveConfirm};

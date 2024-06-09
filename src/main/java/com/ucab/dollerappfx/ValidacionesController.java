@@ -44,14 +44,18 @@ public class ValidacionesController {
         }
     }
 
-    public static boolean validarCampos(TextArea campo, String regex) {
+    public static boolean validarCampos(TextArea campo, String regex, Label lbError) {
         String valor = campo.getText();
         if (valor == null || valor.trim().isEmpty()) {
+            campo.setStyle("-fx-border-color: red;"+"-fx-border-radius: 3;"+"-fx-focus-color: red;"+"-fx-shadow-highlight-color: red;");
             return false;
         } else if (!valor.matches(regex)) {
-            campo.setStyle("-fx-text-fill: RED");
+            campo.setStyle("-fx-border-color: red;"+"-fx-border-radius: 3;"+"-fx-focus-color: red;"+"-fx-shadow-highlight-color: red;");
+            lbError.setVisible(true);
             return false;
         } else {
+            campo.setStyle("-fx-border-color: null");
+            lbError.setVisible(false);
             return true;
         }
     }

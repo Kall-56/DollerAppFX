@@ -111,7 +111,7 @@ public class MenuClientesController {
     @FXML
     private Label lbTituloEventoError;
     @FXML
-    private Label lbDescipcionError;
+    private Label lbDescripcionError;
     @FXML
     private DatePicker fecha;
     @FXML
@@ -135,40 +135,68 @@ public class MenuClientesController {
     @FXML
     private TextField fldNombre;
     @FXML
+    private Label lbNombreError;
+    @FXML
     private ChoiceBox<String> chnumber;
     @FXML
     private TextField fldNumber;
+    @FXML
+    private Label lbNumeroError;
     @FXML
     private ChoiceBox<Character> chTypeCedula;
     @FXML
     private TextField fldCedula;
     @FXML
+    private Label lbCedulaError;
+    @FXML
     private TextField fldDirect;
+    @FXML
+    private Label lbDireccionError;
 //-----------Medico---------------//
     @FXML
     private TextField fldEspecMd;
     @FXML
+    private Label lbEspecError;
+    @FXML
     private TextField fldDiasVisitMd;
+    @FXML
+    private Label lbDiasVisitError;
     @FXML
     private TextField fldHorarioMd;
     @FXML
+    private Label lbHorarioError;
+    @FXML
     private TextField fldFormatoMd;
+    @FXML
+    private Label lbFormatoError;
 //-------------------------------//
     @FXML
     private TextField fldEmailMdFm;
     @FXML
+    private Label lbEmailError;
+    @FXML
     private TextField fldFrecueMdFm;
+    @FXML
+    private Label lbFrecueError;
 //-----------Farmacia------------//
     @FXML
     private TextField fldCadenaFm;
     @FXML
+    private Label lbCadenaError;
+    @FXML
     private TextField fldDrogeriaFm;
+    @FXML
+    private Label lbDrogeriaError;
 //-------------------------------//
     @FXML
     private TextField fldPersonContacFmInst;
+    @FXML
+    private Label lbPersonContacError;
 //----------Institucion----------//
     @FXML
     private TextField fldFacultadInst;
+    @FXML
+    private Label lbFacultadError;
 
 //------------------------Propiedades de Cliente------------------------------//
     private final DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -465,8 +493,8 @@ public class MenuClientesController {
     @FXML
     void btCrearNuevoPressed(MouseEvent event) {
         Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-        boolean titulo = ValidacionesController.validarCampos(tfTituloEvento, "^.{1,30}$", lbCrearNuevo);
-        boolean descripcion = ValidacionesController.validarCampos(taDescripcion, "^[\\s\\S]{0,100}$");
+        boolean titulo = ValidacionesController.validarCampos(tfTituloEvento, "^.{1,30}$", lbTituloEventoError);
+        boolean descripcion = ValidacionesController.validarCampos(taDescripcion, "^[\\s\\S]{0,100}$",lbDescripcionError);
         LocalDate date = fecha.getValue();
         
         if (titulo && descripcion && (date != null)) {
@@ -538,19 +566,47 @@ public class MenuClientesController {
 //---------------------------Panel de Crear Cliente----------------------------------------//
     public void reinicarCamposCliente() {
         fldNombre.clear();
+        fldNombre.setStyle("");
+        lbNombreError.setVisible(false);
         fldNumber.clear();
+        fldNumber.setStyle("");
+        lbNumeroError.setVisible(false);
         fldCedula.clear();
+        fldCedula.setStyle("");
+        lbCedulaError.setVisible(false);
         fldDirect.clear();
+        fldDirect.setStyle("");
+        lbDireccionError.setVisible(false);
         fldEspecMd.clear();
+        fldEspecMd.setStyle("");
+        lbEspecError.setVisible(false);
         fldEmailMdFm.clear();
+        fldEmailMdFm.setStyle("");
+        lbEmailError.setVisible(false);
         fldFrecueMdFm.clear();
+        fldFrecueMdFm.setStyle("");
+        lbFrecueError.setVisible(false);
         fldDiasVisitMd.clear();
+        fldDiasVisitMd.setStyle("");
+        lbDiasVisitError.setVisible(false);
         fldHorarioMd.clear();
+        fldHorarioMd.setStyle("");
+        lbHorarioError.setVisible(false);
         fldFormatoMd.clear();
+        fldFormatoMd.setStyle("");
+        lbFormatoError.setVisible(false);
         fldPersonContacFmInst.clear();
+        fldPersonContacFmInst.setStyle("");
+        lbPersonContacError.setVisible(false);
         fldCadenaFm.clear();
+        fldCadenaFm.setStyle("");
+        lbCadenaError.setVisible(false);
         fldDrogeriaFm.clear();
+        fldDrogeriaFm.setStyle("");
+        lbDrogeriaError.setVisible(false);
         fldFacultadInst.clear();
+        fldFacultadInst.setStyle("");
+        lbFacultadError.setVisible(false);
         chnumber.setValue("0212");
         chTypeCedula.setValue('V');
     }
@@ -571,34 +627,34 @@ public class MenuClientesController {
         if (result.isPresent() && result.get() == confirmButton) {
             String clase = lbClientesTitle.getText();
 
-            boolean nombreValido = ValidacionesController.validarCampos(fldNombre, "^[a-zA-Z ]{0,50}$", lbCrearNuevo);
-            boolean numValido = ValidacionesController.validarCampos(fldNumber, "^[0-9]{7}$", lbCrearNuevo);
-            boolean ciValido = ValidacionesController.validarCampos(fldCedula, "^[0-9]{6,9}$", lbCrearNuevo);
-            boolean direcValido = ValidacionesController.validarCampos(fldDirect, "^[a-zA-Z0-9#. ]{0,70}$", lbCrearNuevo);
+            boolean nombreValido = ValidacionesController.validarCampos(fldNombre, "^[a-zA-Z ]{1,50}$", lbNombreError);
+            boolean numValido = ValidacionesController.validarCampos(fldNumber, "^[0-9]{7}$", lbNumeroError);
+            boolean ciValido = ValidacionesController.validarCampos(fldCedula, "^[0-9]{6,9}$", lbCedulaError);
+            boolean direcValido = ValidacionesController.validarCampos(fldDirect, "^[a-zA-Z0-9#. ]{1,70}$", lbDireccionError);
 
             boolean[] atributosValidos = {nombreValido, numValido, ciValido, direcValido};
 
             if (clase.equals("Médicos")) {
-                boolean espValido = ValidacionesController.validarCampos(fldEspecMd, "^[a-zA-Z ]{0,20}$", lbCrearNuevo);
-                boolean emailValido = ValidacionesController.validarCampos(fldEmailMdFm, "^[A-Za-z0-9+_.-]+@(.+)$", lbCrearNuevo);
-                boolean frecValido = ValidacionesController.validarCampos(fldFrecueMdFm, "^[0-9]{1}$", lbCrearNuevo);
-                boolean diasValido = ValidacionesController.validarCampos(fldDiasVisitMd, "^[a-zA-Z- ]{0,50}$", lbCrearNuevo);
-                boolean horarioValido = ValidacionesController.validarCampos(fldHorarioMd, "^[0-9- ]{0,10}$", lbCrearNuevo);
-                boolean formatoValido = ValidacionesController.validarCampos(fldFormatoMd, "^[a-zA-Z ]{0,20}$", lbCrearNuevo);
+                boolean espValido = ValidacionesController.validarCampos(fldEspecMd, "^[a-zA-Z ]{1,20}$", lbEspecError);
+                boolean emailValido = ValidacionesController.validarCampos(fldEmailMdFm, "^[A-Za-z0-9+_.-]+@(.+)$", lbEmailError);
+                boolean frecValido = ValidacionesController.validarCampos(fldFrecueMdFm, "^[0-9]{1}$", lbFrecueError);
+                boolean diasValido = ValidacionesController.validarCampos(fldDiasVisitMd, "^[a-zA-Z- ]{1,50}$", lbDiasVisitError);
+                boolean horarioValido = ValidacionesController.validarCampos(fldHorarioMd, "^[0-9- ]{1,10}$", lbHorarioError);
+                boolean formatoValido = ValidacionesController.validarCampos(fldFormatoMd, "^[a-zA-Z ]{1,20}$", lbFormatoError);
 
                 atributosValidos = new boolean[] {nombreValido, numValido, ciValido, direcValido, espValido, emailValido, frecValido, diasValido, horarioValido, formatoValido};
 
             } else if (clase.equals("Farmacias")) {
-                boolean perValido = ValidacionesController.validarCampos(fldPersonContacFmInst, "^[a-zA-Z ]{0,20}$", lbCrearNuevo);
-                boolean emailValido = ValidacionesController.validarCampos(fldEmailMdFm, "^[A-Za-z0-9+_.-]+@(.+)$", lbCrearNuevo);
-                boolean frecValido = ValidacionesController.validarCampos(fldFrecueMdFm, "^[0-9]{1}$", lbCrearNuevo);
-                boolean cadValido = ValidacionesController.validarCampos(fldCadenaFm, "^[a-zA-Z ]{0,20}$", lbCrearNuevo);
-                boolean drogValido = ValidacionesController.validarCampos(fldDrogeriaFm, "^[a-zA-Z ]{0,20}$", lbCrearNuevo);
+                boolean perValido = ValidacionesController.validarCampos(fldPersonContacFmInst, "^[a-zA-Z ]{1,20}$", lbPersonContacError);
+                boolean emailValido = ValidacionesController.validarCampos(fldEmailMdFm, "^[A-Za-z0-9+_.-]+@(.+)$", lbEmailError);
+                boolean frecValido = ValidacionesController.validarCampos(fldFrecueMdFm, "^[0-9]{1}$", lbFrecueError);
+                boolean cadValido = ValidacionesController.validarCampos(fldCadenaFm, "^[a-zA-Z ]{1,20}$", lbCadenaError);
+                boolean drogValido = ValidacionesController.validarCampos(fldDrogeriaFm, "^[a-zA-Z ]{1,20}$", lbDrogeriaError);
 
                 atributosValidos = new boolean[] {nombreValido, numValido, ciValido, direcValido, perValido, emailValido, frecValido, cadValido, drogValido};
             } else if (clase.equals("Instituciones")) {
-                boolean perValido = ValidacionesController.validarCampos(fldPersonContacFmInst, "^[a-zA-Z ]{0,20}$", lbCrearNuevo);
-                boolean facValido = ValidacionesController.validarCampos(fldFacultadInst, "^[a-zA-Z ]{0,30}$", lbCrearNuevo);
+                boolean perValido = ValidacionesController.validarCampos(fldPersonContacFmInst, "^[a-zA-Z ]{1,20}$", lbPersonContacError);
+                boolean facValido = ValidacionesController.validarCampos(fldFacultadInst, "^[a-zA-Z ]{1,30}$", lbFacultadError);
 
                 atributosValidos = new boolean[] {nombreValido, numValido, ciValido, direcValido, perValido, facValido};
             }
@@ -607,7 +663,6 @@ public class MenuClientesController {
             for (boolean atributo: atributosValidos) {
                 if (!atributo) {
                     valido = false;
-                    break; // Tal vez haya que quitarlo
                 }
             }
             if (valido) {
@@ -717,7 +772,8 @@ public class MenuClientesController {
         ObservableList<Character> opciones2 = FXCollections.observableArrayList('V', 'J');
         chTypeCedula.setItems(opciones2);
         chTypeCedula.setValue('V');
-
+        
+        //----------------------------------------------------------------------------//
         taObservaciones.textProperty().addListener(((observable, oldValue, newValue) -> {
             clienteActual.setDescripcion(newValue);
         }));
@@ -731,6 +787,78 @@ public class MenuClientesController {
             } else {
                 tablaClientes.refresh();
                 tablaClientes.getSelectionModel().clearSelection();
+            }
+        });
+        
+        //----------------------------------------------------------------------------//
+        fldNombre.focusedProperty().addListener((observable, oldValue, newValue) ->{
+            if (!newValue) {
+                ValidacionesController.validarCampos(fldNombre, "^[a-zA-Z ]{0,50}$", lbNombreError);
+            }
+        });
+        fldNumber.focusedProperty().addListener((observable, oldValue, newValue) ->{
+            if (!newValue) {
+                ValidacionesController.validarCampos(fldNumber, "^[0-9]{7}$", lbNumeroError);
+            }
+        });
+        fldCedula.focusedProperty().addListener((observable, oldValue, newValue) ->{
+            if (!newValue) {
+                ValidacionesController.validarCampos(fldCedula, "^[0-9]{6,9}$", lbCedulaError);
+            }
+        });
+        fldDirect.focusedProperty().addListener((observable, oldValue, newValue) ->{
+            if (!newValue) {
+                ValidacionesController.validarCampos(fldDirect, "^[a-zA-Z0-9#. ]{0,70}$", lbDireccionError);
+            }
+        });
+        fldEspecMd.focusedProperty().addListener((observable, oldValue, newValue) ->{
+            if (!newValue) {
+                ValidacionesController.validarCampos(fldEspecMd, "^[a-zA-Z ]{0,20}$", lbEspecError);
+            }
+        });
+        fldEmailMdFm.focusedProperty().addListener((observable, oldValue, newValue) ->{
+            if (!newValue) {
+                ValidacionesController.validarCampos(fldEmailMdFm, "^[A-Za-z0-9+_.-]+@(.+)$", lbEmailError);
+            }
+        });
+        fldFrecueMdFm.focusedProperty().addListener((observable, oldValue, newValue) ->{
+            if (!newValue) {
+                ValidacionesController.validarCampos(fldFrecueMdFm, "^[0-9]{1}$", lbFrecueError);
+            }
+        });
+        fldDiasVisitMd.focusedProperty().addListener((observable, oldValue, newValue) ->{
+            if (!newValue) {
+                ValidacionesController.validarCampos(fldDiasVisitMd, "^[a-zA-Z- ]{0,50}$", lbDiasVisitError);
+            }
+        });
+        fldHorarioMd.focusedProperty().addListener((observable, oldValue, newValue) ->{
+            if (!newValue) {
+                ValidacionesController.validarCampos(fldHorarioMd, "^[0-9- ]{0,10}$", lbHorarioError);
+            }
+        });
+        fldFormatoMd.focusedProperty().addListener((observable, oldValue, newValue) ->{
+            if (!newValue) {
+                ValidacionesController.validarCampos(fldFormatoMd, "^[a-zA-Z ]{0,20}$", lbFormatoError);
+            }
+        });
+        fldCadenaFm.focusedProperty().addListener((observable, oldValue, newValue) ->{
+            if (!newValue) {
+                ValidacionesController.validarCampos(fldCadenaFm, "^[a-zA-Z ]{0,20}$", lbCadenaError);
+            }
+        });
+        fldDrogeriaFm.focusedProperty().addListener((observable, oldValue, newValue) ->{
+            if (!newValue) {
+                ValidacionesController.validarCampos(fldDrogeriaFm, "^[a-zA-Z ]{0,20}$", lbDrogeriaError);
+            }
+        });
+        fldPersonContacFmInst.focusedProperty().addListener((observable, oldValue, newValue) ->{
+            if (!newValue) {
+                ValidacionesController.validarCampos(fldPersonContacFmInst, "^[a-zA-Z ]{0,20}$", lbPersonContacError);
+            }
+        });
+        fldFacultadInst.focusedProperty().addListener((observable, oldValue, newValue) ->{
+            if (!newValue) {
+                ValidacionesController.validarCampos(fldFacultadInst, "^[a-zA-Z ]{0,30}$", lbFacultadError);
             }
         });
     }

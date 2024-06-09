@@ -1,8 +1,5 @@
 package com.ucab.dollerappfx;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import Classes.ATM;
 import Classes.Cliente;
 import Classes.Evento;
