@@ -43,7 +43,7 @@
                         <Font name="Roboto Bold" size="32.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="fldUserName" focusTraversable="false" layoutX="271.0" layoutY="207.0" prefHeight="23.0" prefWidth="460.0" promptText="Nombre de Usuario">
+                  <TextField fx:id="fldUserName" focusTraversable="false" layoutX="271.0" layoutY="208.0" prefHeight="28.0" prefWidth="460.0" promptText="Nombre de Usuario">
                      <font>
                         <Font name="Roboto Light" size="14.0" />
                      </font>
@@ -51,13 +51,13 @@
                         <Cursor fx:constant="TEXT" />
                      </cursor>
                   </TextField>
-                  <PasswordField fx:id="fldUserPassword" focusTraversable="false" layoutX="271.0" layoutY="273.0" prefHeight="25.0" prefWidth="460.0" promptText="Contraseña">
-                     <font>
-                        <Font name="Roboto" size="14.0" />
-                     </font>
+                  <PasswordField fx:id="fldUserPassword" focusTraversable="false" layoutX="271.0" layoutY="269.0" prefHeight="28.0" prefWidth="460.0" promptText="Contraseña">
                      <cursor>
                         <Cursor fx:constant="TEXT" />
                      </cursor>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
                   </PasswordField>
                   <Label fx:id="fldPasswordForgot" layoutX="279.0" layoutY="310.0" onMouseEntered="#fldForgotEntered" onMouseExited="#fldForgotExited" onMousePressed="#fldForgotPressed" text="¿Has olvidado tu contraseña?" textFill="#ff7b52">
                      <font>
@@ -116,6 +116,11 @@
                         <Cursor fx:constant="TEXT" />
                      </cursor>
                   </TextField>
+                  <Label fx:id="lbUserNameError" layoutX="199.0" layoutY="210.0" text="*Error" textFill="RED" visible="false">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Label>
                   <TextField fx:id="fldUserZoneCrt" focusTraversable="false" layoutX="511.0" layoutY="225.0" prefHeight="23.0" prefWidth="300.0" promptText="Zona o Territorio">
                      <font>
                         <Font name="Roboto Light" size="14.0" />
@@ -124,6 +129,11 @@
                         <Cursor fx:constant="TEXT" />
                      </cursor>
                   </TextField>
+                  <Label fx:id="lbUserZoneError" layoutX="519.0" layoutY="210.0" text="*Error" textFill="RED" visible="false">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Label>
                   <TextField fx:id="fldUserEmailCrt" focusTraversable="false" layoutX="250.0" layoutY="275.0" prefHeight="23.0" prefWidth="500.0" promptText="Email@example.com">
                      <font>
                         <Font name="Roboto Light" size="14.0" />
@@ -132,6 +142,11 @@
                         <Cursor fx:constant="TEXT" />
                      </cursor>
                   </TextField>
+                  <Label fx:id="lbUserEmailError" layoutX="258.0" layoutY="260.0" text="*Error" textFill="RED" visible="false">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Label>
                   <PasswordField fx:id="fldUserPasswordCrt" focusTraversable="false" layoutX="189.0" layoutY="325.0" prefHeight="25.0" prefWidth="300.0" promptText="Contraseña">
                      <font>
                         <Font name="Roboto" size="14.0" />
@@ -140,6 +155,11 @@
                         <Cursor fx:constant="TEXT" />
                      </cursor>
                   </PasswordField>
+                  <Label fx:id="lbUserPasswordError" layoutX="199.0" layoutY="310.0" text="*Error" textFill="RED" visible="false">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Label>
                   <PasswordField fx:id="fldUserPasswordConfirm" focusTraversable="false" layoutX="511.0" layoutY="325.0" prefHeight="25.0" prefWidth="300.0" promptText="Confirmación de contraseña">
                      <font>
                         <Font name="Roboto" size="14.0" />
@@ -148,6 +168,11 @@
                         <Cursor fx:constant="TEXT" />
                      </cursor>
                   </PasswordField>
+                  <Label fx:id="lbUserPasswordConfirmError" layoutX="519.0" layoutY="310.0" text="*Error" textFill="RED" visible="false">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Label>
                   <Pane fx:id="btBack" layoutX="340.0" layoutY="388.0" onMouseClicked="#btBackClicked" onMouseEntered="#btBackEntered" onMouseExited="#btBackExited" prefHeight="39.0" prefWidth="150.0" style="-fx-border-color: #6b6b6b; -fx-border-radius: 5;">
                      <children>
                         <Label fx:id="lbVolver" layoutX="51.0" layoutY="10.0" text="Volver" textFill="#6b6b6b">

@@ -221,7 +221,7 @@ public class MenuClientesController {
     @FXML
     void btCrearNuevoPressed(MouseEvent event) {
         Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-        boolean titulo = ValidacionesController.validarCampos(tfTituloEvento, "^.{1,30}$");
+        boolean titulo = ValidacionesController.validarCampos(tfTituloEvento, "^.{1,30}$", lbCrearNuevo);
         boolean descripcion = ValidacionesController.validarCampos(taDescripcion, "^[\\s\\S]{0,100}$");
         LocalDate date = fecha.getValue();
         if (titulo && descripcion && (date != null)) {
