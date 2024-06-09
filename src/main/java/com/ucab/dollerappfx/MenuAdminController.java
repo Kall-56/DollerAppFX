@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import Classes.ATM;
 import Classes.Cliente;
 import Classes.Evento;
+import java.io.IOException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
