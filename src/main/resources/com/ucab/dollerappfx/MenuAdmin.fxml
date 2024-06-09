@@ -12,8 +12,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="com.ucab.dollerappfx.MenuAdminController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ucab.dollerappfx.MenuAdminController">
    <children>
       <Rectangle height="800.0" opacity="0.65" strokeType="INSIDE" strokeWidth="0.0" width="1280.0">
          <fill>
@@ -37,19 +36,19 @@
          <children>
             <Pane opacity="0.9" prefHeight="750.0" prefWidth="1160.0" style="-fx-background-color: white;">
                <children>
-                  <TableView layoutX="14.0" layoutY="77.0" prefHeight="338.0" prefWidth="531.0">
+                  <TableView fx:id="tbATMs" layoutX="14.0" layoutY="77.0" prefHeight="338.0" prefWidth="531.0">
                     <columns>
                       <TableColumn prefWidth="75.0" text="C1" />
                       <TableColumn prefWidth="75.0" text="C2" />
                     </columns>
                   </TableView>
-                  <TableView layoutX="580.0" layoutY="77.0" prefHeight="338.0" prefWidth="562.0">
+                  <TableView fx:id="tbCLIENTEs" layoutX="580.0" layoutY="77.0" prefHeight="338.0" prefWidth="562.0">
                     <columns>
                       <TableColumn prefWidth="75.0" text="C1" />
                       <TableColumn prefWidth="75.0" text="C2" />
                     </columns>
                   </TableView>
-                  <TableView layoutX="14.0" layoutY="491.0" prefHeight="236.0" prefWidth="1128.0">
+                  <TableView fx:id="tbEVENTOs" layoutX="14.0" layoutY="491.0" prefHeight="236.0" prefWidth="1128.0">
                     <columns>
                       <TableColumn prefWidth="75.0" text="C1" />
                       <TableColumn prefWidth="75.0" text="C2" />

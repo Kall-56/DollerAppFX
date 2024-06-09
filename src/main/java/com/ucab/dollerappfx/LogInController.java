@@ -68,14 +68,19 @@ public class LogInController {
 //--------------------------Propiedades Usuario-------------------------------//
     private ArrayList<ATM> listaAtm;
     public static ATM usuario; // Al cargar el ATM, la aplicacion puede usarla siempre hasta que se cambie a otro
-    
+    public static Administrador admin;
 //--------------------------Metodos del fxml----------------------------------//
 //---------------------------Panel de LogIn----------------------------------------//
     
     @FXML
     void btLogInClicked(MouseEvent event) throws IOException {
+          if (fldUserName.getText().equals(admin.getNomUsuario())) {
+              App.setRoot("MenuAdmin");
+          } else {
+              App.setRoot("MenuPrincipal");
+          }
 //        if (fldUserName.getText().equals(usuario.getNomUsuario()) && fldUserPassword.getText().equals(usuario.getClave())) {
-            App.setRoot("MenuPrincipal");
+
 //        }
 //        else {
 //            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
@@ -146,11 +151,11 @@ public class LogInController {
             }
         }
         if (valido && (fldUserPasswordCrt.getText().equals(fldUserPasswordConfirm.getText()))) {
-            listaAtm.add(new ATM(fldUserNameCrt.getText(),
-                                 fldUserZoneCrt.getText(),
-                                 fldUserEmailCrt.getText(),
-                                 fldUserPasswordCrt.getText(),
-                                 new Administrador()));
+            admin.registrarATM(new ATM(fldUserNameCrt.getText(),
+                                       fldUserPasswordCrt.getText(),
+                                       fldUserZoneCrt.getText(),
+                                       fldUserEmailCrt.getText(),
+                                       admin));
         } else {
             Alert alerta = new Alert(Alert.AlertType.INFORMATION);
             alerta.setHeaderText("");
@@ -188,9 +193,12 @@ public class LogInController {
 //----------------------------------------------------------------------------//
 
     public void initialize() {
-        usuario = new ATM();
+        admin = new Administrador("LiaUCAB", "proyecto1234", "Caracas", "lia@gmail.com");
+        usuario = new ATM("Sandro", "1234", "Caracas", "sandro@gmail.com", admin);
         listaAtm = new ArrayList<>();
         listaAtm.add(usuario);
+
+        admin.setAtmList(listaAtm);
 
         for (Evento evento: App.listEventos) {
             usuario.registrarEvento(evento);
