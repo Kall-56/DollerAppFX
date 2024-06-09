@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -32,6 +33,9 @@ public class MenuPrincipalController {
 
     @FXML
     private Pane btFarmaS;
+    
+    @FXML
+    private ImageView iconFarmaS;
 
     @FXML
     private Pane btFarma;
@@ -41,18 +45,24 @@ public class MenuPrincipalController {
 
     @FXML
     private Pane btInstS;
+    
+    @FXML
+    private ImageView iconInstS;
 
     @FXML
     private ImageView btLogOut;
 
     @FXML
-    private Pane btLogo;
+    private ImageView btLogo;
 
     @FXML
     private Pane btMedic;
 
     @FXML
     private Pane btMedicS;
+    
+    @FXML
+    private ImageView iconMedicS;
 
     @FXML
     private StackPane pnContenido;
@@ -83,6 +93,8 @@ public class MenuPrincipalController {
         bgCircleMedicS.setOpacity(lowOpacity);
         bgCircleInstS.setOpacity(lowOpacity);
         bgCircleFarmaS.setOpacity(lowOpacity);
+        iconMedicS.setImage(new Image("Assets/iconMd.png"));
+        iconInstS.setImage(new Image("Assets/iconInst.png"));
 
         ObservableList<Cliente> clientes = FXCollections.observableArrayList();
         clientes.addAll(FXCollections.observableArrayList(App.usuario.getMedicoList()));
@@ -100,6 +112,8 @@ public class MenuPrincipalController {
         visibilityChange(true, false);
         controllerClientes.visibilityChange(false, true, false);
         bgCircleMedicS.setOpacity(maxOpacity);
+        iconMedicS.setImage(new Image("Assets/iconMdSelect.png"));
+        iconInstS.setImage(new Image("Assets/iconInst.png"));
         bgCircleFarmaS.setOpacity(lowOpacity);
         bgCircleInstS.setOpacity(lowOpacity);
 
@@ -118,6 +132,18 @@ public class MenuPrincipalController {
     void btMedicSEntered(MouseEvent event) {
         bgCircleMedicS.setOpacity(maxOpacity);
     }
+    
+    @FXML
+    void btMedicEntered(MouseEvent event) {
+        btMedic.setLayoutY(btMedic.getLayoutY()-20);
+        btMedic.setPrefHeight(btMedic.getPrefHeight()+21);
+    }
+
+    @FXML
+    void btMedicExited(MouseEvent event) {
+        btMedic.setLayoutY(btMedic.getLayoutY()+20);
+        btMedic.setPrefHeight(btMedic.getPrefHeight()-21);
+    }
 
     @FXML
     void btFarmaPressed(MouseEvent event) {
@@ -126,6 +152,8 @@ public class MenuPrincipalController {
         bgCircleFarmaS.setOpacity(maxOpacity);
         bgCircleInstS.setOpacity(lowOpacity);
         bgCircleMedicS.setOpacity(lowOpacity);
+        iconMedicS.setImage(new Image("Assets/iconMd.png"));
+        iconInstS.setImage(new Image("Assets/iconInst.png"));
 
         controllerClientes.establecerClase(Farmacia.class, FXCollections.observableArrayList(App.usuario.getFarmaciaList()));
         controllerClientes.filtroClientes(FXCollections.observableArrayList(App.usuario.getFarmaciaList()));
@@ -142,6 +170,18 @@ public class MenuPrincipalController {
             bgCircleFarmaS.setOpacity(lowOpacity);
         }
     }
+    
+    @FXML
+    void btFarmaEntered(MouseEvent event) {
+        btFarma.setLayoutY(btFarma.getLayoutY()-20);
+        btFarma.setPrefHeight(btFarma.getPrefHeight()+21);
+    }
+
+    @FXML
+    void btFarmaExited(MouseEvent event) {
+        btFarma.setLayoutY(btFarma.getLayoutY()+20);
+        btFarma.setPrefHeight(btFarma.getPrefHeight()-21);
+    }
 
     @FXML
     void btInstPressed(MouseEvent event) {
@@ -150,6 +190,8 @@ public class MenuPrincipalController {
         bgCircleInstS.setOpacity(maxOpacity);
         bgCircleFarmaS.setOpacity(lowOpacity);
         bgCircleMedicS.setOpacity(lowOpacity);
+        iconMedicS.setImage(new Image("Assets/iconMd.png"));
+        iconInstS.setImage(new Image("Assets/iconInstSelect.png"));
 
         controllerClientes.establecerClase(Institucion.class, FXCollections.observableArrayList(App.usuario.getInstitucionList()));
         controllerClientes.filtroClientes(FXCollections.observableArrayList(App.usuario.getInstitucionList()));
@@ -166,11 +208,24 @@ public class MenuPrincipalController {
             bgCircleInstS.setOpacity(lowOpacity);
         }
     }
+    
+    @FXML
+    void btInstEntered(MouseEvent event) {
+        btInst.setLayoutY(btInst.getLayoutY()-20);
+        btInst.setPrefHeight(btInst.getPrefHeight()+21);
+    }
+
+    @FXML
+    void btInstExited(MouseEvent event) {
+        btInst.setLayoutY(btInst.getLayoutY()+20);
+        btInst.setPrefHeight(btInst.getPrefHeight()-21);
+    }
 
     @FXML
     void btLogOutClicked(MouseEvent event) throws IOException {
         Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
-        alerta.setTitle("Seguro que quiere cerrar sesion?");
+        alerta.setTitle("Cerrar Sesion");
+        alerta.setHeaderText("¿Cerrar Sesión?");
         ButtonType confirmButton = ButtonType.OK;
         ButtonType cancelButton = ButtonType.CANCEL;
 

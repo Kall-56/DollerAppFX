@@ -85,9 +85,9 @@ public class App extends Application {
         }
 
         scene = new Scene(loadFXML("LogIn"), 1280, 800);
-        stage.setTitle("Dollder App");
+        stage.setTitle("Dollder App FX");
         try {
-            stage.getIcons().add(new Image("Assets/logo_Dollder.png"));
+            stage.getIcons().add(new Image("Assets/LogoDollder.png"));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

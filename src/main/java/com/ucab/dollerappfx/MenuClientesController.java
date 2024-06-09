@@ -14,11 +14,15 @@ import javafx.scene.layout.Pane;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
+import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 
 public class MenuClientesController {
 //------------------------------Panel General---------------------------------//
     @FXML
     private Label lbClientesTitle;
+    @FXML
+    private ImageView iconCliente;
     @FXML
     private ImageView btAtras;
     
@@ -31,6 +35,8 @@ public class MenuClientesController {
     private TableView<Cliente> tablaClientes;
     @FXML
     private Pane btVerCrear;
+    @FXML
+    private Label lbVerCrear;
     
 //------------------------Panel de Info Cliente-------------------------------//
     @FXML
@@ -100,7 +106,11 @@ public class MenuClientesController {
     @FXML
     private Pane btCrear;
     @FXML
+    private Label lbCrear;
+    @FXML
     private Pane btModificar;
+    @FXML
+    private Label lbModificar;
     
     
 //---------------------Panel Crear Eventos-------------------------//
@@ -124,6 +134,8 @@ public class MenuClientesController {
     private Label lbCrearNuevo;
     @FXML
     private Pane btVolver;
+    @FXML
+    private Label lbVolver;
 
 //------------------------Panel de Crear Cliente------------------------------//
     @FXML
@@ -131,7 +143,11 @@ public class MenuClientesController {
     @FXML
     private Pane btCrearCliente;
     @FXML
+    private Label lbCrearCliente;
+    @FXML
     private Pane btVolverClientes;
+    @FXML
+    private Label lbVolverClientes;
     @FXML
     private TextField fldNombre;
     @FXML
@@ -253,6 +269,7 @@ public class MenuClientesController {
         TablasController.establecerTipoTabla((TableView<T>) tablaClientes, clase, lista);
         if (clase == Medico.class) {
             lbClientesTitle.setText("Médicos");
+            iconCliente.setImage(new Image("Assets/iconMdSelectB.png"));
 
             fldEspecMd.setVisible(true);
             fldEmailMdFm.setVisible(true);
@@ -268,6 +285,7 @@ public class MenuClientesController {
         }
         else if (clase == Farmacia.class) {
             lbClientesTitle.setText("Farmacias");
+            iconCliente.setImage(new Image("Assets/iconFarmaB.png"));
 
             fldPersonContacFmInst.setVisible(true);
             fldEmailMdFm.setVisible(true);
@@ -283,6 +301,7 @@ public class MenuClientesController {
         }
         else if (clase == Institucion.class) {
             lbClientesTitle.setText("Instituciones");
+            iconCliente.setImage(new Image("Assets/iconInstSelectB.png"));
 
             fldPersonContacFmInst.setVisible(true);
             fldFacultadInst.setVisible(true);
@@ -348,6 +367,18 @@ public class MenuClientesController {
     void btVerCrearClicked(MouseEvent event) {
         vistaCliente.setVisible(false);
         crearCliente.setVisible(true);
+    }
+    
+    @FXML
+    void btVerCrearEntered(MouseEvent event) {
+        btVerCrear.setStyle("-fx-background-color: #FF7B52;"+"-fx-border-color: white;"+"-fx-background-radius: 7;"+"-fx-border-radius: 3;");
+        lbVerCrear.setTextFill(Color.WHITE);
+    }
+    
+    @FXML
+    void btVerCrearExited(MouseEvent event) {
+        btVerCrear.setStyle("-fx-background-color: white;"+"-fx-border-color: #FF7B52;"+"-fx-background-radius: 7;"+"-fx-border-radius: 3;");
+        lbVerCrear.setTextFill(Color.web("#FF7B52"));
     }
     
 //---------------------------Panel de Info Cliente----------------------------------------//
@@ -477,7 +508,11 @@ public class MenuClientesController {
     
     public void reiniciarCamposEvento() {
         tfTituloEvento.clear();
+        tfTituloEvento.setStyle("");
+        lbTituloEventoError.setVisible(false);
         taDescripcion.clear();
+        taDescripcion.setStyle("");
+        lbDescripcionError.setVisible(false);
         fecha.getEditor().clear();
         cbSemana.setValue("Semana 1");
     }
@@ -488,6 +523,18 @@ public class MenuClientesController {
         crearEvento.setVisible(true);
 
         lbCrearNuevo.setText("Crear");
+    }
+    
+    @FXML
+    void btCrearEntered(MouseEvent event) {
+        btCrear.setStyle("-fx-background-color: #FF7B52;"+"-fx-border-color: white;"+"-fx-background-radius: 7;"+"-fx-border-radius: 3;");
+        lbCrear.setTextFill(Color.WHITE);
+    }
+    
+    @FXML
+    void btCrearExited(MouseEvent event) {
+        btCrear.setStyle("-fx-background-color: white;"+"-fx-border-color: #FF7B52;"+"-fx-background-radius: 7;"+"-fx-border-radius: 3;");
+        lbCrear.setTextFill(Color.web("#FF7B52"));
     }
     
     @FXML
@@ -536,6 +583,18 @@ public class MenuClientesController {
     }
     
     @FXML
+    void btCrearNuevoEntered(MouseEvent event) {
+        btCrearNuevo.setStyle("-fx-background-color: #FF7B52;"+"-fx-border-color: white;"+"-fx-background-radius: 7;"+"-fx-border-radius: 3;");
+        lbCrearNuevo.setTextFill(Color.WHITE);
+    }
+    
+    @FXML
+    void btCrearNuevoExited(MouseEvent event) {
+        btCrearNuevo.setStyle("-fx-background-color: white;"+"-fx-border-color: #FF7B52;"+"-fx-background-radius: 7;"+"-fx-border-radius: 3;");
+        lbCrearNuevo.setTextFill(Color.web("#FF7B52"));
+    }
+    
+    @FXML
     void btModificarPressed(MouseEvent event) {
         eventoActual = tbEventos.getSelectionModel().getSelectedItem();
         if (eventoActual != null) {
@@ -558,10 +617,34 @@ public class MenuClientesController {
     }
     
     @FXML
+    void btModificarEntered(MouseEvent event) {
+        btModificar.setStyle("-fx-background-color: #ffa24d;"+"-fx-border-color: white;"+"-fx-background-radius: 7;"+"-fx-border-radius: 3;");
+        lbModificar.setTextFill(Color.WHITE);
+    }
+    
+    @FXML
+    void btModificarExited(MouseEvent event) {
+        btModificar.setStyle("-fx-background-color: white;"+"-fx-border-color: orange;"+"-fx-background-radius: 7;"+"-fx-border-radius: 3;");
+        lbModificar.setTextFill(Color.web("#ffa24d"));
+    }
+    
+    @FXML
     void volverPressed(MouseEvent event) {
         verEventos.setVisible(true);
         crearEvento.setVisible(false);
         reiniciarCamposEvento();
+    }
+
+    @FXML
+    void btVolverEntered(MouseEvent event) {
+        btVolver.setStyle("-fx-background-color: #ffa24d;"+"-fx-border-color: white;"+"-fx-background-radius: 7;"+"-fx-border-radius: 3;");
+        lbVolver.setTextFill(Color.WHITE);
+    }
+    
+    @FXML
+    void btVolverExited(MouseEvent event) {
+        btVolver.setStyle("-fx-background-color: white;"+"-fx-border-color: orange;"+"-fx-background-radius: 7;"+"-fx-border-radius: 3;");
+        lbVolver.setTextFill(Color.web("#ffa24d"));
     }
 //---------------------------Panel de Crear Cliente----------------------------------------//
     public void reinicarCamposCliente() {
@@ -734,11 +817,35 @@ public class MenuClientesController {
     }
     
     @FXML
+    void btCrearClienteEntered(MouseEvent event) {
+        btCrearCliente.setStyle("-fx-background-color: #FF7B52;"+"-fx-border-color: white;"+"-fx-background-radius: 7;"+"-fx-border-radius: 3;");
+        lbCrearCliente.setTextFill(Color.WHITE);
+    }
+    
+    @FXML
+    void btCrearClienteExited(MouseEvent event) {
+        btCrearCliente.setStyle("-fx-background-color: white;"+"-fx-border-color: #FF7B52;"+"-fx-background-radius: 7;"+"-fx-border-radius: 3;");
+        lbCrearCliente.setTextFill(Color.web("#FF7B52"));
+    }
+    
+    @FXML
     void btVolverClientesPressed(MouseEvent event) {
         vistaCliente.setVisible(true);
         crearCliente.setVisible(false);
 
         reinicarCamposCliente();
+    }
+
+    @FXML
+    void btVolverClientesEntered(MouseEvent event) {
+        btVolverClientes.setStyle("-fx-background-color: #ffa24d;"+"-fx-border-color: white;"+"-fx-background-radius: 7;"+"-fx-border-radius: 3;");
+        lbVolverClientes.setTextFill(Color.WHITE);
+    }
+    
+    @FXML
+    void btVolverClientesExited(MouseEvent event) {
+        btVolverClientes.setStyle("-fx-background-color: white;"+"-fx-border-color: orange;"+"-fx-background-radius: 7;"+"-fx-border-radius: 3;");
+        lbVolverClientes.setTextFill(Color.web("#ffa24d"));
     }
 //----------------------------------------------------------------------------//
     public void initialize() {

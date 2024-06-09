@@ -24,7 +24,7 @@
             <Font name="Roboto Bold" size="36.0" />
          </font>
       </Label>
-      <ImageView fitHeight="44.0" fitWidth="51.0" layoutX="40.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="iconCliente" fitHeight="44.0" fitWidth="51.0" layoutX="40.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../Assets/iconInstSelectB.png" />
          </image></ImageView>
@@ -51,9 +51,9 @@
                       <TableColumn prefWidth="75.0" text="C2" />
                     </columns>
                   </TableView>
-                  <Pane fx:id="btVerCrear" layoutX="1047.0" layoutY="14.0" onMouseClicked="#btVerCrearClicked" prefHeight="30.0" prefWidth="95.0" style="-fx-border-color: #FF7B52; -fx-border-radius: 3;">
+                  <Pane fx:id="btVerCrear" layoutX="1047.0" layoutY="14.0" onMouseClicked="#btVerCrearClicked" onMouseEntered="#btVerCrearEntered" onMouseExited="#btVerCrearExited" prefHeight="30.0" prefWidth="95.0" style="-fx-border-color: #FF7B52; -fx-border-radius: 3;">
                      <children>
-                        <Label layoutX="25.0" layoutY="4.0" text="Crear" textFill="#ff7b52">
+                        <Label fx:id="lbVerCrear" layoutX="25.0" layoutY="4.0" text="Crear" textFill="#ff7b52">
                            <font>
                               <Font name="Roboto Bold" size="18.0" />
                            </font>
@@ -102,9 +102,9 @@
                                     <Cursor fx:constant="TEXT" />
                                  </cursor>
                               </TextArea>
-                              <Pane fx:id="btCrear" layoutX="724.0" layoutY="12.0" onMousePressed="#btCrearPressed" prefHeight="23.0" prefWidth="74.0" style="-fx-border-color: #FF7B52; -fx-border-radius: 3;">
+                              <Pane fx:id="btCrear" layoutX="724.0" layoutY="12.0" onMouseEntered="#btCrearEntered" onMouseExited="#btCrearExited" onMousePressed="#btCrearPressed" prefHeight="23.0" prefWidth="74.0" style="-fx-border-color: #FF7B52; -fx-border-radius: 3;">
                                  <children>
-                                    <Label layoutX="22.0" layoutY="4.0" text="Crear" textFill="#ff7b52">
+                                    <Label fx:id="lbCrear" layoutX="22.0" layoutY="4.0" text="Crear" textFill="#ff7b52">
                                        <font>
                                           <Font name="Roboto Bold" size="12.0" />
                                        </font>
@@ -114,9 +114,9 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </Pane>
-                              <Pane fx:id="btModificar" layoutX="806.0" layoutY="12.0" onMousePressed="#btModificarPressed" prefHeight="23.0" prefWidth="95.0" style="-fx-border-color: #ffb154; -fx-border-radius: 3;">
+                              <Pane fx:id="btModificar" layoutX="806.0" layoutY="12.0" onMouseEntered="#btModificarEntered" onMouseExited="#btModificarExited" onMousePressed="#btModificarPressed" prefHeight="23.0" prefWidth="95.0" style="-fx-border-color: #ffb154; -fx-border-radius: 3;">
                                  <children>
-                                    <Label layoutX="22.0" layoutY="4.0" text="Modificar" textFill="#ffb154">
+                                    <Label fx:id="lbModificar" layoutX="22.0" layoutY="4.0" text="Modificar" textFill="#ffb154">
                                        <font>
                                           <Font name="Roboto Bold" size="12.0" />
                                        </font>
@@ -148,9 +148,9 @@
                                     <Font name="Roboto Light" size="15.0" />
                                  </font>
                               </TextArea>
-                              <Pane fx:id="btCrearNuevo" layoutX="459.0" layoutY="441.0" onMousePressed="#btCrearNuevoPressed" prefHeight="30.0" prefWidth="150.0" style="-fx-border-color: #FF7B52; -fx-border-radius: 3;">
+                              <Pane fx:id="btCrearNuevo" layoutX="459.0" layoutY="441.0" onMouseEntered="#btCrearNuevoEntered" onMouseExited="#btCrearNuevoExited" onMousePressed="#btCrearNuevoPressed" prefHeight="30.0" prefWidth="150.0" style="-fx-border-color: #FF7B52; -fx-border-radius: 3;">
                                  <children>
-                                    <Label fx:id="lbCrearNuevo" alignment="CENTER" contentDisplay="CENTER" layoutX="57.0" layoutY="6.0" text="Crear" textFill="#ff7b52">
+                                    <Label fx:id="lbCrearNuevo" alignment="CENTER" contentDisplay="CENTER" layoutX="57.0" layoutY="5.0" text="Crear" textFill="#ff7b52">
                                        <font>
                                           <Font name="Roboto" size="15.0" />
                                        </font>
@@ -160,12 +160,12 @@
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                               </Pane>
-                              <Pane fx:id="btVolver" layoutX="281.0" layoutY="441.0" onMousePressed="#volverPressed" prefHeight="30.0" prefWidth="150.0" style="-fx-border-color: orange; -fx-border-radius: 3;">
+                              <Pane fx:id="btVolver" layoutX="281.0" layoutY="441.0" onMouseEntered="#btVolverEntered" onMouseExited="#btVolverExited" onMousePressed="#volverPressed" prefHeight="30.0" prefWidth="150.0" style="-fx-border-color: orange; -fx-border-radius: 3;">
                                  <cursor>
                                     <Cursor fx:constant="HAND" />
                                  </cursor>
                                  <children>
-                                    <Label layoutX="57.0" layoutY="6.0" text="Volver" textFill="#ff9b37">
+                                    <Label fx:id="lbVolver" layoutX="57.0" layoutY="6.0" text="Volver" textFill="#ff9b37">
                                        <font>
                                           <Font name="Roboto" size="15.0" />
                                        </font>
@@ -383,9 +383,9 @@
                         <Font name="Roboto Light" size="13.0" />
                      </font>
                   </TextField>
-                  <Pane fx:id="btCrearCliente" layoutX="592.0" layoutY="419.0" onMouseClicked="#btCrearClienteClicked" prefHeight="30.0" prefWidth="106.0" style="-fx-border-color: #FF7B52; -fx-border-radius: 3;">
+                  <Pane fx:id="btCrearCliente" layoutX="592.0" layoutY="419.0" onMouseClicked="#btCrearClienteClicked" onMouseEntered="#btCrearClienteEntered" onMouseExited="#btCrearClienteExited" prefHeight="30.0" prefWidth="106.0" style="-fx-border-color: #FF7B52; -fx-border-radius: 3;">
                      <children>
-                        <Label layoutX="31.0" layoutY="3.0" text="Crear" textFill="#ff7b52">
+                        <Label fx:id="lbCrearCliente" layoutX="31.0" layoutY="3.0" text="Crear" textFill="#ff7b52">
                            <font>
                               <Font name="Roboto" size="18.0" />
                            </font>
@@ -395,9 +395,9 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Pane>
-                  <Pane fx:id="btVolverClientes" layoutX="440.0" layoutY="419.0" onMousePressed="#btVolverClientesPressed" prefHeight="30.0" prefWidth="106.0" style="-fx-border-color: orange; -fx-border-radius: 3;">
+                  <Pane fx:id="btVolverClientes" layoutX="440.0" layoutY="419.0" onMouseEntered="#btVolverClientesEntered" onMouseExited="#btVolverClientesExited" onMousePressed="#btVolverClientesPressed" prefHeight="30.0" prefWidth="106.0" style="-fx-border-color: orange; -fx-border-radius: 3;">
                      <children>
-                        <Label layoutX="28.0" layoutY="3.0" text="Volver" textFill="#ffa24d">
+                        <Label fx:id="lbVolverClientes" layoutX="28.0" layoutY="3.0" text="Volver" textFill="#ffa24d">
                            <font>
                               <Font name="Roboto" size="18.0" />
                            </font>

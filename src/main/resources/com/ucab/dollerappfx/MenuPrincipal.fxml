@@ -39,18 +39,10 @@
       <Pane fx:id="pnSideBar" prefHeight="800.0" prefWidth="114.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#30281e" height="780.0" layoutX="11.0" layoutY="10.0" opacity="0.9" stroke="#5757570b" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" width="100.0" />
-            <Pane fx:id="btLogo" layoutX="20.0" layoutY="27.0" onMouseClicked="#btLogoClicked" prefHeight="44.0" prefWidth="71.0">
-               <children>
-                  <ImageView fitHeight="44.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true" />
-               </children>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Pane>
             <Pane fx:id="btMedicS" layoutX="31.0" layoutY="122.0" onMouseEntered="#btMedicSEntered" onMouseExited="#btMedicSExited" onMousePressed="#btMedicPressed" prefHeight="60.0" prefWidth="60.0">
                <children>
-                  <Circle fx:id="bgCircleMedicS" fill="#30281e" layoutX="30.0" layoutY="30.0" opacity="0.35" radius="30.0" strokeType="INSIDE" strokeWidth="0.0" />
-                  <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="12.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                  <Circle fx:id="bgCircleMedicS" fill="#221810" layoutX="30.0" layoutY="30.0" opacity="0.35" radius="30.0" strokeType="INSIDE" strokeWidth="0.0" />
+                  <ImageView fx:id="iconMedicS" fitHeight="35.0" fitWidth="35.0" layoutX="12.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../Assets/iconMd.png" />
                      </image></ImageView>
@@ -59,12 +51,12 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Pane>
-            <Pane fx:id="btFarmaS" layoutX="31.0" layoutY="205.0" onMouseEntered="#btFarmaSEntered" onMouseExited="#btFarmaSExited" onMousePressed="#btFarmaPressed" prefHeight="60.0" prefWidth="60.0">
+            <Pane fx:id="btInstS" layoutX="31.0" layoutY="201.0" onMouseEntered="#btInstSEntered" onMouseExited="#btInstSExited" onMousePressed="#btInstPressed" prefHeight="60.0" prefWidth="60.0">
                <children>
-                  <Circle fx:id="bgCircleFarmaS" fill="#30281e" layoutX="30.0" layoutY="30.0" opacity="0.35" radius="30.0" strokeType="INSIDE" strokeWidth="0.0" />
-                  <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="13.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+                  <Circle fx:id="bgCircleInstS" fill="#221810" layoutX="30.0" layoutY="30.0" opacity="0.35" radius="30.0" strokeType="INSIDE" strokeWidth="0.0" />
+                  <ImageView fx:id="iconInstS" fitHeight="35.0" fitWidth="35.0" layoutX="13.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../Assets/iconFarma.png" />
+                        <Image url="@../../../Assets/iconInst.png" />
                      </image>
                   </ImageView>
                </children>
@@ -72,12 +64,12 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Pane>
-            <Pane fx:id="btInstS" layoutX="31.0" layoutY="288.0" onMouseEntered="#btInstSEntered" onMouseExited="#btInstSExited" onMousePressed="#btInstPressed" prefHeight="60.0" prefWidth="60.0">
+            <Pane fx:id="btFarmaS" layoutX="32.0" layoutY="277.0" onMouseEntered="#btFarmaSEntered" onMouseExited="#btFarmaSExited" onMousePressed="#btFarmaPressed" prefHeight="60.0" prefWidth="60.0">
                <children>
-                  <Circle fx:id="bgCircleInstS" fill="#30281e" layoutX="30.0" layoutY="30.0" opacity="0.35" radius="30.0" strokeType="INSIDE" strokeWidth="0.0" />
-                  <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="13.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                  <Circle fx:id="bgCircleFarmaS" fill="#221810" layoutX="30.0" layoutY="30.0" opacity="0.35" radius="30.0" strokeType="INSIDE" strokeWidth="0.0" />
+                  <ImageView fx:id="iconFarmaS" fitHeight="35.0" fitWidth="35.0" layoutX="13.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../Assets/iconInst.png" />
+                        <Image url="@../../../Assets/iconFarma.png" />
                      </image>
                   </ImageView>
                </children>
@@ -88,6 +80,14 @@
             <ImageView fx:id="btLogOut" fitHeight="28.0" fitWidth="28.0" layoutX="47.0" layoutY="739.0" onMouseClicked="#btLogOutClicked" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../Assets/iconLogOut.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView fx:id="btLogo" fitHeight="102.0" fitWidth="99.0" layoutX="12.0" layoutY="9.0" onMouseClicked="#btLogoClicked" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../Assets/LogoDollderB.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -105,7 +105,7 @@
                         <Font name="Roboto Bold" size="30.0" />
                      </font>
                   </Label>
-                  <Pane fx:id="btMedic" layoutX="23.0" layoutY="94.0" onMousePressed="#btMedicPressed" prefHeight="130.0" prefWidth="200.0">
+                  <Pane fx:id="btMedic" layoutX="23.0" layoutY="94.0" onMouseEntered="#btMedicEntered" onMouseExited="#btMedicExited" onMousePressed="#btMedicPressed" prefHeight="130.0" prefWidth="200.0">
                      <children>
                         <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#ffffff00" height="130.0" opacity="0.8" strokeType="OUTSIDE" strokeWidth="1.2" width="200.0">
                            <stroke>
@@ -133,7 +133,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Pane>
-                  <Pane fx:id="btInst" layoutX="240.0" layoutY="94.0" onMousePressed="#btInstPressed" prefHeight="130.0" prefWidth="266.0">
+                  <Pane fx:id="btInst" layoutX="240.0" layoutY="94.0" onMouseEntered="#btInstEntered" onMouseExited="#btInstExited" onMousePressed="#btInstPressed" prefHeight="130.0" prefWidth="266.0">
                      <children>
                         <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#ffffff00" height="130.0" opacity="0.8" strokeType="OUTSIDE" strokeWidth="1.2" width="266.0">
                            <stroke>
@@ -162,7 +162,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Pane>
-                  <Pane fx:id="btFarma" layoutX="522.0" layoutY="94.0" onMousePressed="#btFarmaPressed" prefHeight="130.0" prefWidth="200.0">
+                  <Pane fx:id="btFarma" layoutX="522.0" layoutY="94.0" onMouseEntered="#btFarmaEntered" onMouseExited="#btFarmaExited" onMousePressed="#btFarmaPressed" prefHeight="130.0" prefWidth="200.0">
                      <children>
                         <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#ffffff00" height="130.0" opacity="0.8" strokeType="OUTSIDE" strokeWidth="1.2" width="200.0">
                            <stroke>
