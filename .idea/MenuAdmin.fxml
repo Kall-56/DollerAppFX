@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ucab.dollerappfx.MenuAdminController">
+   <children>
+      <Rectangle height="800.0" onMouseClicked="#btCerrarSecionClicked" opacity="0.65" strokeType="INSIDE" strokeWidth="0.0" width="1280.0">
+         <fill>
+            <LinearGradient endX="0.7298578199052133" endY="1.0" startX="0.7298578199052134" startY="0.5639810426540284">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="0.9882352948188782" green="0.6235294342041016" blue="0.4000000059604645" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.9803921580314636" green="0.7647058963775635" blue="0.4588235318660736" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+      <StackPane layoutX="60.0" layoutY="25.0" prefHeight="750.0" prefWidth="1160.0">
+         <children>
+            <Pane opacity="0.9" prefHeight="750.0" prefWidth="1160.0" style="-fx-background-color: white;">
+               <children>
+                  <TableView fx:id="tbATMs" layoutX="14.0" layoutY="77.0" prefHeight="338.0" prefWidth="531.0">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="C1" />
+                      <TableColumn prefWidth="75.0" text="C2" />
+                    </columns>
+                  </TableView>
+                  <TableView fx:id="tbCLIENTEs" layoutX="580.0" layoutY="77.0" prefHeight="338.0" prefWidth="562.0">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="C1" />
+                      <TableColumn prefWidth="75.0" text="C2" />
+                    </columns>
+                  </TableView>
+                  <TableView fx:id="tbEVENTOs" layoutX="14.0" layoutY="491.0" prefHeight="236.0" prefWidth="1128.0">
+                    <columns>
+                      <TableColumn prefWidth="75.0" text="C1" />
+                      <TableColumn prefWidth="75.0" text="C2" />
+                    </columns>
+                  </TableView>
+                  <Label layoutX="14.0" layoutY="14.0" text="ATMs">
+                     <font>
+                        <Font name="Roboto Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="604.0" layoutY="14.0" text="Clientes">
+                     <font>
+                        <Font name="Roboto Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="415.0" text="Eventos">
+                     <font>
+                        <Font name="Roboto Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <Pane fx:id="btCerrarSecion" layoutX="996.0" layoutY="14.0" onMouseClicked="#btCerrarSecionClicked" onMouseEntered="#btCerrarSecionEntered" onMouseExited="#btCerrarSecionExited" prefHeight="37.0" prefWidth="146.0" style="-fx-background-color: white; -fx-border-radius: 5; -fx-border-color: #969696; -fx-border-width: 2;">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <children>
+                        <Label fx:id="lbCerrarSeccion" alignment="CENTER" layoutY="5.0" prefHeight="27.0" prefWidth="146.0" text="Cerrar Sesión" textFill="DIMGRAY">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>
