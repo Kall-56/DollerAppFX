@@ -95,4 +95,8 @@ public class ATM extends Usuario {
         return eventoList.get(index);
     }
 
+    public void eliminarEvento(Evento event) {
+        eventoList.remove(event);
+    }
+
 }

@@ -85,12 +85,13 @@ public class MenuPrincipalController {
         bgCircleFarmaS.setOpacity(lowOpacity);
 
         ObservableList<Cliente> clientes = FXCollections.observableArrayList();
-        clientes.addAll(App.listMedicos);
-        clientes.addAll(App.listInstituciones);
-        clientes.addAll(App.listFarmacias);
+        clientes.addAll(FXCollections.observableArrayList(App.usuario.getMedicoList()));
+        clientes.addAll(FXCollections.observableArrayList(App.usuario.getInstitucionList()));
+        clientes.addAll(FXCollections.observableArrayList(App.usuario.getFarmaciaList()));
 
         tbClientesRecientes.setItems(clientes);
         tbClientesRecientes.refresh();
+        tbEventosMenu.setItems(FXCollections.observableArrayList(App.usuario.getEventoList()));
         tbEventosMenu.refresh();
     }
 
@@ -102,8 +103,8 @@ public class MenuPrincipalController {
         bgCircleFarmaS.setOpacity(lowOpacity);
         bgCircleInstS.setOpacity(lowOpacity);
 
-        controllerClientes.establecerClase(Medico.class, App.listMedicos);
-        controllerClientes.filtroClientes(FXCollections.observableArrayList(App.listMedicos));
+        controllerClientes.establecerClase(Medico.class, FXCollections.observableArrayList(App.usuario.getMedicoList()));
+        controllerClientes.filtroClientes(FXCollections.observableArrayList(App.usuario.getMedicoList()));
     }
 
     @FXML
@@ -126,8 +127,8 @@ public class MenuPrincipalController {
         bgCircleInstS.setOpacity(lowOpacity);
         bgCircleMedicS.setOpacity(lowOpacity);
 
-        controllerClientes.establecerClase(Farmacia.class, App.listFarmacias);
-        controllerClientes.filtroClientes(FXCollections.observableArrayList(App.listFarmacias));
+        controllerClientes.establecerClase(Farmacia.class, FXCollections.observableArrayList(App.usuario.getFarmaciaList()));
+        controllerClientes.filtroClientes(FXCollections.observableArrayList(App.usuario.getFarmaciaList()));
     }
 
     @FXML
@@ -150,8 +151,8 @@ public class MenuPrincipalController {
         bgCircleFarmaS.setOpacity(lowOpacity);
         bgCircleMedicS.setOpacity(lowOpacity);
 
-        controllerClientes.establecerClase(Institucion.class, App.listInstituciones);
-        controllerClientes.filtroClientes(FXCollections.observableArrayList(App.listInstituciones));
+        controllerClientes.establecerClase(Institucion.class, FXCollections.observableArrayList(App.usuario.getInstitucionList()));
+        controllerClientes.filtroClientes(FXCollections.observableArrayList(App.usuario.getInstitucionList()));
     }
 
     @FXML
@@ -222,14 +223,14 @@ public class MenuPrincipalController {
         tbEventosMenu.getColumns().add(fechaCol);
         tbEventosMenu.getColumns().add(semanaCol);
         tbEventosMenu.getColumns().add(descripCol);
-        tbEventosMenu.setItems(App.listEventos);
+        tbEventosMenu.setItems(FXCollections.observableArrayList(App.usuario.getEventoList()));
         tbEventosMenu.refresh();
 
         // Creacion de la tabla MultiClase
         ObservableList<Cliente> clientes = FXCollections.observableArrayList();
-        clientes.addAll(LogInController.usuario.getMedicoList());
-        clientes.addAll(LogInController.usuario.getFarmaciaList());
-        clientes.addAll(LogInController.usuario.getInstitucionList());
+        clientes.addAll(App.usuario.getMedicoList());
+        clientes.addAll(App.usuario.getFarmaciaList());
+        clientes.addAll(App.usuario.getInstitucionList());
         TablasController.establecerTipoTabla(tbClientesRecientes, Cliente.class, clientes);
 
 

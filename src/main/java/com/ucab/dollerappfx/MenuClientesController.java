@@ -506,16 +506,16 @@ public class MenuClientesController {
 
             if (lbCrearNuevo.getText().equals("Crear")) {
                 clienteActual.registrarEvento(evento);
-                App.listEventos.add(evento);
+                App.usuario.registrarEvento(evento);
 
                 alerta.setContentText("EVENTO AGREGADO CON ÉXITO");
                 alerta.setTitle("Evento creado");
-                
+
             } else if (lbCrearNuevo.getText().equals("Modificar")) {
                 clienteActual.eliminarEvento(eventoActual);
                 clienteActual.registrarEvento(evento);
-                App.listEventos.remove(eventoActual);
-                App.listEventos.add(evento);
+                App.usuario.eliminarEvento(eventoActual);
+                App.usuario.registrarEvento(evento);
 
                 alerta.setContentText("EVENTO MODIFICADO CON ÉXITO");
                 alerta.setTitle("Evento modificado");
@@ -613,106 +613,107 @@ public class MenuClientesController {
     
     @FXML
     void btCrearClienteClicked(MouseEvent event) {
-        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
-        alerta.setTitle("Crear Cliente");
-        alerta.setHeaderText("ESTÁ SEGURO DE CREAR EL CLIENTE?");
-        alerta.setContentText("UNA VEZ CREADO NO SE PUEDE MODIFICAR");
-        ButtonType confirmButton = ButtonType.OK;
-        ButtonType cancelButton = ButtonType.CANCEL;
+        String clase = lbClientesTitle.getText();
 
-        alerta.getButtonTypes().setAll(confirmButton, cancelButton);
+        boolean nombreValido = ValidacionesController.validarCampos(fldNombre, "^[a-zA-Z ]{1,50}$", lbNombreError);
+        boolean numValido = ValidacionesController.validarCampos(fldNumber, "^[0-9]{7}$", lbNumeroError);
+        boolean ciValido = ValidacionesController.validarCampos(fldCedula, "^[0-9]{6,9}$", lbCedulaError);
+        boolean direcValido = ValidacionesController.validarCampos(fldDirect, "^[a-zA-Z0-9#. ]{1,70}$", lbDireccionError);
 
-        Optional<ButtonType> result = alerta.showAndWait();
+        boolean[] atributosValidos = {nombreValido, numValido, ciValido, direcValido};
 
-        if (result.isPresent() && result.get() == confirmButton) {
-            String clase = lbClientesTitle.getText();
+        if (clase.equals("Médicos")) {
+            boolean espValido = ValidacionesController.validarCampos(fldEspecMd, "^[a-zA-Z ]{1,20}$", lbEspecError);
+            boolean emailValido = ValidacionesController.validarCampos(fldEmailMdFm, "^[A-Za-z0-9+_.-]+@(.+)$", lbEmailError);
+            boolean frecValido = ValidacionesController.validarCampos(fldFrecueMdFm, "^[0-9]{1}$", lbFrecueError);
+            boolean diasValido = ValidacionesController.validarCampos(fldDiasVisitMd, "^[a-zA-Z- ]{1,50}$", lbDiasVisitError);
+            boolean horarioValido = ValidacionesController.validarCampos(fldHorarioMd, "^[0-9- ]{1,10}$", lbHorarioError);
+            boolean formatoValido = ValidacionesController.validarCampos(fldFormatoMd, "^[a-zA-Z ]{1,20}$", lbFormatoError);
+            atributosValidos = new boolean[] {nombreValido, numValido, ciValido, direcValido, espValido, emailValido, frecValido, diasValido, horarioValido, formatoValido};
 
-            boolean nombreValido = ValidacionesController.validarCampos(fldNombre, "^[a-zA-Z ]{1,50}$", lbNombreError);
-            boolean numValido = ValidacionesController.validarCampos(fldNumber, "^[0-9]{7}$", lbNumeroError);
-            boolean ciValido = ValidacionesController.validarCampos(fldCedula, "^[0-9]{6,9}$", lbCedulaError);
-            boolean direcValido = ValidacionesController.validarCampos(fldDirect, "^[a-zA-Z0-9#. ]{1,70}$", lbDireccionError);
+        } else if (clase.equals("Farmacias")) {
+            boolean perValido = ValidacionesController.validarCampos(fldPersonContacFmInst, "^[a-zA-Z ]{1,20}$", lbPersonContacError);
+            boolean emailValido = ValidacionesController.validarCampos(fldEmailMdFm, "^[A-Za-z0-9+_.-]+@(.+)$", lbEmailError);
+            boolean frecValido = ValidacionesController.validarCampos(fldFrecueMdFm, "^[0-9]{1}$", lbFrecueError);
+            boolean cadValido = ValidacionesController.validarCampos(fldCadenaFm, "^[a-zA-Z ]{1,20}$", lbCadenaError);
+            boolean drogValido = ValidacionesController.validarCampos(fldDrogeriaFm, "^[a-zA-Z ]{1,20}$", lbDrogeriaError);
 
-            boolean[] atributosValidos = {nombreValido, numValido, ciValido, direcValido};
+            atributosValidos = new boolean[] {nombreValido, numValido, ciValido, direcValido, perValido, emailValido, frecValido, cadValido, drogValido};
+        } else if (clase.equals("Instituciones")) {
+            boolean perValido = ValidacionesController.validarCampos(fldPersonContacFmInst, "^[a-zA-Z ]{1,20}$", lbPersonContacError);
+            boolean facValido = ValidacionesController.validarCampos(fldFacultadInst, "^[a-zA-Z ]{1,30}$", lbFacultadError);
 
-            if (clase.equals("Médicos")) {
-                boolean espValido = ValidacionesController.validarCampos(fldEspecMd, "^[a-zA-Z ]{1,20}$", lbEspecError);
-                boolean emailValido = ValidacionesController.validarCampos(fldEmailMdFm, "^[A-Za-z0-9+_.-]+@(.+)$", lbEmailError);
-                boolean frecValido = ValidacionesController.validarCampos(fldFrecueMdFm, "^[0-9]{1}$", lbFrecueError);
-                boolean diasValido = ValidacionesController.validarCampos(fldDiasVisitMd, "^[a-zA-Z- ]{1,50}$", lbDiasVisitError);
-                boolean horarioValido = ValidacionesController.validarCampos(fldHorarioMd, "^[0-9- ]{1,10}$", lbHorarioError);
-                boolean formatoValido = ValidacionesController.validarCampos(fldFormatoMd, "^[a-zA-Z ]{1,20}$", lbFormatoError);
+            atributosValidos = new boolean[] {nombreValido, numValido, ciValido, direcValido, perValido, facValido};
+        }
 
-                atributosValidos = new boolean[] {nombreValido, numValido, ciValido, direcValido, espValido, emailValido, frecValido, diasValido, horarioValido, formatoValido};
-
-            } else if (clase.equals("Farmacias")) {
-                boolean perValido = ValidacionesController.validarCampos(fldPersonContacFmInst, "^[a-zA-Z ]{1,20}$", lbPersonContacError);
-                boolean emailValido = ValidacionesController.validarCampos(fldEmailMdFm, "^[A-Za-z0-9+_.-]+@(.+)$", lbEmailError);
-                boolean frecValido = ValidacionesController.validarCampos(fldFrecueMdFm, "^[0-9]{1}$", lbFrecueError);
-                boolean cadValido = ValidacionesController.validarCampos(fldCadenaFm, "^[a-zA-Z ]{1,20}$", lbCadenaError);
-                boolean drogValido = ValidacionesController.validarCampos(fldDrogeriaFm, "^[a-zA-Z ]{1,20}$", lbDrogeriaError);
-
-                atributosValidos = new boolean[] {nombreValido, numValido, ciValido, direcValido, perValido, emailValido, frecValido, cadValido, drogValido};
-            } else if (clase.equals("Instituciones")) {
-                boolean perValido = ValidacionesController.validarCampos(fldPersonContacFmInst, "^[a-zA-Z ]{1,20}$", lbPersonContacError);
-                boolean facValido = ValidacionesController.validarCampos(fldFacultadInst, "^[a-zA-Z ]{1,30}$", lbFacultadError);
-
-                atributosValidos = new boolean[] {nombreValido, numValido, ciValido, direcValido, perValido, facValido};
+        boolean valido = true;
+        for (boolean atributo: atributosValidos) {
+            if (!atributo) {
+                valido = false;
             }
+        }
+        if (valido) {
+            Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+            alerta.setTitle("Crear Cliente");
+            alerta.setHeaderText("ESTÁ SEGURO DE CREAR EL CLIENTE?");
+            alerta.setContentText("UNA VEZ CREADO NO SE PUEDE MODIFICAR");
+            ButtonType confirmButton = ButtonType.OK;
+            ButtonType cancelButton = ButtonType.CANCEL;
 
-            boolean valido = true;
-            for (boolean atributo: atributosValidos) {
-                if (!atributo) {
-                    valido = false;
+            alerta.getButtonTypes().setAll(confirmButton, cancelButton);
+
+            Optional<ButtonType> result = alerta.showAndWait();
+
+            if (result.isPresent() && result.get() == confirmButton) {
+                switch (clase) {
+                    case "Médicos":
+                        Medico med = new Medico(fldNombre.getText(),
+                                fldDirect.getText(),
+                                chnumber.getValue() + fldNumber.getText(),
+                                chTypeCedula.getValue(),
+                                Integer.parseInt(fldCedula.getText()),
+                                "",
+                                fldEspecMd.getText(),
+                                fldEmailMdFm.getText(),
+                                Integer.parseInt(fldFrecueMdFm.getText()),
+                                fldDiasVisitMd.getText(),
+                                fldHorarioMd.getText(),
+                                fldFormatoMd.getText());
+                        App.usuario.registrarCliente(med);
+                        establecerClase(Medico.class, FXCollections.observableArrayList(App.usuario.getMedicoList()));
+                        filtroClientes(FXCollections.observableArrayList(App.usuario.getMedicoList()));
+                        break;
+                    case "Farmacias":
+                        Farmacia far = new Farmacia(fldNombre.getText(),
+                                fldDirect.getText(),
+                                chnumber.getValue() + fldNumber.getText(),
+                                chTypeCedula.getValue(),
+                                Integer.parseInt(fldCedula.getText()),
+                                "",
+                                fldPersonContacFmInst.getText(),
+                                fldEmailMdFm.getText(),
+                                Integer.parseInt(fldFrecueMdFm.getText()),
+                                fldCadenaFm.getText(),
+                                fldDrogeriaFm.getText());
+                        App.usuario.registrarCliente(far);
+                        establecerClase(Farmacia.class, FXCollections.observableArrayList(App.usuario.getFarmaciaList()));
+                        filtroClientes(FXCollections.observableArrayList(App.usuario.getFarmaciaList()));
+                        break;
+                    case "Instituciones":
+                        Institucion inst = new Institucion(fldNombre.getText(),
+                                fldDirect.getText(),
+                                chnumber.getValue() + fldNumber.getText(),
+                                chTypeCedula.getValue(),
+                                Integer.parseInt(fldCedula.getText()),
+                                "",
+                                fldPersonContacFmInst.getText(),
+                                fldFacultadInst.getText());
+                        App.usuario.registrarCliente(inst);
+                        establecerClase(Institucion.class, FXCollections.observableArrayList(App.usuario.getInstitucionList()));
+                        filtroClientes(FXCollections.observableArrayList(App.usuario.getInstitucionList()));
+                        break;
                 }
-            }
-            if (valido) {
                 Alert alerta2 = new Alert(Alert.AlertType.INFORMATION);
-                if (clase.equals("Médicos")) {
-                    Medico med = new Medico(fldNombre.getText(),
-                                            fldDirect.getText(),
-                                            chnumber.getValue() + fldNumber.getText(),
-                                            chTypeCedula.getValue(),
-                                            Integer.parseInt(fldCedula.getText()),
-                                            "",
-                                            fldEspecMd.getText(),
-                                            fldEmailMdFm.getText(),
-                                            Integer.parseInt(fldFrecueMdFm.getText()),
-                                            fldDiasVisitMd.getText(),
-                                            fldHorarioMd.getText(),
-                                            fldFormatoMd.getText());
-                    App.listMedicos.add(med);
-                    establecerClase(Medico.class, App.listMedicos);
-                    LogInController.usuario.registrarCliente(med);
-
-                } else if (clase.equals("Farmacias")) {
-                    Farmacia far = new Farmacia(fldNombre.getText(),
-                                                fldDirect.getText(),
-                                                chnumber.getValue() + fldNumber.getText(),
-                                                chTypeCedula.getValue(),
-                                                Integer.parseInt(fldCedula.getText()),
-                                                "",
-                                                fldPersonContacFmInst.getText(),
-                                                fldEmailMdFm.getText(),
-                                                Integer.parseInt(fldFrecueMdFm.getText()),
-                                                fldCadenaFm.getText(),
-                                                fldDrogeriaFm.getText());
-                    App.listFarmacias.add(far);
-                    establecerClase(Farmacia.class, App.listFarmacias);
-                    LogInController.usuario.registrarCliente(far);
-
-                } else if (clase.equals("Instituciones")) {
-                    Institucion inst = new Institucion(fldNombre.getText(),
-                                                       fldDirect.getText(),
-                                                       chnumber.getValue() + fldNumber.getText(),
-                                                       chTypeCedula.getValue(),
-                                                       Integer.parseInt(fldCedula.getText()),
-                                                       "",
-                                                       fldPersonContacFmInst.getText(),
-                                                       fldFacultadInst.getText());
-                    App.listInstituciones.add(inst);
-                    establecerClase(Institucion.class, App.listInstituciones);
-                    LogInController.usuario.registrarCliente(inst);
-                }
                 alerta2.setHeaderText("");
                 alerta2.setContentText("CLIENTE AGREGADO CON ÉXITO");
                 alerta2.setTitle("Cliente creado");
@@ -722,13 +723,13 @@ public class MenuClientesController {
                 crearCliente.setVisible(false);
                 tablaClientes.refresh();
                 alerta2.showAndWait();
-            } else {
-                alerta = new Alert(Alert.AlertType.INFORMATION);
-                alerta.setHeaderText("");
-                alerta.setContentText("Revise que no haya ningún campo con formato erróneo");
-                alerta.setTitle("Error");
-                alerta.showAndWait();
             }
+        } else {
+            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+            alerta.setHeaderText("");
+            alerta.setContentText("Revise que no haya ningún campo con formato erróneo");
+            alerta.setTitle("Error");
+            alerta.showAndWait();
         }
     }
     
@@ -789,8 +790,20 @@ public class MenuClientesController {
                 tablaClientes.getSelectionModel().clearSelection();
             }
         });
+
+        crearEvento.visibleProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue && !lbCrearNuevo.getText().equals("Modificar")) {
+                reiniciarCamposEvento();
+            }
+        });
         
         //----------------------------------------------------------------------------//
+        crearCliente.visibleProperty().addListener(((observable, oldValue, newValue) -> {
+            if (newValue) {
+                reinicarCamposCliente();
+            }
+        }));
+
         fldNombre.focusedProperty().addListener((observable, oldValue, newValue) ->{
             if (!newValue) {
                 ValidacionesController.validarCampos(fldNombre, "^[a-zA-Z ]{0,50}$", lbNombreError);

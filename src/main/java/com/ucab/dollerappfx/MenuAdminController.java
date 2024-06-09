@@ -68,12 +68,12 @@ public class MenuAdminController {
         tbATMs.getColumns().add(territorioCol);
         tbATMs.getColumns().add(correoCol);
 
-        tbATMs.setItems(FXCollections.observableArrayList(LogInController.admin.getAtmList()));
+        tbATMs.setItems(FXCollections.observableArrayList(App.admin.getAtmList()));
         tbATMs.refresh();
 
         // TABLA CLIENTES
         ObservableList<Cliente> clientes = FXCollections.observableArrayList();
-        for (ATM atm: LogInController.admin.getAtmList()) {
+        for (ATM atm: App.admin.getAtmList()) {
             clientes.addAll(FXCollections.observableArrayList(atm.getMedicoList()));
             clientes.addAll(FXCollections.observableArrayList(atm.getFarmaciaList()));
             clientes.addAll(FXCollections.observableArrayList(atm.getInstitucionList()));
@@ -105,7 +105,7 @@ public class MenuAdminController {
         tbEVENTOs.getColumns().add(descripCol);
 
         ObservableList<Evento> eventos = FXCollections.observableArrayList();
-        for (ATM atm: LogInController.admin.getAtmList()) {
+        for (ATM atm: App.admin.getAtmList()) {
             eventos.addAll(atm.getEventoList());
         }
         tbEVENTOs.setItems(eventos);

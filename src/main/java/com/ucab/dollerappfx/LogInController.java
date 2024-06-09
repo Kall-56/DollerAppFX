@@ -64,17 +64,13 @@ public class LogInController {
     private Label lbUserPasswordError;
     @FXML
     private Label lbUserPasswordConfirmError;
-    
-//--------------------------Propiedades Usuario-------------------------------//
-    private ArrayList<ATM> listaAtm;
-    public static ATM usuario; // Al cargar el ATM, la aplicacion puede usarla siempre hasta que se cambie a otro
-    public static Administrador admin;
+
 //--------------------------Metodos del fxml----------------------------------//
 //---------------------------Panel de LogIn----------------------------------------//
     
     @FXML
     void btLogInClicked(MouseEvent event) throws IOException {
-          if (fldUserName.getText().equals(admin.getNomUsuario())) {
+          if (fldUserName.getText().equals(App.admin.getNomUsuario())) {
               App.setRoot("MenuAdmin");
           } else {
               App.setRoot("MenuPrincipal");
@@ -151,11 +147,11 @@ public class LogInController {
             }
         }
         if (valido && (fldUserPasswordCrt.getText().equals(fldUserPasswordConfirm.getText()))) {
-            admin.registrarATM(new ATM(fldUserNameCrt.getText(),
+            App.admin.registrarATM(new ATM(fldUserNameCrt.getText(),
                                        fldUserPasswordCrt.getText(),
                                        fldUserZoneCrt.getText(),
                                        fldUserEmailCrt.getText(),
-                                       admin));
+                                       App.admin));
         } else {
             Alert alerta = new Alert(Alert.AlertType.INFORMATION);
             alerta.setHeaderText("");
@@ -193,26 +189,6 @@ public class LogInController {
 //----------------------------------------------------------------------------//
 
     public void initialize() {
-        admin = new Administrador("LiaUCAB", "proyecto1234", "Caracas", "lia@gmail.com");
-        usuario = new ATM("Sandro", "1234", "Caracas", "sandro@gmail.com", admin);
-        listaAtm = new ArrayList<>();
-        listaAtm.add(usuario);
-
-        admin.setAtmList(listaAtm);
-
-        for (Evento evento: App.listEventos) {
-            usuario.registrarEvento(evento);
-        }
-        for (Medico med: App.listMedicos) {
-            usuario.registrarCliente(med);
-        }
-        for (Institucion inst: App.listInstituciones) {
-            usuario.registrarCliente(inst);
-        }
-        for (Farmacia farma: App.listFarmacias) {
-            usuario.registrarCliente(farma);
-        }
-        //------------------------------------------------------------------------//
         fldUserNameCrt.focusedProperty().addListener((observable, oldValue, newValue) ->{
             if (!newValue) {
                 ValidacionesController.validarCampos(fldUserNameCrt, "([a-zA-Z0-9]+).{4,25}",lbUserNameError);
