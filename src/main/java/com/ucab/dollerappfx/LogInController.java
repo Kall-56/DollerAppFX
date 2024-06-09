@@ -85,7 +85,8 @@ public class LogInController {
               if (!encontrado) {
                   Alert alerta = new Alert(Alert.AlertType.INFORMATION);
                   alerta.setTitle("Datos inválidos");
-                  alerta.setHeaderText("Usuario y/o contraseña incorrectos");
+                  alerta.setHeaderText("");
+                  alerta.setContentText("Usuario y/o contraseña incorrectos");
                   alerta.showAndWait();
               }
           }

@@ -65,7 +65,7 @@ public class App extends Application {
         listEventos.addAll(l3);
 
         admin = new Administrador("LiaUCAB", "proyecto1234", "Caracas", "lia@gmail.com");
-        usuario = new ATM("Sandro", "1234", "Caracas", "sandro@gmail.com", admin);
+        usuario = new ATM("PruebaATM", "1234", "Caracas", "sandro@gmail.com", admin);
         listaAtm = new ArrayList<>();
         listaAtm.add(usuario);
 
