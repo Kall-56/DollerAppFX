@@ -47,8 +47,9 @@ public class App extends Application {
         l2.add(new Evento("Actividad Promocional", "Alex", "17/09/24", 3, "Se aprecian cositas"));
 
         App.listMedicos = FXCollections.observableArrayList(
-                new Medico("Baez Arnaldo", "Avenida Vargas Entre Las Palmas y Caerrera 32", "04143515161", 'V', 7884170, "No se", "Urólogo", "arnaldobaez@gmail.com", 1, "Lun-Mar-Mie-Jue-Vie", "8am-12pm", "Entre pacientes"),
-                new Medico("Dubin Ludmila", "Calle 20 Con Carrera 23 Lara", "18325313408", 'V', 7329907, "No se", "Ginecólogo", "ludmiladubim@gmail.com", 1, "Lun-Mar-Mie-Jue-Vie", "8am-12pm", "Entre pacientes", l1)
+                new Medico("Baez Arnaldo", "Avenida Vargas Entre Las Palmas y Caerrera 32", "04143515161", 'V', 7884170, "-", "Urólogo", "arnaldobaez@gmail.com", 1, "Lun-Mar-Mie-Jue-Vie", "8am-12pm", "Entre pacientes"),
+                new Medico("Dubin Ludmila", "Calle 20 Con Carrera 23 Lara", "18325313408", 'V', 7329907, "-", "Ginecólogo", "ludmiladubim@gmail.com", 1, "Lun-Mar-Mie-Jue-Vie", "8am-12pm", "Entre pacientes", l1),
+                new Medico("Herrera Luisana", "Calle 41 Entre Carrera 20 y 21", "04245004027", 'V', 18785005, "-", "Medicina Interna", "luisanaherreradr@hotmail.com", 1, "Lun-Mar-Mie-Jue-Vie", "8am-12pm", "Entre pacientes")
         );
         App.listInstituciones = FXCollections.observableArrayList(
                 new Institucion("Manu", "Por alla", "412", 'V', 31423309, "No se", "Alguien", "Ciencias"),
@@ -56,8 +57,9 @@ public class App extends Application {
                 new Institucion("Pedro", "Un lugar", "412", 'V', 9742912, "No se", "Juanito", "Ingeniería")
         );
         App.listFarmacias = FXCollections.observableArrayList(
-                new Farmacia("Alex", "Por aqui", "414", 'J', 11225210, "No se", "Un extraño", "b@gmail.com", 1, "Perpetua", "Acetaminofen", l2),
-                new Farmacia("Monsalve", "SJT", "424", 'V', 32848109, "No se", "Pepito", "diablo@gmail.com", 0, "30 años", "Migren")
+                new Farmacia("Farmacia Alegria", "Carrera 18 Con Calle 33 Barquisimeto Lara", "04127600618", 'J', 0, "-", "Lisheth Garibaldi", "farmacialegriac.a@hotmail.com", 2, "Independiente", "Dronena", l2),
+                new Farmacia("Farmatodo El Parque", "Av. Libertador Con Vereda No. 1 0 Barquisimeto Lara", "02512515656", 'J', 0, "-", "Mario", "parque.313@farmatodo.com", 4, "Farmatodo", "Dollder"),
+                new Farmacia("Fsi Ciudad Altagracia", "Av. 20 Entre Calles 19 y 20", "04145768840", 'J', 0, "-", "Luisa", "farmaignacioaltagracia@gmail.com", 2, "Cadena Regional", "Dronena")
 
         );
 
@@ -67,7 +69,11 @@ public class App extends Application {
 
         scene = new Scene(loadFXML("LogIn"), 1280, 800);
         stage.setTitle("Dollder App");
-        stage.getIcons().add(new Image("/Assets/logo_Dollder.png"));
+        try {
+            stage.getIcons().add(new Image("Assets/logo_Dollder.png"));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
         stage.setScene(scene);
         stage.show();
     }

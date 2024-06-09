@@ -227,9 +227,9 @@ public class MenuPrincipalController {
 
         // Creacion de la tabla MultiClase
         ObservableList<Cliente> clientes = FXCollections.observableArrayList();
-        clientes.addAll(App.listMedicos);
-        clientes.addAll(App.listInstituciones);
-        clientes.addAll(App.listFarmacias);
+        clientes.addAll(LogInController.usuario.getMedicoList());
+        clientes.addAll(LogInController.usuario.getFarmaciaList());
+        clientes.addAll(LogInController.usuario.getInstitucionList());
         TablasController.establecerTipoTabla(tbClientesRecientes, Cliente.class, clientes);
 
 
