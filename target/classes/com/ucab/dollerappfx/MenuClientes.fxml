@@ -38,7 +38,7 @@
       </ImageView>
       <StackPane layoutY="55.0" prefHeight="746.0" prefWidth="1166.0">
          <children>
-            <Pane fx:id="vistaCliente" prefHeight="800.0" prefWidth="1166.0">
+            <Pane fx:id="vistaCliente" prefHeight="800.0" prefWidth="1166.0" visible="false">
                <children>
                   <TextField fx:id="tfBuscarCliente" focusTraversable="false" layoutX="21.0" layoutY="14.0" prefHeight="30.0" prefWidth="325.0" promptText="Buscar Clientes">
                      <font>
@@ -65,7 +65,7 @@
                   </Pane>
                </children>
             </Pane>
-            <Pane fx:id="infoCliente" prefHeight="722.0" prefWidth="1166.0" visible="false">
+            <Pane fx:id="infoCliente" prefHeight="722.0" prefWidth="1166.0">
                <children>
                   <StackPane layoutX="234.0" layoutY="80.0" prefHeight="652.0" prefWidth="915.0">
                      <children>
@@ -200,9 +200,9 @@
                         <Font name="Roboto Light Italic" size="19.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbDirect" layoutX="37.0" layoutY="452.0" minHeight="24.0" prefHeight="24.0" prefWidth="175.0" text="&lt;direccion&gt;" textFill="WHITE" wrapText="true">
+                  <Label fx:id="lbDirect" alignment="TOP_LEFT" layoutX="37.0" layoutY="452.0" minHeight="24.0" prefHeight="200.0" prefWidth="175.0" text="&lt;direccion&gt;" textFill="WHITE" wrapText="true">
                      <font>
-                        <Font name="Roboto Light Italic" size="19.0" />
+                        <Font name="Roboto Light Italic" size="17.0" />
                      </font>
                   </Label>
                   <Label fx:id="lbEmailMdFm" layoutX="44.0" layoutY="200.0" prefHeight="24.0" prefWidth="175.0" text="&lt;email md, fm&gt;" textFill="WHITE" visible="false">
@@ -245,7 +245,7 @@
                         <Font name="Roboto Light Italic" size="15.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lbFacultadInst" layoutX="38.0" layoutY="252.0" prefHeight="24.0" prefWidth="175.0" text="&lt;facultad inst&gt;" textFill="WHITE" visible="false">
+                  <Label fx:id="lbFacultadInst" alignment="TOP_LEFT" layoutX="42.0" layoutY="202.0" prefHeight="74.0" prefWidth="175.0" text="&lt;facultad inst&gt;" textFill="WHITE" visible="false" wrapText="true">
                      <font>
                         <Font name="Roboto Light Italic" size="15.0" />
                      </font>
@@ -280,7 +280,7 @@
                         <Font name="Roboto Black" size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="edfFacultad" layoutX="38.0" layoutY="229.0" text="Edf. Facultad:" textFill="WHITE" visible="false">
+                  <Label fx:id="edfFacultad" layoutX="38.0" layoutY="178.0" text="Edf. Facultad:" textFill="WHITE" visible="false">
                      <font>
                         <Font name="Roboto Black" size="20.0" />
                      </font>
