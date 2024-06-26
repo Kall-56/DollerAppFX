@@ -269,7 +269,11 @@ public class MenuClientesController {
         TablasController.establecerTipoTabla((TableView<T>) tablaClientes, clase, lista);
         if (clase == Medico.class) {
             lbClientesTitle.setText("Médicos");
-            iconCliente.setImage(new Image("Assets/iconMdSelectB.png"));
+            try {
+                iconCliente.setImage(new Image("Assets/iconMdSelectB.png"));
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
 
             fldEspecMd.setVisible(true);
             fldEmailMdFm.setVisible(true);
@@ -285,7 +289,11 @@ public class MenuClientesController {
         }
         else if (clase == Farmacia.class) {
             lbClientesTitle.setText("Farmacias");
-            iconCliente.setImage(new Image("Assets/iconFarmaB.png"));
+            try {
+                iconCliente.setImage(new Image("Assets/iconFarmaB.png"));
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
 
             fldPersonContacFmInst.setVisible(true);
             fldEmailMdFm.setVisible(true);
@@ -301,7 +309,11 @@ public class MenuClientesController {
         }
         else if (clase == Institucion.class) {
             lbClientesTitle.setText("Instituciones");
-            iconCliente.setImage(new Image("Assets/iconInstSelectB.png"));
+            try {
+                iconCliente.setImage(new Image("Assets/iconInstSelectB.png"));
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
 
             fldPersonContacFmInst.setVisible(true);
             fldFacultadInst.setVisible(true);

@@ -18,6 +18,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Circle;
+import jdk.jshell.spi.ExecutionControlProvider;
 
 
 public class MenuPrincipalController {
@@ -93,8 +94,13 @@ public class MenuPrincipalController {
         bgCircleMedicS.setOpacity(lowOpacity);
         bgCircleInstS.setOpacity(lowOpacity);
         bgCircleFarmaS.setOpacity(lowOpacity);
-        iconMedicS.setImage(new Image("Assets/iconMd.png"));
-        iconInstS.setImage(new Image("Assets/iconInst.png"));
+        try {
+            iconMedicS.setImage(new Image("Assets/iconMd.png"));
+            iconInstS.setImage(new Image("Assets/iconInst.png"));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
 
         ObservableList<Cliente> clientes = FXCollections.observableArrayList();
         clientes.addAll(FXCollections.observableArrayList(App.usuario.getMedicoList()));
@@ -112,8 +118,12 @@ public class MenuPrincipalController {
         visibilityChange(true, false);
         controllerClientes.visibilityChange(false, true, false);
         bgCircleMedicS.setOpacity(maxOpacity);
-        iconMedicS.setImage(new Image("Assets/iconMdSelect.png"));
-        iconInstS.setImage(new Image("Assets/iconInst.png"));
+        try {
+            iconMedicS.setImage(new Image("Assets/iconMdSelect.png"));
+            iconInstS.setImage(new Image("Assets/iconInst.png"));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
         bgCircleFarmaS.setOpacity(lowOpacity);
         bgCircleInstS.setOpacity(lowOpacity);
 
@@ -152,8 +162,12 @@ public class MenuPrincipalController {
         bgCircleFarmaS.setOpacity(maxOpacity);
         bgCircleInstS.setOpacity(lowOpacity);
         bgCircleMedicS.setOpacity(lowOpacity);
-        iconMedicS.setImage(new Image("Assets/iconMd.png"));
-        iconInstS.setImage(new Image("Assets/iconInst.png"));
+        try {
+            iconMedicS.setImage(new Image("Assets/iconMd.png"));
+            iconInstS.setImage(new Image("Assets/iconInst.png"));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
         controllerClientes.establecerClase(Farmacia.class, FXCollections.observableArrayList(App.usuario.getFarmaciaList()));
         controllerClientes.filtroClientes(FXCollections.observableArrayList(App.usuario.getFarmaciaList()));
@@ -190,8 +204,12 @@ public class MenuPrincipalController {
         bgCircleInstS.setOpacity(maxOpacity);
         bgCircleFarmaS.setOpacity(lowOpacity);
         bgCircleMedicS.setOpacity(lowOpacity);
-        iconMedicS.setImage(new Image("Assets/iconMd.png"));
-        iconInstS.setImage(new Image("Assets/iconInstSelect.png"));
+        try {
+            iconMedicS.setImage(new Image("Assets/iconMd.png"));
+            iconInstS.setImage(new Image("Assets/iconInstSelect.png"));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
         controllerClientes.establecerClase(Institucion.class, FXCollections.observableArrayList(App.usuario.getInstitucionList()));
         controllerClientes.filtroClientes(FXCollections.observableArrayList(App.usuario.getInstitucionList()));

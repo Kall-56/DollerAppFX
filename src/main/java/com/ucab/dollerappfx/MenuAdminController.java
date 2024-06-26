@@ -8,9 +8,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.control.Label;
@@ -36,6 +38,13 @@ public class MenuAdminController {
     private Label lbCerrarSeccion;
 
     @FXML
+    private Pane btDeselect;
+
+    private ObservableList<Cliente> todosCliente;
+
+    private ObservableList<Evento> todosEvento;
+
+    @FXML
     public void btCerrarSecionClicked(MouseEvent event) throws IOException{
         App.setRoot("LogIn");
     }
@@ -49,7 +58,35 @@ public class MenuAdminController {
         btCerrarSecion.setStyle("-fx-background-color: white;"+"-fx-border-color: #969696;"+"-fx-background-radius: 5;"+"-fx-border-radius: 2;");
         lbCerrarSeccion.setTextFill(Color.web("#969696"));
     }
-    
+
+    @FXML
+    void filtrarATM(MouseEvent event) {
+        if (event.getButton() == MouseButton.PRIMARY) {
+            ATM atmActual = tbATMs.getSelectionModel().getSelectedItem();
+
+            if (atmActual != null) {
+                ObservableList<Cliente> clientes = FXCollections.observableArrayList();
+                clientes.addAll(atmActual.getMedicoList());
+                clientes.addAll(atmActual.getFarmaciaList());
+                clientes.addAll(atmActual.getInstitucionList());
+
+                TablasController.establecerTipoTabla(tbCLIENTEs, Cliente.class, clientes);
+
+                ObservableList<Evento> eventos = FXCollections.observableArrayList(atmActual.getEventoList());
+                tbEVENTOs.setItems(eventos);
+                tbEVENTOs.refresh();
+            }
+        }
+    }
+
+    @FXML
+    void btDeselectClicked(MouseEvent event) {
+        TablasController.establecerTipoTabla(tbCLIENTEs, Cliente.class, todosCliente);
+        tbEVENTOs.setItems(todosEvento);
+        tbEVENTOs.refresh();
+
+        tbATMs.getSelectionModel().clearSelection();
+    }
 
     public void initialize() {
         // TABLA ATM
@@ -72,13 +109,13 @@ public class MenuAdminController {
         tbATMs.refresh();
 
         // TABLA CLIENTES
-        ObservableList<Cliente> clientes = FXCollections.observableArrayList();
+        todosCliente = FXCollections.observableArrayList();
         for (ATM atm: App.admin.getAtmList()) {
-            clientes.addAll(FXCollections.observableArrayList(atm.getMedicoList()));
-            clientes.addAll(FXCollections.observableArrayList(atm.getFarmaciaList()));
-            clientes.addAll(FXCollections.observableArrayList(atm.getInstitucionList()));
+            todosCliente.addAll(FXCollections.observableArrayList(atm.getMedicoList()));
+            todosCliente.addAll(FXCollections.observableArrayList(atm.getFarmaciaList()));
+            todosCliente.addAll(FXCollections.observableArrayList(atm.getInstitucionList()));
         }
-        TablasController.establecerTipoTabla(tbCLIENTEs, Cliente.class, clientes);
+        TablasController.establecerTipoTabla(tbCLIENTEs, Cliente.class, todosCliente);
 
         // TABLA DE EVENTOS
         tbEVENTOs.getColumns().clear();
@@ -104,11 +141,11 @@ public class MenuAdminController {
         tbEVENTOs.getColumns().add(semanaCol);
         tbEVENTOs.getColumns().add(descripCol);
 
-        ObservableList<Evento> eventos = FXCollections.observableArrayList();
+        todosEvento = FXCollections.observableArrayList();
         for (ATM atm: App.admin.getAtmList()) {
-            eventos.addAll(atm.getEventoList());
+            todosEvento.addAll(atm.getEventoList());
         }
-        tbEVENTOs.setItems(eventos);
+        tbEVENTOs.setItems(todosEvento);
         tbEVENTOs.refresh();        
     }    
     
