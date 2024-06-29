@@ -196,7 +196,7 @@
                         <Font name="Roboto Bold" size="30.0" />
                      </font>
                   </Label>
-                  <TableView fx:id="tbClientesRecientes" focusTraversable="false" layoutX="23.0" layoutY="333.0" prefHeight="436.0" prefWidth="699.0">
+                  <TableView fx:id="tbClientesRecientes" focusTraversable="false" layoutX="23.0" layoutY="333.0" prefHeight="436.0" prefWidth="699.0" stylesheets="@../../../css/tableLook.css">
                      <columns>
                         <TableColumn prefWidth="75.0" text="C1" />
                         <TableColumn prefWidth="75.0" text="C2" />
@@ -207,10 +207,10 @@
                         <Font name="Roboto Bold" size="30.0" />
                      </font>
                   </Label>
-                  <TableView fx:id="tbEventosMenu" focusTraversable="false" layoutX="753.0" layoutY="94.0" prefHeight="676.0" prefWidth="383.0" style="-fx-background-color: null; -fx-border-color: #FF7B52; -fx-border-radius: 5;">
+                  <TableView fx:id="tbEventosMenu" focusTraversable="false" layoutX="753.0" layoutY="94.0" prefHeight="676.0" prefWidth="383.0" stylesheets="@../../../css/tableLook.css">
                      <columns>
-                        <TableColumn prefWidth="75.0" text="C1" />
-                        <TableColumn prefWidth="75.0" text="C2" />
+                        <TableColumn prefWidth="150.0" text="Titulo" />
+                        <TableColumn prefWidth="188.0" text="C2" />
                      </columns>
                   </TableView>
                   <Pane layoutX="16.0" layoutY="246.0" opacity="0.7" prefHeight="1.0" prefWidth="714.0" style="-fx-background-color: #FF7B52; -fx-background-radius: 5;" />

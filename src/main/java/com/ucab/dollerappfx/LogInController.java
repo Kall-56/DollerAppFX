@@ -130,7 +130,6 @@ public class LogInController {
     void btCreateClicked(MouseEvent event) {
         pnUserCreate.setVisible(true);
         pnUserLogIn.setVisible(false);
-        pnUserRecClave.setVisible(false);
     }
     @FXML
     void btCreateEntered(MouseEvent event) {
