@@ -13,12 +13,26 @@ import java.util.ArrayList;
 
 public class ManejadorBD {
     
-    public static boolean verificarUsuarioATM(String nombre, String clave ) throws ClassNotFoundException{
-        Connection conexion  = null;
+    private Connection conexion;
+    
+    public ManejadorBD() throws ClassNotFoundException{
+        
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            this.conexion = DriverManager.getConnection("jdbc:mysql://avnadmin:AVNS_Qh5C9Xh7CDKUWx5cM11@mysql-server-app-dollder-2024-app-dollder-2024.g.aivencloud.com:11773/appdollder?ssl-mode=REQUIRED?ssl-mode=REQUIRED", "avnadmin", "AVNS_Qh5C9Xh7CDKUWx5cM11");
+        } catch (SQLException sQLException) {
+            this.conexion = null;
+        }
+    }
+    
+    public void cerrar() throws SQLException{
+        conexion.close();
+    }
+    
+    
+    public  boolean verificarUsuarioATM(String nombre, String clave ) throws ClassNotFoundException{
        int cantidadDeUsuarios = 0;
        try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            conexion = DriverManager.getConnection("jdbc:mysql://avnadmin:AVNS_Qh5C9Xh7CDKUWx5cM11@mysql-server-app-dollder-2024-app-dollder-2024.g.aivencloud.com:11773/appdollder?ssl-mode=REQUIRED?ssl-mode=REQUIRED","avnadmin", "AVNS_Qh5C9Xh7CDKUWx5cM11");
             String instruccion = "select * from atms where NOMBRE = '" + nombre + "' and CLAVE = '" + clave + "'";
             System.out.println(instruccion);
             Statement stm = conexion.createStatement();
@@ -26,7 +40,7 @@ public class ManejadorBD {
             while (usuariosCoinciden.next()) {
                 cantidadDeUsuarios++;
             }
-            conexion.close();
+            
             usuariosCoinciden.close();
             stm.close();
        } catch (SQLException ex){
@@ -35,18 +49,15 @@ public class ManejadorBD {
        return (cantidadDeUsuarios == 1);
    }
    
-    public static Administrador retornarUsuarioADMIN(String nombre ) throws ClassNotFoundException{
-       Connection conexion  = null;
+    public  Administrador retornarUsuarioADMIN(String nombre ) throws ClassNotFoundException{
        Administrador user = null;
        try{
-       Class.forName("com.mysql.cj.jdbc.Driver");
-        conexion = DriverManager.getConnection("jdbc:mysql://avnadmin:AVNS_Qh5C9Xh7CDKUWx5cM11@mysql-server-app-dollder-2024-app-dollder-2024.g.aivencloud.com:11773/appdollder?ssl-mode=REQUIRED?ssl-mode=REQUIRED","avnadmin", "AVNS_Qh5C9Xh7CDKUWx5cM11");       
         String instruccion = "select * from admin where NOMBRE = '" + nombre + "'";
        Statement stm = conexion.createStatement();
        ResultSet admin = stm.executeQuery(instruccion);
        admin.next();
        user = new Administrador(admin.getString("NOMBRE"), admin.getString("CLAVE"), admin.getString("TERRITORIO"), admin.getString("EMAIL"));
-       conexion.close();
+       
        admin.close();
        stm.close();
        } catch (SQLException ex){
@@ -55,17 +66,15 @@ public class ManejadorBD {
        return user;
    }
    
-    public static ATM retornarUsuarioATM(String nombre ) throws ClassNotFoundException{
-       Connection conexion  = null;
+    public ATM retornarUsuarioATM(String nombre ) throws ClassNotFoundException{
        ATM user = null;
        try{
-       Class.forName("com.mysql.cj.jdbc.Driver");
-        conexion = DriverManager.getConnection("jdbc:mysql://avnadmin:AVNS_Qh5C9Xh7CDKUWx5cM11@mysql-server-app-dollder-2024-app-dollder-2024.g.aivencloud.com:11773/appdollder?ssl-mode=REQUIRED?ssl-mode=REQUIRED","avnadmin", "AVNS_Qh5C9Xh7CDKUWx5cM11");       String instruccion = "select * from atms where NOMBRE = '" + nombre + "'";
+       String instruccion = "select * from atms where NOMBRE = '" + nombre + "'";
        Statement stm = conexion.createStatement();
        ResultSet admin = stm.executeQuery(instruccion);
        admin.next();
        user = new ATM(admin.getString("NOMBRE"), admin.getString("CLAVE"), admin.getString("TERRITORIO"), admin.getString("EMAIL"), admin.getString("GERENTE"));
-       conexion.close();
+       
        admin.close();
        stm.close();
        } catch (SQLException ex){
@@ -74,18 +83,16 @@ public class ManejadorBD {
        return user;
    }   
       
-    public static boolean VerificarUsuarioADMIN(String nombre, String clave ) throws ClassNotFoundException{
-       Connection conexion  = null;
+    public boolean VerificarUsuarioADMIN(String nombre, String clave ) throws ClassNotFoundException{
        int cantidadDeUsuarios = 0;
        try{
-       Class.forName("com.mysql.cj.jdbc.Driver");
-conexion = DriverManager.getConnection("jdbc:mysql://avnadmin:AVNS_Qh5C9Xh7CDKUWx5cM11@mysql-server-app-dollder-2024-app-dollder-2024.g.aivencloud.com:11773/appdollder?ssl-mode=REQUIRED?ssl-mode=REQUIRED","avnadmin", "AVNS_Qh5C9Xh7CDKUWx5cM11");       String instruccion = "select * from admin where NOMBRE = '" + nombre + "' and CLAVE = '" + clave + "'";
+       String instruccion = "select * from admin where NOMBRE = '" + nombre + "' and CLAVE = '" + clave + "'";
        Statement stm = conexion.createStatement();
        ResultSet usuariosCoinciden = stm.executeQuery(instruccion);
        while (usuariosCoinciden.next()) {
            cantidadDeUsuarios++;
        }
-       conexion.close();
+       
        usuariosCoinciden.close();
        stm.close();
        } catch (SQLException ex){
@@ -94,27 +101,23 @@ conexion = DriverManager.getConnection("jdbc:mysql://avnadmin:AVNS_Qh5C9Xh7CDKUW
        return (cantidadDeUsuarios == 1);
    }
    
-    public static void AgregarUsuarioABaseDeDatos(String nombre, String clave, String territorio, String email, String gerente ) throws ClassNotFoundException{
-      Connection conexion  = null;
+    public void AgregarUsuarioABaseDeDatos(String nombre, String clave, String territorio, String email, String gerente ) throws ClassNotFoundException{
       try{
-        Class.forName("com.mysql.cj.jdbc.Driver");
-conexion = DriverManager.getConnection("jdbc:mysql://avnadmin:AVNS_Qh5C9Xh7CDKUWx5cM11@mysql-server-app-dollder-2024-app-dollder-2024.g.aivencloud.com:11773/appdollder?ssl-mode=REQUIRED?ssl-mode=REQUIRED","avnadmin", "AVNS_Qh5C9Xh7CDKUWx5cM11");        String instruccion = "insert into atms values ('"+ nombre +"', '" + clave + "','" + territorio +"', '" + email + "','" + gerente +"')" ;
+        String instruccion = "insert into atms values ('"+ nombre +"', '" + clave + "','" + territorio +"', '" + email + "','" + gerente +"')" ;
         System.out.println(instruccion);
         Statement stm = conexion.createStatement();
         stm.executeUpdate(instruccion);
-        conexion.close();
+        
         stm.close();   
       } catch(SQLException ex){
           System.err.println(ex);
       }
     }
 
-    public static ArrayList<Farmacia> DevolverFarmacias(String nombreATM) throws ClassNotFoundException {
-       Connection conexion  = null;
+    public ArrayList<Farmacia> DevolverFarmacias(String nombreATM) throws ClassNotFoundException {
        ArrayList<Farmacia> retornoFarmacias = new ArrayList<Farmacia>();
       try{
-        Class.forName("com.mysql.cj.jdbc.Driver");
-conexion = DriverManager.getConnection("jdbc:mysql://avnadmin:AVNS_Qh5C9Xh7CDKUWx5cM11@mysql-server-app-dollder-2024-app-dollder-2024.g.aivencloud.com:11773/appdollder?ssl-mode=REQUIRED?ssl-mode=REQUIRED","avnadmin", "AVNS_Qh5C9Xh7CDKUWx5cM11");        String instruccion = "select * from farmacia where ATM = '" + nombreATM + "'" ;
+        String instruccion = "select * from farmacia where ATM = '" + nombreATM + "'" ;
         System.out.println(instruccion);
         Statement stm = conexion.createStatement();
         ResultSet farmacias = stm.executeQuery(instruccion);
@@ -134,7 +137,7 @@ conexion = DriverManager.getConnection("jdbc:mysql://avnadmin:AVNS_Qh5C9Xh7CDKUW
                                               farmacias.getString("DROGUERIA")));
         }
         farmacias.close();
-        conexion.close();
+        
         stm.close();   
       } catch(SQLException ex){
           System.err.println(ex);
@@ -142,12 +145,10 @@ conexion = DriverManager.getConnection("jdbc:mysql://avnadmin:AVNS_Qh5C9Xh7CDKUW
       return retornoFarmacias;
     }
 
-    public static ArrayList<Medico> DevolverMedicos(String nombreATM) throws ClassNotFoundException {
-       Connection conexion  = null;
+    public ArrayList<Medico> DevolverMedicos(String nombreATM) throws ClassNotFoundException {
        ArrayList<Medico> retornoMedicos = new ArrayList<Medico>();
       try{
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        conexion = DriverManager.getConnection("jdbc:mysql://avnadmin:AVNS_Qh5C9Xh7CDKUWx5cM11@mysql-server-app-dollder-2024-app-dollder-2024.g.aivencloud.com:11773/appdollder?ssl-mode=REQUIRED?ssl-mode=REQUIRED","avnadmin", "AVNS_Qh5C9Xh7CDKUWx5cM11");        String instruccion = "select * from medico where ATM = '" + nombreATM + "'" ;
+        String instruccion = "select * from medico where ATM = '" + nombreATM + "'" ;
         System.out.println(instruccion);
         Statement stm = conexion.createStatement();
         ResultSet medicos = stm.executeQuery(instruccion);
@@ -168,7 +169,7 @@ conexion = DriverManager.getConnection("jdbc:mysql://avnadmin:AVNS_Qh5C9Xh7CDKUW
                                               medicos.getString("FORMATO_DE_VISITA")));
         }
         medicos.close();
-        conexion.close();
+        
         stm.close();   
       } catch(SQLException ex){
           System.err.println(ex);
@@ -176,12 +177,10 @@ conexion = DriverManager.getConnection("jdbc:mysql://avnadmin:AVNS_Qh5C9Xh7CDKUW
       return retornoMedicos;
     }
 
-    public static ArrayList<Institucion> DevolverInstitucion(String nombreATM) throws ClassNotFoundException {
-       Connection conexion  = null;
+    public ArrayList<Institucion> DevolverInstitucion(String nombreATM) throws ClassNotFoundException {
        ArrayList<Institucion> retornoInstitucion = new ArrayList<Institucion>();
         try{
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        conexion = DriverManager.getConnection("jdbc:mysql://avnadmin:AVNS_Qh5C9Xh7CDKUWx5cM11@mysql-server-app-dollder-2024-app-dollder-2024.g.aivencloud.com:11773/appdollder?ssl-mode=REQUIRED?ssl-mode=REQUIRED","avnadmin", "AVNS_Qh5C9Xh7CDKUWx5cM11");        String instruccion = "select * from institucion where ATM = '" + nombreATM + "'" ;
+        String instruccion = "select * from institucion where ATM = '" + nombreATM + "'" ;
         System.out.println(instruccion);
         Statement stm = conexion.createStatement();
         ResultSet instituciones = stm.executeQuery(instruccion);
@@ -198,7 +197,7 @@ conexion = DriverManager.getConnection("jdbc:mysql://avnadmin:AVNS_Qh5C9Xh7CDKUW
                                               instituciones.getString("EDIFICIO")));
         }
         instituciones.close();
-        conexion.close();
+        
         stm.close();   
       } catch(SQLException ex){
           System.err.println(ex);
@@ -206,12 +205,10 @@ conexion = DriverManager.getConnection("jdbc:mysql://avnadmin:AVNS_Qh5C9Xh7CDKUW
       return retornoInstitucion;
     }
   
-    public static ArrayList<Evento> DevolverEvento (String nombreATM) throws ClassNotFoundException {
-       Connection conexion  = null;
+    public ArrayList<Evento> DevolverEvento (String nombreATM) throws ClassNotFoundException {
        ArrayList<Evento> retornosEventos = new ArrayList<Evento>();
         try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            conexion = DriverManager.getConnection("jdbc:mysql://avnadmin:AVNS_Qh5C9Xh7CDKUWx5cM11@mysql-server-app-dollder-2024-app-dollder-2024.g.aivencloud.com:11773/appdollder?ssl-mode=REQUIRED?ssl-mode=REQUIRED","avnadmin", "AVNS_Qh5C9Xh7CDKUWx5cM11");        String instruccion = "select * from eventos where ATM = " + nombreATM + "'" ;
+            String instruccion = "select * from eventos where ATM = " + nombreATM + "'" ;
             System.out.println(instruccion);
             Statement stm = conexion.createStatement();
             ResultSet eventos = stm.executeQuery(instruccion);
@@ -224,7 +221,7 @@ conexion = DriverManager.getConnection("jdbc:mysql://avnadmin:AVNS_Qh5C9Xh7CDKUW
                                                   eventos.getString("DESCRIPCION")));
             }
             eventos.close();
-            conexion.close();
+            
             stm.close();
       } catch(SQLException ex){
           System.err.println(ex);
@@ -232,46 +229,42 @@ conexion = DriverManager.getConnection("jdbc:mysql://avnadmin:AVNS_Qh5C9Xh7CDKUW
       return retornosEventos;
     }
   
-    public static ArrayList<Evento> DevolverEventoADMIN (String nombreADMIN) throws ClassNotFoundException {
-       Connection conexion  = null;
+    public ArrayList<Evento> DevolverEventoADMIN (String nombreADMIN) throws ClassNotFoundException {
        ArrayList<Evento> retornosEventos = new ArrayList<Evento>();
         try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            conexion = DriverManager.getConnection("jdbc:mysql://avnadmin:AVNS_Qh5C9Xh7CDKUWx5cM11@mysql-server-app-dollder-2024-app-dollder-2024.g.aivencloud.com:11773/appdollder?ssl-mode=REQUIRED?ssl-mode=REQUIRED","avnadmin", "AVNS_Qh5C9Xh7CDKUWx5cM11");        String instruccion = "select * from atms where GERENTE = '" + nombreADMIN + "'" ;
-            System.out.println(instruccion);
-            Statement stm = conexion.createStatement();
-            ResultSet ATM = stm.executeQuery(instruccion);
-
-            while (ATM.next()){
-                retornosEventos.addAll(ManejadorBD.DevolverEvento(ATM.getString("NOMBRE")));
-
-            }
-            ATM.close();
-            conexion.close();
-            stm.close();
-      } catch(SQLException ex){
-          System.err.println(ex);
-      }
-      return retornosEventos;
-    }
-  
-    public static ArrayList<Farmacia> DevolverFarmaciaADMIN (String nombreADMIN) throws ClassNotFoundException {
-       Connection conexion  = null;
-       ArrayList<Farmacia> retornosFarmacia = new ArrayList<Farmacia>();
-        try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            conexion = DriverManager.getConnection("jdbc:mysql://avnadmin:AVNS_Qh5C9Xh7CDKUWx5cM11@mysql-server-app-dollder-2024-app-dollder-2024.g.aivencloud.com:11773/appdollder?ssl-mode=REQUIRED?ssl-mode=REQUIRED","avnadmin", "AVNS_Qh5C9Xh7CDKUWx5cM11");
             String instruccion = "select * from atms where GERENTE = '" + nombreADMIN + "'" ;
             System.out.println(instruccion);
             Statement stm = conexion.createStatement();
             ResultSet ATM = stm.executeQuery(instruccion);
 
             while (ATM.next()){
-                retornosFarmacia.addAll(ManejadorBD.DevolverFarmacias(ATM.getString("NOMBRE")));
+                retornosEventos.addAll(DevolverEvento(ATM.getString("NOMBRE")));
 
             }
             ATM.close();
-            conexion.close();
+            
+            stm.close();
+      } catch(SQLException ex){
+          System.err.println(ex);
+      }
+      return retornosEventos;
+    }
+  
+    public ArrayList<Farmacia> DevolverFarmaciaADMIN (String nombreADMIN) throws ClassNotFoundException {
+
+       ArrayList<Farmacia> retornosFarmacia = new ArrayList<Farmacia>();
+        try{
+            String instruccion = "select * from atms where GERENTE = '" + nombreADMIN + "'" ;
+            System.out.println(instruccion);
+            Statement stm = conexion.createStatement();
+            ResultSet ATM = stm.executeQuery(instruccion);
+
+            while (ATM.next()){
+                retornosFarmacia.addAll(DevolverFarmacias(ATM.getString("NOMBRE")));
+
+            }
+            ATM.close();
+            
             stm.close();
       } catch(SQLException ex){
           System.err.println(ex);
@@ -279,22 +272,22 @@ conexion = DriverManager.getConnection("jdbc:mysql://avnadmin:AVNS_Qh5C9Xh7CDKUW
       return retornosFarmacia;
     }
   
-    public static ArrayList<Medico> DevolverMedicoADMIN (String nombreADMIN) throws ClassNotFoundException {
-       Connection conexion  = null;
+    public ArrayList<Medico> DevolverMedicoADMIN (String nombreADMIN) throws ClassNotFoundException {
+
        ArrayList<Medico> retornosMedico = new ArrayList<Medico>();
         try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            conexion = DriverManager.getConnection("jdbc:mysql://avnadmin:AVNS_Qh5C9Xh7CDKUWx5cM11@mysql-server-app-dollder-2024-app-dollder-2024.g.aivencloud.com:11773/appdollder?ssl-mode=REQUIRED?ssl-mode=REQUIRED","avnadmin", "AVNS_Qh5C9Xh7CDKUWx5cM11");
+            
+            
             String instruccion = "select * from atms where GERENTE = '" + nombreADMIN + "'" ;
             Statement stm = conexion.createStatement();
             ResultSet ATM = stm.executeQuery(instruccion);
 
             while (ATM.next()){
-                retornosMedico.addAll(ManejadorBD.DevolverMedicos(ATM.getString("NOMBRE")));
+                retornosMedico.addAll(DevolverMedicos(ATM.getString("NOMBRE")));
 
             }
             ATM.close();
-            conexion.close();
+            
             stm.close();
       } catch(SQLException ex){
           System.err.println(ex);
@@ -302,22 +295,22 @@ conexion = DriverManager.getConnection("jdbc:mysql://avnadmin:AVNS_Qh5C9Xh7CDKUW
       return retornosMedico;
     }
   
-    public static ArrayList<Institucion> DevolverInstitucionADMIN (String nombreADMIN) throws ClassNotFoundException {
-       Connection conexion  = null;
+    public ArrayList<Institucion> DevolverInstitucionADMIN (String nombreADMIN) throws ClassNotFoundException {
+
        ArrayList<Institucion> retornosInstitucion = new ArrayList<Institucion>();
         try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            conexion = DriverManager.getConnection("jdbc:mysql://avnadmin:AVNS_Qh5C9Xh7CDKUWx5cM11@mysql-server-app-dollder-2024-app-dollder-2024.g.aivencloud.com:11773/appdollder?ssl-mode=REQUIRED?ssl-mode=REQUIRED","avnadmin", "AVNS_Qh5C9Xh7CDKUWx5cM11");        String instruccion = "select * from atms where GERENTE = '" + nombreADMIN + "'" ;
+            
+                    String instruccion = "select * from atms where GERENTE = '" + nombreADMIN + "'" ;
             System.out.println(instruccion);
             Statement stm = conexion.createStatement();
             ResultSet ATM = stm.executeQuery(instruccion);
 
             while (ATM.next()){
-                retornosInstitucion.addAll(ManejadorBD.DevolverInstitucion(ATM.getString("NOMBRE")));
+                retornosInstitucion.addAll(DevolverInstitucion(ATM.getString("NOMBRE")));
 
             }
             ATM.close();
-            conexion.close();
+            
             stm.close();
       } catch(SQLException ex){
           System.err.println(ex);
@@ -325,12 +318,12 @@ conexion = DriverManager.getConnection("jdbc:mysql://avnadmin:AVNS_Qh5C9Xh7CDKUW
       return retornosInstitucion;
     }
   
-    public static ArrayList<ATM> DevolverATM (String nombreADMIN) throws ClassNotFoundException {
-       Connection conexion  = null;
+    public ArrayList<ATM> DevolverATM (String nombreADMIN) throws ClassNotFoundException {
+
        ArrayList<ATM> retornosAtms = new ArrayList<ATM>();
         try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            conexion = DriverManager.getConnection("jdbc:mysql://avnadmin:AVNS_Qh5C9Xh7CDKUWx5cM11@mysql-server-app-dollder-2024-app-dollder-2024.g.aivencloud.com:11773/appdollder?ssl-mode=REQUIRED?ssl-mode=REQUIRED","avnadmin", "AVNS_Qh5C9Xh7CDKUWx5cM11");        String instruccion = "select * from atms where gerente = '" + nombreADMIN + "'" ;
+            
+                    String instruccion = "select * from atms where gerente = '" + nombreADMIN + "'" ;
             System.out.println(instruccion);
             Statement stm = conexion.createStatement();
             ResultSet ATM = stm.executeQuery(instruccion);
@@ -340,7 +333,7 @@ conexion = DriverManager.getConnection("jdbc:mysql://avnadmin:AVNS_Qh5C9Xh7CDKUW
 
             }
             ATM.close();
-            conexion.close();
+            
             stm.close();
       } catch(SQLException ex){
           System.err.println(ex);
@@ -348,11 +341,11 @@ conexion = DriverManager.getConnection("jdbc:mysql://avnadmin:AVNS_Qh5C9Xh7CDKUW
       return retornosAtms;
     }
     
-    public static void registrarFarmacia (String FARMACIA, String RIF, String GERENTE, String ATM, String DIRECCION, String CORREO, String TELEFONO, String PERSONA_DE_CONTACTO, String FREC, String CADENA, String DROGUERIA, String DESCRIPCION ) throws ClassNotFoundException {
-       Connection conexion  = null;
+    public void registrarFarmacia (String FARMACIA, String RIF, String GERENTE, String ATM, String DIRECCION, String CORREO, String TELEFONO, String PERSONA_DE_CONTACTO, String FREC, String CADENA, String DROGUERIA, String DESCRIPCION ) throws ClassNotFoundException {
+
       try{
-        Class.forName("com.mysql.cj.jdbc.Driver");
-conexion = DriverManager.getConnection("jdbc:mysql://avnadmin:AVNS_Qh5C9Xh7CDKUWx5cM11@mysql-server-app-dollder-2024-app-dollder-2024.g.aivencloud.com:11773/appdollder?ssl-mode=REQUIRED?ssl-mode=REQUIRED","avnadmin", "AVNS_Qh5C9Xh7CDKUWx5cM11");        String instruccion = "insert into farmacia  values (' " + FARMACIA + "', " +
+        
+        String instruccion = "insert into farmacia  values (' " + FARMACIA + "', " +
                                                             RIF + ", '" +
                                                             GERENTE  + "', '" +
                                                             ATM  + "', '" +
@@ -367,33 +360,33 @@ conexion = DriverManager.getConnection("jdbc:mysql://avnadmin:AVNS_Qh5C9Xh7CDKUW
         System.out.println(instruccion);
         Statement stm = conexion.createStatement();
         stm.executeUpdate(instruccion);
-        conexion.close();
+        
         stm.close();   
       } catch(SQLException ex){
           System.err.println(ex);
       }
     }
     
-    public static void ElimiarFarmacia (String RIF) throws ClassNotFoundException {
-       Connection conexion  = null;
+    public void ElimiarFarmacia (String RIF) throws ClassNotFoundException {
+
         try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            conexion = DriverManager.getConnection("jdbc:mysql://avnadmin:AVNS_Qh5C9Xh7CDKUWx5cM11@mysql-server-app-dollder-2024-app-dollder-2024.g.aivencloud.com:11773/appdollder?ssl-mode=REQUIRED?ssl-mode=REQUIRED","avnadmin", "AVNS_Qh5C9Xh7CDKUWx5cM11");        String instruccion = "delete from farmacia where RIF = " + RIF + "" ;
+            
+                    String instruccion = "delete from farmacia where RIF = " + RIF + "" ;
             System.out.println(instruccion);
             Statement stm = conexion.createStatement();
             stm.executeUpdate(instruccion);
-            conexion.close();
+            
             stm.close();
       } catch(SQLException ex){
           System.err.println(ex);
       }
     }
 
-    public static void registrarInstitucion (String INSTITUCION, String RIF, String GERENTE, String ATM, String DIRECCION, String CORREO, String TELEFONO, String PERSONA_DE_CONTACTO, String EDIFICIO, String FREC, String DESCRIPCION ) throws ClassNotFoundException {
-       Connection conexion  = null;
+    public void registrarInstitucion (String INSTITUCION, String RIF, String GERENTE, String ATM, String DIRECCION, String CORREO, String TELEFONO, String PERSONA_DE_CONTACTO, String EDIFICIO, String FREC, String DESCRIPCION ) throws ClassNotFoundException {
+
         try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            conexion = DriverManager.getConnection("jdbc:mysql://avnadmin:AVNS_Qh5C9Xh7CDKUWx5cM11@mysql-server-app-dollder-2024-app-dollder-2024.g.aivencloud.com:11773/appdollder?ssl-mode=REQUIRED?ssl-mode=REQUIRED","avnadmin", "AVNS_Qh5C9Xh7CDKUWx5cM11");        String instruccion = "insert into institucion  values (' " + INSTITUCION + "', " +
+            
+                    String instruccion = "insert into institucion  values (' " + INSTITUCION + "', " +
                                                                 RIF + ", '" +
                                                                 GERENTE  + "', '" +
                                                                 ATM  + "', '" +
@@ -407,33 +400,33 @@ conexion = DriverManager.getConnection("jdbc:mysql://avnadmin:AVNS_Qh5C9Xh7CDKUW
             System.out.println(instruccion);
             Statement stm = conexion.createStatement();
             stm.executeUpdate(instruccion);
-            conexion.close();
+            
             stm.close();
       } catch(SQLException ex){
           System.err.println(ex);
       }
     }
     
-    public static void ElimiarInstitucion (String RIF) throws ClassNotFoundException {
-       Connection conexion  = null;
+    public void ElimiarInstitucion (String RIF) throws ClassNotFoundException {
+
         try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            conexion = DriverManager.getConnection("jdbc:mysql://avnadmin:AVNS_Qh5C9Xh7CDKUWx5cM11@mysql-server-app-dollder-2024-app-dollder-2024.g.aivencloud.com:11773/appdollder?ssl-mode=REQUIRED?ssl-mode=REQUIRED","avnadmin", "AVNS_Qh5C9Xh7CDKUWx5cM11");        String instruccion = "delete from institucion where RIF = " + RIF + "" ;
+            
+                    String instruccion = "delete from institucion where RIF = " + RIF + "" ;
             System.out.println(instruccion);
             Statement stm = conexion.createStatement();
             stm.executeUpdate(instruccion);
-            conexion.close();
+            
             stm.close();
       } catch(SQLException ex){
           System.err.println(ex);
       }
     }
     
-    public static void registrarMedico (String MEDICO, String CEDULA, String GERENTE, String ATM, String NOMBRE_INSTITUCION, String DIRECCION, String ESPECIALIDAD, String FREC,  String CORREO, String TELEFONO, String DIAS_DE_VISITA, String HORARIO_DE_VISITA, String FORMATO_DE_VISITA, String DESCRIPCION ) throws ClassNotFoundException {
-       Connection conexion  = null;
+    public void registrarMedico (String MEDICO, String CEDULA, String GERENTE, String ATM, String NOMBRE_INSTITUCION, String DIRECCION, String ESPECIALIDAD, String FREC,  String CORREO, String TELEFONO, String DIAS_DE_VISITA, String HORARIO_DE_VISITA, String FORMATO_DE_VISITA, String DESCRIPCION ) throws ClassNotFoundException {
+
         try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            conexion = DriverManager.getConnection("jdbc:mysql://avnadmin:AVNS_Qh5C9Xh7CDKUWx5cM11@mysql-server-app-dollder-2024-app-dollder-2024.g.aivencloud.com:11773/appdollder?ssl-mode=REQUIRED?ssl-mode=REQUIRED","avnadmin", "AVNS_Qh5C9Xh7CDKUWx5cM11");        String instruccion = "insert into medico  values (' " + MEDICO + "', " +
+            
+                    String instruccion = "insert into medico  values (' " + MEDICO + "', " +
                                                                 CEDULA + ", '" +
                                                                 GERENTE  + "', '" +
                                                                 ATM  + "', '" +
@@ -450,33 +443,33 @@ conexion = DriverManager.getConnection("jdbc:mysql://avnadmin:AVNS_Qh5C9Xh7CDKUW
             System.out.println(instruccion);
             Statement stm = conexion.createStatement();
             stm.executeUpdate(instruccion);
-            conexion.close();
+            
             stm.close();
       } catch(SQLException ex){
           System.err.println(ex);
       }
     }
     
-    public static void ElimiarMEDICO (String CEDULA) throws ClassNotFoundException {
-       Connection conexion  = null;
+    public void ElimiarMEDICO (String CEDULA) throws ClassNotFoundException {
+
         try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            conexion = DriverManager.getConnection("jdbc:mysql://avnadmin:AVNS_Qh5C9Xh7CDKUWx5cM11@mysql-server-app-dollder-2024-app-dollder-2024.g.aivencloud.com:11773/appdollder?ssl-mode=REQUIRED?ssl-mode=REQUIRED","avnadmin", "AVNS_Qh5C9Xh7CDKUWx5cM11");        String instruccion = "delete from medico where CEDULA = " + CEDULA + "" ;
+            
+                    String instruccion = "delete from medico where CEDULA = " + CEDULA + "" ;
             System.out.println(instruccion);
             Statement stm = conexion.createStatement();
             stm.executeUpdate(instruccion);
-            conexion.close();
+            
             stm.close();
       } catch(SQLException ex){
           System.err.println(ex);
       }
     }
     
-    public static void registrarEvento (String TITULO, String ATM, String CLIENTE, String FECHA, String SEMANA, String DESCRIPCION ) throws ClassNotFoundException {
-        Connection conexion  = null;
+    public void registrarEvento (String TITULO, String ATM, String CLIENTE, String FECHA, String SEMANA, String DESCRIPCION ) throws ClassNotFoundException {
+ 
         try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            conexion = DriverManager.getConnection("jdbc:mysql://avnadmin:AVNS_Qh5C9Xh7CDKUWx5cM11@mysql-server-app-dollder-2024-app-dollder-2024.g.aivencloud.com:11773/appdollder?ssl-mode=REQUIRED?ssl-mode=REQUIRED","avnadmin", "AVNS_Qh5C9Xh7CDKUWx5cM11");        String instruccion = "insert into eventos  values (' " + TITULO + "', '" +
+            
+                    String instruccion = "insert into eventos  values (' " + TITULO + "', '" +
                                                                 ATM + "', '" +
                                                                 CLIENTE  + "', '" +
                                                                 FECHA  + "', " +
@@ -485,34 +478,34 @@ conexion = DriverManager.getConnection("jdbc:mysql://avnadmin:AVNS_Qh5C9Xh7CDKUW
             System.out.println(instruccion);
             Statement stm = conexion.createStatement();
             stm.executeUpdate(instruccion);
-            conexion.close();
+            
             stm.close();
       } catch(SQLException ex){
           System.err.println(ex);
       }
     }
     
-    public static void eliminarEvento(String Titulo) throws ClassNotFoundException {
-        Connection conexion  = null;
+    public void eliminarEvento(String Titulo) throws ClassNotFoundException {
+ 
         try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            conexion = DriverManager.getConnection("jdbc:mysql://avnadmin:AVNS_Qh5C9Xh7CDKUWx5cM11@mysql-server-app-dollder-2024-app-dollder-2024.g.aivencloud.com:11773/appdollder?ssl-mode=REQUIRED?ssl-mode=REQUIRED","avnadmin", "AVNS_Qh5C9Xh7CDKUWx5cM11");        String instruccion = "delete from eventos where TITULO = '" + Titulo + "'" ;
+            
+                    String instruccion = "delete from eventos where TITULO = '" + Titulo + "'" ;
             System.out.println(instruccion);
             Statement stm = conexion.createStatement();
             stm.executeUpdate(instruccion);
-            conexion.close();
+            
             stm.close();
       } catch(SQLException ex){
           System.err.println(ex);
       }
     }
 
-    public static ArrayList<Evento> DevolverEventos (String Cliente) throws ClassNotFoundException {
-        Connection conexion  = null;
+    public ArrayList<Evento> DevolverEventos (String Cliente) throws ClassNotFoundException {
+ 
         ArrayList<Evento> retornosEventos = new ArrayList<Evento>();
         try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            conexion = DriverManager.getConnection("jdbc:mysql://avnadmin:AVNS_Qh5C9Xh7CDKUWx5cM11@mysql-server-app-dollder-2024-app-dollder-2024.g.aivencloud.com:11773/appdollder?ssl-mode=REQUIRED?ssl-mode=REQUIRED","avnadmin", "AVNS_Qh5C9Xh7CDKUWx5cM11");        String instruccion = "select * from eventos where CLIENTE = '" + Cliente + "'" ;
+            
+                    String instruccion = "select * from eventos where CLIENTE = '" + Cliente + "'" ;
             System.out.println(instruccion);
             Statement stm = conexion.createStatement();
             ResultSet eventos = stm.executeQuery(instruccion);
@@ -522,7 +515,7 @@ conexion = DriverManager.getConnection("jdbc:mysql://avnadmin:AVNS_Qh5C9Xh7CDKUW
 
             }
             eventos.close();
-            conexion.close();
+            
             stm.close();
       } catch(SQLException ex){
           System.err.println(ex);
@@ -530,7 +523,7 @@ conexion = DriverManager.getConnection("jdbc:mysql://avnadmin:AVNS_Qh5C9Xh7CDKUW
       return retornosEventos;
     }
     
-    public static void agregarRequestFarmacia(String ADMINISTRADOR,
+    public void agregarRequestFarmacia(String ADMINISTRADOR,
                                                 String ATMS,
                                                 String TITULO_PETICION,
                                                 String DESCRIPCION_MOTIVO, 
@@ -547,10 +540,10 @@ conexion = DriverManager.getConnection("jdbc:mysql://avnadmin:AVNS_Qh5C9Xh7CDKUW
                                                 String CADENA,
                                                 String DROGUERIA,
                                                 String DESCRIPCION  ) throws ClassNotFoundException{
-        Connection conexion  = null;
+ 
         try{
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            conexion = DriverManager.getConnection("jdbc:mysql://avnadmin:AVNS_Qh5C9Xh7CDKUWx5cM11@mysql-server-app-dollder-2024-app-dollder-2024.g.aivencloud.com:11773/appdollder?ssl-mode=REQUIRED?ssl-mode=REQUIRED","avnadmin", "AVNS_Qh5C9Xh7CDKUWx5cM11");        String instruccion = "insert into requestfarmacia values  ('" + ADMINISTRADOR + "', '" +
+            
+                    String instruccion = "insert into requestfarmacia values  ('" + ADMINISTRADOR + "', '" +
                                                                         ATM + "', '" +
                                                                         TITULO_PETICION  + "', '" +
                                                                         DESCRIPCION_MOTIVO  + "', '" +
@@ -570,7 +563,7 @@ conexion = DriverManager.getConnection("jdbc:mysql://avnadmin:AVNS_Qh5C9Xh7CDKUW
             System.out.println(instruccion);
             Statement stm = conexion.createStatement();
             stm.executeUpdate(instruccion);
-            conexion.close();
+            
             stm.close();
       } catch(SQLException ex){
           System.err.println(ex);

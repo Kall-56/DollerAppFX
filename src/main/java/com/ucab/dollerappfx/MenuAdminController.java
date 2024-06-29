@@ -3,7 +3,6 @@ package com.ucab.dollerappfx;
 import Classes.ATM;
 import Classes.Cliente;
 import Classes.Evento;
-import ManejadorBD.ManejadorBD;
 import java.io.IOException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -69,14 +68,14 @@ public class MenuAdminController {
         tbATMs.getColumns().add(territorioCol);
         tbATMs.getColumns().add(correoCol);
 
-        tbATMs.setItems(FXCollections.observableArrayList(ManejadorBD.DevolverATM(App.admin.getNomUsuario())));
+        tbATMs.setItems(FXCollections.observableArrayList(App.manejadorBD.DevolverATM(App.admin.getNomUsuario())));
         tbATMs.refresh();
 
         // TABLA CLIENTES
         ObservableList<Cliente> clientes = FXCollections.observableArrayList();
-            clientes.addAll(FXCollections.observableArrayList(ManejadorBD.DevolverMedicoADMIN(App.admin.getNomUsuario())));
-            clientes.addAll(FXCollections.observableArrayList(ManejadorBD.DevolverFarmaciaADMIN(App.admin.getNomUsuario())));
-            clientes.addAll(FXCollections.observableArrayList(ManejadorBD.DevolverInstitucionADMIN(App.admin.getNomUsuario())));
+            clientes.addAll(FXCollections.observableArrayList(App.manejadorBD.DevolverMedicoADMIN(App.admin.getNomUsuario())));
+            clientes.addAll(FXCollections.observableArrayList(App.manejadorBD.DevolverFarmaciaADMIN(App.admin.getNomUsuario())));
+            clientes.addAll(FXCollections.observableArrayList(App.manejadorBD.DevolverInstitucionADMIN(App.admin.getNomUsuario())));
         
         TablasController.establecerTipoTabla(tbCLIENTEs, Cliente.class, clientes);
 
@@ -105,7 +104,7 @@ public class MenuAdminController {
         tbEVENTOs.getColumns().add(descripCol);
 
         ObservableList<Evento> eventos = FXCollections.observableArrayList();
-        eventos.addAll(ManejadorBD.DevolverEventoADMIN(App.admin.getNomUsuario()));
+        eventos.addAll(App.manejadorBD.DevolverEventoADMIN(App.admin.getNomUsuario()));
         tbEVENTOs.setItems(eventos);
         tbEVENTOs.refresh();        
     }    

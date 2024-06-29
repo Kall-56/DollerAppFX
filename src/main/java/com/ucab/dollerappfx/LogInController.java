@@ -3,8 +3,6 @@ package com.ucab.dollerappfx;
 import java.io.IOException;
 
 import Classes.*;
-import ManejadorBD.ManejadorBD;
-
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -96,12 +94,12 @@ public class LogInController {
     
     @FXML
     void btLogInClicked(MouseEvent event) throws IOException, ClassNotFoundException {
-          if (ManejadorBD.VerificarUsuarioADMIN(fldUserName.getText(), fldUserPassword.getText())) {
-              App.admin = ManejadorBD.retornarUsuarioADMIN(fldUserName.getText());
+          if (App.manejadorBD.VerificarUsuarioADMIN(fldUserName.getText(), fldUserPassword.getText())) {
+              App.admin = App.manejadorBD.retornarUsuarioADMIN(fldUserName.getText());
               App.setRoot("MenuAdmin");
-          } else if (ManejadorBD.verificarUsuarioATM(fldUserName.getText(), fldUserPassword.getText())) {
-              App.usuario = ManejadorBD.retornarUsuarioATM(fldUserName.getText());
-              App.admin = ManejadorBD.retornarUsuarioADMIN(App.usuario.getGerente());
+          } else if (App.manejadorBD.verificarUsuarioATM(fldUserName.getText(), fldUserPassword.getText())) {
+              App.usuario = App.manejadorBD.retornarUsuarioATM(fldUserName.getText());
+              App.admin = App.manejadorBD.retornarUsuarioADMIN(App.usuario.getGerente());
               App.setRoot("MenuPrincipal");
           } else {
               Alert alerta = new Alert(Alert.AlertType.INFORMATION);
@@ -179,7 +177,7 @@ public class LogInController {
         alerta.setHeaderText("");
         if (valido && (fldUserPasswordCrt.getText().equals(fldUserPasswordConfirm.getText()))) {
             //////////////////////////////////////////
-            ManejadorBD.AgregarUsuarioABaseDeDatos(fldUserNameCrt.getText(), fldUserPasswordCrt.getText(), fldUserZoneCrt.getText(), fldUserEmailCrt.getText(), "LIAUCAB");
+            App.manejadorBD.AgregarUsuarioABaseDeDatos(fldUserNameCrt.getText(), fldUserPasswordCrt.getText(), fldUserZoneCrt.getText(), fldUserEmailCrt.getText(), "LIAUCAB");
             pnUserLogIn.setVisible(true);
             pnUserCreate.setVisible(false);
 
@@ -237,7 +235,7 @@ public class LogInController {
         Task<Void> emailTask = new Task<>() {
             @Override
             protected Void call() throws Exception {
-                ATM atm = ManejadorBD.retornarUsuarioATM(tfUser.getText());
+                ATM atm = App.manejadorBD.retornarUsuarioATM(tfUser.getText());
 
                 EmailController correo = new EmailController();
                 correo.createEmail(atm.getEmail(), randomNum);
@@ -283,7 +281,7 @@ public class LogInController {
             boolean claveValido = ValidacionesController.validarCampos(tfClaveNueva, "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*_)(?!.* ).{8,16}$", lbUserPasswordError);
             if (claveValido && (tfClaveNueva.getText().equals(tfClaveNuevaConfirm.getText()))) {
 
-                // Que el ManejadorBD cambie la clave
+                // Que el App.manejadorBD cambie la clave
 
                 alerta.setTitle("Cambio de clave exitoso");
                 alerta.setHeaderText("");

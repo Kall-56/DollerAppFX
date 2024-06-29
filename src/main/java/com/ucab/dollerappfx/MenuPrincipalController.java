@@ -3,7 +3,6 @@ package com.ucab.dollerappfx;
 import java.io.IOException;
 
 import Classes.*;
-import ManejadorBD.ManejadorBD;
 
 import java.util.Optional;
 import javafx.collections.FXCollections;
@@ -98,13 +97,13 @@ public class MenuPrincipalController {
         iconInstS.setImage(new Image("Assets/iconInst.png"));
 
         ObservableList<Cliente> clientes = FXCollections.observableArrayList();
-        clientes.addAll(FXCollections.observableArrayList(ManejadorBD.DevolverMedicos(App.usuario.getNomUsuario())));
-        clientes.addAll(FXCollections.observableArrayList(ManejadorBD.DevolverInstitucion(App.usuario.getNomUsuario())));
-        clientes.addAll(FXCollections.observableArrayList(ManejadorBD.DevolverFarmacias(App.usuario.getNomUsuario())));
+        clientes.addAll(FXCollections.observableArrayList(App.manejadorBD.DevolverMedicos(App.usuario.getNomUsuario())));
+        clientes.addAll(FXCollections.observableArrayList(App.manejadorBD.DevolverInstitucion(App.usuario.getNomUsuario())));
+        clientes.addAll(FXCollections.observableArrayList(App.manejadorBD.DevolverFarmacias(App.usuario.getNomUsuario())));
 
         tbClientesRecientes.setItems(clientes);
         tbClientesRecientes.refresh();
-        tbEventosMenu.setItems(FXCollections.observableArrayList(ManejadorBD.DevolverEvento(App.usuario.getNomUsuario())));
+        tbEventosMenu.setItems(FXCollections.observableArrayList(App.manejadorBD.DevolverEvento(App.usuario.getNomUsuario())));
         tbEventosMenu.refresh();
     }
 
@@ -118,8 +117,8 @@ public class MenuPrincipalController {
         bgCircleFarmaS.setOpacity(lowOpacity);
         bgCircleInstS.setOpacity(lowOpacity);
 
-        controllerClientes.establecerClase(Medico.class, FXCollections.observableArrayList(ManejadorBD.DevolverMedicos(App.usuario.getNomUsuario())));
-        controllerClientes.filtroClientes(FXCollections.observableArrayList(ManejadorBD.DevolverMedicos(App.usuario.getNomUsuario())));
+        controllerClientes.establecerClase(Medico.class, FXCollections.observableArrayList(App.manejadorBD.DevolverMedicos(App.usuario.getNomUsuario())));
+        controllerClientes.filtroClientes(FXCollections.observableArrayList(App.manejadorBD.DevolverMedicos(App.usuario.getNomUsuario())));
     }
 
     @FXML
@@ -156,8 +155,8 @@ public class MenuPrincipalController {
         iconMedicS.setImage(new Image("Assets/iconMd.png"));
         iconInstS.setImage(new Image("Assets/iconInst.png"));
 
-        controllerClientes.establecerClase(Farmacia.class, FXCollections.observableArrayList(ManejadorBD.DevolverFarmacias(App.usuario.getNomUsuario())));
-        controllerClientes.filtroClientes(FXCollections.observableArrayList(ManejadorBD.DevolverFarmacias(App.usuario.getNomUsuario())));
+        controllerClientes.establecerClase(Farmacia.class, FXCollections.observableArrayList(App.manejadorBD.DevolverFarmacias(App.usuario.getNomUsuario())));
+        controllerClientes.filtroClientes(FXCollections.observableArrayList(App.manejadorBD.DevolverFarmacias(App.usuario.getNomUsuario())));
     }
 
     @FXML
@@ -194,8 +193,8 @@ public class MenuPrincipalController {
         iconMedicS.setImage(new Image("Assets/iconMd.png"));
         iconInstS.setImage(new Image("Assets/iconInstSelect.png"));
 
-        controllerClientes.establecerClase(Institucion.class, FXCollections.observableArrayList(ManejadorBD.DevolverInstitucion(App.usuario.getNomUsuario())));
-        controllerClientes.filtroClientes(FXCollections.observableArrayList(ManejadorBD.DevolverInstitucion(App.usuario.getNomUsuario())));
+        controllerClientes.establecerClase(Institucion.class, FXCollections.observableArrayList(App.manejadorBD.DevolverInstitucion(App.usuario.getNomUsuario())));
+        controllerClientes.filtroClientes(FXCollections.observableArrayList(App.manejadorBD.DevolverInstitucion(App.usuario.getNomUsuario())));
     }
 
     @FXML
@@ -279,14 +278,14 @@ public class MenuPrincipalController {
         tbEventosMenu.getColumns().add(fechaCol);
         tbEventosMenu.getColumns().add(semanaCol);
         tbEventosMenu.getColumns().add(descripCol);
-        tbEventosMenu.setItems(FXCollections.observableArrayList(ManejadorBD.DevolverEvento(App.usuario.getNomUsuario())));
+        tbEventosMenu.setItems(FXCollections.observableArrayList(App.manejadorBD.DevolverEvento(App.usuario.getNomUsuario())));
         tbEventosMenu.refresh();
 
         // Creacion de la tabla MultiClase
         ObservableList<Cliente> clientes = FXCollections.observableArrayList();
-        clientes.addAll(ManejadorBD.DevolverMedicos(App.usuario.getNomUsuario()));
-        clientes.addAll(ManejadorBD.DevolverFarmacias(App.usuario.getNomUsuario()));
-        clientes.addAll(ManejadorBD.DevolverInstitucion(App.usuario.getNomUsuario()));
+        clientes.addAll(App.manejadorBD.DevolverMedicos(App.usuario.getNomUsuario()));
+        clientes.addAll(App.manejadorBD.DevolverFarmacias(App.usuario.getNomUsuario()));
+        clientes.addAll(App.manejadorBD.DevolverInstitucion(App.usuario.getNomUsuario()));
         TablasController.establecerTipoTabla(tbClientesRecientes, Cliente.class, clientes);
 
 
