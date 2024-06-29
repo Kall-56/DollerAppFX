@@ -1,4 +1,5 @@
 ManejadorBD\ManejadorBD.class
+com\ucab\dollerappfx\LogInController$1.class
 Classes\Medico.class
 com\ucab\dollerappfx\MenuAdminController.class
 com\ucab\dollerappfx\MenuClientesController.class
@@ -8,6 +9,7 @@ module-info.class
 Classes\Evento.class
 com\ucab\dollerappfx\TablasController.class
 com\ucab\dollerappfx\App.class
+com\ucab\dollerappfx\EmailController.class
 com\ucab\dollerappfx\LogInController.class
 com\ucab\dollerappfx\ValidacionesController.class
 Classes\Farmacia.class

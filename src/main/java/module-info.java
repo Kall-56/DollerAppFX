@@ -9,5 +9,7 @@ module com.ucab.dollerappfx {
     exports com.ucab.dollerappfx;
     exports Classes;
     requires mysql.connector.j;
+    requires java.mail;
+    requires java.desktop;
 }
     

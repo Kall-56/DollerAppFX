@@ -5,11 +5,10 @@ import java.io.IOException;
 import Classes.*;
 import ManejadorBD.ManejadorBD;
 
+import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -65,6 +64,33 @@ public class LogInController {
     @FXML
     private Label lbUserPasswordConfirmError;
 
+//--------------------------Panel de recuperar clave----------------------------//
+    @FXML
+    private Pane pnUserRecClave;
+
+    @FXML
+    private Pane btBackClave;
+
+    @FXML
+    private Pane btEnviarCodigo;
+
+    @FXML
+    private Button btConfirmNuevaClave;
+
+    @FXML
+    private TextField tfCodigo;
+
+    @FXML
+    private TextField tfClaveNueva;
+
+    @FXML
+    private TextField tfClaveNuevaConfirm;
+
+    @FXML
+    private TextField tfUser;
+
+    private int codRecuperacion;
+
 //--------------------------Metodos del fxml----------------------------------//
 //---------------------------Panel de LogIn----------------------------------------//
     
@@ -74,17 +100,17 @@ public class LogInController {
               App.admin = ManejadorBD.retornarUsuarioADMIN(fldUserName.getText());
               App.setRoot("MenuAdmin");
           } else if (ManejadorBD.verificarUsuarioATM(fldUserName.getText(), fldUserPassword.getText())) {
-                      App.usuario = ManejadorBD.retornarUsuarioATM(fldUserName.getText());
-                      App.admin = ManejadorBD.retornarUsuarioADMIN(App.usuario.getGerente());
-                      App.setRoot("MenuPrincipal");
-            } else {
-                  Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-                  alerta.setTitle("Datos inválidos");
-                  alerta.setHeaderText("");
-                  alerta.setContentText("Usuario y/o contraseña incorrectos");
-                  alerta.showAndWait();
-              }
+              App.usuario = ManejadorBD.retornarUsuarioATM(fldUserName.getText());
+              App.admin = ManejadorBD.retornarUsuarioADMIN(App.usuario.getGerente());
+              App.setRoot("MenuPrincipal");
+          } else {
+              Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+              alerta.setTitle("Datos inválidos");
+              alerta.setHeaderText("");
+              alerta.setContentText("Usuario y/o contraseña incorrectos");
+              alerta.showAndWait();
           }
+    }
     
 
     @FXML
@@ -104,6 +130,7 @@ public class LogInController {
     void btCreateClicked(MouseEvent event) {
         pnUserCreate.setVisible(true);
         pnUserLogIn.setVisible(false);
+        pnUserRecClave.setVisible(false);
     }
     @FXML
     void btCreateEntered(MouseEvent event) {
@@ -120,13 +147,14 @@ public class LogInController {
 
     @FXML
     void fldForgotPressed(MouseEvent event) {
-
+        pnUserLogIn.setVisible(false);
+        pnUserCreate.setVisible(false);
+        pnUserRecClave.setVisible(true);
     }
     @FXML
     void fldForgotEntered(MouseEvent event) {
         fldPasswordForgot.setTextFill(App.aguamarina);
     }
-
     @FXML
     void fldForgotExited(MouseEvent event) {
         fldPasswordForgot.setTextFill(App.naranja);
@@ -190,9 +218,105 @@ public class LogInController {
         btBack.setStyle("-fx-background-color: white;"+"-fx-border-color: #6b6b6b;"+"-fx-background-radius: 5;"+"-fx-border-radius: 5;");
         lbVolver.setTextFill(Color.web("#6b6b6b"));
     }
+
+//--------------------------Panel de recuperar clave----------------------------//
+    @FXML
+    void btBackClavePressed(MouseEvent event) {
+        pnUserLogIn.setVisible(true);
+        pnUserRecClave.setVisible(false);
+
+        codRecuperacion = -101;
+    }
+
+    @FXML
+    private void btEnviarCodigoPressed() {
+        // Max 999999 - Min 100000
+        int randomNum = 100000 + (int)(Math.random() * ((999999 - 100000) + 1));
+        codRecuperacion = randomNum;
+
+        // Crear una tarea para el envío de correo
+        Task<Void> emailTask = new Task<>() {
+            @Override
+            protected Void call() throws Exception {
+                ATM atm = ManejadorBD.retornarUsuarioATM(tfUser.getText());
+
+                EmailController correo = new EmailController();
+                correo.createEmail(atm.getEmail(), randomNum);
+                correo.sendEmail();
+                return null;
+            }
+
+            @Override
+            protected void succeeded() {
+                Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+                alerta.setTitle("Código de recuperación enviado");
+                alerta.setHeaderText("");
+                alerta.setContentText("Correo enviado con éxito");
+                alerta.showAndWait();
+
+                btConfirmNuevaClave.setDisable(false);
+                tfClaveNueva.setDisable(false);
+                tfClaveNuevaConfirm.setDisable(false);
+                tfCodigo.setDisable(false);
+            }
+
+            @Override
+            protected void failed() {
+                Alert alerta = new Alert(Alert.AlertType.WARNING);
+                alerta.setTitle("Error en los datos");
+                alerta.setHeaderText("");
+                alerta.setContentText("Verifique el usuario introducido");
+                alerta.showAndWait();
+                getException().printStackTrace();
+            }
+        };
+
+        // Enviar el correo en un nuevo hilo
+        Thread email = new Thread(emailTask);
+        email.start();
+    }
+
+    @FXML
+    void btConfirmarClave(ActionEvent event) {
+        Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+        boolean codigoValido = ValidacionesController.validarCampos(tfCodigo, "^[0-9]{6}$", lbUserPasswordError);
+        if (codigoValido && (Integer.parseInt(tfCodigo.getText()) == codRecuperacion)) {
+            boolean claveValido = ValidacionesController.validarCampos(tfClaveNueva, "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*_)(?!.* ).{8,16}$", lbUserPasswordError);
+            if (claveValido && (tfClaveNueva.getText().equals(tfClaveNuevaConfirm.getText()))) {
+
+                // Que el ManejadorBD cambie la clave
+
+                alerta.setTitle("Cambio de clave exitoso");
+                alerta.setHeaderText("");
+                alerta.setContentText("La clave del usuario ha sido modificado exitosamente");
+
+                pnUserLogIn.setVisible(true);
+                pnUserRecClave.setVisible(false);
+            } else {
+                alerta.setTitle("Error en la clave");
+                alerta.setHeaderText("");
+                alerta.setContentText("Verifique que la clave nueva sea válida");
+            }
+        } else {
+            alerta.setTitle("Código de recuperación erróneo");
+            alerta.setHeaderText("");
+            alerta.setContentText("Verifique el código introducido");
+
+        }
+        alerta.showAndWait();
+    }
 //----------------------------------------------------------------------------//
 
     public void initialize() {
+        pnUserLogIn.setVisible(true);
+        pnUserCreate.setVisible(false);
+        pnUserRecClave.setVisible(false);
+
+        tfCodigo.setDisable(true);
+        tfClaveNueva.setDisable(true);
+        tfClaveNuevaConfirm.setDisable(true);
+        btConfirmNuevaClave.setDisable(true);
+
         pnUserCreate.visibleProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue) {
                 fldUserNameCrt.clear();
@@ -210,6 +334,20 @@ public class LogInController {
                 fldUserEmailCrt.clear();
                 fldUserEmailCrt.setStyle("");
                 lbUserEmailError.setVisible(false);
+            }
+        });
+
+        pnUserRecClave.visibleProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue) {
+                tfUser.clear();
+                tfCodigo.clear();
+                tfCodigo.setDisable(true);
+                tfClaveNueva.clear();
+                tfClaveNueva.setDisable(true);
+                tfClaveNuevaConfirm.clear();
+                tfClaveNuevaConfirm.setDisable(true);
+                btConfirmNuevaClave.setDisable(true);
+                codRecuperacion = -101;
             }
         });
 
