@@ -7,6 +7,7 @@ public class Institucion extends Cliente {
     private String edfFacultad;
 
     public Institucion(String nombreCliente,
+                       String nombreATM,
                        String direccion,
                        String numTLF,
                        char tipoIdentidad,
@@ -15,25 +16,25 @@ public class Institucion extends Cliente {
                        String personaContacto,
                        String edfFacultad) {
 
-        super(nombreCliente, direccion, numTLF, tipoIdentidad, docIdentidad, descripcion);
+        super(nombreCliente,nombreATM, direccion, numTLF, tipoIdentidad, docIdentidad, descripcion);
         this.personaContacto = personaContacto;
         this.edfFacultad = edfFacultad;
     }
 
-    public Institucion(String nombreCliente,
-                       String direccion,
-                       String numTLF,
-                       char tipoIdentidad,
-                       int docIdentidad,
-                       String descripcion,
-                       String personaContacto,
-                       String edfFacultad,
-                       ArrayList<Evento> eventos) {
-
-        super(nombreCliente, direccion, numTLF, tipoIdentidad, docIdentidad, descripcion, eventos);
-        this.personaContacto = personaContacto;
-        this.edfFacultad = edfFacultad;
-    }
+//    public Institucion(String nombreCliente,
+//                       String direccion,
+//                       String numTLF,
+//                       char tipoIdentidad,
+//                       int docIdentidad,
+//                       String descripcion,
+//                       String personaContacto,
+//                       String edfFacultad,
+//                       ArrayList<Evento> eventos) {
+//
+//        super(nombreCliente, direccion, numTLF, tipoIdentidad, docIdentidad, descripcion, eventos);
+//        this.personaContacto = personaContacto;
+//        this.edfFacultad = edfFacultad;
+//    }
 
     // Getters y Setters -----------------------------------------------------------------------------------------------
     public String getPersonaContacto() {

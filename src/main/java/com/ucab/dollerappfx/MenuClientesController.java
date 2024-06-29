@@ -1,6 +1,7 @@
 package com.ucab.dollerappfx;
 
 import Classes.*;
+import ManejadorBD.*;
 import javafx.collections.FXCollections;
 import javafx.collections.transformation.FilteredList;
 import javafx.scene.control.*;
@@ -238,7 +239,7 @@ public class MenuClientesController {
     
 //---------------------------Panel de Vista Cliente----------------------------------------//
     @FXML
-    void manejarClicks(MouseEvent event) {
+    void manejarClicks(MouseEvent event) throws ClassNotFoundException {
         if (event.getButton() == MouseButton.PRIMARY) {
             if (event.getClickCount() == 2) {
                 clienteActual = tablaClientes.getSelectionModel().getSelectedItem();
@@ -247,14 +248,14 @@ public class MenuClientesController {
         }
     }
     
-    public void verInfoCliente(Cliente cliente) {
+    public void verInfoCliente(Cliente cliente) throws ClassNotFoundException {
         if (cliente != null) {
             tfBuscarCliente.clear();
             visibilityChange(true, false, false);
             verEventos.setVisible(true);
             crearEvento.setVisible(false);
             establecerCliente(cliente);
-            filtroEventos(FXCollections.observableArrayList(cliente.getEventoList()));
+            filtroEventos(FXCollections.observableArrayList(ManejadorBD.DevolverEventos(cliente.getNombreCliente())));
         } else {
             Alert alerta = new Alert(Alert.AlertType.INFORMATION);
             alerta.setTitle("Seleccione un cliente");
@@ -269,11 +270,7 @@ public class MenuClientesController {
         TablasController.establecerTipoTabla((TableView<T>) tablaClientes, clase, lista);
         if (clase == Medico.class) {
             lbClientesTitle.setText("Médicos");
-            try {
-                iconCliente.setImage(new Image("Assets/iconMdSelectB.png"));
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
+            iconCliente.setImage(new Image("Assets/iconMdSelectB.png"));
 
             fldEspecMd.setVisible(true);
             fldEmailMdFm.setVisible(true);
@@ -289,11 +286,7 @@ public class MenuClientesController {
         }
         else if (clase == Farmacia.class) {
             lbClientesTitle.setText("Farmacias");
-            try {
-                iconCliente.setImage(new Image("Assets/iconFarmaB.png"));
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
+            iconCliente.setImage(new Image("Assets/iconFarmaB.png"));
 
             fldPersonContacFmInst.setVisible(true);
             fldEmailMdFm.setVisible(true);
@@ -309,11 +302,7 @@ public class MenuClientesController {
         }
         else if (clase == Institucion.class) {
             lbClientesTitle.setText("Instituciones");
-            try {
-                iconCliente.setImage(new Image("Assets/iconInstSelectB.png"));
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
+            iconCliente.setImage(new Image("Assets/iconInstSelectB.png"));
 
             fldPersonContacFmInst.setVisible(true);
             fldFacultadInst.setVisible(true);
@@ -395,7 +384,7 @@ public class MenuClientesController {
     
 //---------------------------Panel de Info Cliente----------------------------------------//
     // Método para cambiar los labels correspondientes al cliente
-    public void establecerCliente(Cliente cliente) {
+    public void establecerCliente(Cliente cliente) throws ClassNotFoundException {
         lbClienteNombre.setText(cliente.getNombreCliente());
         lbCedula.setText(cliente.getTipoIdentidad()+" "+cliente.getDocIdentidad());
         lbNumero.setText(cliente.getNumTLF());
@@ -485,7 +474,7 @@ public class MenuClientesController {
             lbFacultadInst.setVisible(false);
             edfFacultad.setVisible(false);
         }
-        tbEventos.setItems(FXCollections.observableArrayList(cliente.getEventoList()));
+        tbEventos.setItems(FXCollections.observableArrayList(ManejadorBD.DevolverEventos(clienteActual.getNombreCliente())));
         tbEventos.refresh();
     }
     
@@ -550,7 +539,7 @@ public class MenuClientesController {
     }
     
     @FXML
-    void btCrearNuevoPressed(MouseEvent event) {
+    void btCrearNuevoPressed(MouseEvent event) throws ClassNotFoundException {
         Alert alerta = new Alert(Alert.AlertType.INFORMATION);
         boolean titulo = ValidacionesController.validarCampos(tfTituloEvento, "^.{1,30}$", lbTituloEventoError);
         boolean descripcion = ValidacionesController.validarCampos(taDescripcion, "^[\\s\\S]{0,100}$",lbDescripcionError);
@@ -564,17 +553,15 @@ public class MenuClientesController {
                     taDescripcion.getText());
 
             if (lbCrearNuevo.getText().equals("Crear")) {
-                clienteActual.registrarEvento(evento);
-                App.usuario.registrarEvento(evento);
+                ManejadorBD.registrarEvento(evento.getTitulo(), App.usuario.getNomUsuario(), clienteActual.getNombreCliente(), evento.getFecha(), String.valueOf(evento.getSemana()), taDescripcion.getText() );
 
+                 
                 alerta.setContentText("EVENTO AGREGADO CON ÉXITO");
                 alerta.setTitle("Evento creado");
 
             } else if (lbCrearNuevo.getText().equals("Modificar")) {
-                clienteActual.eliminarEvento(eventoActual);
-                clienteActual.registrarEvento(evento);
-                App.usuario.eliminarEvento(eventoActual);
-                App.usuario.registrarEvento(evento);
+                ManejadorBD.eliminarEvento(evento.getTitulo());
+                ManejadorBD.registrarEvento(evento.getTitulo(), App.usuario.getNomUsuario(), clienteActual.getNombreCliente(), evento.getFecha(), String.valueOf(evento.getSemana()), taDescripcion.getText()  );
 
                 alerta.setContentText("EVENTO MODIFICADO CON ÉXITO");
                 alerta.setTitle("Evento modificado");
@@ -583,7 +570,7 @@ public class MenuClientesController {
             reiniciarCamposEvento();
             verEventos.setVisible(true);
             crearEvento.setVisible(false);
-            tbEventos.setItems(FXCollections.observableArrayList(clienteActual.getEventoList()));
+            tbEventos.setItems(FXCollections.observableArrayList(ManejadorBD.DevolverEventos(clienteActual.getNombreCliente())));
             tbEventos.refresh();
         } else {
 
@@ -707,7 +694,7 @@ public class MenuClientesController {
     }
     
     @FXML
-    void btCrearClienteClicked(MouseEvent event) {
+    void btCrearClienteClicked(MouseEvent event) throws ClassNotFoundException {
         String clase = lbClientesTitle.getText();
 
         boolean nombreValido = ValidacionesController.validarCampos(fldNombre, "^[a-zA-Z ]{1,50}$", lbNombreError);
@@ -762,50 +749,53 @@ public class MenuClientesController {
             if (result.isPresent() && result.get() == confirmButton) {
                 switch (clase) {
                     case "Médicos":
-                        Medico med = new Medico(fldNombre.getText(),
+                        ManejadorBD.registrarMedico(fldNombre.getText(),
+                                fldCedula.getText(),
+                                App.admin.getNomUsuario(),
+                                App.usuario.getNomUsuario(),
+                                "cambiar pls inst nim",
                                 fldDirect.getText(),
-                                chnumber.getValue() + fldNumber.getText(),
-                                chTypeCedula.getValue(),
-                                Integer.parseInt(fldCedula.getText()),
-                                "",
                                 fldEspecMd.getText(),
+                                fldFrecueMdFm.getText(),
                                 fldEmailMdFm.getText(),
-                                Integer.parseInt(fldFrecueMdFm.getText()),
+                                chnumber.getValue() + fldNumber.getText(),
                                 fldDiasVisitMd.getText(),
                                 fldHorarioMd.getText(),
-                                fldFormatoMd.getText());
-                        App.usuario.registrarCliente(med);
-                        establecerClase(Medico.class, FXCollections.observableArrayList(App.usuario.getMedicoList()));
-                        filtroClientes(FXCollections.observableArrayList(App.usuario.getMedicoList()));
+                                fldFormatoMd.getText(),
+                                "descripcion");
+                        establecerClase(Medico.class, FXCollections.observableArrayList(ManejadorBD.DevolverMedicos(App.usuario.getNomUsuario())));
+                        filtroClientes(FXCollections.observableArrayList(ManejadorBD.DevolverMedicos(App.usuario.getNomUsuario())));
                         break;
                     case "Farmacias":
-                        Farmacia far = new Farmacia(fldNombre.getText(),
+                        ManejadorBD.registrarFarmacia(fldNombre.getText(),
+                                fldCedula.getText(),
+                                App.usuario.getGerente(),
+                                App.usuario.getNomUsuario(),
                                 fldDirect.getText(),
-                                chnumber.getValue() + fldNumber.getText(),
-                                chTypeCedula.getValue(),
-                                Integer.parseInt(fldCedula.getText()),
-                                "",
-                                fldPersonContacFmInst.getText(),
                                 fldEmailMdFm.getText(),
-                                Integer.parseInt(fldFrecueMdFm.getText()),
+                                chnumber.getValue() + fldNumber.getText(),
+                                fldPersonContacFmInst.getText(),
+                                fldFrecueMdFm.getText(),
                                 fldCadenaFm.getText(),
-                                fldDrogeriaFm.getText());
-                        App.usuario.registrarCliente(far);
-                        establecerClase(Farmacia.class, FXCollections.observableArrayList(App.usuario.getFarmaciaList()));
-                        filtroClientes(FXCollections.observableArrayList(App.usuario.getFarmaciaList()));
+                                fldDrogeriaFm.getText(),
+                                "");
+                        establecerClase(Farmacia.class, FXCollections.observableArrayList(ManejadorBD.DevolverFarmacias(App.usuario.getNomUsuario())));
+                        filtroClientes(FXCollections.observableArrayList(ManejadorBD.DevolverFarmacias(App.usuario.getNomUsuario())));
                         break;
                     case "Instituciones":
-                        Institucion inst = new Institucion(fldNombre.getText(),
+                        ManejadorBD.registrarInstitucion(fldNombre.getText(),
+                                fldCedula.getText(),
+                                App.usuario.getGerente(),
+                                App.usuario.getNomUsuario(),
                                 fldDirect.getText(),
+                                "correo1234@gmail.com",
                                 chnumber.getValue() + fldNumber.getText(),
-                                chTypeCedula.getValue(),
-                                Integer.parseInt(fldCedula.getText()),
-                                "",
                                 fldPersonContacFmInst.getText(),
-                                fldFacultadInst.getText());
-                        App.usuario.registrarCliente(inst);
-                        establecerClase(Institucion.class, FXCollections.observableArrayList(App.usuario.getInstitucionList()));
-                        filtroClientes(FXCollections.observableArrayList(App.usuario.getInstitucionList()));
+                                fldFacultadInst.getText(),
+                                "99",
+                                "descripcion");
+                        establecerClase(Institucion.class, FXCollections.observableArrayList(ManejadorBD.DevolverInstitucion(App.usuario.getNomUsuario())));
+                        filtroClientes(FXCollections.observableArrayList(ManejadorBD.DevolverInstitucion(App.usuario.getNomUsuario())));
                         break;
                 }
                 Alert alerta2 = new Alert(Alert.AlertType.INFORMATION);

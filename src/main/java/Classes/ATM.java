@@ -1,102 +1,37 @@
 package Classes;
 
-import java.util.ArrayList;
 
 public class ATM extends Usuario {
-    private ArrayList<Institucion> institucionList;
-    private ArrayList<Farmacia> farmaciaList;
-    private ArrayList<Medico> medicoList;
-    private ArrayList<Evento> eventoList;
-    private Administrador gerente; // Creo que al final no hara falta este atributo
+    
+    private String gerente; // Creo que al final no hara falta este atributo
 
     public ATM() {
         super();
-        this.gerente = new Administrador();
+        this.gerente = "LiaUCAB()";
 
-        institucionList = new ArrayList<>();
-        farmaciaList    = new ArrayList<>();
-        medicoList      = new ArrayList<>();
-        eventoList      = new ArrayList<>();
     }
 
-    public ATM(String nomUsuario, String clave, String territorio, String email, Administrador gerente) {
+    public ATM(String nomUsuario, String clave, String territorio, String email, String gerente) {
         super(nomUsuario, clave, territorio, email);
         this.gerente = gerente;
-
-        institucionList = new ArrayList<>();
-        farmaciaList    = new ArrayList<>();
-        medicoList      = new ArrayList<>();
-        eventoList      = new ArrayList<>();
     }
 
     // Getters y Setters -----------------------------------------------------------------------------------------------
-    public ArrayList<Institucion> getInstitucionList() {
-        return institucionList;
+    
+    public String getGerente() {
+        return gerente;
     }
-
-    public void setInstitucionList(ArrayList<Institucion> institucionList) {
-        this.institucionList = institucionList;
+    
+    public void setGerente(String gerente) {
+        this.gerente = gerente;
     }
-
-    public ArrayList<Farmacia> getFarmaciaList() {
-        return farmaciaList;
-    }
-
-    public void setFarmaciaList(ArrayList<Farmacia> farmaciaList) {
-        this.farmaciaList = farmaciaList;
-    }
-
-    public ArrayList<Medico> getMedicoList() {
-        return medicoList;
-    }
-
-    public void setMedicoList(ArrayList<Medico> medicoList) {
-        this.medicoList = medicoList;
-    }
-
-    public ArrayList<Evento> getEventoList() {
-        return eventoList;
-    }
-
-    public void setEventoList(ArrayList<Evento> eventoList) {
-        this.eventoList = eventoList;
-    }
+    
+    
+    
     // -----------------------------------------------------------------------------------------------------------------
 
-    public void registrarCliente(Institucion inst) {
-        institucionList.add(inst);
-    }
 
-    public Institucion getInstitucion(int index) {
-        return institucionList.get(index);
-    }
 
-    public void registrarCliente(Farmacia farm) {
-        farmaciaList.add(farm);
-    }
 
-    public Farmacia getFarmacia(int index) {
-        return farmaciaList.get(index);
-    }
-
-    public void registrarCliente(Medico med) {
-        medicoList.add(med);
-    }
-
-    public Medico getMedico(int index) {
-        return medicoList.get(index);
-    }
-
-    public void registrarEvento(Evento event) {
-        eventoList.add(event);
-    }
-
-    public Evento getEvento(int index) {
-        return eventoList.get(index);
-    }
-
-    public void eliminarEvento(Evento event) {
-        eventoList.remove(event);
-    }
 
 }
