@@ -37,7 +37,7 @@
          <children>
             <Pane opacity="0.9" prefHeight="750.0" prefWidth="1160.0" style="-fx-background-color: white;">
                <children>
-                  <TableView fx:id="tbATMs" layoutX="14.0" layoutY="77.0" onMouseClicked="#filtrarATM" prefHeight="338.0" prefWidth="531.0">
+                  <TableView fx:id="tbATMs" layoutX="14.0" layoutY="77.0" prefHeight="338.0" prefWidth="531.0">
                     <columns>
                       <TableColumn prefWidth="75.0" text="C1" />
                       <TableColumn prefWidth="75.0" text="C2" />
@@ -82,7 +82,6 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="btDeselect" layoutX="399.0" layoutY="24.0" onMouseClicked="#btDeselectClicked" prefHeight="37.0" prefWidth="146.0" style="-fx-background-color: ORANGE;" />
                </children>
             </Pane>
          </children>

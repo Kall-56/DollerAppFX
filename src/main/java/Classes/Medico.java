@@ -1,6 +1,5 @@
 package Classes;
 
-import java.util.ArrayList;
 
 public class Medico extends Cliente {
     private String especialidad;
@@ -11,6 +10,7 @@ public class Medico extends Cliente {
     private String formato;
 
     public Medico(String nombreCliente,
+                  String nombreATM,
                   String direccion,
                   String numTLF,
                   char tipoIdentidad,
@@ -23,7 +23,7 @@ public class Medico extends Cliente {
                   String horario,
                   String formato) {
 
-        super(nombreCliente, direccion, numTLF, tipoIdentidad, docIdentidad, descripcion);
+        super(nombreCliente,nombreATM, direccion, numTLF, tipoIdentidad, docIdentidad, descripcion);
         this.especialidad = especialidad;
         this.email = email;
         this.frecuencia = frecuencia;
@@ -32,28 +32,28 @@ public class Medico extends Cliente {
         this.formato = formato;
     }
 
-    public Medico(String nombreCliente,
-                  String direccion,
-                  String numTLF,
-                  char tipoIdentidad,
-                  int docIdentidad,
-                  String descripcion,
-                  String especialidad,
-                  String email,
-                  int frecuencia,
-                  String diasVisita,
-                  String horario,
-                  String formato,
-                  ArrayList<Evento> eventos) {
-
-        super(nombreCliente, direccion, numTLF, tipoIdentidad, docIdentidad, descripcion, eventos);
-        this.especialidad = especialidad;
-        this.email = email;
-        this.frecuencia = frecuencia;
-        this.diasVisita = diasVisita;
-        this.horario = horario;
-        this.formato = formato;
-    }
+//    public Medico(String nombreCliente,
+//                  String direccion,
+//                  String numTLF,
+//                  char tipoIdentidad,
+//                  int docIdentidad,
+//                  String descripcion,
+//                  String especialidad,
+//                  String email,
+//                  int frecuencia,
+//                  String diasVisita,
+//                  String horario,
+//                  String formato,
+//                  ArrayList<Evento> eventos) {
+//
+//        super(nombreCliente, direccion, numTLF, tipoIdentidad, docIdentidad, descripcion, eventos);
+//        this.especialidad = especialidad;
+//        this.email = email;
+//        this.frecuencia = frecuencia;
+//        this.diasVisita = diasVisita;
+//        this.horario = horario;
+//        this.formato = formato;
+//    }
 
     // Getters y Setters -----------------------------------------------------------------------------------------------
     public String getEspecialidad() {

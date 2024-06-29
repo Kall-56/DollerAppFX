@@ -1,17 +1,17 @@
 package Classes;
 
-import java.util.ArrayList;
 
 public abstract class Cliente {
     protected String nombreCliente;
+    protected String ATM;
     protected String direccion;
     protected String numTLF;
     protected char tipoIdentidad; // Si es Natural o Juridico
     protected int docIdentidad;
     protected String descripcion;
-    protected ArrayList<Evento> eventoList;
 
     public Cliente(String nombreCliente,
+                   String nombreATM,
                    String direccion,
                    String numTLF,
                    char tipoIdentidad,
@@ -19,33 +19,16 @@ public abstract class Cliente {
                    String descripcion) {
 
         this.nombreCliente = nombreCliente;
+        this.ATM = nombreATM;
         this.direccion = direccion;
         this.numTLF = numTLF;
         this.tipoIdentidad = tipoIdentidad;
         this.docIdentidad = docIdentidad;
         this.descripcion = descripcion;
 
-        eventoList = new ArrayList<>();
     }
 
-    public Cliente(String nombreCliente,
-                   String direccion,
-                   String numTLF,
-                   char tipoIdentidad,
-                   int docIdentidad,
-                   String descripcion,
-                   ArrayList<Evento> eventos) {
 
-        this.nombreCliente = nombreCliente;
-        this.direccion = direccion;
-        this.numTLF = numTLF;
-        this.tipoIdentidad = tipoIdentidad;
-        this.docIdentidad = docIdentidad;
-        this.descripcion = descripcion;
-
-        this.eventoList = new ArrayList<>();
-        this.eventoList.addAll(eventos);
-    }
 
     // Getters y Setters -----------------------------------------------------------------------------------------------
     public String getNombreCliente() {
@@ -56,6 +39,14 @@ public abstract class Cliente {
         this.nombreCliente = nombreCliente;
     }
 
+    public String getATM() {
+        return ATM;
+    }
+
+    public void setATM(String ATM) {
+        this.ATM = ATM;
+    }
+    
     public String getDireccion() {
         return direccion;
     }
@@ -96,20 +87,7 @@ public abstract class Cliente {
         this.descripcion = descripcion;
     }
 
-    public ArrayList<Evento> getEventoList() {
-        return eventoList;
-    }
-
-    public void setEventoList(ArrayList<Evento> eventoList) {
-        this.eventoList = eventoList;
-    }
     // -----------------------------------------------------------------------------------------------------------------
 
-     public void registrarEvento(Evento event) {
-        eventoList.add(event);
-    }
 
-    public void eliminarEvento(Evento evento) {
-        eventoList.remove(evento);
-    }
 }

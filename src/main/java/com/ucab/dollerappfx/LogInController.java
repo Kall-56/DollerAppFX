@@ -1,9 +1,9 @@
 package com.ucab.dollerappfx;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import Classes.*;
+import ManejadorBD.ManejadorBD;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -69,20 +69,15 @@ public class LogInController {
 //---------------------------Panel de LogIn----------------------------------------//
     
     @FXML
-    void btLogInClicked(MouseEvent event) throws IOException {
-          if (fldUserName.getText().equals(App.admin.getNomUsuario()) && fldUserPassword.getText().equals(App.admin.getClave())) {
+    void btLogInClicked(MouseEvent event) throws IOException, ClassNotFoundException {
+          if (ManejadorBD.VerificarUsuarioADMIN(fldUserName.getText(), fldUserPassword.getText())) {
+              App.admin = ManejadorBD.retornarUsuarioADMIN(fldUserName.getText());
               App.setRoot("MenuAdmin");
-          } else {
-              boolean encontrado = false;
-              for (ATM atm: App.admin.getAtmList()) {
-                  if (fldUserName.getText().equals(atm.getNomUsuario()) && fldUserPassword.getText().equals(atm.getClave())) {
-                      encontrado = true;
-                      App.usuario = atm;
+          } else if (ManejadorBD.verificarUsuarioATM(fldUserName.getText(), fldUserPassword.getText())) {
+                      App.usuario = ManejadorBD.retornarUsuarioATM(fldUserName.getText());
+                      App.admin = ManejadorBD.retornarUsuarioADMIN(App.usuario.getGerente());
                       App.setRoot("MenuPrincipal");
-                      break;
-                  }
-              }
-              if (!encontrado) {
+            } else {
                   Alert alerta = new Alert(Alert.AlertType.INFORMATION);
                   alerta.setTitle("Datos inválidos");
                   alerta.setHeaderText("");
@@ -90,7 +85,7 @@ public class LogInController {
                   alerta.showAndWait();
               }
           }
-    }
+    
 
     @FXML
     void btLogInEntered(MouseEvent event) {
@@ -139,7 +134,7 @@ public class LogInController {
     
 //--------------------------Panel de crear usuario---------------------------------//
     @FXML
-    void btCreateNewClicked(MouseEvent event) {
+    void btCreateNewClicked(MouseEvent event) throws ClassNotFoundException {
         boolean nombreValido = ValidacionesController.validarCampos(fldUserNameCrt, "[a-zA-Z0-9]+{1,15}",lbUserNameError);
         boolean emailValido = ValidacionesController.validarCampos(fldUserEmailCrt, "^[A-Za-z0-9+_.-]+@(.+)$",lbUserEmailError);
         boolean territorioValido = ValidacionesController.validarCampos(fldUserZoneCrt, "[a-zA-Z ]+{1,30}",lbUserZoneError);
@@ -156,13 +151,8 @@ public class LogInController {
         Alert alerta = new Alert(Alert.AlertType.INFORMATION);
         alerta.setHeaderText("");
         if (valido && (fldUserPasswordCrt.getText().equals(fldUserPasswordConfirm.getText()))) {
-            App.admin.registrarATM(new ATM(fldUserNameCrt.getText(),
-                                       fldUserPasswordCrt.getText(),
-                                       fldUserZoneCrt.getText(),
-                                       fldUserEmailCrt.getText(),
-                                       App.admin));
-
-
+            //////////////////////////////////////////
+            ManejadorBD.AgregarUsuarioABaseDeDatos(fldUserNameCrt.getText(), fldUserPasswordCrt.getText(), fldUserZoneCrt.getText(), fldUserEmailCrt.getText(), "LIAUCAB");
             pnUserLogIn.setVisible(true);
             pnUserCreate.setVisible(false);
 

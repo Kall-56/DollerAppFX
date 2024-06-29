@@ -1,6 +1,5 @@
 package Classes;
 
-import java.util.ArrayList;
 
 public class Farmacia extends Cliente {
     private String personaContacto;
@@ -10,6 +9,7 @@ public class Farmacia extends Cliente {
     private String drogueria;
 
     public Farmacia(String nombreCliente,
+                    String nombreATM,
                     String direccion,
                     String numTLF,
                     char tipoIdentidad,
@@ -21,34 +21,34 @@ public class Farmacia extends Cliente {
                     String cadena,
                     String drogueria) {
 
-        super(nombreCliente, direccion, numTLF, tipoIdentidad, docIdentidad, descripcion);
+        super(nombreCliente,nombreATM, direccion, numTLF, tipoIdentidad, docIdentidad, descripcion);
         this.personaContacto = personaContacto;
         this.email = email;
         this.frecuencia = frecuencia;
         this.cadena = cadena;
         this.drogueria = drogueria;
     }
-
-    public Farmacia(String nombreCliente,
-                    String direccion,
-                    String numTLF,
-                    char tipoIdentidad,
-                    int docIdentidad,
-                    String descripcion,
-                    String personaContacto,
-                    String email,
-                    int frecuencia,
-                    String cadena,
-                    String drogueria,
-                    ArrayList<Evento> eventos) {
-
-        super(nombreCliente, direccion, numTLF, tipoIdentidad, docIdentidad, descripcion, eventos);
-        this.personaContacto = personaContacto;
-        this.email = email;
-        this.frecuencia = frecuencia;
-        this.cadena = cadena;
-        this.drogueria = drogueria;
-    }
+//
+//    public Farmacia(String nombreCliente,
+//                    String nombreATM,
+//                    String direccion,
+//                    String numTLF,
+//                    char tipoIdentidad,
+//                    int docIdentidad,
+//                    String descripcion,
+//                    String personaContacto,
+//                    String email,
+//                    int frecuencia,
+//                    String cadena,
+//                    String drogueria) {
+//
+//        super(nombreCliente,nombreATM, direccion, numTLF, tipoIdentidad, docIdentidad, descripcion);
+//        this.personaContacto = personaContacto;
+//        this.email = email;
+//        this.frecuencia = frecuencia;
+//        this.cadena = cadena;
+//        this.drogueria = drogueria;
+//    }
 
     // Getters y Setters -----------------------------------------------------------------------------------------------
     public String getPersonaContacto() {

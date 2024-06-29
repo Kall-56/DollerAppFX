@@ -3,6 +3,7 @@ package com.ucab.dollerappfx;
 import java.io.IOException;
 
 import Classes.*;
+import ManejadorBD.ManejadorBD;
 
 import java.util.Optional;
 import javafx.collections.FXCollections;
@@ -18,7 +19,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.shape.Circle;
-import jdk.jshell.spi.ExecutionControlProvider;
 
 
 public class MenuPrincipalController {
@@ -89,46 +89,37 @@ public class MenuPrincipalController {
     private final double maxOpacity = 1;
 
     @FXML
-    void btLogoClicked(MouseEvent event) {
+    void btLogoClicked(MouseEvent event) throws ClassNotFoundException {
         visibilityChange(false,true);
         bgCircleMedicS.setOpacity(lowOpacity);
         bgCircleInstS.setOpacity(lowOpacity);
         bgCircleFarmaS.setOpacity(lowOpacity);
-        try {
-            iconMedicS.setImage(new Image("Assets/iconMd.png"));
-            iconInstS.setImage(new Image("Assets/iconInst.png"));
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-
+        iconMedicS.setImage(new Image("Assets/iconMd.png"));
+        iconInstS.setImage(new Image("Assets/iconInst.png"));
 
         ObservableList<Cliente> clientes = FXCollections.observableArrayList();
-        clientes.addAll(FXCollections.observableArrayList(App.usuario.getMedicoList()));
-        clientes.addAll(FXCollections.observableArrayList(App.usuario.getInstitucionList()));
-        clientes.addAll(FXCollections.observableArrayList(App.usuario.getFarmaciaList()));
+        clientes.addAll(FXCollections.observableArrayList(ManejadorBD.DevolverMedicos(App.usuario.getNomUsuario())));
+        clientes.addAll(FXCollections.observableArrayList(ManejadorBD.DevolverInstitucion(App.usuario.getNomUsuario())));
+        clientes.addAll(FXCollections.observableArrayList(ManejadorBD.DevolverFarmacias(App.usuario.getNomUsuario())));
 
         tbClientesRecientes.setItems(clientes);
         tbClientesRecientes.refresh();
-        tbEventosMenu.setItems(FXCollections.observableArrayList(App.usuario.getEventoList()));
+        tbEventosMenu.setItems(FXCollections.observableArrayList(ManejadorBD.DevolverEvento(App.usuario.getNomUsuario())));
         tbEventosMenu.refresh();
     }
 
     @FXML
-    void btMedicPressed(MouseEvent event) {
+    void btMedicPressed(MouseEvent event) throws ClassNotFoundException {
         visibilityChange(true, false);
         controllerClientes.visibilityChange(false, true, false);
         bgCircleMedicS.setOpacity(maxOpacity);
-        try {
-            iconMedicS.setImage(new Image("Assets/iconMdSelect.png"));
-            iconInstS.setImage(new Image("Assets/iconInst.png"));
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        iconMedicS.setImage(new Image("Assets/iconMdSelect.png"));
+        iconInstS.setImage(new Image("Assets/iconInst.png"));
         bgCircleFarmaS.setOpacity(lowOpacity);
         bgCircleInstS.setOpacity(lowOpacity);
 
-        controllerClientes.establecerClase(Medico.class, FXCollections.observableArrayList(App.usuario.getMedicoList()));
-        controllerClientes.filtroClientes(FXCollections.observableArrayList(App.usuario.getMedicoList()));
+        controllerClientes.establecerClase(Medico.class, FXCollections.observableArrayList(ManejadorBD.DevolverMedicos(App.usuario.getNomUsuario())));
+        controllerClientes.filtroClientes(FXCollections.observableArrayList(ManejadorBD.DevolverMedicos(App.usuario.getNomUsuario())));
     }
 
     @FXML
@@ -156,21 +147,17 @@ public class MenuPrincipalController {
     }
 
     @FXML
-    void btFarmaPressed(MouseEvent event) {
+    void btFarmaPressed(MouseEvent event) throws ClassNotFoundException {
         visibilityChange(true, false);
         controllerClientes.visibilityChange(false, true, false);
         bgCircleFarmaS.setOpacity(maxOpacity);
         bgCircleInstS.setOpacity(lowOpacity);
         bgCircleMedicS.setOpacity(lowOpacity);
-        try {
-            iconMedicS.setImage(new Image("Assets/iconMd.png"));
-            iconInstS.setImage(new Image("Assets/iconInst.png"));
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        iconMedicS.setImage(new Image("Assets/iconMd.png"));
+        iconInstS.setImage(new Image("Assets/iconInst.png"));
 
-        controllerClientes.establecerClase(Farmacia.class, FXCollections.observableArrayList(App.usuario.getFarmaciaList()));
-        controllerClientes.filtroClientes(FXCollections.observableArrayList(App.usuario.getFarmaciaList()));
+        controllerClientes.establecerClase(Farmacia.class, FXCollections.observableArrayList(ManejadorBD.DevolverFarmacias(App.usuario.getNomUsuario())));
+        controllerClientes.filtroClientes(FXCollections.observableArrayList(ManejadorBD.DevolverFarmacias(App.usuario.getNomUsuario())));
     }
 
     @FXML
@@ -198,21 +185,17 @@ public class MenuPrincipalController {
     }
 
     @FXML
-    void btInstPressed(MouseEvent event) {
+    void btInstPressed(MouseEvent event) throws ClassNotFoundException {
         visibilityChange(true, false);
         controllerClientes.visibilityChange(false, true, false);
         bgCircleInstS.setOpacity(maxOpacity);
         bgCircleFarmaS.setOpacity(lowOpacity);
         bgCircleMedicS.setOpacity(lowOpacity);
-        try {
-            iconMedicS.setImage(new Image("Assets/iconMd.png"));
-            iconInstS.setImage(new Image("Assets/iconInstSelect.png"));
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+        iconMedicS.setImage(new Image("Assets/iconMd.png"));
+        iconInstS.setImage(new Image("Assets/iconInstSelect.png"));
 
-        controllerClientes.establecerClase(Institucion.class, FXCollections.observableArrayList(App.usuario.getInstitucionList()));
-        controllerClientes.filtroClientes(FXCollections.observableArrayList(App.usuario.getInstitucionList()));
+        controllerClientes.establecerClase(Institucion.class, FXCollections.observableArrayList(ManejadorBD.DevolverInstitucion(App.usuario.getNomUsuario())));
+        controllerClientes.filtroClientes(FXCollections.observableArrayList(ManejadorBD.DevolverInstitucion(App.usuario.getNomUsuario())));
     }
 
     @FXML
@@ -262,7 +245,7 @@ public class MenuPrincipalController {
         pnSubMenuPrincipal.setVisible(b);
     }
 
-    public void initialize() {
+    public void initialize() throws ClassNotFoundException {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuClientes.fxml"));
             pnSubMenuClientes = loader.load();
@@ -296,14 +279,14 @@ public class MenuPrincipalController {
         tbEventosMenu.getColumns().add(fechaCol);
         tbEventosMenu.getColumns().add(semanaCol);
         tbEventosMenu.getColumns().add(descripCol);
-        tbEventosMenu.setItems(FXCollections.observableArrayList(App.usuario.getEventoList()));
+        tbEventosMenu.setItems(FXCollections.observableArrayList(ManejadorBD.DevolverEvento(App.usuario.getNomUsuario())));
         tbEventosMenu.refresh();
 
         // Creacion de la tabla MultiClase
         ObservableList<Cliente> clientes = FXCollections.observableArrayList();
-        clientes.addAll(App.usuario.getMedicoList());
-        clientes.addAll(App.usuario.getFarmaciaList());
-        clientes.addAll(App.usuario.getInstitucionList());
+        clientes.addAll(ManejadorBD.DevolverMedicos(App.usuario.getNomUsuario()));
+        clientes.addAll(ManejadorBD.DevolverFarmacias(App.usuario.getNomUsuario()));
+        clientes.addAll(ManejadorBD.DevolverInstitucion(App.usuario.getNomUsuario()));
         TablasController.establecerTipoTabla(tbClientesRecientes, Cliente.class, clientes);
 
 
