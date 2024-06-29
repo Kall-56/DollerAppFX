@@ -38,14 +38,14 @@
       </ImageView>
       <StackPane layoutY="55.0" prefHeight="746.0" prefWidth="1166.0">
          <children>
-            <Pane fx:id="vistaCliente" prefHeight="800.0" prefWidth="1166.0" visible="false">
+            <Pane fx:id="vistaCliente" prefHeight="800.0" prefWidth="1166.0">
                <children>
                   <TextField fx:id="tfBuscarCliente" focusTraversable="false" layoutX="21.0" layoutY="14.0" prefHeight="30.0" prefWidth="325.0" promptText="Buscar Clientes">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </TextField>
-                  <TableView fx:id="tablaClientes" layoutX="27.0" layoutY="57.0" onMouseClicked="#manejarClicks" prefHeight="664.0" prefWidth="1114.0">
+                  <TableView fx:id="tablaClientes" layoutX="27.0" layoutY="57.0" onMouseClicked="#manejarClicks" prefHeight="664.0" prefWidth="1114.0" stylesheets="@../../../css/tableLook.css">
                     <columns>
                       <TableColumn prefWidth="75.0" text="C1" />
                       <TableColumn prefWidth="75.0" text="C2" />
@@ -65,7 +65,7 @@
                   </Pane>
                </children>
             </Pane>
-            <Pane fx:id="infoCliente" prefHeight="722.0" prefWidth="1166.0">
+            <Pane fx:id="infoCliente" prefHeight="722.0" prefWidth="1166.0" visible="false">
                <children>
                   <StackPane layoutX="234.0" layoutY="80.0" prefHeight="652.0" prefWidth="915.0">
                      <children>
@@ -82,7 +82,7 @@
                                  </font>
                               </TextField>
                               <Pane layoutY="41.0" prefHeight="2.0" prefWidth="909.0" style="-fx-background-color: #4d4d4d;" />
-                              <TableView fx:id="tbEventos" layoutX="8.0" layoutY="50.0" prefHeight="358.0" prefWidth="900.0" style="-fx-blend-mode: null;">
+                              <TableView fx:id="tbEventos" layoutX="8.0" layoutY="50.0" prefHeight="358.0" prefWidth="900.0" style="-fx-blend-mode: null;" stylesheets="@../../../css/tableLook.css">
                                 <columns>
                                   <TableColumn prefWidth="75.0" text="C1" />
                                   <TableColumn prefWidth="75.0" text="C2" />
@@ -179,7 +179,7 @@
                      </children>
                   </StackPane>
                   <Rectangle arcHeight="8.0" arcWidth="8.0" fill="#25201a" height="67.0" layoutX="17.0" layoutY="8.0" opacity="0.9" strokeType="INSIDE" strokeWidth="0.0" width="1132.0" />
-                  <Rectangle fill="#ff7c54b7" height="661.0" layoutX="29.0" layoutY="75.0" opacity="0.8" stroke="#ff7b52" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="INSIDE" strokeWidth="1.5" width="200.0" />
+                  <Rectangle fill="#ff8e38e4" height="661.0" layoutX="29.0" layoutY="75.0" opacity="0.8" stroke="#ff8e37" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="INSIDE" strokeWidth="1.5" width="200.0" />
                   <Label fx:id="lbClienteNombre" layoutX="37.0" layoutY="23.0" text="&lt;Nombre de Cliente&gt;" textFill="WHITE">
                      <font>
                         <Font name="Roboto Medium" size="30.0" />

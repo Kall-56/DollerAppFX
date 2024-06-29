@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ManejadorBD;
 
 import Classes.ATM;
@@ -14,10 +10,7 @@ import java.sql.*;
 import com.mysql.jdbc.*;
 import java.util.ArrayList;
 
-/**
- *
- * @author fanto
- */
+
 public class ManejadorBD {
     
    public static boolean verificarUsuarioATM(String nombre, String clave ) throws ClassNotFoundException{

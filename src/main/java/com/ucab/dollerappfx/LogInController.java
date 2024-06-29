@@ -70,21 +70,21 @@ public class LogInController {
     
     @FXML
     void btLogInClicked(MouseEvent event) throws IOException, ClassNotFoundException {
-          if (ManejadorBD.VerificarUsuarioADMIN(fldUserName.getText(), fldUserPassword.getText())) {
-              App.admin = ManejadorBD.retornarUsuarioADMIN(fldUserName.getText());
-              App.setRoot("MenuAdmin");
-          } else if (ManejadorBD.verificarUsuarioATM(fldUserName.getText(), fldUserPassword.getText())) {
-                      App.usuario = ManejadorBD.retornarUsuarioATM(fldUserName.getText());
-                      App.admin = ManejadorBD.retornarUsuarioADMIN(App.usuario.getGerente());
-                      App.setRoot("MenuPrincipal");
-            } else {
-                  Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-                  alerta.setTitle("Datos inválidos");
-                  alerta.setHeaderText("");
-                  alerta.setContentText("Usuario y/o contraseña incorrectos");
-                  alerta.showAndWait();
-              }
-          }
+        if (ManejadorBD.VerificarUsuarioADMIN(fldUserName.getText(), fldUserPassword.getText())) {
+            App.admin = ManejadorBD.retornarUsuarioADMIN(fldUserName.getText());
+            App.setRoot("MenuAdmin");
+        } else if (ManejadorBD.verificarUsuarioATM(fldUserName.getText(), fldUserPassword.getText())) {
+            App.usuario = ManejadorBD.retornarUsuarioATM(fldUserName.getText());
+            App.admin = ManejadorBD.retornarUsuarioADMIN(App.usuario.getGerente());
+            App.setRoot("MenuPrincipal");
+        } else {
+            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+            alerta.setTitle("Datos inválidos");
+            alerta.setHeaderText("");
+            alerta.setContentText("Usuario y/o contraseña incorrectos");
+            alerta.showAndWait();
+        }
+    }
     
 
     @FXML
