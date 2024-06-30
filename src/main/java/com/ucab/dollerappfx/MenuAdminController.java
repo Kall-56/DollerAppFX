@@ -4,6 +4,8 @@ import Classes.ATM;
 import Classes.Cliente;
 import Classes.Evento;
 import java.io.IOException;
+
+import ManejadorBD.ManejadorBD;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.control.Label;
@@ -36,6 +39,9 @@ public class MenuAdminController {
     private Label lbCerrarSeccion;
 
     @FXML
+    private Pane btDeseleccion;
+
+    @FXML
     public void btCerrarSecionClicked(MouseEvent event) throws IOException{
         App.setRoot("LogIn");
     }
@@ -49,7 +55,44 @@ public class MenuAdminController {
         btCerrarSecion.setStyle("-fx-background-color: white;"+"-fx-border-color: #969696;"+"-fx-background-radius: 5;"+"-fx-border-radius: 2;");
         lbCerrarSeccion.setTextFill(Color.web("#969696"));
     }
-    
+
+    @FXML
+    void atmSeleccionado(MouseEvent event) throws ClassNotFoundException {
+        if (event.getButton() == MouseButton.PRIMARY) {
+            ATM atm = tbATMs.getSelectionModel().getSelectedItem();
+            if (atm != null) {
+                String nombre = atm.getNomUsuario();
+
+                ObservableList<Cliente> clientes = FXCollections.observableArrayList();
+                clientes.addAll(FXCollections.observableArrayList(App.manejadorBD.DevolverMedicos(nombre)));
+                clientes.addAll(FXCollections.observableArrayList(App.manejadorBD.DevolverInstitucion(nombre)));
+                clientes.addAll(FXCollections.observableArrayList(App.manejadorBD.DevolverFarmacias(nombre)));
+
+                ObservableList<Evento> eventos = FXCollections.observableArrayList(App.manejadorBD.DevolverEvento(nombre));
+
+                tbEVENTOs.setItems(eventos);
+                tbEVENTOs.refresh();
+                TablasController.establecerTipoTabla(tbCLIENTEs, Cliente.class, clientes);
+            }
+        }
+    }
+
+    @FXML
+    void btDeseleccionPressed(MouseEvent event) throws ClassNotFoundException {
+        tbATMs.getSelectionModel().clearSelection();
+
+        ObservableList<Cliente> clientes = FXCollections.observableArrayList();
+        clientes.addAll(FXCollections.observableArrayList(App.manejadorBD.DevolverMedicoADMIN(App.admin.getNomUsuario())));
+        clientes.addAll(FXCollections.observableArrayList(App.manejadorBD.DevolverFarmaciaADMIN(App.admin.getNomUsuario())));
+        clientes.addAll(FXCollections.observableArrayList(App.manejadorBD.DevolverInstitucionADMIN(App.admin.getNomUsuario())));
+
+        TablasController.establecerTipoTabla(tbCLIENTEs, Cliente.class, clientes);
+
+        ObservableList<Evento> eventos = FXCollections.observableArrayList();
+        eventos.addAll(App.manejadorBD.DevolverEventoADMIN(App.admin.getNomUsuario()));
+        tbEVENTOs.setItems(eventos);
+        tbEVENTOs.refresh();
+    }
 
     public void initialize() throws ClassNotFoundException {
         // TABLA ATM

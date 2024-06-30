@@ -37,7 +37,7 @@
          <children>
             <Pane opacity="0.9" prefHeight="750.0" prefWidth="1160.0" style="-fx-background-color: white;">
                <children>
-                  <TableView fx:id="tbATMs" layoutX="14.0" layoutY="77.0" prefHeight="338.0" prefWidth="531.0">
+                  <TableView fx:id="tbATMs" layoutX="14.0" layoutY="77.0" onMouseClicked="#atmSeleccionado" prefHeight="338.0" prefWidth="531.0">
                     <columns>
                       <TableColumn prefWidth="75.0" text="C1" />
                       <TableColumn prefWidth="75.0" text="C2" />
@@ -80,6 +80,11 @@
                               <Font size="14.0" />
                            </font>
                         </Label>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="btDeseleccion" layoutX="420.0" layoutY="22.0" onMousePressed="#btDeseleccionPressed" prefHeight="44.0" prefWidth="125.0" style="-fx-background-color: ORANGE;">
+                     <children>
+                        <Label layoutX="40.0" layoutY="14.0" text="Deselect" />
                      </children>
                   </Pane>
                </children>
