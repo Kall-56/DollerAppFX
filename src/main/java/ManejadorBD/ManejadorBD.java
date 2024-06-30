@@ -208,7 +208,7 @@ public class ManejadorBD {
     public ArrayList<Evento> DevolverEvento (String nombreATM) throws ClassNotFoundException {
        ArrayList<Evento> retornosEventos = new ArrayList<Evento>();
         try{
-            String instruccion = "select * from eventos where ATM = " + nombreATM + "'" ;
+            String instruccion = "select * from eventos where ATM = '" + nombreATM + "'" ;
             System.out.println(instruccion);
             Statement stm = conexion.createStatement();
             ResultSet eventos = stm.executeQuery(instruccion);
