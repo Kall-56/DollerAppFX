@@ -65,25 +65,18 @@ public class LogInController {
 //--------------------------Panel de recuperar clave----------------------------//
     @FXML
     private Pane pnUserRecClave;
-
     @FXML
     private Pane btBackClave;
-
     @FXML
     private Pane btEnviarCodigo;
-
     @FXML
     private Button btConfirmNuevaClave;
-
     @FXML
     private TextField tfCodigo;
-
     @FXML
-    private TextField tfClaveNueva;
-
+    private PasswordField tfClaveNueva;
     @FXML
-    private TextField tfClaveNuevaConfirm;
-
+    private PasswordField tfClaveNuevaConfirm;
     @FXML
     private TextField tfUser;
 
@@ -219,6 +212,7 @@ public class LogInController {
 //--------------------------Panel de recuperar clave----------------------------//
     @FXML
     void btBackClavePressed(MouseEvent event) {
+        btEnviarCodigo.setDisable(false);
         pnUserLogIn.setVisible(true);
         pnUserRecClave.setVisible(false);
 
@@ -227,7 +221,10 @@ public class LogInController {
 
     @FXML
     private void btEnviarCodigoPressed() {
-        // Max 999999 - Min 100000
+        btBackClave.setDisable(true);
+        btEnviarCodigo.setDisable(true);
+
+        // Codigo de recuperacion aleatorio de 6 digitos
         int randomNum = 100000 + (int)(Math.random() * ((999999 - 100000) + 1));
         codRecuperacion = randomNum;
 
@@ -255,6 +252,7 @@ public class LogInController {
                 tfClaveNueva.setDisable(false);
                 tfClaveNuevaConfirm.setDisable(false);
                 tfCodigo.setDisable(false);
+                btBackClave.setDisable(false);
             }
 
             @Override
@@ -264,6 +262,8 @@ public class LogInController {
                 alerta.setHeaderText("");
                 alerta.setContentText("Verifique el usuario introducido");
                 alerta.showAndWait();
+                btBackClave.setDisable(false);
+                btEnviarCodigo.setDisable(false);
                 getException().printStackTrace();
             }
         };
@@ -287,6 +287,7 @@ public class LogInController {
                 alerta.setHeaderText("");
                 alerta.setContentText("La clave del usuario ha sido modificado exitosamente");
 
+                btEnviarCodigo.setDisable(false);
                 pnUserLogIn.setVisible(true);
                 pnUserRecClave.setVisible(false);
             } else {

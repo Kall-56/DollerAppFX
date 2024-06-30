@@ -4,19 +4,18 @@ import Classes.ATM;
 import Classes.Cliente;
 import Classes.Evento;
 import java.io.IOException;
+import java.util.Optional;
 
 import ManejadorBD.ManejadorBD;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.control.Label;
 import javafx.scene.paint.Color;
 
 
@@ -42,13 +41,32 @@ public class MenuAdminController {
     private Pane btDeseleccion;
 
     @FXML
+    private Label lbDeseleccion;
+
+    private ATM atmActual;
+
+
+    @FXML
     public void btCerrarSecionClicked(MouseEvent event) throws IOException{
-        App.setRoot("LogIn");
+        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+        alerta.setTitle("Cerrar Sesion");
+        alerta.setHeaderText("");
+        alerta.setContentText("¿Está seguro que quiere cerrar la sesión?");
+        ButtonType confirmButton = ButtonType.OK;
+        ButtonType cancelButton = ButtonType.CANCEL;
+
+        alerta.getButtonTypes().setAll(confirmButton, cancelButton);
+
+        Optional<ButtonType> result = alerta.showAndWait();
+
+        if (result.isPresent() && result.get() == confirmButton) {
+            App.setRoot("LogIn");
+        }
     }
     @FXML
     void btCerrarSecionEntered(MouseEvent event) {
         btCerrarSecion.setStyle("-fx-background-color: #bababa;"+"-fx-border-color: #9c9c9c;"+"-fx-background-radius: 5;"+"-fx-border-radius: 2;");
-        lbCerrarSeccion.setTextFill(Color.web("#9c9c9c"));
+        lbCerrarSeccion.setTextFill(Color.WHITE);
     }
     @FXML
     void btCerrarSecionExited(MouseEvent event) {
@@ -60,7 +78,8 @@ public class MenuAdminController {
     void atmSeleccionado(MouseEvent event) throws ClassNotFoundException {
         if (event.getButton() == MouseButton.PRIMARY) {
             ATM atm = tbATMs.getSelectionModel().getSelectedItem();
-            if (atm != null) {
+            if (atm != null && event.getClickCount() == 2) {
+                btDeseleccion.setDisable(false);
                 String nombre = atm.getNomUsuario();
 
                 ObservableList<Cliente> clientes = FXCollections.observableArrayList();
@@ -73,12 +92,21 @@ public class MenuAdminController {
                 tbEVENTOs.setItems(eventos);
                 tbEVENTOs.refresh();
                 TablasController.establecerTipoTabla(tbCLIENTEs, Cliente.class, clientes);
+            } else if (atm != null && event.getClickCount() == 1) {
+                atmActual = atm;
+            } else {
+                Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+                alerta.setTitle("Seleccione un ATM");
+                alerta.setHeaderText("No ha seleccionado ningún ATM en la tabla");
+                alerta.setContentText("Haga click o doble click sobre un cliente para ver su información");
+                alerta.showAndWait();
             }
         }
     }
 
     @FXML
     void btDeseleccionPressed(MouseEvent event) throws ClassNotFoundException {
+        btDeseleccion.setDisable(true);
         tbATMs.getSelectionModel().clearSelection();
 
         ObservableList<Cliente> clientes = FXCollections.observableArrayList();
@@ -94,7 +122,20 @@ public class MenuAdminController {
         tbEVENTOs.refresh();
     }
 
+    @FXML
+    void btDeseleccionEntered(MouseEvent event) {
+        btDeseleccion.setStyle("-fx-background-color: #bababa;"+"-fx-border-color: #9c9c9c;"+"-fx-background-radius: 5;"+"-fx-border-radius: 2;");
+        lbDeseleccion.setTextFill(Color.WHITE);
+    }
+
+    @FXML
+    void btDeseleccionExited(MouseEvent event) {
+        btDeseleccion.setStyle("-fx-background-color: white;"+"-fx-border-color: #969696;"+"-fx-background-radius: 5;"+"-fx-border-radius: 2;");
+        lbDeseleccion.setTextFill(Color.web("#969696"));
+    }
+
     public void initialize() throws ClassNotFoundException {
+        btDeseleccion.setDisable(true);
         // TABLA ATM
         tbATMs.getColumns().clear();
 

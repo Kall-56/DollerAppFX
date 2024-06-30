@@ -225,7 +225,8 @@ public class MenuPrincipalController {
     void btLogOutClicked(MouseEvent event) throws IOException {
         Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
         alerta.setTitle("Cerrar Sesion");
-        alerta.setHeaderText("¿Cerrar Sesión?");
+        alerta.setHeaderText("");
+        alerta.setContentText("¿Está seguro que quiere cerrar la sesión?");
         ButtonType confirmButton = ButtonType.OK;
         ButtonType cancelButton = ButtonType.CANCEL;
 
