@@ -30,7 +30,6 @@ public class App extends Application {
     
     @Override
     public void start(Stage stage) throws IOException, ClassNotFoundException {
-        // Hay que cargar o crear las listas (Aqui estoy usando unos de prueba)
         manejadorBD = new ManejadorBD();
         scene = new Scene(loadFXML("LogIn"), 1280, 800);
         stage.setTitle("Dollder App FX");
@@ -42,15 +41,8 @@ public class App extends Application {
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
-        stage.setOnCloseRequest(event -> {
-				event.consume();
-				logout(stage);	
-			});
+        stage.setOnCloseRequest(event -> {event.consume();logout(stage);});
     }
-    
-//    public static void setUsuario(String nombre, String clave, String territorio, String email, String ){
-//        this.usuario = new ATM(nombre, );
-//    }
 
     static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
@@ -71,7 +63,6 @@ public class App extends Application {
             stage.close();
         }
     }
-
 
 
     public static void main(String[] args) {

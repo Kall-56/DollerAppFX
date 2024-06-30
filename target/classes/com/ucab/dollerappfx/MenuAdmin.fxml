@@ -96,7 +96,6 @@
                   </Pane>
                </children>
             </Pane>
-            <Pane fx:id="pnRequestATM" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" visible="false" />
          </children>
       </StackPane>
    </children>

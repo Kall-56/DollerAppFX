@@ -38,7 +38,7 @@
       </Rectangle>
       <StackPane layoutX="140.0" layoutY="50.0" prefHeight="700.0" prefWidth="1000.0">
          <children>
-            <Pane fx:id="pnUserLogIn" focusTraversable="true" opacity="0.9" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: white;" visible="false">
+            <Pane fx:id="pnUserLogIn" focusTraversable="true" opacity="0.9" prefHeight="700.0" prefWidth="1000.0" style="-fx-background-color: white;">
                <children>
                   <Label layoutX="402.0" layoutY="135.0" text="Iniciar Sesión" textFill="#4d4d4d">
                      <font>
@@ -101,26 +101,51 @@
                   </Pane>
                </children>
             </Pane>
-            <Pane fx:id="pnUserRecClave" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: WHITE;">
+            <Pane fx:id="pnUserRecClave" opacity="0.9" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: WHITE;" visible="false">
                <children>
-                  <TextField fx:id="tfUser" layoutX="296.0" layoutY="338.0" prefHeight="25.0" prefWidth="426.0" promptText="Nombre Usuario" />
-                  <Pane fx:id="btEnviarCodigo" layoutX="531.0" layoutY="397.0" onMousePressed="#btEnviarCodigoPressed" prefHeight="55.0" prefWidth="190.0" style="-fx-background-color: ORANGE;">
-                     <children>
-                        <Label layoutX="50.0" layoutY="19.0" text="ENVIAR CODIGO" />
-                     </children>
-                  </Pane>
-                  <Pane fx:id="btBackClave" layoutX="294.0" layoutY="397.0" onMousePressed="#btBackClavePressed" prefHeight="55.0" prefWidth="190.0" style="-fx-background-color: gray;">
-                     <children>
-                        <Label layoutX="79.0" layoutY="19.0" text="volver" />
-                     </children>
-                  </Pane>
-                  <Button fx:id="btConfirmNuevaClave" layoutX="459.0" layoutY="157.0" mnemonicParsing="false" onAction="#btConfirmarClave" text="Confirmar Clave" />
-                  <TextField fx:id="tfCodigo" layoutX="424.0" layoutY="209.0" prefHeight="25.0" prefWidth="171.0" promptText="Codigo" />
-                  <PasswordField fx:id="tfClaveNuevaConfirm" layoutX="530.0" layoutY="261.0" prefHeight="25.0" prefWidth="190.0" promptText="Confirmación contraseña" />
-                  <PasswordField fx:id="tfClaveNueva" layoutX="296.0" layoutY="261.0" prefHeight="25.0" prefWidth="190.0" promptText="Contraseña nueva" />
+                  <Label layoutX="304.0" layoutY="129.0" prefHeight="62.0" prefWidth="393.0" text="Introduzca su nombre de usuario para enviarle el código de verificación al correo" textAlignment="CENTER" textFill="#4d4d4d" wrapText="true">
+                     <font>
+                        <Font name="Roboto Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="tfUser" focusTraversable="false" layoutX="287.0" layoutY="212.0" prefHeight="25.0" prefWidth="426.0" promptText="Nombre Usuario" />
+                  <Button fx:id="btConfirmNuevaClave" focusTraversable="false" layoutX="523.0" layoutY="425.0" mnemonicParsing="false" onAction="#btConfirmarClave" stylesheets="@../../../css/buttonLookOrange.css" text="Confirmar Clave" textFill="#ff8e37">
+                     <font>
+                        <Font name="Roboto" size="13.0" />
+                     </font></Button>
+                  <TextField fx:id="tfCodigo" focusTraversable="false" layoutX="415.0" layoutY="325.0" prefHeight="25.0" prefWidth="171.0" promptText="Código de Confirmación" />
+                  <PasswordField fx:id="tfClaveNuevaConfirm" focusTraversable="false" layoutX="542.0" layoutY="377.0" prefHeight="25.0" prefWidth="190.0" promptText="Confirmación contraseña" />
+                  <PasswordField fx:id="tfClaveNueva" focusTraversable="false" layoutX="271.0" layoutY="377.0" prefHeight="25.0" prefWidth="190.0" promptText="Contraseña nueva" />
+                  <Button fx:id="btEnviarCodigo" layoutX="394.0" layoutY="249.0" mnemonicParsing="false" onMousePressed="#btEnviarCodigoPressed" style="-fx-border-color: #68C3B9;" stylesheets="@../../../css/buttonLookLime.css" text="Enviar Código de Confirmación" textFill="#68c3b9">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btBackClave" layoutX="364.0" layoutY="425.0" mnemonicParsing="false" onMousePressed="#btBackClavePressed" prefHeight="32.0" prefWidth="113.0" style="-fx-border-color: #6f6f6f;" stylesheets="@../../../css/buttonLookGray.css" text="Volver" textFill="#6f6f6f" />
+                  <Separator layoutX="230.0" layoutY="301.0" prefHeight="3.0" prefWidth="541.0" />
+                  <Label fx:id="lbUserPasswordConfirmError2" layoutX="549.0" layoutY="361.0" text="*Error" textFill="RED" visible="false">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lbCodigoError" layoutX="421.0" layoutY="309.0" text="*Error" textFill="RED" visible="false">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lbUserPasswordError2" layoutX="244.0" layoutY="361.0" text="*De 8 a 16 letras, debe tener: Mayus, minus, números y '_'" textFill="RED" visible="false">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lbNombreError" layoutX="296.0" layoutY="196.0" text="*Nombre de usuario incorrecto o inexistente" textFill="RED" visible="false">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
-            <Pane fx:id="pnUserCreate" opacity="0.9" prefHeight="700.0" prefWidth="1000.0">
+            <Pane fx:id="pnUserCreate" opacity="0.9" prefHeight="700.0" prefWidth="1000.0" visible="false">
                <children>
                   <Rectangle fill="WHITE" height="700.0" opacity="0.94" stroke="#8080801c" strokeLineJoin="BEVEL" strokeType="OUTSIDE" strokeWidth="2.0" width="1000.0" />
                   <Label layoutX="406.0" layoutY="157.0" text="Crear Cuenta" textFill="#4d4d4d">
@@ -213,7 +238,7 @@
                   <ChoiceBox fx:id="cbUserZoneCrt" layoutX="511.0" layoutY="225.0" prefHeight="30.0" prefWidth="300.0" />
                </children>
             </Pane>
-         </children>
+          </children>
       </StackPane>
    </children>
 </AnchorPane>
