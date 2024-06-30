@@ -505,7 +505,7 @@ public class ManejadorBD {
         ArrayList<Evento> retornosEventos = new ArrayList<Evento>();
         try{
             
-                    String instruccion = "select * from eventos where CLIENTE = '" + Cliente + "'" ;
+            String instruccion = "select * from eventos where CLIENTE = '" + Cliente + "'" ;
             System.out.println(instruccion);
             Statement stm = conexion.createStatement();
             ResultSet eventos = stm.executeQuery(instruccion);
@@ -523,7 +523,16 @@ public class ManejadorBD {
       return retornosEventos;
     }
     
-    public void actualizarClave(String usuario, String clave){}
+    public void actualizarClave(String usuario, String clave){
+        try {
+            String instruccion = "update atms set CLAVE = '" + clave +"' where NOMBRE = '" + usuario + "'" ;
+            System.out.println(instruccion);
+            Statement stm = conexion.createStatement();
+            stm.execute(instruccion);
+        } catch (SQLException ex) {
+            System.err.println(ex);
+        }
+    }
     
     public void agregarRequestFarmacia(String ADMINISTRADOR,
                                                 String ATMS,
