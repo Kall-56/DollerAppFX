@@ -3,6 +3,8 @@ package com.ucab.dollerappfx;
 import java.io.IOException;
 
 import Classes.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +12,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.*;
 
 public class LogInController {
 //--------------------------Panel de LogIn------------------------------------//
@@ -36,7 +39,7 @@ public class LogInController {
     @FXML
     private TextField fldUserNameCrt;
     @FXML
-    private TextField fldUserZoneCrt;
+    private ChoiceBox<String> cbUserZoneCrt;
     @FXML
     private TextField fldUserEmailCrt;
     @FXML
@@ -155,11 +158,33 @@ public class LogInController {
     void btCreateNewClicked(MouseEvent event) throws ClassNotFoundException {
         boolean nombreValido = ValidacionesController.validarCampos(fldUserNameCrt, "[a-zA-Z0-9]+{1,15}",lbUserNameError);
         boolean emailValido = ValidacionesController.validarCampos(fldUserEmailCrt, "^[A-Za-z0-9+_.-]+@(.+)$",lbUserEmailError);
-        boolean territorioValido = ValidacionesController.validarCampos(fldUserZoneCrt, "[a-zA-Z ]+{1,30}",lbUserZoneError);
         boolean claveValido = ValidacionesController.validarCampos(fldUserPasswordCrt, "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*_)(?!.* ).{8,16}$",lbUserPasswordError);
         boolean claveConfirm = ValidacionesController.validarContrasena(fldUserPasswordConfirm, fldUserPasswordCrt,lbUserPasswordError,lbUserPasswordConfirmError);
-
-        boolean [] atributosValidos = {nombreValido, emailValido, territorioValido, claveValido, claveConfirm};
+        String gerente; 
+         switch (cbUserZoneCrt.getValue()) {
+            case "Caracas":
+                gerente = "GerenteCaracas";
+                break;
+            case "Centro":
+                gerente =  "GerenteCentro";
+                break;
+            case "Centro Occidente":
+                gerente = "Yaleida Páez";
+                break;
+            case "Los Andes":
+                gerente = "GerenteAndes";
+                break;
+            case "Oriente":
+                gerente = "GerenteOriente";
+                break;
+            case "Zulia Falcon":
+                gerente = "GerenteOriente";
+                break;
+            default:
+                gerente = "LIAUCAB";
+        }
+        
+        boolean [] atributosValidos = {nombreValido, emailValido, claveValido, claveConfirm};
         boolean valido = true;
         for (boolean atributo: atributosValidos) {
             if (!atributo) {
@@ -170,7 +195,7 @@ public class LogInController {
         alerta.setHeaderText("");
         if (valido && (fldUserPasswordCrt.getText().equals(fldUserPasswordConfirm.getText()))) {
             //////////////////////////////////////////
-            App.manejadorBD.AgregarUsuarioABaseDeDatos(fldUserNameCrt.getText(), fldUserPasswordCrt.getText(), fldUserZoneCrt.getText(), fldUserEmailCrt.getText(), "LIAUCAB");
+            App.manejadorBD.AgregarUsuarioABaseDeDatos(fldUserNameCrt.getText(), fldUserPasswordCrt.getText(), cbUserZoneCrt.getValue(), fldUserEmailCrt.getText(), gerente);
             pnUserLogIn.setVisible(true);
             pnUserCreate.setVisible(false);
 
@@ -315,14 +340,14 @@ public class LogInController {
         tfClaveNueva.setDisable(true);
         tfClaveNuevaConfirm.setDisable(true);
         btConfirmNuevaClave.setDisable(true);
-
+        ObservableList<String> opciones = FXCollections.observableArrayList("Caracas", "Centro", "Centro Occidente", "Los Andes", "Oriente", "Zulia Falcon");
+        cbUserZoneCrt.setItems(opciones);
+        cbUserZoneCrt.setValue("Zona o Territorio");
         pnUserCreate.visibleProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue) {
                 fldUserNameCrt.clear();
                 fldUserNameCrt.setStyle("");
                 lbUserNameError.setVisible(false);
-                fldUserZoneCrt.clear();
-                fldUserZoneCrt.setStyle("");
                 lbUserZoneError.setVisible(false);
                 fldUserPasswordCrt.clear();
                 fldUserPasswordCrt.setStyle("");
@@ -335,7 +360,7 @@ public class LogInController {
                 lbUserEmailError.setVisible(false);
             }
         });
-
+        
         pnUserRecClave.visibleProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue) {
                 tfUser.clear();
@@ -353,11 +378,6 @@ public class LogInController {
         fldUserNameCrt.focusedProperty().addListener((observable, oldValue, newValue) ->{
             if (!newValue) {
                 ValidacionesController.validarCampos(fldUserNameCrt, "([a-zA-Z0-9]+).{4,25}",lbUserNameError);
-            }
-        });
-        fldUserZoneCrt.focusedProperty().addListener((observable, oldValue, newValue) ->{
-            if (!newValue) {
-                ValidacionesController.validarCampos(fldUserZoneCrt, "[a-zA-Z ]+",lbUserZoneError);
             }
         });
         fldUserEmailCrt.focusedProperty().addListener((observable, oldValue, newValue) ->{
