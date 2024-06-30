@@ -523,6 +523,8 @@ public class ManejadorBD {
       return retornosEventos;
     }
     
+    public void actualizarClave(String usuario, String clave){}
+    
     public void agregarRequestFarmacia(String ADMINISTRADOR,
                                                 String ATMS,
                                                 String TITULO_PETICION,

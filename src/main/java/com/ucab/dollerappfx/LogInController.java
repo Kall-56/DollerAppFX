@@ -282,7 +282,8 @@ public class LogInController {
             if (claveValido && (tfClaveNueva.getText().equals(tfClaveNuevaConfirm.getText()))) {
 
                 // Que el App.manejadorBD cambie la clave
-
+                App.manejadorBD.actualizarClave(tfUser.getText(), tfClaveNueva.getText());
+                
                 alerta.setTitle("Cambio de clave exitoso");
                 alerta.setHeaderText("");
                 alerta.setContentText("La clave del usuario ha sido modificado exitosamente");
