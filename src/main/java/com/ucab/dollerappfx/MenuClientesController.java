@@ -751,8 +751,7 @@ public class MenuClientesController {
                         App.manejadorBD.registrarMedico(fldNombre.getText(),
                                 fldCedula.getText(),
                                 App.admin.getNomUsuario(),
-                                App.usuario.getNomUsuario(),
-                                "cambiar pls inst nim",
+                                App.usuario.getNomUsuario(),                              
                                 fldDirect.getText(),
                                 fldEspecMd.getText(),
                                 fldFrecueMdFm.getText(),
@@ -761,7 +760,7 @@ public class MenuClientesController {
                                 fldDiasVisitMd.getText(),
                                 fldHorarioMd.getText(),
                                 fldFormatoMd.getText(),
-                                "descripcion");
+                                "");
                         establecerClase(Medico.class, FXCollections.observableArrayList(App.manejadorBD.DevolverMedicos(App.usuario.getNomUsuario())));
                         filtroClientes(FXCollections.observableArrayList(App.manejadorBD.DevolverMedicos(App.usuario.getNomUsuario())));
                         break;
@@ -787,12 +786,10 @@ public class MenuClientesController {
                                 App.usuario.getGerente(),
                                 App.usuario.getNomUsuario(),
                                 fldDirect.getText(),
-                                "correo1234@gmail.com",
                                 chnumber.getValue() + fldNumber.getText(),
                                 fldPersonContacFmInst.getText(),
                                 fldFacultadInst.getText(),
-                                "99",
-                                "descripcion");
+                               "");
                         establecerClase(Institucion.class, FXCollections.observableArrayList(App.manejadorBD.DevolverInstitucion(App.usuario.getNomUsuario())));
                         filtroClientes(FXCollections.observableArrayList(App.manejadorBD.DevolverInstitucion(App.usuario.getNomUsuario())));
                         break;
@@ -894,6 +891,15 @@ public class MenuClientesController {
                 tfBuscarEvento.clear();
                 tbEventos.getSelectionModel().clearSelection();
             } else {
+                if (clienteActual.getClass() == Farmacia.class) {
+                App.manejadorBD.modificarDescripcionFarmacia(String.valueOf(clienteActual.getDocIdentidad()), taObservaciones.getText());
+                }
+                if (clienteActual.getClass() == Institucion.class) {
+                App.manejadorBD.modificarDescripcionInstitucion(String.valueOf(clienteActual.getDocIdentidad()), taObservaciones.getText());
+                }
+                if (clienteActual.getClass() == Medico.class) {
+                App.manejadorBD.modificarDescripcionMedico(String.valueOf(clienteActual.getDocIdentidad()), taObservaciones.getText());
+                }
                 tablaClientes.refresh();
                 tablaClientes.getSelectionModel().clearSelection();
             }

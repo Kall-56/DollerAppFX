@@ -341,7 +341,7 @@ public class ManejadorBD {
       return retornosAtms;
     }
     
-    public void registrarFarmacia (String FARMACIA, String RIF, String GERENTE, String ATM, String DIRECCION, String CORREO, String TELEFONO, String PERSONA_DE_CONTACTO, String FREC, String CADENA, String DROGUERIA, String DESCRIPCION ) throws ClassNotFoundException {
+    public void registrarFarmacia (String FARMACIA, String RIF, String GERENTE, String ATM, String DIRECCION, String CORREO, String TELEFONO, String PERSONA_DE_CONTACTO, String FREC, String CADENA, String DROGUERIA, String OBSERVACION ) throws ClassNotFoundException {
 
       try{
         
@@ -356,7 +356,7 @@ public class ManejadorBD {
                                                             FREC  + "  , '" +
                                                             CADENA + "', '" +
                                                             DROGUERIA + "', '" +
-                                                            DESCRIPCION+ "')"  ;
+                                                            OBSERVACION+ "')"  ;
         System.out.println(instruccion);
         Statement stm = conexion.createStatement();
         stm.executeUpdate(instruccion);
@@ -382,7 +382,7 @@ public class ManejadorBD {
       }
     }
 
-    public void registrarInstitucion (String INSTITUCION, String RIF, String GERENTE, String ATM, String DIRECCION, String CORREO, String TELEFONO, String PERSONA_DE_CONTACTO, String EDIFICIO, String FREC, String DESCRIPCION ) throws ClassNotFoundException {
+    public void registrarInstitucion (String INSTITUCION, String RIF, String GERENTE, String ATM, String DIRECCION, String TELEFONO, String PERSONA_DE_CONTACTO, String EDIFICIO, String OBSERVACION ) throws ClassNotFoundException {
 
         try{
             
@@ -391,12 +391,10 @@ public class ManejadorBD {
                                                                 GERENTE  + "', '" +
                                                                 ATM  + "', '" +
                                                                 DIRECCION  + "', '" +
-                                                                CORREO + "', " +
                                                                 TELEFONO + ", '" +
                                                                 PERSONA_DE_CONTACTO + "', " +
-                                                                FREC  + "  , '" +
                                                                 EDIFICIO + "', '" +
-                                                                DESCRIPCION+ "')"  ;
+                                                                OBSERVACION+ "')"  ;
             System.out.println(instruccion);
             Statement stm = conexion.createStatement();
             stm.executeUpdate(instruccion);
@@ -422,7 +420,7 @@ public class ManejadorBD {
       }
     }
     
-    public void registrarMedico (String MEDICO, String CEDULA, String GERENTE, String ATM, String NOMBRE_INSTITUCION, String DIRECCION, String ESPECIALIDAD, String FREC,  String CORREO, String TELEFONO, String DIAS_DE_VISITA, String HORARIO_DE_VISITA, String FORMATO_DE_VISITA, String DESCRIPCION ) throws ClassNotFoundException {
+    public void registrarMedico (String MEDICO, String CEDULA, String GERENTE, String ATM , String DIRECCION, String ESPECIALIDAD, String FREC,  String CORREO, String TELEFONO, String DIAS_DE_VISITA, String HORARIO_DE_VISITA, String FORMATO_DE_VISITA, String OBSERVACION ) throws ClassNotFoundException {
 
         try{
             
@@ -430,7 +428,6 @@ public class ManejadorBD {
                                                                 CEDULA + ", '" +
                                                                 GERENTE  + "', '" +
                                                                 ATM  + "', '" +
-                                                                NOMBRE_INSTITUCION  + "', '" +
                                                                 DIRECCION  + "', '" +
                                                                 ESPECIALIDAD  + "', " +
                                                                 FREC  + ", '" +
@@ -439,7 +436,7 @@ public class ManejadorBD {
                                                                 DIAS_DE_VISITA + "', '" +
                                                                 HORARIO_DE_VISITA + "', '" +
                                                                 FORMATO_DE_VISITA  + "'  , '" +
-                                                                DESCRIPCION+ "')"  ;
+                                                                OBSERVACION+ "')"  ;
             System.out.println(instruccion);
             Statement stm = conexion.createStatement();
             stm.executeUpdate(instruccion);
@@ -580,6 +577,39 @@ public class ManejadorBD {
           System.err.println(ex);
       }
     }
+    
+    public void modificarDescripcionMedico(String CI, String Descripcion){
+        try{
+             String instruccion = "update medico set DESCRIPCION = '"+ Descripcion +"' where CEDULA = '" + CI + "'" ;
+            System.out.println(instruccion);
+            Statement stm = conexion.createStatement();
+            stm.executeUpdate(instruccion);
+            stm.close();
+      } catch(SQLException ex){
+          System.err.println(ex);
+      }}
+    
+    public void modificarDescripcionFarmacia(String RIF, String Descripcion){
+        try{
+             String instruccion = "update farmacia set DESCRIPCION = '"+ Descripcion +"' where RIF = '" + RIF + "'" ;
+            System.out.println(instruccion);
+            Statement stm = conexion.createStatement();
+            stm.executeUpdate(instruccion);
+            stm.close();
+      } catch(SQLException ex){
+          System.err.println(ex);
+      }}
+    
+    public void modificarDescripcionInstitucion(String RIF, String Descripcion){
+        try{
+             String instruccion = "update institucion set DESCRIPCION = '"+ Descripcion +"' where RIF = '" + RIF + "'" ;
+            System.out.println(instruccion);
+            Statement stm = conexion.createStatement();
+            stm.executeUpdate(instruccion);
+            stm.close();
+      } catch(SQLException ex){
+          System.err.println(ex);
+      }}
 }
   
     
