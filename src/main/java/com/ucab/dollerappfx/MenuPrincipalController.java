@@ -21,72 +21,63 @@ import javafx.scene.shape.Circle;
 
 
 public class MenuPrincipalController {
-
-    @FXML
-    private Circle bgCircleFarmaS;
-
-    @FXML
-    private Circle bgCircleInstS;
-
-    @FXML
-    private Circle bgCircleMedicS;
-
-    @FXML
-    private Pane btFarmaS;
-    
-    @FXML
-    private ImageView iconFarmaS;
-
-    @FXML
-    private Pane btFarma;
-
-    @FXML
-    private Pane btInst;
-
-    @FXML
-    private Pane btInstS;
-    
-    @FXML
-    private ImageView iconInstS;
-
-    @FXML
-    private ImageView btLogOut;
-
-    @FXML
-    private ImageView btLogo;
-
-    @FXML
-    private Pane btMedic;
-
-    @FXML
-    private Pane btMedicS;
-    
-    @FXML
-    private ImageView iconMedicS;
-
-    @FXML
-    private StackPane pnContenido;
-
+//---------------------------Panel SideBar------------------------------------//
     @FXML
     private Pane pnSideBar;
-
+    @FXML
+    private ImageView btLogo;
+    
+    @FXML
+    private Pane btMedicS;
+    @FXML
+    private Circle bgCircleMedicS;
+    @FXML
+    private ImageView iconMedicS;
+    
+    @FXML
+    private Pane btInstS;
+    @FXML
+    private Circle bgCircleInstS;
+    @FXML
+    private ImageView iconInstS;
+    
+    @FXML
+    private Pane btFarmaS;
+    @FXML
+    private Circle bgCircleFarmaS;
+    @FXML
+    private ImageView iconFarmaS;
+    
+    @FXML
+    private ImageView btLogOut;
+    
+//--------------------------Panel SubMenu Principal---------------------------//
+    @FXML
+    private StackPane pnContenido;
     @FXML
     private AnchorPane pnSubMenuPrincipal;
-
+    
+    @FXML
+    private Pane btMedic;
+    @FXML
+    private Pane btInst;
+    @FXML
+    private Pane btFarma;
+    
     @FXML
     private TableView<Cliente> tbClientesRecientes;
-
     @FXML
     private TableView<Evento> tbEventosMenu;
 
+//-------------------------------Propiedades----------------------------------//
     @FXML
     private AnchorPane pnSubMenuClientes;
-
     private MenuClientesController controllerClientes;
 
     private final double lowOpacity = 0.35;
     private final double maxOpacity = 1;
 
+//--------------------------Metodos del fxml----------------------------------//
     @FXML
     void btLogoClicked(MouseEvent event) throws ClassNotFoundException {
         visibilityChange(false,true);
@@ -120,7 +111,10 @@ public class MenuPrincipalController {
         controllerClientes.establecerClase(Medico.class, FXCollections.observableArrayList(App.manejadorBD.DevolverMedicos(App.usuario.getNomUsuario())));
         controllerClientes.filtroClientes(FXCollections.observableArrayList(App.manejadorBD.DevolverMedicos(App.usuario.getNomUsuario())));
     }
-
+    @FXML
+    void btMedicSEntered(MouseEvent event) {
+        bgCircleMedicS.setOpacity(maxOpacity);
+    }
     @FXML
     void btMedicSExited(MouseEvent event) {
         if (!pnSubMenuClientes.isVisible() || !"Médicos".equals(controllerClientes.getClientesLabel())){
@@ -129,16 +123,10 @@ public class MenuPrincipalController {
     }
 
     @FXML
-    void btMedicSEntered(MouseEvent event) {
-        bgCircleMedicS.setOpacity(maxOpacity);
-    }
-    
-    @FXML
     void btMedicEntered(MouseEvent event) {
         btMedic.setLayoutY(btMedic.getLayoutY()-20);
         btMedic.setPrefHeight(btMedic.getPrefHeight()+21);
     }
-
     @FXML
     void btMedicExited(MouseEvent event) {
         btMedic.setLayoutY(btMedic.getLayoutY()+20);
@@ -158,12 +146,10 @@ public class MenuPrincipalController {
         controllerClientes.establecerClase(Farmacia.class, FXCollections.observableArrayList(App.manejadorBD.DevolverFarmacias(App.usuario.getNomUsuario())));
         controllerClientes.filtroClientes(FXCollections.observableArrayList(App.manejadorBD.DevolverFarmacias(App.usuario.getNomUsuario())));
     }
-
     @FXML
     void btFarmaSEntered(MouseEvent event) {
         bgCircleFarmaS.setOpacity(maxOpacity);
     }
-
     @FXML
     void btFarmaSExited(MouseEvent event) {
         if (!pnSubMenuClientes.isVisible() || !"Farmacias".equals(controllerClientes.getClientesLabel())){
@@ -176,7 +162,6 @@ public class MenuPrincipalController {
         btFarma.setLayoutY(btFarma.getLayoutY()-20);
         btFarma.setPrefHeight(btFarma.getPrefHeight()+21);
     }
-
     @FXML
     void btFarmaExited(MouseEvent event) {
         btFarma.setLayoutY(btFarma.getLayoutY()+20);
@@ -196,12 +181,10 @@ public class MenuPrincipalController {
         controllerClientes.establecerClase(Institucion.class, FXCollections.observableArrayList(App.manejadorBD.DevolverInstitucion(App.usuario.getNomUsuario())));
         controllerClientes.filtroClientes(FXCollections.observableArrayList(App.manejadorBD.DevolverInstitucion(App.usuario.getNomUsuario())));
     }
-
     @FXML
     void btInstSEntered(MouseEvent event) {
         bgCircleInstS.setOpacity(maxOpacity);
     }
-
     @FXML
     void btInstSExited(MouseEvent event) {
         if (!pnSubMenuClientes.isVisible() || !"Instituciones".equals(controllerClientes.getClientesLabel())){
@@ -214,7 +197,6 @@ public class MenuPrincipalController {
         btInst.setLayoutY(btInst.getLayoutY()-20);
         btInst.setPrefHeight(btInst.getPrefHeight()+21);
     }
-
     @FXML
     void btInstExited(MouseEvent event) {
         btInst.setLayoutY(btInst.getLayoutY()+20);

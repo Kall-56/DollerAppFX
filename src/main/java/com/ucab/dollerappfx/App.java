@@ -23,7 +23,7 @@ public class App extends Application {
     static Color naranja = Color.web("#FF7B52");
     static Color aguamarina = Color.web("#68C3B9");
 
-    //--------------------------Propiedades Usuario-------------------------------//
+ //--------------------------Propiedades Usuario------------------------------//
     public static ATM usuario;
     public static Administrador admin;
     public static ManejadorBD manejadorBD;

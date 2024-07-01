@@ -7,7 +7,6 @@ import Classes.Farmacia;
 import Classes.Institucion;
 import Classes.Medico;
 import java.sql.*;
-import com.mysql.jdbc.*;
 import java.util.ArrayList;
 
 
@@ -15,8 +14,12 @@ public class ManejadorBD {
     
     private Connection conexion;
     
+    
+    public void cerrar() throws SQLException{
+        conexion.close();
+    }
+    
     public ManejadorBD() throws ClassNotFoundException{
-        
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             this.conexion = DriverManager.getConnection("jdbc:mysql://avnadmin:AVNS_Qh5C9Xh7CDKUWx5cM11@mysql-server-app-dollder-2024-app-dollder-2024.g.aivencloud.com:11773/appdollder?ssl-mode=REQUIRED?ssl-mode=REQUIRED", "avnadmin", "AVNS_Qh5C9Xh7CDKUWx5cM11");
@@ -25,11 +28,6 @@ public class ManejadorBD {
         }
     }
     
-    public void cerrar() throws SQLException{
-        conexion.close();
-    }
-    
-    
     public  boolean verificarUsuarioATM(String nombre, String clave ) throws ClassNotFoundException{
        int cantidadDeUsuarios = 0;
        try{
@@ -37,6 +35,7 @@ public class ManejadorBD {
             System.out.println(instruccion);
             Statement stm = conexion.createStatement();
             ResultSet usuariosCoinciden = stm.executeQuery(instruccion);
+            
             while (usuariosCoinciden.next()) {
                 cantidadDeUsuarios++;
             }
@@ -251,7 +250,6 @@ public class ManejadorBD {
     }
   
     public ArrayList<Farmacia> DevolverFarmaciaADMIN (String nombreADMIN) throws ClassNotFoundException {
-
        ArrayList<Farmacia> retornosFarmacia = new ArrayList<Farmacia>();
         try{
             String instruccion = "select * from atms where GERENTE = '" + nombreADMIN + "'" ;
@@ -273,21 +271,16 @@ public class ManejadorBD {
     }
   
     public ArrayList<Medico> DevolverMedicoADMIN (String nombreADMIN) throws ClassNotFoundException {
-
        ArrayList<Medico> retornosMedico = new ArrayList<Medico>();
         try{
-            
-            
             String instruccion = "select * from atms where GERENTE = '" + nombreADMIN + "'" ;
             Statement stm = conexion.createStatement();
             ResultSet ATM = stm.executeQuery(instruccion);
 
             while (ATM.next()){
                 retornosMedico.addAll(DevolverMedicos(ATM.getString("NOMBRE")));
-
             }
             ATM.close();
-            
             stm.close();
       } catch(SQLException ex){
           System.err.println(ex);
@@ -296,21 +289,17 @@ public class ManejadorBD {
     }
   
     public ArrayList<Institucion> DevolverInstitucionADMIN (String nombreADMIN) throws ClassNotFoundException {
-
        ArrayList<Institucion> retornosInstitucion = new ArrayList<Institucion>();
         try{
-            
-                    String instruccion = "select * from atms where GERENTE = '" + nombreADMIN + "'" ;
+            String instruccion = "select * from atms where GERENTE = '" + nombreADMIN + "'" ;
             System.out.println(instruccion);
             Statement stm = conexion.createStatement();
             ResultSet ATM = stm.executeQuery(instruccion);
 
             while (ATM.next()){
                 retornosInstitucion.addAll(DevolverInstitucion(ATM.getString("NOMBRE")));
-
             }
             ATM.close();
-            
             stm.close();
       } catch(SQLException ex){
           System.err.println(ex);
@@ -319,21 +308,17 @@ public class ManejadorBD {
     }
   
     public ArrayList<ATM> DevolverATM (String nombreADMIN) throws ClassNotFoundException {
-
        ArrayList<ATM> retornosAtms = new ArrayList<ATM>();
         try{
-            
-                    String instruccion = "select * from atms where gerente = '" + nombreADMIN + "'" ;
+            String instruccion = "select * from atms where gerente = '" + nombreADMIN + "'" ;
             System.out.println(instruccion);
             Statement stm = conexion.createStatement();
             ResultSet ATM = stm.executeQuery(instruccion);
 
             while (ATM.next()){
                 retornosAtms.add(new ATM(ATM.getString("NOMBRE"),ATM.getString("CLAVE"),ATM.getString("TERRITORIO"),ATM.getString("EMAIL"),ATM.getString("GERENTE")));
-
             }
             ATM.close();
-            
             stm.close();
       } catch(SQLException ex){
           System.err.println(ex);
@@ -342,9 +327,7 @@ public class ManejadorBD {
     }
     
     public void registrarFarmacia (String FARMACIA, String RIF, String GERENTE, String ATM, String DIRECCION, String CORREO, String TELEFONO, String PERSONA_DE_CONTACTO, String FREC, String CADENA, String DROGUERIA, String OBSERVACION ) throws ClassNotFoundException {
-
       try{
-        
         String instruccion = "insert into farmacia  values (' " + FARMACIA + "', " +
                                                             RIF + ", '" +
                                                             GERENTE  + "', '" +
@@ -368,10 +351,8 @@ public class ManejadorBD {
     }
     
     public void ElimiarFarmacia (String RIF) throws ClassNotFoundException {
-
         try{
-            
-                    String instruccion = "delete from farmacia where RIF = " + RIF + "" ;
+            String instruccion = "delete from farmacia where RIF = " + RIF + "" ;
             System.out.println(instruccion);
             Statement stm = conexion.createStatement();
             stm.executeUpdate(instruccion);
@@ -383,10 +364,8 @@ public class ManejadorBD {
     }
 
     public void registrarInstitucion (String INSTITUCION, String RIF, String GERENTE, String ATM, String DIRECCION, String TELEFONO, String PERSONA_DE_CONTACTO, String EDIFICIO, String OBSERVACION ) throws ClassNotFoundException {
-
         try{
-            
-                    String instruccion = "insert into institucion  values (' " + INSTITUCION + "', " +
+            String instruccion = "insert into institucion  values (' " + INSTITUCION + "', " +
                                                                 RIF + ", '" +
                                                                 GERENTE  + "', '" +
                                                                 ATM  + "', '" +
@@ -406,10 +385,8 @@ public class ManejadorBD {
     }
     
     public void ElimiarInstitucion (String RIF) throws ClassNotFoundException {
-
         try{
-            
-                    String instruccion = "delete from institucion where RIF = " + RIF + "" ;
+            String instruccion = "delete from institucion where RIF = " + RIF + "" ;
             System.out.println(instruccion);
             Statement stm = conexion.createStatement();
             stm.executeUpdate(instruccion);
@@ -421,10 +398,8 @@ public class ManejadorBD {
     }
     
     public void registrarMedico (String MEDICO, String CEDULA, String GERENTE, String ATM , String DIRECCION, String ESPECIALIDAD, String FREC,  String CORREO, String TELEFONO, String DIAS_DE_VISITA, String HORARIO_DE_VISITA, String FORMATO_DE_VISITA, String OBSERVACION ) throws ClassNotFoundException {
-
         try{
-            
-                    String instruccion = "insert into medico  values (' " + MEDICO + "', " +
+            String instruccion = "insert into medico  values (' " + MEDICO + "', " +
                                                                 CEDULA + ", '" +
                                                                 GERENTE  + "', '" +
                                                                 ATM  + "', '" +
@@ -448,10 +423,8 @@ public class ManejadorBD {
     }
     
     public void ElimiarMEDICO (String CEDULA) throws ClassNotFoundException {
-
         try{
-            
-                    String instruccion = "delete from medico where CEDULA = " + CEDULA + "" ;
+            String instruccion = "delete from medico where CEDULA = " + CEDULA + "" ;
             System.out.println(instruccion);
             Statement stm = conexion.createStatement();
             stm.executeUpdate(instruccion);
@@ -463,10 +436,8 @@ public class ManejadorBD {
     }
     
     public void registrarEvento (String TITULO, String ATM, String CLIENTE, String FECHA, String SEMANA, String DESCRIPCION ) throws ClassNotFoundException {
- 
         try{
-            
-                    String instruccion = "insert into eventos  values (' " + TITULO + "', '" +
+            String instruccion = "insert into eventos  values (' " + TITULO + "', '" +
                                                                 ATM + "', '" +
                                                                 CLIENTE  + "', '" +
                                                                 FECHA  + "', " +
@@ -483,10 +454,8 @@ public class ManejadorBD {
     }
     
     public void eliminarEvento(String Titulo) throws ClassNotFoundException {
- 
         try{
-            
-                    String instruccion = "delete from eventos where TITULO = '" + Titulo + "'" ;
+            String instruccion = "delete from eventos where TITULO = '" + Titulo + "'" ;
             System.out.println(instruccion);
             Statement stm = conexion.createStatement();
             stm.executeUpdate(instruccion);
@@ -498,10 +467,8 @@ public class ManejadorBD {
     }
 
     public ArrayList<Evento> DevolverEventos (String Cliente) throws ClassNotFoundException {
- 
         ArrayList<Evento> retornosEventos = new ArrayList<Evento>();
         try{
-            
             String instruccion = "select * from eventos where CLIENTE = '" + Cliente + "'" ;
             System.out.println(instruccion);
             Statement stm = conexion.createStatement();
@@ -509,10 +476,8 @@ public class ManejadorBD {
 
             while (eventos.next()){
                 retornosEventos.add(new Evento(eventos.getString("TITULO"),eventos.getString("CLIENTE"),eventos.getString("FECHA"),Integer.parseInt(eventos.getString("SEMANA")),eventos.getString("DESCRIPCION")));
-
             }
             eventos.close();
-            
             stm.close();
       } catch(SQLException ex){
           System.err.println(ex);
@@ -550,8 +515,7 @@ public class ManejadorBD {
                                                 String DESCRIPCION  ) throws ClassNotFoundException{
  
         try{
-            
-                    String instruccion = "insert into requestfarmacia values  ('" + ADMINISTRADOR + "', '" +
+            String instruccion = "insert into requestfarmacia values  ('" + ADMINISTRADOR + "', '" +
                                                                         ATM + "', '" +
                                                                         TITULO_PETICION  + "', '" +
                                                                         DESCRIPCION_MOTIVO  + "', '" +

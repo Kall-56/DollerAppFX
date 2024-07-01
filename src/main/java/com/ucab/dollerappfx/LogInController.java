@@ -12,7 +12,6 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.*;
 
 public class LogInController {
 //--------------------------Panel de LogIn------------------------------------//
@@ -113,7 +112,6 @@ public class LogInController {
               alerta.showAndWait();
           }
     }
-    
     @FXML
     void btLogInEntered(MouseEvent event) {
         btUserLogIn.setStyle("-fx-background-color: #ff8e37;"+"-fx-border-color: white;"+"-fx-background-radius: 7;"+"-fx-border-radius: 5;");
@@ -197,10 +195,10 @@ public class LogInController {
                 valido = false;
             }
         }
+        
         Alert alerta = new Alert(Alert.AlertType.INFORMATION);
         alerta.setHeaderText("");
         if (valido && (fldUserPasswordCrt.getText().equals(fldUserPasswordConfirm.getText()))) {
-            //////////////////////////////////////////
             App.manejadorBD.AgregarUsuarioABaseDeDatos(fldUserNameCrt.getText(), fldUserPasswordCrt.getText(), cbUserZoneCrt.getValue(), fldUserEmailCrt.getText(), gerente);
             pnUserLogIn.setVisible(true);
             pnUserCreate.setVisible(false);
@@ -314,7 +312,6 @@ public class LogInController {
         if (codigoValido && (Integer.parseInt(tfCodigo.getText()) == codRecuperacion)) {
             boolean claveValido = ValidacionesController.validarCampos(tfClaveNueva, "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*_)(?!.* ).{8,16}$", lbUserPasswordError2);
             if (claveValido && (tfClaveNueva.getText().equals(tfClaveNuevaConfirm.getText()))) {
-
                 // Que el App.manejadorBD cambie la clave
                 App.manejadorBD.actualizarClave(tfUser.getText(), tfClaveNueva.getText());
                 
@@ -335,7 +332,6 @@ public class LogInController {
             alerta.setTitle("Código de recuperación erróneo");
             alerta.setHeaderText("");
             alerta.setContentText("Verifique el código introducido");
-
         }
         alerta.showAndWait();
     }

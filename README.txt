@@ -10,7 +10,7 @@ Indicaciones de Uso
 
   Administrador:
     Usuario: LiaUCAB
-    Contraseña: greetings_12
+    Contraseña: greetings__12
 
   ATM:
     Usuario: Frank Flores

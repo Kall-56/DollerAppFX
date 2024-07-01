@@ -6,48 +6,38 @@ import Classes.Evento;
 import java.io.IOException;
 import java.util.Optional;
 
-import ManejadorBD.ManejadorBD;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javax.print.attribute.standard.RequestingUserName;
 
 
 public class MenuAdminController {
-
     @FXML
     private TableView<ATM> tbATMs;
-
     @FXML
     private TableView<Cliente> tbCLIENTEs;
-
     @FXML
-    private TableView<Evento> tbEVENTOs;
-
-        
+    private TableView<Evento> tbEVENTOs;  
+    
     @FXML
     private Pane btCerrarSecion;
-    
     @FXML
     private Label lbCerrarSeccion;
 
     @FXML
     private Pane btDeseleccion;
-
     @FXML
     private Label lbDeseleccion;
 
     private ATM atmActual;
 
-
+//--------------------------Metodos del fxml----------------------------------//
     @FXML
     public void btCerrarSecionClicked(MouseEvent event) throws IOException{
         Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
@@ -123,19 +113,18 @@ public class MenuAdminController {
         tbEVENTOs.setItems(eventos);
         tbEVENTOs.refresh();
     }
-
     @FXML
     void btDeseleccionEntered(MouseEvent event) {
         btDeseleccion.setStyle("-fx-background-color: #bababa;"+"-fx-border-color: #9c9c9c;"+"-fx-background-radius: 5;"+"-fx-border-radius: 2;");
         lbDeseleccion.setTextFill(Color.WHITE);
     }
-
     @FXML
     void btDeseleccionExited(MouseEvent event) {
         btDeseleccion.setStyle("-fx-background-color: white;"+"-fx-border-color: #969696;"+"-fx-background-radius: 5;"+"-fx-border-radius: 2;");
         lbDeseleccion.setTextFill(Color.web("#969696"));
     }
 
+    
     public void initialize() throws ClassNotFoundException {
         btDeseleccion.setDisable(true);
         // TABLA ATM

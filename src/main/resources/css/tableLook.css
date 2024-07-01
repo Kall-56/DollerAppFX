@@ -19,8 +19,8 @@
     -fx-border-color: transparent;
     -fx-padding: 2 0 2 10px;
 }
-.table-row-cell:hover {
-    -fx-text-background-color: orange;
+.table-row-cell:hover .text{
+    -fx-fill: orange;
 }
 .table-row-cell:selected .text {
     -fx-fill: #ff8e37;

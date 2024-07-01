@@ -15,7 +15,7 @@
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ucab.dollerappfx.MenuAdminController">
    <children>
-      <Rectangle height="800.0" onMouseClicked="#btCerrarSecionClicked" opacity="0.65" strokeType="INSIDE" strokeWidth="0.0" width="1280.0">
+      <Rectangle height="800.0" opacity="0.65" strokeType="INSIDE" strokeWidth="0.0" width="1280.0">
          <fill>
             <LinearGradient endX="0.7298578199052133" endY="1.0" startX="0.7298578199052134" startY="0.5639810426540284">
                <stops>
