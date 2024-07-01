@@ -1,5 +1,5 @@
 README
-  DollderAppFx sera un sistema de control de reporte y manejo de reportes mediante una 
+  DollderAppFx es un sistema de control de reporte y manejo de reportes mediante una 
   base de datos creada para la compañía Especialidades Dollder.
   Esta fue creada con los visitadores medicos y los gerentes regionales en mente, para
   facilitar el registro de actividades promocionales realizadas, automatizar el proceso
@@ -10,11 +10,13 @@ Indicaciones de Uso
 
   Administrador:
     Usuario: LiaUCAB
-    Contraseña: proyecto1234
+    Contraseña: greetings_12
 
   ATM:
-    Usuario: PruebaATM
-    Contraseña: 1234
+    Usuario: Frank Flores
+    Contraseña: clave1234Buena
+    Usuario: Yaleida Paez
+    Contraseña: saludos_12
 
 
 Requerimientos

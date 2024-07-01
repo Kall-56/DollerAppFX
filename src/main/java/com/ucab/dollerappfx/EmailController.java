@@ -28,8 +28,8 @@ public class EmailController {
     public void createEmail(String correo, int clave) {
         String subject = "RECUPERACIÓN CLAVE";
         String content = "El código para reestablecer la clave es: " + clave;
-
-         // Protocolo de transferencia básico
+        
+        // Protocolo de transferencia básico
         mProperties.put("mail.smtp.host", "smtp.gmail.com");
         mProperties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
         mProperties.setProperty("mail.smtp.starttls.enable", "true");
@@ -46,8 +46,6 @@ public class EmailController {
             mCorreo.setRecipient(Message.RecipientType.TO, new InternetAddress(correo));
             mCorreo.setSubject(subject);
             mCorreo.setText(content, "ISO-8859-1", "html");
-
-
         } catch (AddressException ex) {
             Logger.getLogger(EmailController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (MessagingException ex) {

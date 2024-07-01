@@ -38,8 +38,8 @@
       </Rectangle>
       <Pane fx:id="pnSideBar" prefHeight="800.0" prefWidth="114.0">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#30281e" height="780.0" layoutX="11.0" layoutY="10.0" opacity="0.9" stroke="#5757570b" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" width="100.0" />
-            <Pane fx:id="btMedicS" layoutX="31.0" layoutY="122.0" onMouseEntered="#btMedicSEntered" onMouseExited="#btMedicSExited" onMousePressed="#btMedicPressed" prefHeight="60.0" prefWidth="60.0">
+            <Rectangle fill="#30281e" height="804.0" layoutX="-1.0" layoutY="-3.0" opacity="0.9" smooth="false" stroke="#5757570b" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" width="114.0" />
+            <Pane fx:id="btMedicS" layoutX="27.0" layoutY="113.0" onMouseEntered="#btMedicSEntered" onMouseExited="#btMedicSExited" onMousePressed="#btMedicPressed" prefHeight="60.0" prefWidth="60.0">
                <children>
                   <Circle fx:id="bgCircleMedicS" fill="#221810" layoutX="30.0" layoutY="30.0" opacity="0.35" radius="30.0" strokeType="INSIDE" strokeWidth="0.0" />
                   <ImageView fx:id="iconMedicS" fitHeight="35.0" fitWidth="35.0" layoutX="12.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
@@ -51,7 +51,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Pane>
-            <Pane fx:id="btInstS" layoutX="31.0" layoutY="201.0" onMouseEntered="#btInstSEntered" onMouseExited="#btInstSExited" onMousePressed="#btInstPressed" prefHeight="60.0" prefWidth="60.0">
+            <Pane fx:id="btInstS" layoutX="27.0" layoutY="192.0" onMouseEntered="#btInstSEntered" onMouseExited="#btInstSExited" onMousePressed="#btInstPressed" prefHeight="60.0" prefWidth="60.0">
                <children>
                   <Circle fx:id="bgCircleInstS" fill="#221810" layoutX="30.0" layoutY="30.0" opacity="0.35" radius="30.0" strokeType="INSIDE" strokeWidth="0.0" />
                   <ImageView fx:id="iconInstS" fitHeight="35.0" fitWidth="35.0" layoutX="13.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
@@ -64,7 +64,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Pane>
-            <Pane fx:id="btFarmaS" layoutX="32.0" layoutY="277.0" onMouseEntered="#btFarmaSEntered" onMouseExited="#btFarmaSExited" onMousePressed="#btFarmaPressed" prefHeight="60.0" prefWidth="60.0">
+            <Pane fx:id="btFarmaS" layoutX="26.0" layoutY="275.0" onMouseEntered="#btFarmaSEntered" onMouseExited="#btFarmaSExited" onMousePressed="#btFarmaPressed" prefHeight="60.0" prefWidth="60.0">
                <children>
                   <Circle fx:id="bgCircleFarmaS" fill="#221810" layoutX="30.0" layoutY="30.0" opacity="0.35" radius="30.0" strokeType="INSIDE" strokeWidth="0.0" />
                   <ImageView fx:id="iconFarmaS" fitHeight="35.0" fitWidth="35.0" layoutX="13.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
@@ -77,7 +77,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Pane>
-            <ImageView fx:id="btLogOut" fitHeight="28.0" fitWidth="28.0" layoutX="47.0" layoutY="739.0" onMouseClicked="#btLogOutClicked" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="btLogOut" fitHeight="28.0" fitWidth="28.0" layoutX="42.0" layoutY="752.0" onMouseClicked="#btLogOutClicked" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../Assets/iconLogOut.png" />
                </image>
@@ -85,7 +85,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <ImageView fx:id="btLogo" fitHeight="102.0" fitWidth="99.0" layoutX="12.0" layoutY="9.0" onMouseClicked="#btLogoClicked" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="btLogo" fitHeight="102.0" fitWidth="99.0" layoutX="7.0" layoutY="7.0" onMouseClicked="#btLogoClicked" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../Assets/LogoDollderB.png" />
                </image>

@@ -22,6 +22,9 @@
 .table-row-cell:hover {
     -fx-text-background-color: orange;
 }
+.table-row-cell:selected .text {
+    -fx-fill: #ff8e37;
+}
 .table-row-cell:odd{
     -fx-background-color: #fccfa9;
     -fx-background-insets: 0, 0 0 1 0;

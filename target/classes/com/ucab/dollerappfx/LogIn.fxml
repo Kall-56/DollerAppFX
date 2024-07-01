@@ -121,7 +121,7 @@
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btBackClave" layoutX="364.0" layoutY="425.0" mnemonicParsing="false" onMousePressed="#btBackClavePressed" prefHeight="32.0" prefWidth="113.0" style="-fx-border-color: #6f6f6f;" stylesheets="@../../../css/buttonLookGray.css" text="Volver" textFill="#6f6f6f" />
+                  <Button fx:id="btBackClave" cancelButton="true" layoutX="364.0" layoutY="425.0" mnemonicParsing="false" onMousePressed="#btBackClavePressed" prefHeight="32.0" prefWidth="113.0" style="-fx-border-color: #6f6f6f;" stylesheets="@../../../css/buttonLookGray.css" text="Volver" textFill="#6f6f6f" />
                   <Separator layoutX="230.0" layoutY="301.0" prefHeight="3.0" prefWidth="541.0" />
                   <Label fx:id="lbUserPasswordConfirmError2" layoutX="549.0" layoutY="361.0" text="*Error" textFill="RED" visible="false">
                      <font>
