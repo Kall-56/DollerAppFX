@@ -1,0 +1,14 @@
+.button{
+    -fx-background-color: transparent;
+    -fx-border-color: #68C3B9;
+    -fx-border-radius: 3;
+    -fx-font-family: "Roboto";
+    -fx-text-fill: #68C3B9;
+    -fx-font-size: 14;
+}
+.button:hover {
+    -fx-background-color: #68C3B9;
+    -fx-background-radius: 3;
+    -fx-text-fill: white;
+}
+

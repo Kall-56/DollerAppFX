@@ -69,9 +69,9 @@ public class LogInController {
     @FXML
     private Pane pnUserRecClave;
     @FXML
-    private Pane btBackClave;
+    private Button btBackClave;
     @FXML
-    private Pane btEnviarCodigo;
+    private Button btEnviarCodigo;
     @FXML
     private Button btConfirmNuevaClave;
     @FXML
@@ -82,6 +82,14 @@ public class LogInController {
     private PasswordField tfClaveNuevaConfirm;
     @FXML
     private TextField tfUser;
+    @FXML
+    private Label lbNombreError;
+    @FXML
+    private Label lbCodigoError;
+    @FXML
+    private Label lbUserPasswordError2;
+    @FXML
+    private Label lbUserPasswordConfirmError2;
 
     private int codRecuperacion;
 
@@ -106,7 +114,6 @@ public class LogInController {
           }
     }
     
-
     @FXML
     void btLogInEntered(MouseEvent event) {
         btUserLogIn.setStyle("-fx-background-color: #ff8e37;"+"-fx-border-color: white;"+"-fx-background-radius: 7;"+"-fx-border-radius: 5;");
@@ -119,7 +126,6 @@ public class LogInController {
     }
 
 
-    
     @FXML
     void btCreateClicked(MouseEvent event) {
         pnUserCreate.setVisible(true);
@@ -240,14 +246,14 @@ public class LogInController {
         btEnviarCodigo.setDisable(false);
         pnUserLogIn.setVisible(true);
         pnUserRecClave.setVisible(false);
-
+        lbUserPasswordConfirmError2.setVisible(false);
+        lbNombreError.setVisible(false);
         codRecuperacion = -101;
     }
 
     @FXML
     private void btEnviarCodigoPressed() {
         btBackClave.setDisable(true);
-        btEnviarCodigo.setDisable(true);
 
         // Codigo de recuperacion aleatorio de 6 digitos
         int randomNum = 100000 + (int)(Math.random() * ((999999 - 100000) + 1));
@@ -278,6 +284,7 @@ public class LogInController {
                 tfClaveNuevaConfirm.setDisable(false);
                 tfCodigo.setDisable(false);
                 btBackClave.setDisable(false);
+                lbNombreError.setVisible(false);
             }
 
             @Override
@@ -289,6 +296,7 @@ public class LogInController {
                 alerta.showAndWait();
                 btBackClave.setDisable(false);
                 btEnviarCodigo.setDisable(false);
+                lbNombreError.setVisible(true);
                 getException().printStackTrace();
             }
         };
@@ -300,10 +308,11 @@ public class LogInController {
 
     @FXML
     void btConfirmarClave(ActionEvent event) {
+        lbUserPasswordConfirmError2.setVisible(false);
         Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-        boolean codigoValido = ValidacionesController.validarCampos(tfCodigo, "^[0-9]{6}$", lbUserPasswordError);
+        boolean codigoValido = ValidacionesController.validarCampos(tfCodigo, "^[0-9]{6}$", lbCodigoError);
         if (codigoValido && (Integer.parseInt(tfCodigo.getText()) == codRecuperacion)) {
-            boolean claveValido = ValidacionesController.validarCampos(tfClaveNueva, "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*_)(?!.* ).{8,16}$", lbUserPasswordError);
+            boolean claveValido = ValidacionesController.validarCampos(tfClaveNueva, "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*_)(?!.* ).{8,16}$", lbUserPasswordError2);
             if (claveValido && (tfClaveNueva.getText().equals(tfClaveNuevaConfirm.getText()))) {
 
                 // Que el App.manejadorBD cambie la clave
@@ -320,6 +329,7 @@ public class LogInController {
                 alerta.setTitle("Error en la clave");
                 alerta.setHeaderText("");
                 alerta.setContentText("Verifique que la clave nueva sea válida");
+                lbUserPasswordConfirmError2.setVisible(true);
             }
         } else {
             alerta.setTitle("Código de recuperación erróneo");
